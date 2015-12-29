@@ -1,0 +1,38 @@
+name: RageMode
+main: at.dafnik.ragemode.Main.Main
+version: 1.3.3
+commands:
+  rm:
+    description: RageMode Admin Commands!
+  vote:
+    description: Vote for a Map
+  list:
+    description: List all Maps
+  tpmap:
+    description: Teleport to a Map
+  tplobby:
+    description: Teleport to Lobby
+  forcestart:
+    description: Forcestart the round
+  latestart:
+    description: Reset the Counter
+  stats:
+    description: Show you, your stats
+  statsadmin:
+    description: Edit all stats
+  hub:
+    description: BungeeCord Hub
+  lobby:
+    description: BungeeCord Hub
+  leave:
+    description: BungeeCord Hub
+  l:
+    description: BungeeCord Hub
+  statsreset:
+    description: Reset your Stats
+  coins:
+    description: Show you your Coins
+  coinsadmin:
+    description: Admin Command
+  test:
+    description: Test
