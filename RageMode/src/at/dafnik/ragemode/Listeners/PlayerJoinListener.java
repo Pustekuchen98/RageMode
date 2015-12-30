@@ -66,9 +66,7 @@ public class PlayerJoinListener implements Listener{
 			player.setGameMode(GameMode.SURVIVAL);
 			
 			//Chat Message
-			if(plugin.getPower(player)> 0 ){
-				player.sendMessage(Strings.lobby_rotate_your_mouse);
-			}
+			if(plugin.getPower(player)> 0 ) player.sendMessage(Strings.lobby_rotate_your_mouse);
 			
 			//Tp to Lobby
 			Location loc = new TeleportAPI(plugin).getLobbyLocation();
@@ -84,6 +82,15 @@ public class PlayerJoinListener implements Listener{
 				imd.setLore(ilore);
 				i.setItemMeta(imd);
 				player.getInventory().setItem(0, i);
+				
+				if(plugin.villager == null) {
+					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+						@Override
+						public void run() {
+							if(plugin.villager == null) plugin.villager = plugin.VillagerShopSpawner();
+						}
+					}, 40);
+				}
 			}
 		    
 		    //Tablist Header and Footer
@@ -99,17 +106,6 @@ public class PlayerJoinListener implements Listener{
 		    	SQLStats.createPlayer(player.getUniqueId().toString());
 		    	//Create Hologramm		    	
 		    	new HologramsScheduler(plugin, player);
-		    }
-		    
-		    if(Main.isShop) {
-			    if(plugin.villager == null) {
-				    Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-						@Override
-						public void run() {
-							plugin.villager = plugin.VillagerShopSpawner();
-						}
-					}, 40);
-			    }
 		    }
 		    	   
 		} else if(Main.status == Status.INGAME){
