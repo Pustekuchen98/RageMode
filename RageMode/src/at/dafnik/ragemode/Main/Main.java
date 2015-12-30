@@ -206,7 +206,7 @@ public class Main extends JavaPlugin{
 		}
 		
 		if(isShop) {
-			if(Bukkit.getOnlinePlayers().size() > 0) this.villager = this.VillagerShopSpawner();		
+			if(Bukkit.getOnlinePlayers().size() > 0 && villager == null) villager = VillagerShopSpawner();		
 		}
 	}
 	
@@ -344,7 +344,7 @@ public class Main extends JavaPlugin{
 	}
 	
 	public void killGroundremover(Player player) {
-		if(!playercombataxelist.contains(player) && !playergrenadelist.contains(player) && !playerclaymorelist.contains(player) && !playerknifelist.contains(player) && !playerbowlist.contains(player)) {
+		if(!playerminelist.contains(player) && !playercombataxelist.contains(player) && !playergrenadelist.contains(player) && !playerclaymorelist.contains(player) && !playerknifelist.contains(player) && !playerbowlist.contains(player)) {
 			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Killer: Nobody | Before Killground: Nothing");
 		}
 		
@@ -355,7 +355,7 @@ public class Main extends JavaPlugin{
 		}
 		
 		if(playergrenadelist.contains(player)) {
-			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Before Killground: Grenade");
+			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Killer: " + playergrenade.get(player).getName() + " | Before Killground: Grenade");
 			playergrenadelist.remove(player);
 			playergrenade.remove(player);
 		}
