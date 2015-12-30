@@ -149,8 +149,9 @@ List<Integer> idlists = new ArrayList<>();
 						if (killer.getItemInHand() != null && killer.getItemInHand().getType() == Material.IRON_SPADE) {
 							if(killer.getNearbyEntities(5, 5, 5).contains(victim)) {
 								plugin.killGroundremover(victim);
-								plugin.playerknife.put(victim, killer);
 								plugin.playerknifelist.add(victim);
+								plugin.playerknife.put(victim, killer);
+								
 								event.setDamage(21.0);
 								event.setCancelled(false);
 							}

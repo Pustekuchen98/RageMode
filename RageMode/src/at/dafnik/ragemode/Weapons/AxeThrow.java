@@ -46,21 +46,20 @@ public class AxeThrow implements Runnable{
 			for(Entity entity : item.getNearbyEntities(radius, radius, radius)){
 				if(entity instanceof Player){
 					Player victim = (Player) entity;
-					Player victimkill = (Player) entity;
 					if(victim != player){
 						if(Main.status == Status.INGAME) {
 							if(!plugin.spectatorlist.contains(victim)) {
 								if(!plugin.respawnsafe.contains(victim)) {
 							
 									plugin.killGroundremover(victim);
+									plugin.playercombataxelist.add(victim);
 									plugin.playercombataxe.put(victim, player);
-							        plugin.playercombataxelist.add(victim);
 									
 							        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 										@Override
 										public void run() {
 											
-											victimkill.damage(42);
+											victim.damage(42);
 										}
 									}, 1);
 									

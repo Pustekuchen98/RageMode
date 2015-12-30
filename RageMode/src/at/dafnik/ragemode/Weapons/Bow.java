@@ -66,8 +66,8 @@ public class Bow implements Listener{
 								Player victim = (Player) event.getEntity();
 								if(!plugin.respawnsafe.contains(victim)) {
 									plugin.killGroundremover(victim);
-									plugin.playerbow.put(victim, (Player) arrow.getShooter());
 									plugin.playerbowlist.add(victim);
+									plugin.playerbow.put(victim, (Player) arrow.getShooter());
 													
 									event.setDamage(21);
 								}

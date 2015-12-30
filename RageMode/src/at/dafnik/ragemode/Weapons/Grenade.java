@@ -127,9 +127,9 @@ public class Grenade implements Listener{
 							Player victim = (Player) event.getEntity();
 							if(!plugin.respawnsafe.contains(victim)) {
 								plugin.killGroundremover(victim);
-								plugin.playergrenade.put(victim, killer);
 								plugin.playergrenadelist.add(victim);
-										
+								plugin.playergrenade.put(victim, killer);
+								
 								event.setDamage(21.0);
 							}
 						}
