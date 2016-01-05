@@ -4,6 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
@@ -46,20 +48,20 @@ public class AxeThrow implements Runnable{
 			for(Entity entity : item.getNearbyEntities(radius, radius, radius)){
 				if(entity instanceof Player){
 					Player victim = (Player) entity;
+					
 					if(victim != player){
 						if(Main.status == Status.INGAME) {
 							if(!plugin.spectatorlist.contains(victim)) {
 								if(!plugin.respawnsafe.contains(victim)) {
-							
 									plugin.killGroundremover(victim);
 									plugin.playercombataxelist.add(victim);
-									plugin.playercombataxe.put(victim, player);
 									
 							        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+										@SuppressWarnings("deprecation")
 										@Override
 										public void run() {
-											
-											victim.damage(42);
+											victim.damage(42, player);
+											victim.setLastDamageCause(new EntityDamageEvent(player, DamageCause.PROJECTILE, 0));
 										}
 									}, 1);
 									

@@ -37,7 +37,6 @@ public class Grenade implements Listener{
 	public void onHits(ProjectileHitEvent event) {
 		
 		if (event.getEntity() instanceof Egg && event.getEntity().getShooter() instanceof Player) {
-
 			Egg egg = (Egg) event.getEntity();
 
 			if (egg.getShooter() instanceof Player) {
@@ -50,8 +49,7 @@ public class Grenade implements Listener{
 					
 					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,new Runnable() {
 						@Override
-						public void run() {
-								
+						public void run() {	
 							Location loceggy = eggy.getLocation();
 								
 							loceggy.getWorld().playEffect(loceggy, Effect.EXPLOSION_HUGE, 1);
@@ -93,11 +91,8 @@ public class Grenade implements Listener{
 	
 								Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,new Runnable() {
 									@Override
-									public void run() {
-										
-										Location loc = arrow.getLocation();
-										
-										new Explosion("grenade", loc, killer, plugin);
+									public void run() {										
+										new Explosion("grenade", arrow.getLocation(), killer, plugin);
 										
 										arrow.remove();
 									}
@@ -117,6 +112,7 @@ public class Grenade implements Listener{
 		if (event.getCause() == DamageCause.PROJECTILE) {	
 			if (event.getDamager() instanceof Arrow) {
 				Arrow arrow = (Arrow) event.getDamager();
+				
 				if(Main.status == Status.INGAME) {
 					String shootedWith = arrow.getMetadata("shootedWith").get(0).asString(); 
 					
@@ -125,20 +121,27 @@ public class Grenade implements Listener{
 							String killername = arrow.getMetadata("shooter").get(0).asString();  
 						    Player killer = Bukkit.getServer().getPlayer(killername);
 							Player victim = (Player) event.getEntity();
+							
 							if(!plugin.respawnsafe.contains(victim)) {
 								plugin.killGroundremover(victim);
 								plugin.playergrenadelist.add(victim);
-								plugin.playergrenade.put(victim, killer);
 								
-								event.setDamage(21.0);
-							}
-						}
-					}
+								victim.damage(20, killer);
+								event.setCancelled(false);
+								
+							} else event.setCancelled(true);
+							
+						} else event.setCancelled(true);
+						
+					} else event.setCancelled(true);
+					
 					arrow.remove();
 				} else {
+					event.setCancelled(true);
 					arrow.remove();
 				}
-			}
-		}
+			} else event.setCancelled(true);
+			
+		} else event.setCancelled(true);
 	}
 }

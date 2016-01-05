@@ -15,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -144,23 +145,34 @@ List<Integer> idlists = new ArrayList<>();
 			if (event.getEntityType() == EntityType.PLAYER && event.getDamager().getType() == EntityType.PLAYER) { 
 				Player killer = (Player) event.getDamager();
 				Player victim = (Player) event.getEntity();
-				if(!plugin.respawnsafe.contains(victim)) {
-					if(killer.getNearbyEntities(6, 6, 6).contains(victim)) {
-						if (killer.getItemInHand() != null && killer.getItemInHand().getType() == Material.IRON_SPADE) {
-							if(killer.getNearbyEntities(5, 5, 5).contains(victim)) {
+				
+				if (killer.getItemInHand() != null && killer.getItemInHand().getType() == Material.IRON_SPADE) {
+					if(!plugin.respawnsafe.contains(victim)) {
+						if(victim.getLocation().distance(killer.getLocation()) <=3) {
+							if(victim.getLastDamageCause().getCause() == DamageCause.ENTITY_ATTACK) {
 								plugin.killGroundremover(victim);
 								plugin.playerknifelist.add(victim);
-								plugin.playerknife.put(victim, killer);
-								
-								event.setDamage(21.0);
 								event.setCancelled(false);
-							}
-						}
-					}
-				} else if(plugin.respawnsafe.contains(killer)){
-					event.setCancelled(true);
-				}
-			}
-		}
+								
+								double q = victim.getLocation().getDirection().dot(killer.getLocation().getDirection());
+								if(q > 0 ) {
+									event.setDamage(21);
+									killer.setHealth(killer.getHealth() + 6);
+								}
+								else event.setDamage(11);
+							
+							} else event.setCancelled(true);
+							
+						} else event.setCancelled(true);
+
+					} else event.setCancelled(true);
+
+				} else event.setCancelled(true);
+							
+			
+				
+			} else event.setCancelled(true);
+			
+		} else event.setCancelled(true);	
 	}
 }

@@ -1,11 +1,15 @@
 package at.dafnik.ragemode.PowerUPs;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
@@ -48,7 +52,6 @@ public class ClayMoreThread implements Runnable{
 		while(running) {
 			for(Entity entity : block.getLocation().getWorld().getNearbyEntities(block.getLocation(), radius, radius, radius)) {
 				if(entity instanceof Player) {
-					
 					Player victim = (Player) entity;
 						
 					if(victim != setter) {	
@@ -58,17 +61,18 @@ public class ClayMoreThread implements Runnable{
 									Location loc = block.getLocation();
 									
 									plugin.killGroundremover(victim);
-									plugin.playerclaymore.put(victim, setter);
 									plugin.playerclaymorelist.add(victim);
 									
 									Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+										@SuppressWarnings("deprecation")
 										@Override
 										public void run() {
-											loc.getBlock().setType(Material.AIR);
-	
-											victim.damage(11);
+											victim.damage(11, setter);
+											victim.setLastDamageCause(new EntityDamageEvent(setter, DamageCause.PROJECTILE, 0));
 											
-											loc.getWorld().createExplosion(loc.getX(), loc.getY(), loc.getZ(), 3.0F, false, false);	
+											loc.getBlock().setType(Material.AIR);
+											loc.getWorld().playEffect(loc, Effect.EXPLOSION_HUGE, 1);
+											loc.getWorld().playSound(loc, Sound.EXPLODE, 1000.0F, 1.0F);
 										}
 									}, 1);							
 									this.stop();
@@ -80,17 +84,15 @@ public class ClayMoreThread implements Runnable{
 			}
 		
 			if(block == null){
-				
 				Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 					@Override
 					public void run() {
-
 						block.getLocation().getBlock().setType(Material.AIR);
 					}
-				}, 5);
-				
+				}, 1);
 				this.stop();
 			}
+			
 			try{
 				Thread.sleep(5);
 			}catch (InterruptedException e){

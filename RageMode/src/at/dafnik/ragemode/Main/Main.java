@@ -83,27 +83,21 @@ public class Main extends JavaPlugin{
 	//---------------------------------------------------------------------
 	//Combat Axe
 	public List<Player> playercombataxelist = new ArrayList<>();
-	public HashMap<Player, Player> playercombataxe = new HashMap<>();
 	
 	//Grenade
 	public List<Player> playergrenadelist = new ArrayList<>();
-	public HashMap<Player, Player> playergrenade = new HashMap<>();
 	
 	//Clay More
 	public List<Player> playerclaymorelist = new ArrayList<>();
-	public HashMap<Player, Player> playerclaymore = new HashMap<>();
 	
 	//Mine
 	public List<Player> playerminelist = new ArrayList<>();
-	public HashMap<Player, Player> playermine = new HashMap<>();
 	
 	//Knife
 	public List<Player> playerknifelist = new ArrayList<>();
-	public HashMap<Player, Player> playerknife = new HashMap<>();
 	
 	//Bow
 	public List<Player> playerbowlist = new ArrayList<>();
-	public HashMap<Player, Player> playerbow = new HashMap<>();
 	
 	//----------------------------------------------------------------------
 	//Player Ingamelist
@@ -349,39 +343,33 @@ public class Main extends JavaPlugin{
 		}
 		
 		if(playercombataxelist.contains(player)) {
-			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Killer: " + playercombataxe.get(player).getName() + " | Before Killground: Combat Axe");
+			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Before Killground: Combat Axe");
 			playercombataxelist.remove(player);
-			playercombataxe.remove(player);
 		}
 		
 		if(playergrenadelist.contains(player)) {
-			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Killer: " + playergrenade.get(player).getName() + " | Before Killground: Grenade");
+			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Before Killground: Grenade");
 			playergrenadelist.remove(player);
-			playergrenade.remove(player);
 		}
 		
 		if(playerclaymorelist.contains(player)) {
-			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Killer: " + playerclaymore.get(player).getName() + " | Before Killground: ClayMore");
+			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Before Killground: ClayMore");
 			playerclaymorelist.remove(player);
-			playerclaymore.remove(player);
 		}
 		
 		if(playerminelist.contains(player)) {
-			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Killer: " + playermine.get(player).getName() + " | Before Killground: Mine");
+			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Before Killground: Mine");
 			playerminelist.remove(player);
-			playermine.remove(player);
 		}
 		
 		if(playerknifelist.contains(player)) {
-			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Killer: " + playerknife.get(player).getName() + " | Before Killground: Knife");
+			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Before Killground: Knife");
 			playerknifelist.remove(player);
-			playerknife.remove(player);
 		}
 		
 		if(playerbowlist.contains(player)) {
-			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Killer: " + playerbow.get(player).getName() + " | Before Killground: Bow");
+			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Before Killground: Bow");
 			playerbowlist.remove(player);
-			playerbow.remove(player);
 		}
 	}
 	

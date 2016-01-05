@@ -8,7 +8,7 @@
 				Allowed things: YouTubers are allowed to forcestart or latestart a game.
 			
 		PowerUP System:
-			- Server admins / owners, now can add points on Maps, where PowerUPs spawn.
+			- Server admins / owners, can add points on Maps, where PowerUPs spawn.
 			- new PowerUPs:
 				normal mine, claymore, doubleheart
 				Jump higher
@@ -25,10 +25,16 @@
 		Premium Join, User kick fix
 		Little Fixes
 		Map null error fix, by first start
-		Now you can't destroy grass when you plant Mines or Claymores.
+		You can't destroy grass with claymores and mines anymore
+		Completely rewritten PlayerDeathEvent. (I hope the last time) 100% Killer identification
 	
 	Changes:
-		For a better knifefight you can use a knockback ability every 10 seconds
+		Knife:
+			- Know you are able to backstab people
+				- for backstab you get 3 extra hearts
+				- backstab instant kills your victim, if the victim hasn't doubleheart
+			- Front and side hits don't instant kills your victim anymore
+			- For a better knifefight you can use a knockback ability every 10 seconds
 		
 	Removed:
 		- Killstreak Items. You will still get extra points for killstreaks

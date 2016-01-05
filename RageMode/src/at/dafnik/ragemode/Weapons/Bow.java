@@ -1,7 +1,6 @@
 package at.dafnik.ragemode.Weapons;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,27 +27,23 @@ public class Bow implements Listener{
 	@EventHandler
 	public void HitEvent(ProjectileHitEvent event){	
 		if (event.getEntity() instanceof Arrow && event.getEntity().getShooter() instanceof Player) {
-			
 			Arrow arrow = (Arrow) event.getEntity();
 			
 			if(Main.status == Status.INGAME) {
 				arrow.setMetadata("shootedWith", new FixedMetadataValue(plugin, "bow"));
 				
 				if (arrow.getShooter() instanceof Player) {
+					
 					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 						@Override
-						public void run() {
-							Location loc = event.getEntity().getLocation();
-							
-							new Explosion("bow", loc, ((Player) arrow.getShooter()), plugin);
+						public void run() {			
+							new Explosion("bow", event.getEntity().getLocation(), ((Player) arrow.getShooter()), plugin);
 							
 							arrow.remove();
 						}
 					}, 20);
 				}
-			} else {
-				arrow.remove();
-			}
+			} else arrow.remove();
 		}
 	}
 		
@@ -57,6 +52,7 @@ public class Bow implements Listener{
 		if (event.getCause() == DamageCause.PROJECTILE) {
 			if (event.getDamager() instanceof Arrow && event.getEntity() instanceof Player) {
 				Arrow arrow = (Arrow) event.getDamager();
+				
 				if(Main.status == Status.INGAME) {
 					String shootedWith = arrow.getMetadata("shootedWith").get(0).asString();  
 							
@@ -67,18 +63,21 @@ public class Bow implements Listener{
 								if(!plugin.respawnsafe.contains(victim)) {
 									plugin.killGroundremover(victim);
 									plugin.playerbowlist.add(victim);
-									plugin.playerbow.put(victim, (Player) arrow.getShooter());
-													
-									event.setDamage(21);
-								}
-							}	
-						}			
-					}
+									
+									victim.damage(20, (Player) arrow.getShooter());
+								} else event.setCancelled(true);
+								
+							} else event.setCancelled(true);
+							
+						} else event.setCancelled(true);
+						
+					} else event.setCancelled(true);
+				
 					arrow.remove();
-				} else {
-					arrow.remove();
-				}
-			}
+					
+				} else arrow.remove();
+				
+			} else event.setCancelled(true);
 		}
 	}
 }

@@ -35,14 +35,15 @@ public class PlayerRespawnListener implements Listener{
 		
 		Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
 			 public void run(){
-				 player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100, 10));
-		         player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 100, 10));
-		          
+				 if(plugin.ingameplayer.contains(player)) {
+					 player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100, 10));
+					 player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 100, 10));
+				 }
+				 
 		         for(int i = 0; i < plugin.poweruphashmap.size(); i++) {
 		        	 Holograms holo = plugin.poweruphashmap.get(i);
 		        	 
-		        	 if(holo != null) holo.display(player);
-		        	 
+		        	 if(holo != null) holo.display(player);	 
 		         }
 		     }
 		 }, 1);

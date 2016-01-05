@@ -5,6 +5,8 @@ import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.util.Vector;
 
 import at.dafnik.ragemode.Main.Main;
@@ -27,6 +29,7 @@ public class Explosion {
 		Explosioner();
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void Explosioner() {
 		
 		loc.getWorld().playEffect(loc, Effect.EXPLOSION_HUGE, 1);
@@ -47,17 +50,15 @@ public class Explosion {
 					
 					if(ground == "bow") {
 						if(SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString()) == 1) damage = (radius - distance) * 9;		
-						
-						plugin.playerbow.put(victim, killer);
 						plugin.playerbowlist.add(victim);
 					} else if(ground == "grenade"){
-						plugin.playergrenade.put(victim, killer);
 						plugin.playergrenadelist.add(victim);
 					} else {
 						System.out.println("[RageMode] ERROR: ExplosionAPI doesn't work well. No Explosionground can found!");
 					}
 
-					if(!plugin.respawnsafe.contains(victim))victim.damage(damage);
+					victim.damage(damage, killer);
+					victim.setLastDamageCause(new EntityDamageEvent(killer, DamageCause.PROJECTILE, 0));
 
 					double d4 = eloc.distance(loc) / radius;
 
@@ -73,7 +74,7 @@ public class Explosion {
 							d7 /= d9;
 
 							Vector vector = new Vector(d5,d6, d7).normalize();
-							if(!plugin.respawnsafe.contains(victim)) victim.setVelocity(vector);
+							victim.setVelocity(vector);
 						}
 					}	
 				}
