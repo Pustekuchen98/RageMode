@@ -5,7 +5,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerAchievementAwardedEvent;
 
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
@@ -38,9 +37,4 @@ public class AsyncPlayerChatListener implements Listener{
 			Bukkit.broadcastMessage("§cSomething went terrible wrong");
 		}
     }
-	
-	@EventHandler
-	public void onAchivement(PlayerAchievementAwardedEvent event){
-		event.setCancelled(true);
-	}
 }

@@ -48,7 +48,7 @@ public class Listeners implements Listener {
 						 public void run(){
 							 player.setHealth(0.0D);
 						  }
-					 }, 5);
+					 }, 2);
 					
 					player.playSound(player.getLocation(), Sound.HURT_FLESH, 10, 1);
 				} else if(plugin.spectatorlist.contains(player)) {
