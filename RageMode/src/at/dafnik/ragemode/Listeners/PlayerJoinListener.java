@@ -70,7 +70,7 @@ public class PlayerJoinListener implements Listener{
 			
 			//Tp to Lobby
 			Location loc = new TeleportAPI(plugin).getLobbyLocation();
-			if(loc == null) System.out.println("[RageMode] ERROR: You haven't set a spawnpoint!");
+			if(loc == null) System.out.println("[RageMode] ERROR: You haven't set the Lobby spawnpoint!");
 			else player.teleport(loc);
 			
 			if(Main.isMySQL && Main.isShop) {

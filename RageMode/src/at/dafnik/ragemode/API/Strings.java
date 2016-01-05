@@ -92,9 +92,7 @@ public class Strings {
 	public static String kill_unknown_killer = " §3died";
 	public static String kill_holo_points = " §3Points";
 	
-	public static String killstreak_3 = " §3killed §c3 §3player witout dying";
-	public static String killstreak_5 = " §3killed §c5 §3player witout dying";
-	public static String killstreak_7 = " §3killed §c7 §3player witout dying";
+	public static String killstreak = " §3has a §ckillstreak ";
 	
 	public static String item_compass_error = pre + "§cThere isn't a player";
 	public static String item_compass_1 = pre + "§3Next Player§8: ";
