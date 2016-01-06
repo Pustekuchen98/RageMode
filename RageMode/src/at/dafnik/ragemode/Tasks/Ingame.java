@@ -190,7 +190,7 @@ public class Ingame {
 								  "\n§3Thanks for playing §4RageMode§8!"
 								+ "\n§3The winner of this round is§8: §r" + playerwinner.getDisplayName() + " §3with§8: §e" + winnerpoints + " §3points"
 								+ "\n" + Strings.kill_your_points + yourpoints
-								+ "\n§3eThe server is back in few seconds");
+								+ "\n§eThe server is back in few seconds");
 					}	
 				}
 			}

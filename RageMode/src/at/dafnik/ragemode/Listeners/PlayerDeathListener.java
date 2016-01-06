@@ -65,49 +65,49 @@ public class PlayerDeathListener implements Listener {
 				if (plugin.playerbowlist.contains(victim)) {
 					plugin.playerbowlist.remove(victim);
 					
-					event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + "§6Bow");
-					killer.sendMessage(Main.pre + " §a§l+" + this.bowkill);
+					event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_bow);
+					killer.sendMessage(Strings.kill_points_plus + this.bowkill);
 					holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.bowkill + Strings.kill_holo_points));
 					killground = "bow";
 	
 				} else if (plugin.playercombataxelist.contains(victim)) {
 					plugin.playercombataxelist.remove(victim);
 					
-					event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with_combat_axe);
-					killer.sendMessage("§a§l+" + this.combataxekill);
+					event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_combat_axe);
+					killer.sendMessage(Strings.kill_points_plus + this.combataxekill);
 					holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.combataxekill + Strings.kill_holo_points));
 					killground = "combataxe";
 					
 				} else if (plugin.playergrenadelist.contains(victim)) {
 					plugin.playergrenadelist.remove(victim);
 					
-					event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with_grenade);
-					killer.sendMessage("§a§l+" + this.grenadekill);
+					event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname +Strings.kill_with + Strings.kill_with_grenade);
+					killer.sendMessage(Strings.kill_points_plus + this.grenadekill);
 					holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.grenadekill + Strings.kill_holo_points));
 					killground = "grenade";
 	
 				} else if (plugin.playerminelist.contains(victim)) {
 					plugin.playerminelist.remove(victim);
 					
-					event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with_mine);
-					killer.sendMessage("§a§l+" + this.minekill);
+					event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_mine);
+					killer.sendMessage(Strings.kill_points_plus + this.minekill);
 					holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.minekill + Strings.kill_holo_points));
 					killground = "mine";
 	
 				} else if (plugin.playerclaymorelist.contains(victim)) {
 					plugin.playerclaymorelist.remove(victim);
 					
-					event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with_claymore);
-					killer.sendMessage("§a§l+" + this.claymorekill);
+					event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_claymore);
+					killer.sendMessage(Strings.kill_points_plus + this.claymorekill);
 					holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.claymorekill + Strings.kill_holo_points));
 					killground = "claymore";
 	
 				} else if(plugin.playerknifelist.contains(victim)) {
 					plugin.playerknifelist.remove(victim);
 					
-					event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + "§6Knife");
-					killer.sendMessage(Main.pre + " §a§l+" + this.knifekill);
-					victim.sendMessage(Main.pre + " §c§l" + this.knifedeath);
+					event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_knife);
+					killer.sendMessage(Strings.kill_points_plus + this.knifekill);
+					victim.sendMessage(Strings.kill_points_negative + this.knifedeath);
 					givePlayerPoints(victim, "knife_death");
 					holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.knifekill + Strings.kill_holo_points));
 					killground = "knife_kill";
@@ -139,8 +139,7 @@ public class PlayerDeathListener implements Listener {
 				event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_suicide);
 				victim.sendMessage("§c§l" + this.suicide);
 				givePlayerPoints(victim, "suicide");
-				victim.setPlayerListName(victim.getDisplayName() + " §8- [§6" + plugin.playerpoints.get(victim) + "§8]");
-				holomaster(new Holograms(victim.getEyeLocation(), "§c-§6" + this.suicide + Strings.kill_holo_points));
+				holomaster(new Holograms(victim.getEyeLocation(), "§c" + this.suicide + Strings.kill_holo_points));
 			}
 			
 		} else event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_unknown_killer);
