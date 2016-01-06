@@ -82,17 +82,10 @@ public class Mine implements Listener{
 				
 			} else event.setCancelled(true);
 			
-		} else if((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && plugin.builder.get(player) != null){
-			if(plugin.builder.get(player)) {
-				if(player.hasPermission("ragemode.admin")) {
-					event.setCancelled(false);
-					
-				} else event.setCancelled(true);
-				
-			} else event.setCancelled(true);
-			
-		} else event.setCancelled(true);
+		} else if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && plugin.builder.contains(player)
+				&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
 		
+		else event.setCancelled(true);
 	}
 	
 	private void configset(Block block) {

@@ -21,36 +21,31 @@ public class InventoryItemListener implements Listener{
 	@EventHandler
 	public void DropItem(PlayerDropItemEvent event){
 		Player player = event.getPlayer();
-		if (player.hasPermission("ragemode.admin")) {
-			if(Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) event.setCancelled(false);
-			else event.setCancelled(true);
-		} else {
-			event.setCancelled(true);
-		}
+
+		if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && plugin.builder.contains(player)
+				&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
+		else event.setCancelled(true);	
 	}
 	
 	//Cannot change Inventory
 	@EventHandler
 	public void IventoryMove(InventoryMoveItemEvent event) {
 		Player player = (Player) event.getSource().getHolder();
-			if (player.hasPermission("ragemode.admin")) {
-				if(Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) event.setCancelled(false);
-				else event.setCancelled(true);
-			} else {
-				event.setCancelled(true);
-			}
+		if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && plugin.builder.contains(player)
+				&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
+		else event.setCancelled(true);	
 	}
 		
 	//Cannot Click in the Inventory
 	@EventHandler
 	public void InventoryClick(InventoryClickEvent event) {
-		Player player = (Player) event.getWhoClicked();
+		if(event.getWhoClicked() instanceof Player) {
+			Player player = (Player) event.getWhoClicked();
 
-		if (player.hasPermission("ragemode.admin")) {
-			if(Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) event.setCancelled(false);
-			else event.setCancelled(true);
-		} else {
-			event.setCancelled(true);
-		}
+			if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && plugin.builder.contains(player)
+					&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
+			else event.setCancelled(true);	
+		
+		} else event.setCancelled(true);
 	}
 }

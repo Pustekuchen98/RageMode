@@ -33,16 +33,10 @@ public class BlockBedListener implements Listener{
 	@EventHandler
 	private void BlockBreak(BlockBreakEvent event) {
 		Player player = event.getPlayer();
-		
-		if (player.hasPermission("ragemode.admin")) {
-			if((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && plugin.builder.get(player) != null) {
-				if(plugin.builder.get(player)) event.setCancelled(false);
-				else event.setCancelled(true);
-			} else {
-				event.setCancelled(true);
-			}
-		} else {
-			event.setCancelled(true);
-		}
+
+		if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && plugin.builder.contains(player)
+				&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
+		else event.setCancelled(true);
+	
 	}
 }

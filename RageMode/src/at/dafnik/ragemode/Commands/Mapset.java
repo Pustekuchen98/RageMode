@@ -144,17 +144,12 @@ public class Mapset implements CommandExecutor{
 								player.sendMessage(Strings.error_permission);
 							}else{
 								if(Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) {
-									if(plugin.builder.get(player) == null) {
-										plugin.builder.put(player, true);
-										player.sendMessage(Strings.map_edit_allowed);
+									if(plugin.builder.contains(player)) {
+										plugin.builder.remove(player);
+										player.sendMessage(Strings.map_edit_disallowed);
 									} else {
-										if(plugin.builder.get(player)) {
-											plugin.builder.replace(player, false);
-											player.sendMessage(Strings.map_edit_disallowed);
-										} else {
-											plugin.builder.replace(player, true);
-											player.sendMessage(Strings.map_edit_allowed);
-										}
+										plugin.builder.add(player);
+										player.sendMessage(Strings.map_edit_allowed);
 									}
 								} else player.sendMessage(Strings.map_edit_not_yet);
 							}

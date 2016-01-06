@@ -113,7 +113,7 @@ public class Main extends JavaPlugin{
 	public HashMap<Player, Integer> playerpoints = new HashMap<>();
 	
 	//Allowed to build
-	public HashMap<Player, Boolean> builder = new HashMap<>();
+	public List<Player> builder = new ArrayList<>();
 	
 	//Planted Things
 	public List<Location> planted = new ArrayList<>();
