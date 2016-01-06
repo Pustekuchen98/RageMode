@@ -83,18 +83,23 @@ public class Strings {
 	
 	public static String kill_suicide = " §3suicided";
 	public static String kill_killed = " §3killed §r";
-	public static String kill_with = " §3with §r";
-	public static String kill_with_combat_axe = " §3with §aCombat Axt";
-	public static String kill_with_grenade = " §3with §6Cluster Grenade";
-	public static String kill_with_claymore = " §3with §6Claymore";
-	public static String kill_with_mine = " §3with §6Mine";
+	public static String kill_with = " §3with ";
+	public static String kill_with_knife = "§6Knife";
+	public static String kill_with_combat_axe = "§aCombat Axt";
+	public static String kill_with_grenade = "§6Cluster Grenade";
+	public static String kill_with_claymore = "§6Claymore";
+	public static String kill_with_mine = "§6Mine";
+	public static String kill_with_bow = "§6Bow";
+	public static String kill_backstab_knife = pre + "§4§l+ §c3 §3Hearts";
 	public static String kill_your_points = "§3Your points§8: §e";
 	public static String kill_unknown_killer = " §3died";
 	public static String kill_holo_points = " §3Points";
+	public static String kill_points_plus = pre + "§a§l+";
+	public static String kill_points_negative = pre + "§c§l";
 	
 	public static String killstreak = " §3has a §ckillstreak ";
 	
-	public static String item_compass_error = pre + "§cThere isn't a player";
+	public static String item_compass_error = pre + "§cThere isn't a player in this game";
 	public static String item_compass_1 = pre + "§3Next Player§8: ";
 	public static String item_compass_2 = " §8| §3Blocks away§8: §6";
 	
