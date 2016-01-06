@@ -43,7 +43,7 @@ public class Saver implements Runnable{
 			ct.start();
 			
 			if(Main.isDebug) {
-				if(zaehler >= 10) System.out.println("[Debug]> Started Compass and Knife Thread");
+				if(zaehler >= 30) System.out.println("[Debug]> Started Compass and Knife Thread");
 			}
 			
 			try {
@@ -56,7 +56,7 @@ public class Saver implements Runnable{
 			this.ct.stop();
 			
 			if(Main.isDebug) {
-				if(zaehler >= 20) {
+				if(zaehler >= 30) {
 					System.out.println("[Debug]> Stopped Compass and Knife Thread");
 					zaehler = 0;
 				}

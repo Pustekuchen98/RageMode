@@ -66,10 +66,9 @@ public class PowerUPItemListener implements Listener{
 				
 				Holograms holo = plugin.poweruphashmap.get(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
 				for(Player players : Bukkit.getOnlinePlayers()) holo.destroy(players);
-					
-				Random random = new Random();
-				int randomint = random.nextInt(7);
-				if (randomint == 0) {
+
+				switch(new Random().nextInt(7)) {
+				case 0:
 					ItemStack i = new ItemStack(Material.REDSTONE, 1);
 					ItemMeta imd = i.getItemMeta();
 					imd.setDisplayName(doubleheart);
@@ -77,41 +76,53 @@ public class PowerUPItemListener implements Listener{
 					player.getInventory().setItem(5, i);
 					player.sendMessage(Strings.powerup_get_0 + doubleheart + Strings.powerup_get_1);
 					if (Main.isDebug) System.out.println("[Debug]> PowerUP: " + doubleheart + " | Player: " + player.getName());
-				} else if (randomint == 1) {
-					ItemStack i = new ItemStack(Material.FLOWER_POT_ITEM, 4);
-					ItemMeta imd = i.getItemMeta();
-					imd.setDisplayName(claymore);
-					i.setItemMeta(imd);
-					player.getInventory().setItem(7, i);
+					break;
+					
+				case 1:
+					ItemStack i2 = new ItemStack(Material.FLOWER_POT_ITEM, 4);
+					ItemMeta imd2 = i2.getItemMeta();
+					imd2.setDisplayName(claymore);
+					i2.setItemMeta(imd2);
+					player.getInventory().setItem(7, i2);
 					player.sendMessage(Strings.powerup_get_0 + claymore + Strings.powerup_get_1);
 					if (Main.isDebug) System.out.println("[Debug]> PowerUP: " + claymore + " | Player: " + player.getName());
-				} else if (randomint == 2) {
-					ItemStack i = new ItemStack(Material.STONE_PLATE, 2);
-					ItemMeta imd = i.getItemMeta();
-					imd.setDisplayName(mine);
-					i.setItemMeta(imd);
-					player.getInventory().setItem(6, i);
+					break;
+					
+				case 2:
+					ItemStack i3 = new ItemStack(Material.STONE_PLATE, 2);
+					ItemMeta imd3 = i3.getItemMeta();
+					imd3.setDisplayName(mine);
+					i3.setItemMeta(imd3);
+					player.getInventory().setItem(6, i3);
 					player.sendMessage(Strings.powerup_get_0 + mine + Strings.powerup_get_1);
 					if (Main.isDebug) System.out.println("[Debug]> PowerUP: " + mine + " | Player: " + player.getName());
-				} else if (randomint == 3) {
+					break;
+					
+				case 3:
 					player.sendMessage(Strings.powerup_get_0 + jump + Strings.powerup_get_1);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, time, 4));
 					if (Main.isDebug) System.out.println("[Debug]> PowerUP: " + jump + " | Player: " + player.getName());
-				} else if (randomint == 4) {
+					break;
+					
+				case 4:
 					player.sendMessage(Strings.powerup_get_0 + slowness + Strings.powerup_get_1);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, time, 2));
 					if (Main.isDebug) System.out.println("[Debug]> PowerUP: " + slowness + " | Player: " + player.getName());
-				} else if (randomint == 5) {
+					break;
+					
+				case 5:
 					player.sendMessage(Strings.powerup_get_0 + blindness + Strings.powerup_get_1);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, time, 1));
 					if (Main.isDebug) System.out.println("[Debug]> PowerUP: " + blindness + " | Player: " + player.getName());
-				} else if (randomint == 6) {
+					break;
+					
+				case 6:
 					player.sendMessage(Strings.powerup_get_0 + speed + Strings.powerup_get_1);
 					plugin.powerupspeedeffect.add(player);
 					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 						@Override
 						public void run() {
-							player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, (time-1)*20, 3));
+							player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, (time-1), 3));
 						}
 					}, 20);
 					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
@@ -121,14 +132,18 @@ public class PowerUPItemListener implements Listener{
 						}
 					}, time);
 					if (Main.isDebug) System.out.println("[Debug]> PowerUP: " + blindness + " | Player: " + player.getName());
-				} else {
+					break;
+					
+				default:
 					System.out.println("[RageMode] ERROR: PowerUPItemListener - Randomizer doesn't work!");
 				}
+
 				player.playSound(player.getLocation(), Sound.LEVEL_UP, 1000, 1);
 					
 				entity.remove();
 				plugin.powerupentity.remove(entity);
 				plugin.poweruphashmap.remove(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
+				
 			} else {
 				event.setCancelled(true);
 				entity.remove();
