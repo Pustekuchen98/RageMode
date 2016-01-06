@@ -15,14 +15,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
@@ -34,7 +35,8 @@ public class Knife implements Listener{
 		this.plugin = main;
 	}
 	
-List<Integer> idlists = new ArrayList<>();
+	List<Integer> idlists = new ArrayList<>();
+	List<Player> knifelist = new ArrayList<>();
 	
 	HashMap<Player, Boolean> allowed = new HashMap<Player, Boolean>();
 	HashMap<Player, Integer> time = new HashMap<Player, Integer>();
@@ -139,40 +141,53 @@ List<Integer> idlists = new ArrayList<>();
 	}
 	
 	@EventHandler
-	public void onIn(EntityDamageByEntityEvent event) {
-		// Messer Damage
+	public void EntityDamage(EntityDamageByEntityEvent event) {
 		if(Main.status == Status.INGAME) {
 			if (event.getEntityType() == EntityType.PLAYER && event.getDamager().getType() == EntityType.PLAYER) { 
 				Player killer = (Player) event.getDamager();
 				Player victim = (Player) event.getEntity();
 				
-				if (killer.getItemInHand() != null && killer.getItemInHand().getType() == Material.IRON_SPADE) {
-					if(!plugin.respawnsafe.contains(victim)) {
-						if(victim.getLocation().distance(killer.getLocation()) <=3) {
-							if(victim.getLastDamageCause().getCause() == DamageCause.ENTITY_ATTACK) {
-								plugin.killGroundremover(victim);
-								plugin.playerknifelist.add(victim);
-								event.setCancelled(false);
-								
-								double q = victim.getLocation().getDirection().dot(killer.getLocation().getDirection());
-								if(q > 0 ) {
-									event.setDamage(21);
-									killer.setHealth(killer.getHealth() + 6);
+				if (!plugin.respawnsafe.contains(victim)) {
+					if (killer.getItemInHand() != null && killer.getItemInHand().getType() == Material.IRON_SPADE) {
+						if (victim.getLocation().distance(killer.getLocation()) <= 3) {
+
+							Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+								@Override
+								public void run() {
+
+									if (knifelist.contains(killer)) {
+
+										knifelist.remove(killer);
+										plugin.killGroundremover(victim);
+										plugin.playerknifelist.add(victim);
+										event.setCancelled(false);
+
+										double q = victim.getLocation().getDirection().dot(killer.getLocation().getDirection());
+										if (q > 0) {
+											victim.setHealth(0);
+											if (killer.getHealth() + 6 > 20) killer.setHealth(20);
+											else killer.setHealth(killer.getHealth() + 6);
+											
+											killer.sendMessage(Strings.kill_backstab_knife);
+											
+										} else victim.damage(11, killer);
+									}
 								}
-								else event.setDamage(11);
-							
-							} else event.setCancelled(true);
-							
+							}, 1);
+
 						} else event.setCancelled(true);
 
 					} else event.setCancelled(true);
 
 				} else event.setCancelled(true);
-							
-			
 				
 			} else event.setCancelled(true);
 			
-		} else event.setCancelled(true);	
+		} else event.setCancelled(true);
+	}
+	
+	@EventHandler
+	public void onHit(PlayerItemDamageEvent event) {
+		if(event.getItem().getType() == Material.IRON_SPADE) knifelist.add(event.getPlayer()); //Killer will be addet to the List
 	}
 }
