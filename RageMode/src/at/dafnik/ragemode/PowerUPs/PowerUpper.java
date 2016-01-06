@@ -20,7 +20,7 @@ public class PowerUpper implements Runnable{
 	Thread thread;
 	boolean running;
 	Main plugin;
-	int time = 30;
+	int time = 2;
 	
 	public PowerUpper(Main main) {
 		this.plugin = main;
@@ -98,7 +98,7 @@ public class PowerUpper implements Runnable{
 			}
 			
 			try {
-				Thread.sleep(time*1000);
+				Thread.sleep(time*60*1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
