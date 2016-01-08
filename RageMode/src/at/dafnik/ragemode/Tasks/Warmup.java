@@ -89,20 +89,22 @@ public class Warmup {
 					Bukkit.broadcastMessage(pre + "§3The peace time ends in §e" + warmuptime + " §3seconds");
 					
 				}else if(warmuptime == 0){
-					Bukkit.broadcastMessage(Strings.tasks_ingame_peacetime_ends);
-					gI = new GetItems();
-					for(Player player : Bukkit.getOnlinePlayers()) {
-						Title.sendFullTitle(player, fadein, stay, fadeout, "§eThe peace time ends now", "§cnow");
-						gI.getItems(player);
+					if(Main.status != Status.WIN && Main.status != Status.RESTART) {
+						Bukkit.broadcastMessage(Strings.tasks_ingame_peacetime_ends);
+						gI = new GetItems();
+						for(Player player : Bukkit.getOnlinePlayers()) {
+							Title.sendFullTitle(player, fadein, stay, fadeout, "§eThe peace time ends now", "§cnow");
+							gI.getItems(player);
+						}
+						
+						//Set Status on Ingame
+						Main.status = Status.INGAME;
+						
+						//Start Ingame Time
+						ig.ingame();
+						
+						plugin.getServer().getScheduler().cancelTask(warmupid);
 					}
-					
-					//Set Status on Ingame
-					Main.status = Status.INGAME;
-					
-					//Start Ingame Time
-					ig.ingame();
-					
-					plugin.getServer().getScheduler().cancelTask(warmupid);
 				}		
 				warmuptime--;
 			}
