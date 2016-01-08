@@ -77,7 +77,7 @@ public class Knife implements Listener{
 										entities.setVelocity(vector);
 										((Player) entities).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 3*20, 3));
 										((Player) entities).addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 3*20, 3));
-										((Player) entities).damage(2);
+										((Player) entities).damage(2, player);
 									}
 								} else entities.setVelocity(vector);
 							}									
@@ -156,7 +156,6 @@ public class Knife implements Listener{
 								public void run() {
 
 									if (knifelist.contains(killer)) {
-
 										knifelist.remove(killer);
 										plugin.killGroundremover(victim);
 										plugin.playerknifelist.add(victim);
@@ -188,6 +187,6 @@ public class Knife implements Listener{
 	
 	@EventHandler
 	public void onHit(PlayerItemDamageEvent event) {
-		if(event.getItem().getType() == Material.IRON_SPADE) knifelist.add(event.getPlayer()); //Killer will be addet to the List
+		if(event.getItem().getType() == Material.IRON_SPADE && Main.status == Status.INGAME) knifelist.add(event.getPlayer()); //Killer will be addet to the List
 	}
 }
