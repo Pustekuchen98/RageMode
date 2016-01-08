@@ -215,11 +215,6 @@ public class Main extends JavaPlugin{
 		mysql.update("CREATE TABLE IF NOT EXISTS Stats(UUID varchar(64), KILLS int, DEATHS int, PLAYEDGAMES int, WONGAMES int, POINTS int, RESETS int, BOWKILLS int, AXTKILLS int, KNIFEKILLS int, SUICIDES int);");
 		mysql.update("CREATE TABLE IF NOT EXISTS Coins(UUID varchar(64), COINS int, SPEEDUPGRADE int, BOWPOWERUPGRADE int);");
 	}
-
-	//Setter Plugin
-	public static Plugin getPlugin(){
-		return plugin;
-	}
     
 	//Register All Events
 	private void registerListeners() {
@@ -385,7 +380,7 @@ public class Main extends JavaPlugin{
 			new VillagerThread(villager, loc).start();
 			return villager;
 		} else {
-			System.out.println("[RageMode] WARNING: You haven't set the villager spawn!");
+			System.out.println("[RageMode] WARNING: You haven't set the villager shop spawn!");
 			return null;
 		}
 	}
