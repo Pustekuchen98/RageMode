@@ -5,8 +5,6 @@ import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.util.Vector;
 
 import at.dafnik.ragemode.Main.Main;
@@ -28,8 +26,7 @@ public class Explosion {
 		this.shooter = shooter;
 		Explosioner();
 	}
-	
-	@SuppressWarnings("deprecation")
+
 	private void Explosioner() {
 		
 		loc.getWorld().playEffect(loc, Effect.EXPLOSION_HUGE, 1);
@@ -58,7 +55,6 @@ public class Explosion {
 					}
 
 					victim.damage(damage, killer);
-					victim.setLastDamageCause(new EntityDamageEvent(killer, DamageCause.PROJECTILE, 0));
 
 					double d4 = eloc.distance(loc) / radius;
 

@@ -4,8 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
@@ -57,11 +55,9 @@ public class AxeThrow implements Runnable{
 									plugin.playercombataxelist.add(victim);
 									
 							        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-										@SuppressWarnings("deprecation")
 										@Override
 										public void run() {
 											victim.damage(42, player);
-											victim.setLastDamageCause(new EntityDamageEvent(player, DamageCause.PROJECTILE, 0));
 										}
 									}, 1);
 									

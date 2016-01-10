@@ -154,7 +154,6 @@ public class Knife implements Listener{
 							Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 								@Override
 								public void run() {
-
 									if (knifelist.contains(killer)) {
 										knifelist.remove(killer);
 										plugin.killGroundremover(victim);
