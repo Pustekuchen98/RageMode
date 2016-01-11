@@ -4,7 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -48,7 +47,7 @@ public class LobbyCommands implements CommandExecutor{
 				out.writeUTF("Connect");
 				out.writeUTF(plugin.getConfig().getString("ragemode.settings.bungee.lobbyserver"));
 			} catch (IOException eee) {
-				Bukkit.getLogger().info("You'll never see me!");
+				
 			}
 			player.sendPluginMessage(this.plugin, "BungeeCord", b.toByteArray());
 		} else {

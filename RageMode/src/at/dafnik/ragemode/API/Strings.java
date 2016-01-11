@@ -5,7 +5,24 @@ import at.dafnik.ragemode.Main.Main;
 public class Strings {
 	
 	private static String pre = Main.pre;
+	private static String log_pre = "[RageMode] ";
+	private static String debug_pre = "[Debug]> ";
 	
+	public static String error_powerup_last = log_pre + "ERROR: PowerUP spawning failed! Caused by: No Map or no PowerUP Spawns";
+	public static String error_powerup_spawn = log_pre + "ERROR: PowerUP spawing failed! Caused by: Coordinates Error. Trying Spawn function again.";
+	public static String error_randommizer_dont_work = log_pre + "ERROR: PowerUPItemListener - Randomizer doesn't work!";
+	public static String error_more_rankingwall_places_then_player_in_mysql = log_pre + "WARNING: More Ranking Places than players registered in your MySQL Database!";
+	public static String error_rankingwall_headrotation = log_pre + "ERROR: Please set the rotation of the Ranking Heads! /rm setranking setrotation";
+	public static String error_could_not_connect_to_mysql = log_pre + "MySQL Couldn't Connect! Error: ";
+	public static String error_could_not_disconnect_to_mysql = log_pre + "MySQL Couldn't Disconnect! Error: ";
+	public static String error_no_created_maps = log_pre + "ERROR: You've got no Maps in the config! You can add Maps and spawns with /rm";
+	public static String error_not_existing_villagerspawn = log_pre + "ERROR: You haven't set the villager shop spawn!";
+	public static String error_unkown_gamestate = log_pre + "ERROR: Unknown Game Status!";
+	public static String error_not_existing_lobbyspawn = log_pre + "ERROR: You haven't set the Lobby spawnpoint!";
+	public static String error_playerdeath_points = log_pre + "ERROR: PlayerDeathListener - givePlayerPoints - Unknown killground exception! Nothing will happen";
+	public static String error_not_existing_map_middle_point = log_pre + "WARNING: You haven't set the Map Middle Point and the approximately mapradius!";
+	public static String error_cast_to_int = log_pre + "ERROR: Cast to int error in Compass!";
+	public static String error_not_authenticated_player = log_pre +  "ERROR: Not authenticated player is on the server! Manager don't work";
 	public static String error_only_player_use = pre + "Only player can use these commands";
 	public static String error_not_on_a_bungee = pre + "§cYou aren't on a BungeeCord Network";
 	public static String error_enter = pre + "§cWrong enter";
@@ -59,6 +76,7 @@ public class Strings {
 	
 	public static String stats_reset = pre + "§3Your stats has been resettet";
 	public static String statsadmin_succesfull = pre + "§3The command was §asuccesful";
+	public static String stats_admin = pre + "/statsadmin §8<§aadd §8| §aremove§8> §8<§akills §8| §adeaths §8| §awongames §8| §aplayedgames §8| §apoints §8| §aresets §8| §abowkills §8| §aknifekills §8| §aaxtkills§8 §8| §asuicides§8> §8<§aplayername§8> <§anumber§8>";
 	
 	public static String lobby_rotate_your_mouse = pre + "§3Rotate your scroll wheel to fly";
 	
@@ -68,9 +86,9 @@ public class Strings {
 	public static String tasks_ingame_countdown_1 = pre + "§3The round ends in §e";
 	public static String tasks_ingame_countdown_2 = " §3seconds";
 	public static String tasks_ingame_countdown_21= " §3second";
-	
 	public static String tasks_ingame_peacetime_ends = pre + "§eThe peace time ends now";
 	
+	public static String tasks_win_is_the_winner = "§3is the winner";
 	public static String tasks_restart_countdown_0 = pre + "§cThe server restarts in the next§e ";
 	public static String tasks_restart_countdown_01 = " §cseconds§8\n" + Main.pre + "§cYou will be kicked after §e10 §cseconds";
 	public static String tasks_restart_countdown_1 = pre + "§cThe server restarts in §e";
@@ -80,6 +98,8 @@ public class Strings {
 	
 	public static String ragemode_winner = pre + "§3The winner is§8: §r";
 	public static String ragemode_server_is_back = "§3The server is back soon";
+	public static String ragemode_mysql_connected = log_pre + "MySQL Connected";
+	public static String ragemode_mysql_disconnected = log_pre + "MySQL Disconnected";
 	
 	public static String kill_suicide = " §3suicided";
 	public static String kill_killed = " §3killed §r";
@@ -126,7 +146,15 @@ public class Strings {
 	
 	public static String coins_your = pre + "§cYou have §6";
 	public static String coins_your_2 = " §cCoins";
+	public static String coins_admin = pre + "/coinsadmin §8<§aadd §8| §aremove§8> <§aplayername§8> <§anumber§8>";
 	
 	public static String powerup_get_0 = pre + "§e§k!dkafaaf21adöfaö223ö1jökldaöl\n" + Main.pre + "§3Your §aPowerUP§8: ";
 	public static String powerup_get_1 = "§8!\n" + Main.pre + "§e§k!dkafaaf21adöfaö223ö1jökldaöl";
+	
+	public static String debug_saver_started = debug_pre + "Started Compass and Knife Thread";
+	public static String debug_saver_stopped = debug_pre + "Stopped Compass and Knife Thread";
+	public static String debug_powerup_get_1 = debug_pre + "PowerUP: ";
+	public static String debug_powerup_get_2 = debug_pre + " | Player:";
+	public static String debug_powerup_spawn_1 = debug_pre + "PowerUP spawnt on: ";
+	public static String debug_powerup_spawn_2 = debug_pre + " | Coordinates: ";
 }

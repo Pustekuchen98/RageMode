@@ -33,7 +33,7 @@ public class Mapvote implements CommandExecutor{
 		int mapnamenumber = plugin.getConfig().getInt("ragemode.mapnames.mapnamenumber");
 		
 		if(mapnamenumber <= 0) {
-			System.out.println("[RageMode] ERROR: You've got no Maps in the config! You can add Maps and spawns with /rm");
+			System.out.println(Strings.error_no_created_maps);
 			return;
 		} else {
 			for (int i = 0; i < 3; i++) {

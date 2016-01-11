@@ -33,7 +33,7 @@ public class Compass implements Listener{
 			try {
 				blocks = (int) player.getLocation().distance(target.getLocation());
 			} catch (Exception ex){
-				System.out.println("[RageMode] ERROR: Cast to int error in Compass!");
+				System.out.println(Strings.error_cast_to_int);
 				blocks = -1;
 			}
 			if(blocks != -1) player.sendMessage(Strings.item_compass_1 + target.getDisplayName() + Strings.item_compass_2 + blocks);

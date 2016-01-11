@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import at.dafnik.ragemode.API.Holograms;
+import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
@@ -89,12 +90,12 @@ public class PowerUpper implements Runnable{
 								}
 							}, 1);
 	
-							if (Main.isDebug) System.out.print("[Debug]> PowerUP spawnt on: " + zahl + " | Coordinates: " + w + ", " + x	+ " ," + y + ", " + z);
+							if (Main.isDebug) System.out.print(Strings.debug_powerup_spawn_1 + zahl + Strings.debug_powerup_spawn_2 + w + ", " + x	+ " ," + y + ", " + z);
 							break;
 							
-						} else System.out.println("[RageMode] ERROR: PowerUP spawing failed! Caused by: Coordinates Error. Trying Spawn function again.");
+						} else System.out.println(Strings.error_powerup_spawn);
 					}	
-				} else System.out.println("[RageMode] ERROR: PowerUP spawning failed! Caused by: No Map or no PowerUP Spawns");
+				} else System.out.println(Strings.error_powerup_last);
 			}
 			
 			try {

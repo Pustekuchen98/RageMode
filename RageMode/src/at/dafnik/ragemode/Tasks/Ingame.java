@@ -106,7 +106,7 @@ public class Ingame {
 							if(Main.isMySQL) SQLStats.addPlayedGames(player.getUniqueId().toString(), 1);
 							//Title Send
 							Title.sendTitle(player, fadein, stay, fadeout, winnername);
-							Title.sendSubtitle(player, fadein, stay, fadeout, "§3is the winner");
+							Title.sendSubtitle(player, fadein, stay, fadeout, Strings.tasks_win_is_the_winner);
 						}
 					}
 					Bukkit.broadcastMessage(Strings.tasks_restart_countdown_0 + wintime + Strings.tasks_restart_countdown_01);

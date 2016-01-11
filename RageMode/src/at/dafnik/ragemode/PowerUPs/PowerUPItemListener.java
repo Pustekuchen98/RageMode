@@ -75,7 +75,7 @@ public class PowerUPItemListener implements Listener{
 					i.setItemMeta(imd);
 					player.getInventory().setItem(5, i);
 					player.sendMessage(Strings.powerup_get_0 + doubleheart + Strings.powerup_get_1);
-					if (Main.isDebug) System.out.println("[Debug]> PowerUP: " + doubleheart + " | Player: " + player.getName());
+					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + doubleheart + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				case 1:
@@ -85,7 +85,7 @@ public class PowerUPItemListener implements Listener{
 					i2.setItemMeta(imd2);
 					player.getInventory().setItem(7, i2);
 					player.sendMessage(Strings.powerup_get_0 + claymore + Strings.powerup_get_1);
-					if (Main.isDebug) System.out.println("[Debug]> PowerUP: " + claymore + " | Player: " + player.getName());
+					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + claymore + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				case 2:
@@ -95,25 +95,25 @@ public class PowerUPItemListener implements Listener{
 					i3.setItemMeta(imd3);
 					player.getInventory().setItem(6, i3);
 					player.sendMessage(Strings.powerup_get_0 + mine + Strings.powerup_get_1);
-					if (Main.isDebug) System.out.println("[Debug]> PowerUP: " + mine + " | Player: " + player.getName());
+					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + mine + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				case 3:
 					player.sendMessage(Strings.powerup_get_0 + jump + Strings.powerup_get_1);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, time, 4));
-					if (Main.isDebug) System.out.println("[Debug]> PowerUP: " + jump + " | Player: " + player.getName());
+					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + jump + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				case 4:
 					player.sendMessage(Strings.powerup_get_0 + slowness + Strings.powerup_get_1);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, time, 2));
-					if (Main.isDebug) System.out.println("[Debug]> PowerUP: " + slowness + " | Player: " + player.getName());
+					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + slowness + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				case 5:
 					player.sendMessage(Strings.powerup_get_0 + blindness + Strings.powerup_get_1);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, time, 1));
-					if (Main.isDebug) System.out.println("[Debug]> PowerUP: " + blindness + " | Player: " + player.getName());
+					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + blindness + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				case 6:
@@ -131,11 +131,11 @@ public class PowerUPItemListener implements Listener{
 							plugin.powerupspeedeffect.remove(player);
 						}
 					}, time);
-					if (Main.isDebug) System.out.println("[Debug]> PowerUP: " + blindness + " | Player: " + player.getName());
+					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + blindness + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				default:
-					System.out.println("[RageMode] ERROR: PowerUPItemListener - Randomizer doesn't work!");
+					System.out.println(Strings.error_randommizer_dont_work);
 				}
 
 				player.playSound(player.getLocation(), Sound.LEVEL_UP, 1000, 1);

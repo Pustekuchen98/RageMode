@@ -54,7 +54,7 @@ public class PlayerQuitListener implements Listener{
 			
 			plugin.spectatorlist.remove(player);
 		} else {
-			Bukkit.broadcastMessage("§cSomething went terrible wrong");
+			Bukkit.broadcastMessage(Strings.error_not_authenticated_player);
 		}
 	}
 }

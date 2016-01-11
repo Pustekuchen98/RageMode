@@ -70,7 +70,7 @@ public class PlayerJoinListener implements Listener{
 			
 			//Tp to Lobby
 			Location loc = new TeleportAPI(plugin).getLobbyLocation();
-			if(loc == null) System.out.println("[RageMode] ERROR: You haven't set the Lobby spawnpoint!");
+			if(loc == null) System.out.println(Strings.error_not_existing_lobbyspawn);
 			else player.teleport(loc);
 			
 			if(Main.isMySQL && Main.isShop) {
@@ -135,7 +135,7 @@ public class PlayerJoinListener implements Listener{
 			}
 			
 		} else {
-			System.out.println("[RageMode] ERROR: PlayerJoinListener! Unknown Game Status!");
+			System.out.println(Strings.error_unkown_gamestate);
 		}
 	}
 	
@@ -200,7 +200,7 @@ public class PlayerJoinListener implements Listener{
 			event.allow();
 		} else {
 			event.disallow(Result.KICK_OTHER, Strings.error_game_is_full);
-			System.out.println("[RageMode] ERROR: Unknown Game State! PlayerPreLoginEvent!");
+			System.out.println(Strings.error_unkown_gamestate);
 		}
 	}
 }

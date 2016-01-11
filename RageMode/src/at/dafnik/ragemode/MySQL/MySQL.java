@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import at.dafnik.ragemode.API.Strings;
+
 public class MySQL {
 	
 	private String HOST = "";
@@ -27,9 +29,9 @@ public class MySQL {
 	public void connect() {
 		try {
 			con =  DriverManager.getConnection("jdbc:mysql://" + HOST + ":3306/" + DATABASE + "?autoReconnect=true", USER, PASSWORD);
-			System.out.println("[RageMode]MySQL Connected");
+			System.out.println(Strings.ragemode_mysql_connected);
 		} catch (SQLException e){
-			System.out.println("[RageMode]MySQL Couldn't Connect! Error: " + e.getMessage());
+			System.out.println(Strings.error_could_not_connect_to_mysql + e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -38,10 +40,10 @@ public class MySQL {
 		try {
 			if(con != null) {
 				con.close();
-				System.out.println("[MySQL] Disconnected");
+				System.out.println(Strings.ragemode_mysql_disconnected);
 			}
 		} catch (SQLException e) {
-			System.out.println("[MySQL] Couldn't Disconnect! Error: " + e.getMessage());
+			System.out.println(Strings.error_could_not_disconnect_to_mysql + e.getMessage());
 			e.printStackTrace();
 		}
 	}

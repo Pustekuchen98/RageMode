@@ -16,6 +16,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.block.Skull;
 
+import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Main;
 
 public class Ranking {
@@ -78,7 +79,7 @@ public class Ranking {
 				} else if(rotation == 3) {
 					s.setRotation(BlockFace.WEST);
 				} else {
-					System.out.println("[RageMode] ERROR: Please set the rotation of the Ranking Heads! /rm setranking setrotation");
+					System.out.println(Strings.error_rankingwall_headrotation);
 				}
 				
 				String name = null;
@@ -103,7 +104,7 @@ public class Ranking {
 					}
 				} else {
 					if(!happened) {
-						System.out.println("[RageMode] WARNING: More Ranking Places than players registered in your MySQL Database!");
+						System.out.println(Strings.error_more_rankingwall_places_then_player_in_mysql);
 						happened = true;		
 					}
 				}

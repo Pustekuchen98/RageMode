@@ -1,5 +1,6 @@
 package at.dafnik.ragemode.Main;
 
+import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Items.CompassThread;
 import at.dafnik.ragemode.PowerUPs.PowerUpper;
 import at.dafnik.ragemode.Weapons.KnifeThread;
@@ -43,7 +44,7 @@ public class Saver implements Runnable{
 			ct.start();
 			
 			if(Main.isDebug) {
-				if(zaehler >= 30) System.out.println("[Debug]> Started Compass and Knife Thread");
+				if(zaehler >= 30) System.out.println(Strings.debug_saver_started);
 			}
 			
 			try {
@@ -57,7 +58,7 @@ public class Saver implements Runnable{
 			
 			if(Main.isDebug) {
 				if(zaehler >= 30) {
-					System.out.println("[Debug]> Stopped Compass and Knife Thread");
+					System.out.println(Strings.debug_saver_stopped);
 					zaehler = 0;
 				}
 				zaehler++;

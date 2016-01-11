@@ -54,7 +54,7 @@ public class Listeners implements Listener {
 				} else if(plugin.spectatorlist.contains(player)) {
 					player.sendMessage(Strings.map_worldborder);
 				} else {
-					System.out.println("[RageMode] WARNING: Not registered player out of the map!");
+					System.out.println(Strings.error_not_authenticated_player);
 				}
 			}
 			
@@ -105,7 +105,7 @@ public class Listeners implements Listener {
 				}
 			} else {
 				if(!happened) {
-					System.out.println("[RageMode] WARNING: You haven't set the Map Middle Point and the approximately mapradius!");
+					System.out.println(Strings.error_not_existing_map_middle_point);
 					happened = true;
 				}
 			}

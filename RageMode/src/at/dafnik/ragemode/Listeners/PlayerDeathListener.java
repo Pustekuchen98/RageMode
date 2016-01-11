@@ -192,7 +192,7 @@ public class PlayerDeathListener implements Listener {
 		else if(killground == "claymore") toBePoints = this.claymorekill;
 		else if(killground == "knife_death") toBePoints = this.knifedeath;
 		else if(killground == "killstreak") toBePoints = this.killstreakpoints;
-		else System.out.println("[RageMode] ERROR: PlayerDeathListener - givePlayerPoints - Unknown killground exception! Nothing will happen");
+		else System.out.println(Strings.error_playerdeath_points);
 		
 		if(killground != null && killground != "knife_death") SQLStats.addPoints(player.getUniqueId().toString(), toBePoints);
 		
@@ -202,7 +202,7 @@ public class PlayerDeathListener implements Listener {
 			int points = plugin.playerpoints.get(player);
 			if (points + toBePoints < 0) points = 0;
 			else if (points + toBePoints >= 0) points += toBePoints;
-			else System.out.println("[RageMode] ERROR: PlayerDeathListener - givePlayerPoints - I don't know why!");
+			else System.out.println(Strings.error_playerdeath_points);
 			
 			plugin.playerpoints.put(player, points);
 		}

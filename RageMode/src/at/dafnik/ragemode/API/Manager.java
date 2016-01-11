@@ -30,7 +30,7 @@ public class Manager {
 			public void run() {
 				if(!plugin.spectatorlist.contains(player)) player.setPlayerListName(player.getDisplayName());
 				else if(plugin.spectatorlist.contains(player)) player.setPlayerListName("§8[§4X§8]" + player.getDisplayName());	
-				else System.out.println("[RageMode] ERROR: Not authenticated player is on the server! Manager don't work");	
+				else System.out.println(Strings.error_not_authenticated_player);	
 			}
 		}, 5);	
 	}

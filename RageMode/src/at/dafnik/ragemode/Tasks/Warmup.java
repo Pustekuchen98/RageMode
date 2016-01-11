@@ -93,7 +93,7 @@ public class Warmup {
 						Bukkit.broadcastMessage(Strings.tasks_ingame_peacetime_ends);
 						gI = new GetItems();
 						for(Player player : Bukkit.getOnlinePlayers()) {
-							Title.sendFullTitle(player, fadein, stay, fadeout, "§eThe peace time ends now", "§cnow");
+							Title.sendFullTitle(player, fadein, stay, fadeout, "§eThe peace time ends", "§cnow");
 							gI.getItems(player);
 						}
 						

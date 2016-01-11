@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import at.dafnik.ragemode.API.Strings;
+import at.dafnik.ragemode.API.TeleportAPI;
 import at.dafnik.ragemode.Main.Main;
 
 public class Teleport implements CommandExecutor{
@@ -64,19 +65,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 				if(!(plugin.getPower(player) >= 5)){
 					player.sendMessage(Strings.error_permission);
 			 	}else{ 
-			 		
-			 		String w = plugin.getConfig().getString("ragemode.lobbyspawn.world");
-					double x = plugin.getConfig().getDouble("ragemode.lobbyspawn.x");
-					double y = plugin.getConfig().getDouble("ragemode.lobbyspawn.y");
-					double z = plugin.getConfig().getDouble("ragemode.lobbyspawn.z");
-					double yaw = plugin.getConfig().getDouble("ragemode.lobbyspawn.yaw");
-					double pitch = plugin.getConfig().getDouble("ragemode.lobbyspawn.pitch");
-					
-					Location loc = new Location(Bukkit.getWorld(w), x, y, z);
-					loc.setYaw((float) yaw);
-					loc.setPitch((float) pitch);
-					
-					player.teleport(loc);
+			 	
+					player.teleport(new TeleportAPI(plugin).getLobbyLocation());
 			 	}
 			}
 		}

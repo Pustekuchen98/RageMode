@@ -84,7 +84,7 @@ public class Coins implements CommandExecutor{
 	
 	public void CoinsAdminCommands(Player player){
 		if(Main.isMySQL) {
-			player.sendMessage(Main.pre + "/coinsadmin §8<§aadd §8| §aremove§8> <§aplayername§8> <§anumber§8>");
+			player.sendMessage(Strings.coins_admin);
 		} else {
 			player.sendMessage(Strings.error_not_mysql_enabled);
 		}

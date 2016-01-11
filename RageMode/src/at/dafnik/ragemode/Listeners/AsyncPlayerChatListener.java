@@ -1,11 +1,11 @@
 package at.dafnik.ragemode.Listeners;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
@@ -34,7 +34,7 @@ public class AsyncPlayerChatListener implements Listener{
 				event.setFormat("§8[§4X§8]" + player.getDisplayName() + "§8: §f" + event.getMessage());
 			}
 		} else {
-			Bukkit.broadcastMessage("§cSomething went terrible wrong");
+			System.out.println(Strings.error_not_authenticated_player);
 		}
     }
 }

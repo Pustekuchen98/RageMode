@@ -17,6 +17,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import at.dafnik.ragemode.API.Holograms;
+import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.API.TeleportAPI;
 import at.dafnik.ragemode.Commands.Coins;
 import at.dafnik.ragemode.Commands.LobbyCommands;
@@ -380,7 +381,7 @@ public class Main extends JavaPlugin{
 			new VillagerThread(villager, loc).start();
 			return villager;
 		} else {
-			System.out.println("[RageMode] WARNING: You haven't set the villager shop spawn!");
+			System.out.println(Strings.error_not_existing_villagerspawn);
 			return null;
 		}
 	}

@@ -11,6 +11,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import at.dafnik.ragemode.API.Holograms;
 import at.dafnik.ragemode.API.Manager;
+import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.API.TeleportAPI;
 import at.dafnik.ragemode.API.Title;
 import at.dafnik.ragemode.Items.GetItems;
@@ -51,7 +52,7 @@ public class PlayerRespawnListener implements Listener{
 		if(plugin.spectatorlist.contains(player)) {
 			player.setGameMode(GameMode.SPECTATOR);
 			
-		} else {
+		} else if(plugin.ingameplayer.contains(player)){
 			plugin.respawnsafe.add(player);
 			
 			player.removePotionEffect(PotionEffectType.REGENERATION);
@@ -67,7 +68,7 @@ public class PlayerRespawnListener implements Listener{
 					 Manager.HelmetManagerMethode(player);
 			     }
 			 }, 60);
-		}
+		} else System.out.println(Strings.error_not_authenticated_player);
 		
 		player.getInventory().clear();
 		player.setFoodLevel(21);
