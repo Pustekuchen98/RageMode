@@ -149,31 +149,32 @@ public class Knife implements Listener{
 				
 				if (!plugin.respawnsafe.contains(victim)) {
 					if (killer.getItemInHand() != null && killer.getItemInHand().getType() == Material.IRON_SPADE) {
-						if (victim.getLocation().distance(killer.getLocation()) <= 3) {
+						
+						Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+							@Override
+							public void run() {
+								if (knifelist.contains(killer)) {
+									knifelist.remove(killer);
+									plugin.killGroundremover(victim);
+									plugin.playerknifelist.add(victim);
+									event.setCancelled(false);
 
-							Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-								@Override
-								public void run() {
-									if (knifelist.contains(killer)) {
-										knifelist.remove(killer);
-										plugin.killGroundremover(victim);
-										plugin.playerknifelist.add(victim);
-										event.setCancelled(false);
+									double q = victim.getLocation().getDirection()
+											.dot(killer.getLocation().getDirection());
+									if (q > 0) {
+										victim.setHealth(0);
+										if (killer.getHealth() + 6 > 20)
+											killer.setHealth(20);
+										else
+											killer.setHealth(killer.getHealth() + 6);
 
-										double q = victim.getLocation().getDirection().dot(killer.getLocation().getDirection());
-										if (q > 0) {
-											victim.setHealth(0);
-											if (killer.getHealth() + 6 > 20) killer.setHealth(20);
-											else killer.setHealth(killer.getHealth() + 6);
-											
-											killer.sendMessage(Strings.kill_backstab_knife);
-											
-										} else victim.damage(11, killer);
-									}
+										killer.sendMessage(Strings.kill_backstab_knife);
+
+									} else
+										victim.damage(11, killer);
 								}
-							}, 1);
-
-						} else event.setCancelled(true);
+							}
+						}, 1);
 
 					} else event.setCancelled(true);
 

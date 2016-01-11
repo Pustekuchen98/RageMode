@@ -10,10 +10,10 @@
 		PowerUP System:
 			- Server admins / owners, can add points on Maps, where PowerUPs spawn.
 			- new PowerUPs:
-				normal mine, claymore, doubleheart
-				Jump higher
+				mine, claymore, doubleheart
+				Jump boost
 				Slowness
-				More Speed
+				Speed
 				blindness
 			- all abilities are for 30 seconds.
 				
@@ -23,16 +23,15 @@
 				
 	Fixes:
 		Premium Join, User kick fix
-		Little Fixes
 		Map null error fix, by first start
 		You can't destroy grass with claymores and mines anymore
 		Completely rewritten PlayerDeathEvent. (I hope the last time) 100% Killer identification
 	
 	Changes:
 		Knife:
-			- Know you are able to backstab people
+			- Now you are able to backstab people
 				- for backstab you get 3 extra hearts
-				- backstab instant kills your victim, if the victim hasn't doubleheart
+				- backstab instant kills your victim
 			- Front and side hits don't instant kills your victim anymore
 			- For a better knifefight you can use a knockback ability every 10 seconds
 		
