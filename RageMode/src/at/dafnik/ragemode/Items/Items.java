@@ -6,10 +6,34 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class GetItems {
+import at.dafnik.ragemode.API.Strings;
+
+public class Items {
 	
-	public void getItems(Player player){
-		
+	public static void giverPlayerClaymore(Player player) {
+		ItemStack i2 = new ItemStack(Material.FLOWER_POT_ITEM, 4);
+		ItemMeta imd2 = i2.getItemMeta();
+		imd2.setDisplayName(Strings.items_claymore);
+		i2.setItemMeta(imd2);
+		player.getInventory().setItem(7, i2);
+	}
+	public static void givePlayerDoubleHeart(Player player) {
+		ItemStack i = new ItemStack(Material.REDSTONE, 1);
+		ItemMeta imd = i.getItemMeta();
+		imd.setDisplayName(Strings.items_doubleheart);
+		i.setItemMeta(imd);
+		player.getInventory().setItem(5, i);
+	}
+	
+	public static void givePlayerMine(Player player) {
+		ItemStack i3 = new ItemStack(Material.STONE_PLATE, 2);
+		ItemMeta imd3 = i3.getItemMeta();
+		imd3.setDisplayName(Strings.items_mine);
+		i3.setItemMeta(imd3);
+		player.getInventory().setItem(6, i3);
+	}
+	
+	public static void givePlayerItems(Player player){
 		ItemStack i = new ItemStack(Material.BOW);
 		ItemMeta imd = i.getItemMeta();
 		imd.setDisplayName("§6Bow");
@@ -49,6 +73,5 @@ public class GetItems {
 		imd9.setDisplayName("§8Tracker");
 		i9.setItemMeta(imd9);
 		player.getInventory().setItem(8, i9);
-		
 	}
 }

@@ -11,7 +11,7 @@ import org.bukkit.scoreboard.Team;
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.API.TeleportAPI;
 import at.dafnik.ragemode.API.Title;
-import at.dafnik.ragemode.Items.GetItems;
+import at.dafnik.ragemode.Items.Items;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.Main.Saver;
@@ -19,17 +19,13 @@ import at.dafnik.ragemode.PowerUPs.PowerUpper;
 
 public class Warmup {
 	
-	String pre;
 	private Main plugin;
-	private GetItems gI;
 	public Ingame ig;
 	public Saver saver;
 	public PowerUpper pu;
 	
 	public Warmup(Main main){
 		this.plugin = main;
-		this.pre = Main.pre;
-		
 		this.ig = new Ingame(plugin);
 	}
 	
@@ -86,15 +82,14 @@ public class Warmup {
 						Title.sendActionBar(player, "§3Choosen Map§8: §e" +  plugin.votedmap + " §8|| §3Author§8: §e" + mapauthor);
 					}
 					
-					Bukkit.broadcastMessage(pre + "§3The peace time ends in §e" + warmuptime + " §3seconds");
+					Bukkit.broadcastMessage(Main.pre + "§3The peace time ends in §e" + warmuptime + " §3seconds");
 					
 				}else if(warmuptime == 0){
 					if(Main.status != Status.WIN && Main.status != Status.RESTART) {
 						Bukkit.broadcastMessage(Strings.tasks_ingame_peacetime_ends);
-						gI = new GetItems();
 						for(Player player : Bukkit.getOnlinePlayers()) {
 							Title.sendFullTitle(player, fadein, stay, fadeout, "§eThe peace time ends", "§cnow");
-							gI.getItems(player);
+							Items.givePlayerItems(player);
 						}
 						
 						//Set Status on Ingame
