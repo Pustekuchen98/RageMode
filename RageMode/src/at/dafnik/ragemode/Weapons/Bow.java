@@ -64,7 +64,7 @@ public class Bow implements Listener{
 									plugin.killGroundremover(victim);
 									plugin.playerbowlist.add(victim);
 									
-									victim.damage(20, (Player) arrow.getShooter());
+									event.setDamage(21);
 								} else event.setCancelled(true);
 								
 							} else event.setCancelled(true);

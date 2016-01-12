@@ -118,15 +118,13 @@ public class Grenade implements Listener{
 					
 					if(shootedWith != null) {
 						if(shootedWith == "grenade") {
-							String killername = arrow.getMetadata("shooter").get(0).asString();  
-						    Player killer = Bukkit.getServer().getPlayer(killername);
 							Player victim = (Player) event.getEntity();
 							
 							if(!plugin.respawnsafe.contains(victim)) {
 								plugin.killGroundremover(victim);
 								plugin.playergrenadelist.add(victim);
 								
-								victim.damage(20, killer);
+								event.setDamage(21);
 								event.setCancelled(false);
 								
 							} else event.setCancelled(true);

@@ -57,7 +57,7 @@ public class AxeThrow implements Runnable{
 							        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 										@Override
 										public void run() {
-											victim.damage(42, player);
+											victim.damage(41, player);
 										}
 									}, 1);
 									
