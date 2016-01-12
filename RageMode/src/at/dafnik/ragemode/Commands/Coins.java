@@ -21,47 +21,32 @@ public class Coins implements CommandExecutor{
 			
 			if (cmd.getName().equalsIgnoreCase("coins")){
 				if(Main.isMySQL && Main.isShop) {
-					if(args.length == 0){
-						player.sendMessage(Strings.coins_your + SQLCoins.getCoins(player.getUniqueId().toString()) + Strings.coins_your_2);
-					} else {
-						player.sendMessage(Strings.error_enter);
-					}
-				} else {
-					player.sendMessage(Strings.error_not_mysql_enabled);
-				}
+					if(args.length == 0) player.sendMessage(Strings.coins_your + SQLCoins.getCoins(player.getUniqueId().toString()) + Strings.coins_your_2);
+					else player.sendMessage(Strings.error_enter);
+					
+				} else player.sendMessage(Strings.error_not_mysql_enabled);
 			}
 			
 			
 			if(cmd.getName().equalsIgnoreCase("coinsadmin")){
-				if(Main.isMySQL && Main.isShop) {
+				if(Main.isShop) {
 					if(player.hasPermission("ragemode.admin")) {
-						if (args.length == 0) {
-							CoinsAdminCommands(player);
-							
-						} else if (args.length == 3) {
-							if (args[0].equals("add")) {
-								if(PlayedBefore(player, args[1])){
-									OfflinePlayer lookedfor = Bukkit.getOfflinePlayer(args[1]);
+						if (args.length == 0) CoinsAdminCommands(player);	
+						 else if (args.length == 3) {
+							if(PlayedBefore(player, args[1])) {
+								OfflinePlayer lookedfor = Bukkit.getOfflinePlayer(args[1]);
+								if(args[0].equalsIgnoreCase("add")) {
 									SQLCoins.addCoins(lookedfor.getUniqueId().toString(), Integer.valueOf(args[2]));
 									player.sendMessage(Strings.statsadmin_succesfull);
-								}
-							} else if (args[0].equals("remove")){
-								if(PlayedBefore(player, args[1])){
-									OfflinePlayer lookedfor = Bukkit.getOfflinePlayer(args[1]);
+								} else if(args[0].equalsIgnoreCase("remove")) {
 									SQLCoins.removeCoins(lookedfor.getUniqueId().toString(), Integer.valueOf(args[2]));
 									player.sendMessage(Strings.statsadmin_succesfull);
-								}
-							} else {
-								CoinsAdminCommands(player);
+								} else CoinsAdminCommands(player);
 							}
-						} else {
-							CoinsAdminCommands(player);
-						}			
-					} else {
-						player.sendMessage(Strings.error_permission);
-					}
-				} else {
-					player.sendMessage(Strings.error_not_mysql_enabled);
+						} else CoinsAdminCommands(player);
+									
+					} else player.sendMessage(Strings.error_permission);
+					
 				}
 			}
 		}
@@ -70,23 +55,25 @@ public class Coins implements CommandExecutor{
 	
 	@SuppressWarnings("deprecation")
 	public Boolean PlayedBefore(Player player, String playername){
-		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playername);
-        if (!offlinePlayer.hasPlayedBefore()) {
-            player.sendMessage(Strings.error_no_uuid);
-            return false;
-        } else if (offlinePlayer.hasPlayedBefore()) {
-        	return true;
-        } else {
-        	player.sendMessage(Strings.error_no_uuid);
-        	return false;
-        }
+		if(Main.isMySQL) {
+			OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playername);
+	        if (!offlinePlayer.hasPlayedBefore()) {
+	            player.sendMessage(Strings.error_no_uuid);
+	            return false;
+	        } else if (offlinePlayer.hasPlayedBefore()) {
+	        	return true;
+	        } else {
+	        	player.sendMessage(Strings.error_no_uuid);
+	        	return false;
+	        }
+		} else {
+			player.sendMessage(Strings.error_not_mysql_enabled);
+			return false;
+		}
 	}
 	
 	public void CoinsAdminCommands(Player player){
-		if(Main.isMySQL) {
-			player.sendMessage(Strings.coins_admin);
-		} else {
-			player.sendMessage(Strings.error_not_mysql_enabled);
-		}
+		if(Main.isMySQL) player.sendMessage(Strings.coins_admin);
+		else player.sendMessage(Strings.error_not_mysql_enabled);
 	}
 }
