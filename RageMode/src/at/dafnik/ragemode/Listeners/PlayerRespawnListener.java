@@ -8,23 +8,22 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 
 import at.dafnik.ragemode.API.Holograms;
 import at.dafnik.ragemode.API.Manager;
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.API.TeleportAPI;
 import at.dafnik.ragemode.API.Title;
-import at.dafnik.ragemode.Items.GetItems;
+import at.dafnik.ragemode.Items.Items;
 import at.dafnik.ragemode.Main.Main;
 
 public class PlayerRespawnListener implements Listener{
 	
 	private Main plugin;
-	private GetItems getItems;
 	
 	public PlayerRespawnListener(Main main){
 		this.plugin = main;
-		this.getItems = new GetItems();
 	}
 	
 	@EventHandler
@@ -64,7 +63,7 @@ public class PlayerRespawnListener implements Listener{
 					 player.removePotionEffect(PotionEffectType.INVISIBILITY);
 					 player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
 					 plugin.respawnsafe.remove(player);
-					 getItems.getItems(player);	
+					 Items.givePlayerItems(player);	
 					 Manager.HelmetManagerMethode(player);
 			     }
 			 }, 60);
@@ -72,6 +71,7 @@ public class PlayerRespawnListener implements Listener{
 		
 		player.getInventory().clear();
 		player.setFoodLevel(21);
+		player.setVelocity(new Vector(0, 0, 0));
 		player.setMaxHealth(20);
 		Title.sendTabList(player, "§bRageMode");
 	}
