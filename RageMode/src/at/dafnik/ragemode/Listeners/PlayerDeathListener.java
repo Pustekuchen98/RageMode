@@ -194,7 +194,10 @@ public class PlayerDeathListener implements Listener {
 		else if(killground == "killstreak") toBePoints = this.killstreakpoints;
 		else System.out.println(Strings.error_playerdeath_points);
 		
-		if(killground != null && killground != "knife_death") SQLStats.addPoints(player.getUniqueId().toString(), toBePoints);
+		if(killground != null && killground != "knife_death") {
+			SQLStats.addPoints(playeruuid, toBePoints);
+			SQLStats.addKills(playeruuid, 1);
+		}
 		
 		if (plugin.playerpoints.get(player) == null) {
 			plugin.playerpoints.put(player, 0);
