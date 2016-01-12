@@ -30,7 +30,6 @@ public class Strings {
 	public static String error_enter_unknown_spawnnumber = pre + "§cYou must enter a spawnnumber";
 	public static String error_permission = pre + "§cYou aren't allowed to use the command";
 	public static String error_unknown_map = pre + "§cUnknown map";
-	public static String error_player_not_played_before = pre + "§cThis player hasn't played before";
 	public static String error_not_mysql_enabled = pre + "§cYou haven't enabled the MySQL Database";
 	public static String error_cant_join_at_the_moment = pre + "\n§cYou can't join at the moment";
 	public static String error_game_is_full = pre + "\n§4The server is full\n§3You need §6premium §3to join full games";
@@ -157,4 +156,13 @@ public class Strings {
 	public static String debug_powerup_get_2 = debug_pre + " | Player:";
 	public static String debug_powerup_spawn_1 = debug_pre + "PowerUP spawnt on: ";
 	public static String debug_powerup_spawn_2 = debug_pre + " | Coordinates: ";
+	
+	public static String items_doubleheart = "§4Double Heart";
+	public static String items_mine = "§5Mine";
+	public static String items_claymore = "§dClaymore";
+	public static String items_jump = "§aJump boost";
+	public static String items_slowness = "§1Slowness";
+	public static String items_blindness = "§1Blindness";
+	public static String items_speed = "§aSpeed";
+	public static String items_invisibility = "§fInvisibility";
 }
