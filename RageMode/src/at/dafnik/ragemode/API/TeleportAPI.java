@@ -78,4 +78,30 @@ public class TeleportAPI {
 		
 		return loc = null;
 	}
+	
+	public Location getMapSpawnLocation(int wantto, String mapname) {
+		int spawnnumber = plugin.getConfig().getInt("ragemode.mapspawn." +  plugin.votedmap + ".spawnnumber");
+		Location loc;
+		
+		if(wantto > spawnnumber) return null;
+		
+		for(int i = 0; i < 40; i++) {
+		
+			String w = plugin.getConfig().getString("ragemode.mapspawn." + mapname + "." + wantto + ".world");
+			double x = plugin.getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".x");
+			double y = plugin.getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".y");
+			double z = plugin.getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".z");
+			double yaw = plugin.getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".yaw");
+			double pitch = plugin.getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".pitch");
+			
+			if(w != null) {
+				loc = new Location(Bukkit.getWorld(w), x, y, z);
+		        loc.setYaw((float)yaw);
+		        loc.setPitch((float)pitch);   
+				return loc;
+			}
+		}
+		
+		return null;
+	}
 }
