@@ -83,14 +83,11 @@ public class PlayerJoinListener implements Listener{
 				i.setItemMeta(imd);
 				player.getInventory().setItem(0, i);
 				
-				if(plugin.villager == null) {
-					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-						@Override
-						public void run() {
-							if(plugin.villager == null) plugin.villager = plugin.VillagerShopSpawner();
-						}
-					}, 40);
-				}
+				Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
+					 public void run(){
+						  if(plugin.villager != null && plugin.villagerholo != null) plugin.villagerholo.display(player);
+				     }
+				 }, 20);
 			}
 		    
 		    //Tablist Header and Footer
@@ -128,11 +125,13 @@ public class PlayerJoinListener implements Listener{
 		    Manager manager = new Manager(plugin);
 			manager.DisplayNameManagerMethode(player);
 			
-			for(int i = 0; i < plugin.poweruphashmap.size(); i++) {
-				Holograms holo = plugin.poweruphashmap.get(i);
-				
-				if(holo != null) holo.display(player);
-			}
+			Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
+				 public void run(){
+			         for(Holograms holo : plugin.poweruplist) {
+			        	 holo.display(player);
+			         }
+			     }
+			 }, 20);
 			
 		} else {
 			System.out.println(Strings.error_unkown_gamestate);
