@@ -79,11 +79,8 @@ public class TeleportAPI {
 		return loc = null;
 	}
 	
-	public Location getMapSpawnLocation(int wantto, String mapname) {
-		int spawnnumber = plugin.getConfig().getInt("ragemode.mapspawn." +  plugin.votedmap + ".spawnnumber");
+	public Location getMapSpawnLocation(String wantto, String mapname) {
 		Location loc;
-		
-		if(wantto > spawnnumber) return null;
 		
 		for(int i = 0; i < 40; i++) {
 		
