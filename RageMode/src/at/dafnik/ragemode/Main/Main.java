@@ -12,7 +12,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -55,8 +54,11 @@ public class Main extends JavaPlugin{
 	public Mapvote mapvote;
 	//Set Config Standarts
 	public ConfigStandart configstandart;
+	
 	//Villager
-	public Villager villager = null;
+	public Villager villager;
+	//Villager Holo
+	public Holograms villagerholo;
 	
 	//--------------------------------------------------------------------
 	
@@ -66,8 +68,6 @@ public class Main extends JavaPlugin{
 	public static Status status = Status.PRE_LOBBY;
 	//MySQL
 	public static MySQL mysql;
-	//Plugin
-	public static Plugin plugin;
 	
 	//--------------------------------------------------------------------
 	//Player List which voted
@@ -122,6 +122,7 @@ public class Main extends JavaPlugin{
 	//PowerUP
 	public List<Entity> powerupentity = new ArrayList<>();
 	public HashMap<Integer, Holograms> poweruphashmap = new HashMap<>();
+	public List<Holograms> poweruplist = new ArrayList<>();
 	public static Integer powerupinteger = 0;
 	public List<Player> powerupspeedeffect = new ArrayList<>();
 	
@@ -146,16 +147,19 @@ public class Main extends JavaPlugin{
 		}
 		
 		for(Entity entities : powerupentity) entities.remove();
-		for(int i = 0; i < poweruphashmap.size(); i++){
-			Holograms holo = poweruphashmap.get(i);
-			if(holo != null) {
-				for(Player players : Bukkit.getOnlinePlayers()) holo.destroy(players);
-			}
+		
+		for (Holograms holo : poweruplist) {
+			for (Player players : Bukkit.getOnlinePlayers())
+				holo.display(players);
 		}
 		
-		if(villager != null) villager.remove();
+		if(villagerholo != null)for(Player players : Bukkit.getOnlinePlayers()) {villagerholo.destroy(players);}
 		
-		getServer().getConsoleSender().sendMessage("§f[§4RageMode§f] §cstopped");
+		if(villager != null) {
+			villager.remove();
+		}
+		
+		getServer().getConsoleSender().sendMessage("§f[§4RageMode§f] §cStopped§8!");
 	}
 	
 	//Plugin start
@@ -190,7 +194,7 @@ public class Main extends JavaPlugin{
 		if(isBungee) getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 				
 		//Check on MySQL
-		if(isMySQL) {
+		if(isMySQL) {	
 			//Connect MySQL
 			ConnectMySQL();
 			
@@ -198,10 +202,6 @@ public class Main extends JavaPlugin{
 			//Not Working: 
 			Ranking ranking = new Ranking(this);
 			ranking.set();
-		}
-		
-		if(isShop) {
-			if(Bukkit.getOnlinePlayers().size() > 0 && villager == null) villager = VillagerShopSpawner();		
 		}
 	}
 	
@@ -374,8 +374,7 @@ public class Main extends JavaPlugin{
 		
 		if(loc != null) {
 			Villager villager = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
-			villager.setCustomName("§6Shop");
-			villager.setCustomNameVisible(true);
+			villagerholo = new Holograms(new Location(loc.getWorld(), loc.getX(), loc.getY()+1.7, loc.getZ()), "§6Shop");
 			villager.setAgeLock(true);
 			villager.setCanPickupItems(false);
 			new VillagerThread(villager, loc).start();
