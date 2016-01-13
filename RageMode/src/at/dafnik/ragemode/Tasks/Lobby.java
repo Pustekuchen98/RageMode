@@ -49,6 +49,10 @@ public class Lobby {
 					lobby();
 				}
 				
+				if(Main.isShop && Main.isMySQL) {
+					if(Bukkit.getOnlinePlayers().size() > 0 && plugin.villager == null) plugin.villager = plugin.VillagerShopSpawner();		
+				}
+				
 				lobbywplayerstime--;
 			}
 		}, 0L, 20L);
@@ -81,7 +85,10 @@ public class Lobby {
 					
 					plugin.mapvote.getResult();
 					
-					if(plugin.villager != null) plugin.villager.remove();
+					if(plugin.villager != null) {
+						plugin.villager.remove();
+						plugin.villager = null;
+					}
 					
 					//Mapname
 					Bukkit.broadcastMessage(pre + "§eMap§8: §6" + plugin.votedmap);
