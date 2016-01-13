@@ -28,7 +28,7 @@ public class PlayerQuitListener implements Listener{
 		if(!plugin.spectatorlist.contains(player)) {
 			event.setQuitMessage("§3> §r" + player.getDisplayName() + " §3has left the game");
 			
-			if(Bukkit.getOnlinePlayers().isEmpty()) { 
+			if(Bukkit.getOnlinePlayers().size() == 1 && plugin.villager != null) { 
 				plugin.villager.remove();
 				plugin.villager = null;
 			}
