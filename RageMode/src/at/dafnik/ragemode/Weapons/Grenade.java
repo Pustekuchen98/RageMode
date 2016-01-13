@@ -110,7 +110,7 @@ public class Grenade implements Listener{
 	@EventHandler
 	public void DamagebyEntity(EntityDamageByEntityEvent event){
 		if (event.getCause() == DamageCause.PROJECTILE) {	
-			if (event.getDamager() instanceof Arrow) {
+			if (event.getDamager() instanceof Arrow && event.getEntity() instanceof Player) {
 				Arrow arrow = (Arrow) event.getDamager();
 				
 				if(Main.status == Status.INGAME) {
