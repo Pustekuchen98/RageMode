@@ -80,6 +80,7 @@ public class PowerUpper implements Runnable{
 											for (Player players : Bukkit.getOnlinePlayers()) holo.display(players);
 											
 											plugin.poweruphashmap.put(Integer.valueOf(item.getItemMeta().getDisplayName()), holo);
+											plugin.poweruplist.add(holo);
 											plugin.powerupentity.add(entity);
 										}
 									}, 20);

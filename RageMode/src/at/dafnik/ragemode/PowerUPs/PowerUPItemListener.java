@@ -57,6 +57,8 @@ public class PowerUPItemListener implements Listener{
 				
 				Holograms holo = plugin.poweruphashmap.get(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
 				for(Player players : Bukkit.getOnlinePlayers()) holo.destroy(players);
+				plugin.poweruphashmap.remove(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
+				plugin.poweruplist.remove(holo);
 
 				switch(new Random().nextInt(8)) {
 				case 0:
@@ -134,7 +136,6 @@ public class PowerUPItemListener implements Listener{
 					
 				entity.remove();
 				plugin.powerupentity.remove(entity);
-				plugin.poweruphashmap.remove(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
 				
 			} else {
 				event.setCancelled(true);
