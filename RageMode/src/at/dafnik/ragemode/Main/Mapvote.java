@@ -71,59 +71,62 @@ public class Mapvote implements CommandExecutor{
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		Player player = (Player) sender;
-		
-		//Return the Map list
-		if(cmd.getName().equalsIgnoreCase("list")){
-			//Check if Ingame
-			if(Main.status == Main.Status.LOBBY) {
-				getListCommand(player);
-				
-			//Ingame
-			} else if(Main.status == Status.PRE_LOBBY){
-				player.sendMessage(Strings.error_voting_finished);
-			} else {
-				player.sendMessage(Main.pre + "§eMap§8: §6" + plugin.votedmap);
+		if(sender instanceof Player) {
+			Player player = (Player) sender;
+			
+			//Return the Map list
+			if(cmd.getName().equalsIgnoreCase("list")){
+				//Check if Ingame
+				if(Main.status == Main.Status.LOBBY) {
+					getListCommand(player);
+					
+				//Ingame
+				} else if(Main.status == Status.PRE_LOBBY){
+					player.sendMessage(Strings.error_voting_finished);
+				} else {
+					player.sendMessage(Main.pre + "§eMap§8: §6" + plugin.votedmap);
+				}
 			}
-		}
-		
-		//Vote System
-		if(cmd.getName().equalsIgnoreCase("vote")){
-			if(args.length == 0) {
-				if(Main.status == Status.LOBBY) getListCommand(player);
-				else player.sendMessage(Strings.error_voting_finished);
-				
-			} else if(args.length > 0 && args.length < 2){
-				//If Ingame
-				if(Main.status == Status.LOBBY){
-					//Check of Player has also voted
-					if(!plugin.voted.contains(player.getName())){
-						//Check of Map is in Maplist
-						if(plugin.mapstovote.contains(args[0].toLowerCase())) {
-						
-							//Get all Already votes
-							int votes = plugin.votes.get(args[0].toLowerCase());
-							votes++;
-							//Put all votes again on
-							plugin.votes.put(args[0].toLowerCase(), votes);
-						
-							player.sendMessage(Strings.votes_you_have_voted + args[0]);
-							//Put the Player to already voted
-							plugin.voted.add(player.getName());
+			
+			//Vote System
+			if(cmd.getName().equalsIgnoreCase("vote")){
+				if(args.length == 0) {
+					if(Main.status == Status.LOBBY) getListCommand(player);
+					else player.sendMessage(Strings.error_voting_finished);
+					
+				} else if(args.length > 0 && args.length < 2){
+					//If Ingame
+					if(Main.status == Status.LOBBY){
+						//Check of Player has also voted
+						if(!plugin.voted.contains(player.getName())){
+							//Check of Map is in Maplist
+							if(plugin.mapstovote.contains(args[0].toLowerCase())) {
+							
+								//Get all Already votes
+								int votes = plugin.votes.get(args[0].toLowerCase());
+								votes++;
+								//Put all votes again on
+								plugin.votes.put(args[0].toLowerCase(), votes);
+							
+								player.sendMessage(Strings.votes_you_have_voted + args[0]);
+								//Put the Player to already voted
+								plugin.voted.add(player.getName());
+							}else{
+								player.sendMessage(Strings.error_map_cannot_vote);
+							}
 						}else{
-							player.sendMessage(Strings.error_map_cannot_vote);
+							player.sendMessage(Strings.error_you_already_voted);
 						}
 					}else{
-						player.sendMessage(Strings.error_you_already_voted);
+						player.sendMessage(Strings.error_voting_finished);
 					}
-				}else{
-					player.sendMessage(Strings.error_voting_finished);
+				} else {
+					player.sendMessage(Strings.error_map_cannot_vote);
 				}
-			} else {
-				player.sendMessage(Strings.error_map_cannot_vote);
 			}
+			
+			return true;
 		}
-		
 		return true;
 	}
 	
