@@ -96,7 +96,7 @@ public class Ingame {
 						if(Main.isMySQL) {
 							SQLStats.addWonGames(playerwinner.getUniqueId().toString(), 1);
 							SQLStats.addPoints(playerwinner.getUniqueId().toString(), 300);
-							SQLCoins.addCoins(playerwinner.getUniqueId().toString(), 100);
+							SQLCoins.addCoins(playerwinner.getUniqueId().toString(), 200);
 						}
 						
 						String winnername = playerwinner.getDisplayName();
@@ -104,6 +104,7 @@ public class Ingame {
 						
 						for(Player player : Bukkit.getOnlinePlayers()) {
 							if(Main.isMySQL) SQLStats.addPlayedGames(player.getUniqueId().toString(), 1);
+							if(Main.isMySQL) SQLCoins.addCoins(player.getUniqueId().toString(), 10);
 							//Title Send
 							Title.sendTitle(player, fadein, stay, fadeout, winnername);
 							Title.sendSubtitle(player, fadein, stay, fadeout, Strings.tasks_win_is_the_winner);
