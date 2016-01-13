@@ -39,14 +39,16 @@ public class PlayerRespawnListener implements Listener{
 					 player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100, 10));
 					 player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 100, 10));
 				 }
-				 
-		         for(int i = 0; i < plugin.poweruphashmap.size(); i++) {
-		        	 Holograms holo = plugin.poweruphashmap.get(i);
-		        	 
-		        	 if(holo != null) holo.display(player);	 
-		         }
 		     }
 		 }, 1);
+		
+		Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
+			 public void run(){
+		         for(Holograms holo : plugin.poweruplist) {
+		        	 holo.display(player);
+		         }
+		     }
+		 }, 20);
 		
 		if(plugin.spectatorlist.contains(player)) {
 			player.setGameMode(GameMode.SPECTATOR);
