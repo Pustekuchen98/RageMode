@@ -46,7 +46,7 @@ public class RoundStart implements CommandExecutor{
 				} else {
 					
 					List<Location> locs = new ArrayList<Location>();
-					locs.addAll(createCircle(player.getLocation(), 5));
+					locs.addAll(createCircle(player.getLocation(), 10));
 					
 					for(Location loc : locs)
 					loc.getWorld().strikeLightningEffect(loc);
