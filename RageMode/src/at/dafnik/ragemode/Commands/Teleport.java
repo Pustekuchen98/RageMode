@@ -32,14 +32,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 			 			if(plugin.maps.contains(args[0].toLowerCase())){
 			 				String mapname = args[0].toLowerCase();
 			 				String chosenumber = args[1];
-			 				int wantto;
-			 				
-			 				try {
-			 					wantto = Integer.valueOf(chosenumber);
-			 				} catch(ClassCastException e) {
-			 					player.sendMessage(Strings.error_enter_unknown_spawnnumber);
-			 					return true;
-			 				}
+			 				String wantto = chosenumber;
 			 				
 			 				Location loc = new TeleportAPI(plugin).getMapSpawnLocation(wantto, mapname);
 			 				if(loc != null) player.teleport(loc);
