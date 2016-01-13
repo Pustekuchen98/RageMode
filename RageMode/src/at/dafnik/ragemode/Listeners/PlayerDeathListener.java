@@ -6,6 +6,7 @@ import at.dafnik.ragemode.API.Holograms;
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.API.Title;
 import at.dafnik.ragemode.Main.Main;
+import at.dafnik.ragemode.MySQL.SQLCoins;
 import at.dafnik.ragemode.MySQL.SQLStats;
 
 import org.bukkit.Bukkit;
@@ -128,6 +129,7 @@ public class PlayerDeathListener implements Listener {
 								
 					if(killstreak.get(killer) == 3 || killstreak.get(killer) == 5 || killstreak.get(killer) == 7) {
 						givePlayerPoints(killer, "killstreak");
+						SQLCoins.addCoins(killer.getUniqueId().toString(), 10);
 						Bukkit.broadcastMessage(Main.pre + killername + Strings.killstreak);
 					}
 					
@@ -197,6 +199,7 @@ public class PlayerDeathListener implements Listener {
 		if(killground != null && killground != "knife_death") {
 			SQLStats.addPoints(playeruuid, toBePoints);
 			SQLStats.addKills(playeruuid, 1);
+			SQLCoins.addCoins(playeruuid, 20);
 		}
 		
 		if (plugin.playerpoints.get(player) == null) {
