@@ -153,9 +153,9 @@ public class Strings {
 	public static String debug_saver_started = debug_pre + "Started Compass and Knife Thread";
 	public static String debug_saver_stopped = debug_pre + "Stopped Compass and Knife Thread";
 	public static String debug_powerup_get_1 = debug_pre + "PowerUP: ";
-	public static String debug_powerup_get_2 = debug_pre + " | Player:";
+	public static String debug_powerup_get_2 = " | Player:";
 	public static String debug_powerup_spawn_1 = debug_pre + "PowerUP spawnt on: ";
-	public static String debug_powerup_spawn_2 = debug_pre + " | Coordinates: ";
+	public static String debug_powerup_spawn_2 = " | Coordinates: ";
 	
 	public static String items_doubleheart = "§4Double Heart";
 	public static String items_mine = "§5Mine";
