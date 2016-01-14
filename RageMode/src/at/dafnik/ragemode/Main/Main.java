@@ -153,10 +153,21 @@ public class Main extends JavaPlugin{
 				holo.display(players);
 		}
 		
-		if(villagerholo != null)for(Player players : Bukkit.getOnlinePlayers()) {villagerholo.destroy(players);}
-		
 		if(villager != null) {
 			villager.remove();
+			villager = null;
+			
+			if(Bukkit.getOnlinePlayers().size() == 0) {
+				Location loc = new TeleportAPI(this).getVillagerShopLocation();
+				loc.getWorld().getBlockAt(loc).setType(Material.LAVA);
+				
+				Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+					@Override
+					public void run() {			
+						loc.getWorld().getBlockAt(loc).setType(Material.AIR);
+					}
+				}, 30);
+			}
 		}
 		
 		getServer().getConsoleSender().sendMessage("§f[§4RageMode§f] §cStopped§8!");
