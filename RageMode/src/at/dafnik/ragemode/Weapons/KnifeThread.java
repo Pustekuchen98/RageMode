@@ -47,7 +47,7 @@ public class KnifeThread implements Runnable{
 							if(!plugin.spectatorlist.contains(player)) {
 								if(!plugin.powerupspeedeffect.contains(player)) {
 									if(player.getInventory().getItemInHand().getType() == Material.IRON_SPADE) {
-										if(SQLCoins.getSpeedUpgrade(player.getUniqueId().toString()) == 1) player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 1));
+										if(SQLCoins.getSpeedUpgrade(player.getUniqueId().toString())) player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 1));
 										else player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 0));
 										
 									} else {

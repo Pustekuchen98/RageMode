@@ -25,7 +25,7 @@ public class SQLCoins {
 	public static void createPlayer(String uuid) {
 		
 		if(!(playerExists(uuid))){
-			Main.mysql.update("INSERT INTO Coins(UUID, COINS, SPEEDUPGRADE, BOWPOWERUPGRADE) VALUES ('" + uuid + "', '0', '0', '0');");
+			Main.mysql.update("INSERT INTO Coins(UUID, COINS, SPEEDUPGRADE, BOWPOWERUPGRADE, KNOCKBACKUPGRADE) VALUES ('" + uuid + "', '0', '0', '0', '0');");
 		}
 	}
 	
@@ -80,7 +80,7 @@ public class SQLCoins {
 	
 	//-------------------------------------------------Speed-------------------------------------------------
 	
-	public static Integer getSpeedUpgrade(String uuid) {
+	public static Boolean getSpeedUpgrade(String uuid) {
 		Integer i = 0;
 		
 		if(playerExists(uuid)){
@@ -97,23 +97,26 @@ public class SQLCoins {
 			createPlayer(uuid);
 			getSpeedUpgrade(uuid);
 		}
-		return i;
+		
+		if(i == 0) return false;
+		else return true;
 	}
 	
-	public static void setSpeedUpgrade(String uuid, Integer speed) {
+	public static void setSpeedUpgrade(String uuid, Boolean in) {
 		if(playerExists(uuid)) {
-			if(speed > 1) speed = 1;
-			if(speed < 0) speed = 0;
-			Main.mysql.update("UPDATE Coins SET SPEEDUPGRADE= '" + speed + "' WHERE UUID= '" + uuid + "';");
+			int i;
+			if(in) i = 1;
+			else i = 0;
+			Main.mysql.update("UPDATE Coins SET SPEEDUPGRADE= '" + i + "' WHERE UUID= '" + uuid + "';");
 		} else {
 			createPlayer(uuid);
-			setSpeedUpgrade(uuid, speed);
+			setSpeedUpgrade(uuid, in);
 		}
 	}
 	
 	//-------------------------------------------------Speed-------------------------------------------------
 	
-	public static Integer getBowPowerUpgrade(String uuid) {
+	public static Boolean getBowPowerUpgrade(String uuid) {
 		Integer i = 0;
 			
 		if(playerExists(uuid)){
@@ -130,17 +133,56 @@ public class SQLCoins {
 			createPlayer(uuid);
 			getBowPowerUpgrade(uuid);
 		}
-		return i;
+		
+		if(i == 0) return false;
+		else return true;
 	}
 	
-	public static void setBowPowerUpgrade(String uuid, Integer i) {
+	public static void setBowPowerUpgrade(String uuid, Boolean in) {
 		if(playerExists(uuid)) {
-			if(i > 1) i = 1;
-			if(i < 0) i = 0;
+			int i;
+			if(in) i = 1;
+			else i = 0;
 			Main.mysql.update("UPDATE Coins SET BOWPOWERUPGRADE= '" + i + "' WHERE UUID= '" + uuid + "';");
 		} else {
 			createPlayer(uuid);
-			setBowPowerUpgrade(uuid, i);
+			setBowPowerUpgrade(uuid, in);
 		}
-	}//------------------------------------------------------------------------------------------------------------
+	}
+	
+	//--------------------------------------------------Knockback Ability-------------------------------------------------
+	
+	public static Boolean getKnockbackUpgrade(String uuid) {
+		Integer i = 0;
+			
+		if(playerExists(uuid)){
+			try {
+				ResultSet rs = Main.mysql.query("SELECT * FROM Coins WHERE UUID= '" + uuid + "'");
+				if((!rs.next()) || (Integer.valueOf(rs.getInt("KNOCKBACKUPGRADE")) == null));
+				
+				i = rs.getInt("BOWPOWERUPGRADE");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+			
+		} else {
+			createPlayer(uuid);
+			getKnockbackUpgrade(uuid);
+		}
+		
+		if(i == 0) return false;
+		else return true;
+	}
+	
+	public static void setKnockbackUpdgrade(String uuid, Boolean in) {
+		if(playerExists(uuid)) {
+			int i;
+			if(in) i = 1;
+			else i = 0;
+			Main.mysql.update("UPDATE Coins SET KNOCKBACKUPGRADE= '" + i + "' WHERE UUID= '" + uuid + "';");
+		} else {
+			createPlayer(uuid);
+			setKnockbackUpdgrade(uuid, in);
+		}
+	}
 }

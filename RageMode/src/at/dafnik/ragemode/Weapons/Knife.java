@@ -26,6 +26,7 @@ import org.bukkit.util.Vector;
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
+import at.dafnik.ragemode.MySQL.SQLCoins;
 
 public class Knife implements Listener{
 	
@@ -53,7 +54,20 @@ public class Knife implements Listener{
 					if(allowed.get(player) == true) {							
 						allowed.put(player, false);
 						
-						for(Entity entities : player.getNearbyEntities(6, 6, 6)) {
+						double radius = 6;
+						double vectormulti = 2;
+						double vectory = 0.8;
+						
+						if(SQLCoins.getKnockbackUpgrade(player.getUniqueId().toString())) {
+							radius = 12;
+							vectormulti = 4;
+							vectory = 0.8;
+						} else {
+							radius = 6;
+							vectory = 1;
+						}
+						
+						for(Entity entities : player.getNearbyEntities(radius, radius, radius)) {
 							if(entities instanceof Player || entities instanceof Arrow || entities instanceof Egg) {						
 								
 								int aX = entities.getLocation().getBlockX();
@@ -69,8 +83,8 @@ public class Knife implements Listener{
 								int Z = aZ - bZ;
 								
 								Vector vector = new Vector(X, Y, Z).normalize();
-								vector.multiply(2.0D);
-								vector.setY(0.8D);
+								vector.multiply(vectormulti);
+								vector.setY(vectory);
 								
 								if(entities instanceof Player){
 									if(plugin.ingameplayer.contains((Player)entities) && !(plugin.respawnsafe.contains((Player)entities))){

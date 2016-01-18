@@ -30,10 +30,12 @@ public class Shop implements Listener{
 	
 	private int speedupgrade;
 	private int powerupgrade;
+	private int knockbackupgrade;
 	
 	public Shop(Main main) {
 		this.speedupgrade = main.getConfig().getInt("ragemode.shop.knifeupgradeprice");
 		this.powerupgrade = main.getConfig().getInt("ragemode.shop.bowpowerupgradeprice");
+		this.knockbackupgrade = main.getConfig().getInt("ragemode.shop.knifeknockbackupgradeprice");
 	}
 	
 	@EventHandler
@@ -72,7 +74,7 @@ public class Shop implements Listener{
 		
 		ItemStack feather = new ItemStack(Material.FEATHER);
 		ItemMeta feathermeta = feather.getItemMeta();
-		if(SQLCoins.getSpeedUpgrade(player.getUniqueId().toString()) == 1) {
+		if(SQLCoins.getSpeedUpgrade(player.getUniqueId().toString())) {
 			buyn = Strings.inventory_bought;
 			feathermeta.addEnchant(Enchantment.WATER_WORKER, 1, true);
 		}
@@ -86,7 +88,7 @@ public class Shop implements Listener{
 		
 		ItemStack powder = new ItemStack(Material.SULPHUR);
 		ItemMeta powdermeta = powder.getItemMeta();
-		if(SQLCoins.getBowPowerUpgrade(player.getUniqueId().toString()) == 1) {
+		if(SQLCoins.getBowPowerUpgrade(player.getUniqueId().toString())) {
 			buyn = Strings.inventory_bought;
 			powdermeta.addEnchant(Enchantment.WATER_WORKER, 1, true);
 		}
@@ -98,8 +100,23 @@ public class Shop implements Listener{
 		powder.setItemMeta(powdermeta);
 		
 		
+		ItemStack blazepowder = new ItemStack(Material.BLAZE_POWDER);
+		ItemMeta blazepowdermeta = blazepowder.getItemMeta();
+		if(SQLCoins.getKnockbackUpgrade(player.getUniqueId().toString())) {
+			buyn = Strings.inventory_bought;
+			blazepowdermeta.addEnchant(Enchantment.WATER_WORKER, 1, true);
+		}
+		else buyn = Strings.inventory_not_bought;
+		blazepowdermeta.setDisplayName(Strings.inventory_inv_knockbackupgrade + buyn);
+		List<String> blazepowderlore = new ArrayList<String>();
+		blazepowderlore.add(Strings.inventory_inv_knockbackupgrade_description);
+		blazepowdermeta.setLore(blazepowderlore);
+		blazepowder.setItemMeta(blazepowdermeta);
+		
+		
 		inv.setItem(0, feather);
 		inv.setItem(2, powder);
+		inv.setItem(4, blazepowder);
 		
 		player.openInventory(inv);			
 		// |0|1|2|3|4|5|6|7|8| 		
@@ -139,6 +156,11 @@ public class Shop implements Listener{
 							
 							break;
 							
+						case BLAZE_POWDER:
+							player.closeInventory();
+							openMore("blazepowder", player);
+							
+							break;
 						default:
 							player.closeInventory();
 							player.sendMessage(Strings.error_inventory_false_click);
@@ -170,14 +192,14 @@ public class Shop implements Listener{
 							
 						case FLINT_AND_STEEL:
 							player.closeInventory();
-							if(SQLCoins.getSpeedUpgrade(player.getUniqueId().toString()) == 1) {
+							if(SQLCoins.getSpeedUpgrade(player.getUniqueId().toString())) {
 								player.getInventory();
 								player.sendMessage(Strings.inventory_buy_already_buy);
 								break;
 							} else {
 								if(SQLCoins.getCoins(player.getUniqueId().toString()) >= speedupgrade) {
 									SQLCoins.removeCoins(player.getUniqueId().toString(), speedupgrade);
-									SQLCoins.setSpeedUpgrade(player.getUniqueId().toString(), 1);
+									SQLCoins.setSpeedUpgrade(player.getUniqueId().toString(), true);
 									player.closeInventory();
 									player.sendMessage(Strings.inventory_buy_succesfull);
 									player.sendMessage(Strings.inventory_buy_new_coins + SQLCoins.getCoins(player.getUniqueId().toString()));
@@ -219,20 +241,69 @@ public class Shop implements Listener{
 							
 						case FLINT_AND_STEEL:
 							player.closeInventory();
-							if(SQLCoins.getBowPowerUpgrade(player.getUniqueId().toString()) == 1) {
+							if(SQLCoins.getBowPowerUpgrade(player.getUniqueId().toString())) {
 								player.closeInventory();
 								player.sendMessage(Strings.inventory_buy_already_buy);
 								break;
 							} else {
 								if(SQLCoins.getCoins(player.getUniqueId().toString()) >= powerupgrade) {
 									SQLCoins.removeCoins(player.getUniqueId().toString(), powerupgrade);
-									SQLCoins.setBowPowerUpgrade(player.getUniqueId().toString(), 1);
+									SQLCoins.setBowPowerUpgrade(player.getUniqueId().toString(), true);
 									player.closeInventory();
 									player.sendMessage(Strings.inventory_buy_succesfull);
 									player.sendMessage(Strings.inventory_buy_new_coins + SQLCoins.getCoins(player.getUniqueId().toString()));
 								} else {
 									player.closeInventory();
 									int need = powerupgrade - SQLCoins.getCoins(player.getUniqueId().toString());
+									player.sendMessage(Strings.inventory_buy_not_enough + need);
+								}
+							}
+							break;
+						default:
+							player.closeInventory();
+							player.sendMessage(Strings.error_inventory_false_click);
+							break;
+						}
+					}
+					
+					//Blazepowder Kit Chooser
+					if(ChatColor.stripColor(event.getInventory().getName()).equalsIgnoreCase("Knockback ability Upgrade")) {
+						event.setCancelled(true);
+						
+						if(event.getCurrentItem() == null ||event.getCurrentItem().getType() == Material.AIR || !event.getCurrentItem().hasItemMeta()){
+							player.closeInventory();
+							return;
+						}
+						
+						switch(event.getCurrentItem().getType()) {
+						case IRON_DOOR:
+							player.closeInventory();
+							openkitchooser(player);
+							break;
+							
+						
+						case BOOK:
+							break;
+							
+						case FEATHER:
+							break;
+							
+						case FLINT_AND_STEEL:
+							player.closeInventory();
+							if(SQLCoins.getKnockbackUpgrade(player.getUniqueId().toString())) {
+								player.closeInventory();
+								player.sendMessage(Strings.inventory_buy_already_buy);
+								break;
+							} else {
+								if(SQLCoins.getCoins(player.getUniqueId().toString()) >= knockbackupgrade) {
+									SQLCoins.removeCoins(player.getUniqueId().toString(), knockbackupgrade);
+									SQLCoins.setKnockbackUpdgrade(player.getUniqueId().toString(), true);
+									player.closeInventory();
+									player.sendMessage(Strings.inventory_buy_succesfull);
+									player.sendMessage(Strings.inventory_buy_new_coins + SQLCoins.getCoins(player.getUniqueId().toString()));
+								} else {
+									player.closeInventory();
+									int need = knockbackupgrade - SQLCoins.getCoins(player.getUniqueId().toString());
 									player.sendMessage(Strings.inventory_buy_not_enough + need);
 								}
 							}
@@ -253,6 +324,7 @@ public class Shop implements Listener{
 		String wantsdisplayname = null;
 		if(wants == "feather") wantsdisplayname = Strings.inventory_inv_speedupgrader;
 		else if(wants == "powder") wantsdisplayname = Strings.inventory_inv_bowpowerupgrader;
+		else if(wants == "blazepowder") wantsdisplayname = Strings.inventory_inv_knockbackupgrade;
 		Inventory invmore = Bukkit.createInventory(null, 9, wantsdisplayname);
 		
 		ItemStack i1 = null;
@@ -264,8 +336,8 @@ public class Shop implements Listener{
 		im2.setDisplayName(Strings.inventory_invmore_description);
 		List<String> i2lore = new ArrayList<String>();
 		
-		ItemStack i8 = null;
-		ItemMeta im8 = null;
+		ItemStack i8 = new ItemStack(Material.FLINT_AND_STEEL);;
+		ItemMeta im8 = i8.getItemMeta();;
 		List<String> i8lore = new ArrayList<String>();
 		
 		if(wants == "feather") {
@@ -277,9 +349,7 @@ public class Shop implements Listener{
 			i2lore.add(Strings.inventory_invmore_description_description + Strings.inventory_invmore_description_feather);
 			i2lore.add(Strings.inventory_invmore_description_feather_2);
 			
-			i8 = new ItemStack(Material.FLINT_AND_STEEL);
-			im8 = i8.getItemMeta();
-			if(SQLCoins.getSpeedUpgrade(player.getUniqueId().toString()) == 1) {
+			if(SQLCoins.getSpeedUpgrade(player.getUniqueId().toString())) {
 				im8.setDisplayName(Strings.inventory_flint_bought);
 			} else {
 				if(SQLCoins.getCoins(player.getUniqueId().toString()) >= speedupgrade) {
@@ -299,9 +369,7 @@ public class Shop implements Listener{
 			i2lore.add(Strings.inventory_invmore_description_description + Strings.inventory_invmore_description_powder);
 			i2lore.add(Strings.inventory_invmore_description_powder_2);
 			
-			i8 = new ItemStack(Material.FLINT_AND_STEEL);
-			im8 = i8.getItemMeta();
-			if(SQLCoins.getBowPowerUpgrade(player.getUniqueId().toString()) == 1) {
+			if(SQLCoins.getBowPowerUpgrade(player.getUniqueId().toString())) {
 				im8.setDisplayName(Strings.inventory_flint_bought);
 			} else {
 				if(SQLCoins.getCoins(player.getUniqueId().toString()) >= powerupgrade) {
@@ -309,6 +377,26 @@ public class Shop implements Listener{
 				} else {
 					im8.setDisplayName(Strings.inventory_flint_not_enough_coins);
 					i8lore.add("§a" + powerupgrade + " §6Coins");
+				}
+			}
+			
+		} else if(wants == "blazepowder") {
+			i1 = new ItemStack(Material.BLAZE_POWDER);
+			im1 = i1.getItemMeta();
+			im1.setDisplayName(Strings.inventory_inv_knockbackupgrade);
+			ilore.add(Strings.inventory_inv_knockbackupgrade_description);
+			
+			i2lore.add(Strings.inventory_invmore_description_description + Strings.inventory_invmore_description_blazepowder);
+			i2lore.add(Strings.inventory_invmore_description_blazepowder_2);
+			
+			if(SQLCoins.getKnockbackUpgrade(player.getUniqueId().toString())) {
+				im8.setDisplayName(Strings.inventory_flint_bought);
+			} else {
+				if(SQLCoins.getCoins(player.getUniqueId().toString()) >= knockbackupgrade) {
+					im8.setDisplayName(Strings.inventory_flint_buyable);
+				} else {
+					im8.setDisplayName(Strings.inventory_flint_not_enough_coins);
+					i8lore.add("§a" + knockbackupgrade + " §6Coins");
 				}
 			}
 		}

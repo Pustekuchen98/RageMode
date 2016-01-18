@@ -32,7 +32,7 @@ public class Explosion {
 		loc.getWorld().playEffect(loc, Effect.EXPLOSION_HUGE, 1);
 		loc.getWorld().playSound(loc, Sound.EXPLODE, 1000.0F, 1.0F);
 		
-		if(ground == "bow" && SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString()) == 1) radius = 7;
+		if(ground == "bow" && SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString())) radius = 7;
 			
 		for (Entity entities : loc.getWorld().getNearbyEntities(loc, radius, radius, radius)) {
 			if (entities instanceof Player) {
@@ -46,7 +46,7 @@ public class Explosion {
 					plugin.killGroundremover(victim);
 					
 					if(ground == "bow") {
-						if(SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString()) == 1) damage = (radius - distance) * 9;		
+						if(SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString())) damage = (radius - distance) * 9;		
 						plugin.playerbowlist.add(victim);
 					} else if(ground == "grenade"){
 						plugin.playergrenadelist.add(victim);
