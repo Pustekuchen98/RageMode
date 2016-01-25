@@ -51,10 +51,10 @@ public class RoundStart implements CommandExecutor{
 					for(Location loc : locs)
 					loc.getWorld().strikeLightningEffect(loc);
 					
-					
-						
+				
+					int ergebnis = 7 / 0;
 								
-					player.sendMessage("r");
+					player.sendMessage("r " + ergebnis);
 				
 				}
 			}
