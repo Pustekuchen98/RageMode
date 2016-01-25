@@ -73,7 +73,7 @@ public class Strings {
 	public static String mysql_switch_on = pre + "§3You have switch the MySQL Module §aon";
 	public static String mysql_switch_off = pre + "§3You have switch the MySQL Module §coff";
 	
-	public static String stats_reset = pre + "§3Your stats has been resettet";
+	public static String stats_reset = pre + "§3Your stats has been §aresettet";
 	public static String statsadmin_succesfull = pre + "§3The command was §asuccesful";
 	public static String stats_admin = pre + "/statsadmin §8<§aadd §8| §aremove§8> §8<§akills §8| §adeaths §8| §awongames §8| §aplayedgames §8| §apoints §8| §aresets §8| §abowkills §8| §aknifekills §8| §aaxtkills§8 §8| §asuicides§8> §8<§aplayername§8> <§anumber§8>";
 	
