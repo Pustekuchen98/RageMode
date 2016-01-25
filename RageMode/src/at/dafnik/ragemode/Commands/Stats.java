@@ -39,6 +39,7 @@ public class Stats implements CommandExecutor {
 						SQLStats.setBowKills(player.getUniqueId().toString(), 0);
 						SQLStats.setKnifeKills(player.getUniqueId().toString(), 0);
 						SQLStats.setAxtKills(player.getUniqueId().toString(), 0);
+						SQLStats.setSuicides(player.getUniqueId().toString(), 0);
 						SQLStats.addResets(player.getUniqueId().toString(),  1);			
 						
 						player.sendMessage(Strings.stats_reset);
@@ -134,7 +135,12 @@ public class Stats implements CommandExecutor {
 			int suicides = SQLStats.getSuicides(wantedPlayer.getUniqueId().toString());
 			int resets = SQLStats.getResets(wantedPlayer.getUniqueId().toString());
 			
-			float KD = ((float) kills) / ((float) deaths);
+			float KD;
+			try {
+				KD = ((float) kills) / ((float) deaths);
+			} catch (ArithmeticException ex) {
+				KD = kills;
+			}
 			float rund = (float)(((int)(KD*100))/100.0);
 			
 			player.sendMessage(Main.pre + "§e" + wantedPlayer.getName() + "§3's Stats§8:");

@@ -48,7 +48,12 @@ public class HologramsScheduler implements Runnable{
 		int resets = SQLStats.getResets(player.getUniqueId().toString());
 		int suicides = SQLStats.getSuicides(player.getUniqueId().toString());
 		
-		float KD = ((float) kills) / ((float) deaths);
+		float KD;
+		try {
+			KD = ((float) kills) / ((float) deaths);
+		} catch (ArithmeticException ex) {
+			KD = kills;
+		}
 		float rund = (float)(((int)(KD*100))/100.0);
 		
 		lines.add("§3Points§8: §e" + points);
