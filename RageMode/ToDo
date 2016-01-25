@@ -20,7 +20,9 @@
 				
 		New Stats: Suicides
 		
-		Villager shop: now you are able to open the shop via villager!
+		Shop:
+			- you can open the shop over a villager
+			- new Shop upgrade for the knife right click ability
 				
 	Fixes:
 		Premium Join, User kick fix
