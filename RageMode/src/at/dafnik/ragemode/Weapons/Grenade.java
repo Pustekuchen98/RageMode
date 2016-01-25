@@ -87,7 +87,8 @@ public class Grenade implements Listener{
 								arrow.setFireTicks(10000);
 								arrow.setCritical(true);						
 								arrow.setMetadata("shootedWith", new FixedMetadataValue(plugin, "grenade"));
-								arrow.setMetadata("shooter", new FixedMetadataValue(plugin, killer.getName()));
+								//arrow.setMetadata("shooter", new FixedMetadataValue(plugin, killer.getName()));
+								arrow.setShooter(killer);
 	
 								Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,new Runnable() {
 									@Override
