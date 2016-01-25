@@ -1,5 +1,6 @@
 package at.dafnik.ragemode.Weapons;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Item;
@@ -32,7 +33,15 @@ public class AxeEvent implements Listener{
 					item.setVelocity(player.getLocation().getDirection().multiply(2D));
 					player.setItemInHand(new ItemStack(Material.AIR));
 					player.playSound(player.getLocation(), Sound.BLAZE_DEATH, 1000, 1);
-					new AxeThrow(player, 0.5, item, plugin).start();
+					AxeThrow axet = new AxeThrow(player, 0.5, item, plugin);
+					axet.start();
+					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+						@Override
+						public void run() {
+							item.remove();
+							axet.stop();
+						}
+					}, 15*20);
 				}
 			}
 		}
