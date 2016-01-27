@@ -81,25 +81,6 @@ public class Main extends JavaPlugin{
 	//Voted Map
 	public String votedmap;
 	
-	//---------------------------------------------------------------------
-	//Combat Axe
-	public List<Player> playercombataxelist = new ArrayList<>();
-	
-	//Grenade
-	public List<Player> playergrenadelist = new ArrayList<>();
-	
-	//Clay More
-	public List<Player> playerclaymorelist = new ArrayList<>();
-	
-	//Mine
-	public List<Player> playerminelist = new ArrayList<>();
-	
-	//Knife
-	public List<Player> playerknifelist = new ArrayList<>();
-	
-	//Bow
-	public List<Player> playerbowlist = new ArrayList<>();
-	
 	//----------------------------------------------------------------------
 	//Player Ingamelist
 	public List<Player> ingameplayer = new ArrayList<Player>();
@@ -140,10 +121,13 @@ public class Main extends JavaPlugin{
 	
 	public void onDisable() {
 		if(status == Status.WARMUP || status == Status.INGAME || status == Status.WIN || status == Status.RESTART) {
+			//lobbytasks.wm.saver.kt.stop();
+			//lobbytasks.wm.saver.ct.stop();
+			//lobbytasks.wm.saver.stop();
+			
 			lobbytasks.wm.pu.stop();
-			lobbytasks.wm.saver.kt.stop();
-			lobbytasks.wm.saver.ct.stop();
-			lobbytasks.wm.saver.stop();
+			lobbytasks.wm.kt.stop();
+			lobbytasks.wm.ct.stop();
 		}
 		
 		for(Entity entities : powerupentity) entities.remove();
@@ -342,42 +326,6 @@ public class Main extends JavaPlugin{
 		
 		getConfig().set("ragemode.placedblocks", null);
 		saveConfig();
-	}
-	
-	public void killGroundremover(Player player) {
-		if(!playerminelist.contains(player) && !playercombataxelist.contains(player) && !playergrenadelist.contains(player) && !playerclaymorelist.contains(player) && !playerknifelist.contains(player) && !playerbowlist.contains(player)) {
-			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Killer: Nobody | Before Killground: Nothing");
-		}
-		
-		if(playercombataxelist.contains(player)) {
-			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Before Killground: Combat Axe");
-			playercombataxelist.remove(player);
-		}
-		
-		if(playergrenadelist.contains(player)) {
-			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Before Killground: Grenade");
-			playergrenadelist.remove(player);
-		}
-		
-		if(playerclaymorelist.contains(player)) {
-			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Before Killground: ClayMore");
-			playerclaymorelist.remove(player);
-		}
-		
-		if(playerminelist.contains(player)) {
-			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Before Killground: Mine");
-			playerminelist.remove(player);
-		}
-		
-		if(playerknifelist.contains(player)) {
-			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Before Killground: Knife");
-			playerknifelist.remove(player);
-		}
-		
-		if(playerbowlist.contains(player)) {
-			if(isDebug) System.out.println("[Debug]> Victim: " + player.getName() + " | Before Killground: Bow");
-			playerbowlist.remove(player);
-		}
 	}
 	
 	public Villager VillagerShopSpawner() {
