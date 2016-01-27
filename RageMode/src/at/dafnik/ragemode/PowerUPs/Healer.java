@@ -38,8 +38,7 @@ public class Healer implements Listener{
 						
 					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 						@Override
-						public void run() {
-								
+						public void run() {		
 							player.setMaxHealth(20);
 							player.removePotionEffect(PotionEffectType.REGENERATION);
 								
