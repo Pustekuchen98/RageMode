@@ -121,9 +121,9 @@ public class Grenade implements Listener{
 						if(shootedWith == "grenade") {
 							Player victim = (Player) event.getEntity();
 							
-							if(!plugin.respawnsafe.contains(victim)) {
-								plugin.killGroundremover(victim);
-								plugin.playergrenadelist.add(victim);
+							if(!plugin.respawnsafe.contains(victim)) {			
+								victim.removeMetadata("killedWith", plugin);
+								victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "grenade"));
 								
 								event.setDamage(21);
 								event.setCancelled(false);

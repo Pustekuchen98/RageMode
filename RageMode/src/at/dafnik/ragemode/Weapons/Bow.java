@@ -61,9 +61,8 @@ public class Bow implements Listener{
 							if(arrow.getShooter() instanceof Player) {
 								Player victim = (Player) event.getEntity();
 								if(!plugin.respawnsafe.contains(victim)) {
-									plugin.killGroundremover(victim);
-									plugin.playerbowlist.add(victim);
-									
+									victim.removeMetadata("killedWith", plugin);
+									victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "bow"));
 									event.setDamage(21);
 								} else event.setCancelled(true);
 								

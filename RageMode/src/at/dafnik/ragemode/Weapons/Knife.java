@@ -19,6 +19,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
@@ -169,8 +170,9 @@ public class Knife implements Listener{
 							public void run() {
 								if (knifelist.contains(killer)) {
 									knifelist.remove(killer);
-									plugin.killGroundremover(victim);
-									plugin.playerknifelist.add(victim);
+
+									victim.removeMetadata("killedWith", plugin);
+									victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "knife"));
 									event.setCancelled(false);
 
 									double q = victim.getLocation().getDirection()

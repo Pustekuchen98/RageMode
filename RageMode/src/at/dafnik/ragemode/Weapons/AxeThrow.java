@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
@@ -51,12 +52,12 @@ public class AxeThrow implements Runnable{
 						if(Main.status == Status.INGAME) {
 							if(!plugin.spectatorlist.contains(victim)) {
 								if(!plugin.respawnsafe.contains(victim)) {
-									plugin.killGroundremover(victim);
-									plugin.playercombataxelist.add(victim);
-									
+
 							        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 										@Override
 										public void run() {
+											victim.removeMetadata("killedWith", plugin);
+											victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "combataxe"));
 											victim.damage(41, player);
 										}
 									}, 1);

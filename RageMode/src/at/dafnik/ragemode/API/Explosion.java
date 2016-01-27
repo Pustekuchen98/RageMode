@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
 import at.dafnik.ragemode.Main.Main;
@@ -43,13 +44,14 @@ public class Explosion {
 					
 					Player killer = shooter;
 					Player victim = (Player) entities;
-					plugin.killGroundremover(victim);
+					
+					victim.removeMetadata("killedWith", plugin);
 					
 					if(ground == "bow") {
 						if(SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString())) damage = (radius - distance) * 9;		
-						plugin.playerbowlist.add(victim);
+						victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "bow"));
 					} else if(ground == "grenade"){
-						plugin.playergrenadelist.add(victim);
+						victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "grenade"));
 					} else {
 						System.out.println("[RageMode] ERROR: ExplosionAPI doesn't work well. No Explosionground can found!");
 					}

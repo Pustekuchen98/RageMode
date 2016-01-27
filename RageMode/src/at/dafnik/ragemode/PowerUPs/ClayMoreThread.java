@@ -10,6 +10,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
@@ -60,13 +61,12 @@ public class ClayMoreThread implements Runnable{
 								if(!plugin.respawnsafe.contains(victim)) {
 									Location loc = block.getLocation();
 									
-									plugin.killGroundremover(victim);
-									plugin.playerclaymorelist.add(victim);
-									
 									Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 										@SuppressWarnings("deprecation")
 										@Override
 										public void run() {
+											victim.removeMetadata("killedWith", plugin);
+											victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "claymore"));
 											victim.damage(11, setter);
 											victim.setLastDamageCause(new EntityDamageEvent(setter, DamageCause.PROJECTILE, 0));
 											

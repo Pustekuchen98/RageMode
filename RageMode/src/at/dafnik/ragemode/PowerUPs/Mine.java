@@ -42,10 +42,10 @@ public class Mine implements Listener{
 					    Player killer = Bukkit.getServer().getPlayer(killername);
 					    
 						if(!(victim == killer)) {
-							if(Main.status == Status.INGAME) {
-								plugin.killGroundremover(victim);
-								plugin.playerminelist.add(victim);			      
-							    
+							if(Main.status == Status.INGAME) {				    
+								victim.removeMetadata("killedWith", plugin);
+								victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "mine"));
+								
 								victim.damage(21, killer);
 								victim.setLastDamageCause(new EntityDamageEvent(killer, DamageCause.PROJECTILE, 0));
 								
