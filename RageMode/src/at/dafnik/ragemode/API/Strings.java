@@ -8,6 +8,7 @@ public class Strings {
 	private static String log_pre = "[RageMode] ";
 	private static String debug_pre = "[Debug]> ";
 	
+	public static String error_explosion_no_killground = log_pre + "ERROR: ExplosionAPI doesn't work well. No Explosionground can found!";
 	public static String error_powerup_last = log_pre + "ERROR: PowerUP spawning failed! Caused by: No Map or no PowerUP Spawns";
 	public static String error_powerup_spawn = log_pre + "ERROR: PowerUP spawing failed! Caused by: Coordinates Error. Trying Spawn function again.";
 	public static String error_randommizer_dont_work = log_pre + "ERROR: PowerUPItemListener - Randomizer doesn't work!";

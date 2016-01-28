@@ -50,11 +50,8 @@ public class Explosion {
 					if(ground == "bow") {
 						if(SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString())) damage = (radius - distance) * 9;		
 						victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "bow"));
-					} else if(ground == "grenade"){
-						victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "grenade"));
-					} else {
-						System.out.println("[RageMode] ERROR: ExplosionAPI doesn't work well. No Explosionground can found!");
-					}
+					} else if(ground == "grenade") victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "grenade"));
+					else System.out.println(Strings.error_explosion_no_killground);
 
 					victim.damage(damage, killer);
 
