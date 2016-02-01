@@ -36,7 +36,7 @@ public class Mine implements Listener{
 			Block block = victim.getLocation().subtract(0.0D, 0.0D, 0.0D).getBlock();
 			
 			if(plugin.planted.contains(block.getLocation())) {
-				if(block.getMetadata("placedBy") != null) {
+				if(!block.getMetadata("placedBy").isEmpty()) {
 					if(!plugin.respawnsafe.contains(victim)) {
 						String killername = block.getMetadata("placedBy").get(0).asString();  
 					    Player killer = Bukkit.getServer().getPlayer(killername);
