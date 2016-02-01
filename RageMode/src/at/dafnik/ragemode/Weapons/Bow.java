@@ -30,18 +30,20 @@ public class Bow implements Listener{
 			Arrow arrow = (Arrow) event.getEntity();
 			
 			if(Main.status == Status.INGAME) {
-				arrow.setMetadata("shootedWith", new FixedMetadataValue(plugin, "bow"));
-				
-				if (arrow.getShooter() instanceof Player) {
+				if(arrow.getMetadata("shootedWith").isEmpty()) {
+					arrow.setMetadata("shootedWith", new FixedMetadataValue(plugin, "bow"));
 					
-					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-						@Override
-						public void run() {			
-							new Explosion("bow", event.getEntity().getLocation(), ((Player) arrow.getShooter()), plugin);
-							
-							arrow.remove();
-						}
-					}, 20);
+					if (arrow.getShooter() instanceof Player) {
+						
+						Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+							@Override
+							public void run() {			
+								new Explosion("bow", event.getEntity().getLocation(), ((Player) arrow.getShooter()), plugin);
+								
+								arrow.remove();
+							}
+						}, 20);
+					}
 				}
 			} else arrow.remove();
 		}
@@ -60,15 +62,16 @@ public class Bow implements Listener{
 						if(shootedWith == "bow") {	
 							if(arrow.getShooter() instanceof Player) {
 								Player victim = (Player) event.getEntity();
-								if(!plugin.respawnsafe.contains(victim)) {
+								if (!plugin.respawnsafe.contains(victim)) {
 									victim.removeMetadata("killedWith", plugin);
 									victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "bow"));
 									event.setDamage(21);
-								} else event.setCancelled(true);
+
+								} event.setCancelled(true);
 								
 							} else event.setCancelled(true);
 							
-						} else event.setCancelled(true);
+						}
 						
 					} else event.setCancelled(true);
 				

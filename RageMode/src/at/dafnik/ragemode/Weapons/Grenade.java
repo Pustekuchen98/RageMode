@@ -109,38 +109,36 @@ public class Grenade implements Listener{
 	}
 	
 	@EventHandler
-	public void DamagebyEntity(EntityDamageByEntityEvent event){
-		if (event.getCause() == DamageCause.PROJECTILE) {	
+	public void DamagebyEntity(EntityDamageByEntityEvent event){	
+		if (event.getCause() == DamageCause.PROJECTILE) {
 			if (event.getDamager() instanceof Arrow && event.getEntity() instanceof Player) {
 				Arrow arrow = (Arrow) event.getDamager();
 				
 				if(Main.status == Status.INGAME) {
-					String shootedWith = arrow.getMetadata("shootedWith").get(0).asString(); 
-					
-					if(shootedWith != null) {
-						if(shootedWith == "grenade") {
-							Player victim = (Player) event.getEntity();
+					String shootedWith = arrow.getMetadata("shootedWith").get(0).asString();  
 							
-							if(!plugin.respawnsafe.contains(victim)) {			
-								victim.removeMetadata("killedWith", plugin);
-								victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "grenade"));
-								
-								event.setDamage(21);
-								event.setCancelled(false);
+					if(shootedWith != null) {
+						if(shootedWith == "grenade") {	
+							if(arrow.getShooter() instanceof Player) {
+								Player victim = (Player) event.getEntity();
+								if (!plugin.respawnsafe.contains(victim)) {
+									victim.removeMetadata("killedWith", plugin);
+									victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "grenade"));
+									event.setDamage(21);
+
+								} event.setCancelled(true);
 								
 							} else event.setCancelled(true);
 							
-						} else event.setCancelled(true);
+						}
 						
 					} else event.setCancelled(true);
+				
+					arrow.remove();
 					
-					arrow.remove();
-				} else {
-					event.setCancelled(true);
-					arrow.remove();
-				}
+				} else arrow.remove();
+				
 			} else event.setCancelled(true);
-			
-		} else event.setCancelled(true);
+		}
 	}
 }
