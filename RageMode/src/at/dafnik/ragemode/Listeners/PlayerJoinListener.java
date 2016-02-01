@@ -62,6 +62,8 @@ public class PlayerJoinListener implements Listener{
 			player.removePotionEffect(PotionEffectType.JUMP);
 			player.removePotionEffect(PotionEffectType.BLINDNESS);
 			player.removePotionEffect(PotionEffectType.SLOW);
+			player.removePotionEffect(PotionEffectType.INVISIBILITY);
+			player.setFireTicks(0);
 			player.getInventory().clear();
 			player.setGameMode(GameMode.SURVIVAL);
 			
