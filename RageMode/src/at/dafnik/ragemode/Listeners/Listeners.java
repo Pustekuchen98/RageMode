@@ -18,6 +18,7 @@ import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.util.Vector;
 
 import at.dafnik.ragemode.API.Strings;
+import at.dafnik.ragemode.API.TeleportAPI;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
@@ -40,8 +41,7 @@ public class Listeners implements Listener {
 			Location loc = player.getLocation();
 			
 			if(event.getTo().getY() <= 0.0D){
-				Location newloc = new Location(loc.getWorld(), loc.getX(), loc.getY()+20, loc.getZ());
-				player.teleport(newloc);
+				player.teleport(new TeleportAPI(plugin).getRandomMapSpawnLocations());
 				
 				if(plugin.ingameplayer.contains(player)) {
 					Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
