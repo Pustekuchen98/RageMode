@@ -29,6 +29,8 @@
 		Map null error fix, by first start
 		You can't destroy grass with claymores and mines anymore
 		Completely rewritten PlayerDeathEvent. (I hope the last time) 100% Killer identification
+		Knockback after respawn bug
+		Compass Thread crashes
 	
 	Changes:
 		Knife:
@@ -40,3 +42,4 @@
 		
 	Removed:
 		- Killstreak Items. You will still get extra points for killstreaks
+		- Saver Thread (it restarted the compass thread when the thread crashed)
