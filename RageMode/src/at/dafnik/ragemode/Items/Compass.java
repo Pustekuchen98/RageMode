@@ -44,14 +44,16 @@ public class Compass implements Listener{
 		double distance = Double.MAX_VALUE;
 		Player target = null;
 		
-		for(Entity entity : player.getNearbyEntities(500, 500, 500)) {
-			if(entity instanceof Player) {
-				Player gettet = (Player) entity;
-				if(!(plugin.spectatorlist.contains(gettet))) {
-					double dis = player.getLocation().distance(entity.getLocation());
-					if(dis < distance) {
-						distance = dis;
-						target = (Player) entity;
+		if(!player.getNearbyEntities(3000,  3000,  3000).isEmpty()) {
+			for(Entity entity : player.getNearbyEntities(3000, 3000, 3000)) {
+				if(entity instanceof Player) {
+					Player gettet = (Player) entity;
+					if(!(plugin.spectatorlist.contains(gettet))) {
+						double dis = player.getLocation().distance(entity.getLocation());
+						if(dis < distance) {
+							distance = dis;
+							target = (Player) entity;
+						}
 					}
 				}
 			}

@@ -56,7 +56,7 @@ public class CompassThread implements Runnable {
 		double distance = Double.MAX_VALUE;
 		Player target = null;
 		
-		if(player.getNearbyEntities(3000, 3000, 3000) != null) {
+		if(!player.getNearbyEntities(3000, 3000, 3000).isEmpty()) {
 			for(Entity entity : player.getNearbyEntities(3000, 3000, 3000)) {
 				if(entity != null) {
 					if(entity instanceof Player) {
