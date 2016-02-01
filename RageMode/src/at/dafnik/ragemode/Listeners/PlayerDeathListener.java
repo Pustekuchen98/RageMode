@@ -125,7 +125,7 @@ public class PlayerDeathListener implements Listener {
 								
 					if(killstreak.get(killer) == 3 || killstreak.get(killer) == 5 || killstreak.get(killer) == 7) {
 						givePlayerPoints(killer, "killstreak");
-						SQLCoins.addCoins(killer.getUniqueId().toString(), 10);
+						if(Main.isMySQL) SQLCoins.addCoins(killer.getUniqueId().toString(), 10);
 						Bukkit.broadcastMessage(Main.pre + killername + Strings.killstreak);
 					}
 					
@@ -171,19 +171,19 @@ public class PlayerDeathListener implements Listener {
 		
 		if(killground == "bow") {
 			toBePoints = this.bowkill;
-			SQLStats.addBowKills(playeruuid, 1);
+			if(Main.isMySQL) SQLStats.addBowKills(playeruuid, 1);
 			
 		} else if(killground == "combataxe") {
 			toBePoints = this.combataxekill;
-			SQLStats.addAxtKills(playeruuid, 1);
+			if(Main.isMySQL) SQLStats.addAxtKills(playeruuid, 1);
 			
 		} else if(killground == "knife") {
 			toBePoints = this.knifekill;
-			SQLStats.addKnifeKills(playeruuid, 1);
+			if(Main.isMySQL) SQLStats.addKnifeKills(playeruuid, 1);
 			
 		} else if(killground == "suicide") {
 			toBePoints = this.suicide;
-			SQLStats.addSuicides(playeruuid, 1);
+			if(Main.isMySQL) SQLStats.addSuicides(playeruuid, 1);
 		}
 		else if(killground == "grenade") toBePoints = this.grenadekill;
 		else if(killground == "mine") toBePoints = this.minekill;
@@ -192,10 +192,12 @@ public class PlayerDeathListener implements Listener {
 		else if(killground == "killstreak") toBePoints = this.killstreakpoints;
 		else System.out.println(Strings.error_playerdeath_points);
 		
-		if(killground != null && killground != "knife_death") {
-			SQLStats.addPoints(playeruuid, toBePoints);
-			SQLStats.addKills(playeruuid, 1);
-			SQLCoins.addCoins(playeruuid, 20);
+		if(killground != null && killground != "knife_death" && killground != "suicide" && killground != "killstreak") {
+			if(Main.isMySQL) {
+				SQLStats.addPoints(playeruuid, toBePoints);
+				SQLStats.addKills(playeruuid, 1);
+				SQLCoins.addCoins(playeruuid, 20);
+			}
 		}
 		
 		if (plugin.playerpoints.get(player) == null) {
