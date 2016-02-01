@@ -121,10 +121,6 @@ public class Main extends JavaPlugin{
 	
 	public void onDisable() {
 		if(status == Status.WARMUP || status == Status.INGAME || status == Status.WIN || status == Status.RESTART) {
-			//lobbytasks.wm.saver.kt.stop();
-			//lobbytasks.wm.saver.ct.stop();
-			//lobbytasks.wm.saver.stop();
-			
 			lobbytasks.wm.pu.stop();
 			lobbytasks.wm.kt.stop();
 			lobbytasks.wm.ct.stop();

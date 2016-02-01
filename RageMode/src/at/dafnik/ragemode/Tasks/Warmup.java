@@ -15,7 +15,6 @@ import at.dafnik.ragemode.Items.CompassThread;
 import at.dafnik.ragemode.Items.Items;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
-import at.dafnik.ragemode.Main.Saver;
 import at.dafnik.ragemode.PowerUPs.PowerUpper;
 import at.dafnik.ragemode.Weapons.KnifeThread;
 
@@ -23,7 +22,6 @@ public class Warmup {
 	
 	private Main plugin;
 	public Ingame ig;
-	public Saver saver;
 	public PowerUpper pu;
 	
 	public CompassThread ct;
@@ -49,9 +47,6 @@ public class Warmup {
 			public void run(){
 				
 				if(warmuptime == 10){
-
-					//saver = new Saver(plugin);
-					//saver.start();
 					
 					kt = new KnifeThread(plugin);
 					kt.start();
