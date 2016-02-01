@@ -52,31 +52,36 @@ public class TeleportAPI {
 	}
 	
 	public Location getRandomMapSpawnLocations() {
-		int spawnnumber = plugin.getConfig().getInt("ragemode.mapspawn." +  plugin.votedmap + ".spawnnumber");
-		
-		Random r = new Random();
-		int randomzahl = r.nextInt(spawnnumber);
-		
-		Location loc;
-		
-		for(int i = 0; i < 40; i++) {
-		
-			String w = plugin.getConfig().getString("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".world");
-			double x = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".x");
-			double y = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".y");
-			double z = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".z");
-			double yaw = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".yaw");
-			double pitch = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".pitch");
+		try {
+			int spawnnumber = plugin.getConfig().getInt("ragemode.mapspawn." +  plugin.votedmap + ".spawnnumber");
 			
-			if(w != null) {
-				loc = new Location(Bukkit.getWorld(w), x, y, z);
-		        loc.setYaw((float)yaw);
-		        loc.setPitch((float)pitch);   
-				return loc;
+			Random r = new Random();
+			int randomzahl = r.nextInt(spawnnumber);
+			
+			Location loc;
+			
+			for(int i = 0; i < 40; i++) {
+			
+				String w = plugin.getConfig().getString("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".world");
+				double x = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".x");
+				double y = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".y");
+				double z = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".z");
+				double yaw = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".yaw");
+				double pitch = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".pitch");
+				
+				if(w != null) {
+					loc = new Location(Bukkit.getWorld(w), x, y, z);
+			        loc.setYaw((float)yaw);
+			        loc.setPitch((float)pitch);   
+					return loc;
+				}
 			}
+			
+			return loc = null;
+		} catch (IllegalArgumentException e) {
+			System.out.println("ERROR");
+			return getLobbyLocation();
 		}
-		
-		return loc = null;
 	}
 	
 	public Location getMapSpawnLocation(String wantto, String mapname) {
