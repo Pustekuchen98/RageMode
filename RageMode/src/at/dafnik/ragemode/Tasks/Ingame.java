@@ -9,6 +9,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.potion.PotionEffectType;
 
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.Main.Main;
@@ -108,6 +109,13 @@ public class Ingame {
 							//Title Send
 							Title.sendTitle(player, fadein, stay, fadeout, winnername);
 							Title.sendSubtitle(player, fadein, stay, fadeout, Strings.tasks_win_is_the_winner);
+							
+							player.removePotionEffect(PotionEffectType.REGENERATION);
+							player.removePotionEffect(PotionEffectType.SPEED);
+							player.removePotionEffect(PotionEffectType.JUMP);
+							player.removePotionEffect(PotionEffectType.BLINDNESS);
+							player.removePotionEffect(PotionEffectType.SLOW);
+							player.removePotionEffect(PotionEffectType.INVISIBILITY);
 						}
 					}
 					Bukkit.broadcastMessage(Strings.tasks_restart_countdown_0 + wintime + Strings.tasks_restart_countdown_01);
