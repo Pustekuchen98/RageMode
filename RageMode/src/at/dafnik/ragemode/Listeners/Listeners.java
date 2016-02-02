@@ -171,16 +171,16 @@ public class Listeners implements Listener {
 							+ "§3Played Map§8: §6" + plugin.votedmap);
 			} else if (Main.status == Status.INGAME) {
 				event.setMotd("§4RageMode §8- §4Ingame\n"
-						+ "§3Played Map§8: §6" + plugin.votedmap);
+							+ "§3Played Map§8: §6" + plugin.votedmap);
 			} else if (Main.status == Status.WIN || Main.status == Status.RESTART) {
 				if(plugin.lobbytasks.wm.ig.playerwinner != null) {
 					event.setMotd("§4RageMode §8- §eWin\n"
 								+ "§3Winner§8: §6" + plugin.lobbytasks.wm.ig.playerwinner.getDisplayName() + " §8- §6" + plugin.playerpoints.get(plugin.lobbytasks.wm.ig.playerwinner));
 				} else {
 					event.setMotd("§4RageMode §8- §eWin\n"
-							+ "§4No §3Winner");
+								+ "§4No §3Winner");
 				}
-			}
+			} else System.out.println(Strings.error_not_authenticated_player);
 		}
 	}
 }

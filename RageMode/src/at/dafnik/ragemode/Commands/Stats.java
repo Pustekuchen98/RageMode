@@ -28,8 +28,7 @@ public class Stats implements CommandExecutor {
 				
 			}
 			
-			if(cmd.getName().equalsIgnoreCase("statsreset")){
-				
+			if(cmd.getName().equalsIgnoreCase("statsreset")){	
 					if(PlayedBefore(player, player.getName())){	
 						SQLStats.setKills(player.getUniqueId().toString(), 0);
 						SQLStats.setDeaths(player.getUniqueId().toString(), 0);
@@ -42,8 +41,7 @@ public class Stats implements CommandExecutor {
 						SQLStats.setSuicides(player.getUniqueId().toString(), 0);
 						SQLStats.addResets(player.getUniqueId().toString(),  1);			
 						
-						player.sendMessage(Strings.stats_reset);
-					
+						player.sendMessage(Strings.stats_reset);	
 				}
 			}
 			

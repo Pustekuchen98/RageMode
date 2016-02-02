@@ -45,8 +45,7 @@ public class Coins implements CommandExecutor{
 							}
 						} else CoinsAdminCommands(player);
 									
-					} else player.sendMessage(Strings.error_permission);
-					
+					} else player.sendMessage(Strings.error_permission);	
 				}
 			}
 		}
