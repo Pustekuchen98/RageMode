@@ -57,15 +57,14 @@ public class Knife implements Listener{
 						
 						double radius = 6;
 						double vectormulti = 2;
-						double vectory = 0.8;
+						double vectory = 1;
 						
-						if(SQLCoins.getKnockbackUpgrade(player.getUniqueId().toString())) {
-							radius = 12;
-							vectormulti = 4;
-							vectory = 0.8;
-						} else {
-							radius = 6;
-							vectory = 1;
+						if(Main.isMySQL && Main.isShop) {
+							if(SQLCoins.getKnockbackUpgrade(player.getUniqueId().toString())) {
+								radius = 12;
+								vectormulti = 4;
+								vectory = 0.8;
+							}
 						}
 						
 						for(Entity entities : player.getNearbyEntities(radius, radius, radius)) {

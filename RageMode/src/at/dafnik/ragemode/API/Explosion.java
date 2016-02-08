@@ -33,7 +33,7 @@ public class Explosion {
 		loc.getWorld().playEffect(loc, Effect.EXPLOSION_HUGE, 1);
 		loc.getWorld().playSound(loc, Sound.EXPLODE, 1000.0F, 1.0F);
 		
-		if(ground == "bow" && SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString())) radius = 7;
+		if(Main.isMySQL && Main.isShop) if(ground == "bow" && SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString())) radius = 7;
 			
 		for (Entity entities : loc.getWorld().getNearbyEntities(loc, radius, radius, radius)) {
 			if (entities instanceof Player) {
@@ -48,7 +48,7 @@ public class Explosion {
 					victim.removeMetadata("killedWith", plugin);
 					
 					if(ground == "bow") {
-						if(SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString())) damage = (radius - distance) * 9;		
+						if(Main.isMySQL && Main.isShop) if(SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString())) damage = (radius - distance) * 9;		
 						victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "bow"));
 					} else if(ground == "grenade") victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "grenade"));
 					else System.out.println(Strings.error_explosion_no_killground);
