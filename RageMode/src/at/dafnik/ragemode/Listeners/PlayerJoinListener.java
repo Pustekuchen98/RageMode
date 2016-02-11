@@ -60,12 +60,12 @@ public class PlayerJoinListener implements Listener{
 		player.setFireTicks(0);
 		player.getInventory().clear();
 		
-		if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) {		
+		if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) {
+			Manager.DisplayNameManagerMethode(player, "normal");
+			
 			event.setJoinMessage(ChatColor.GRAY + "> §r" + player.getDisplayName() + ChatColor.DARK_AQUA + " joined the game");
 			
 			player.setGameMode(GameMode.SURVIVAL);
-			
-			Manager.DisplayNameManagerMethode(player, "normal");
 			
 			if(plugin.getPower(player)> 0 ) player.sendMessage(Strings.lobby_rotate_your_mouse);
 			
