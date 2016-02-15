@@ -25,7 +25,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 			
 			//Tpmap
 			if (cmd.getName().equalsIgnoreCase("tpmap")){
-			 	if(!(plugin.getPower(player) >= 5)){
+			 	if(!(Main.getPower(player) >= 5)){
 			 		player.sendMessage(Strings.error_permission);
 			 	}else{
 			 		if(args.length == 2) {
@@ -46,7 +46,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 			}
 			 	 
 			if (cmd.getName().equalsIgnoreCase("tplobby")){
-				if(!(plugin.getPower(player) >= 5)){
+				if(!(Main.getPower(player) >= 5)){
 					player.sendMessage(Strings.error_permission);
 			 	}else{ 
 					player.teleport(new TeleportAPI(plugin).getLobbyLocation());

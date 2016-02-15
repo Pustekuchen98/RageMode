@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -63,11 +62,11 @@ public class PlayerJoinListener implements Listener{
 		if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) {
 			Manager.DisplayNameManagerMethode(player, "normal");
 			
-			event.setJoinMessage(ChatColor.GRAY + "> §r" + player.getDisplayName() + ChatColor.DARK_AQUA + " joined the game");
+			event.setJoinMessage("§8> §r" + player.getDisplayName() + "§3 joined the game");
 			
 			player.setGameMode(GameMode.SURVIVAL);
 			
-			if(plugin.getPower(player)> 0 ) player.sendMessage(Strings.lobby_rotate_your_mouse);
+			if(Main.getPower(player) > 0 ) player.sendMessage(Strings.lobby_rotate_your_mouse);
 			
 			Location loc = new TeleportAPI(plugin).getLobbyLocation();
 			if(loc == null) System.out.println(Strings.error_not_existing_lobbyspawn);
@@ -181,7 +180,7 @@ public class PlayerJoinListener implements Listener{
 		Player player = event.getPlayer();
 		
 		if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY){
-			if(plugin.getPower(player) > 0){
+			if(Main.getPower(player) > 0){
 				player.setAllowFlight(true);
 				player.setFlying(true);
 				
@@ -201,7 +200,7 @@ public class PlayerJoinListener implements Listener{
 			event.disallow(Result.KICK_OTHER, Strings.error_cant_join_at_the_moment);
 			
 		} else if(Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) {
-			power = plugin.getPower(event.getPlayer());
+			power = Main.getPower(event.getPlayer());
 		
 			if(plugin.getServer().getOnlinePlayers().size() >= Bukkit.getMaxPlayers()){
 				if(power == 0){
@@ -211,7 +210,7 @@ public class PlayerJoinListener implements Listener{
 					int ind = 0;
 					while(ind < power){					
 						for(Player player : Bukkit.getOnlinePlayers()){
-							int kpower = plugin.getPower(player);						
+							int kpower = Main.getPower(player);						
 							if(kpower == ind){
 								if(kpower == 0){
 									player.kickPlayer(Strings.error_you_kicked);

@@ -53,7 +53,7 @@ public class Main extends JavaPlugin{
 	//Register Mapvote
 	public Mapvote mapvote;
 	//Set Config Standarts
-	public ConfigStandart configstandart;
+	private ConfigStandart configstandart;
 	
 	//Villager
 	public Villager villager;
@@ -190,7 +190,6 @@ public class Main extends JavaPlugin{
 			ConnectMySQL();
 			
 			//MySQL Ranking
-			//Not Working: 
 			Ranking ranking = new Ranking(this);
 			ranking.set();
 		}
@@ -277,7 +276,7 @@ public class Main extends JavaPlugin{
 	}
 	
 	//Power System
-	public int getPower(Player p){
+	public static int getPower(Player p){
 		switch(getType(p)){
 			case ADMIN:
 				return 10;
@@ -294,7 +293,7 @@ public class Main extends JavaPlugin{
 		}
 	}
 	
-	public Type getType(Player p){
+	private static Type getType(Player p){
 		if(p.hasPermission("ragemode.admin")) return Type.ADMIN;
 		if(p.hasPermission("ragemode.moderator")) return Type.MODERATOR;
 		if(p.hasPermission("ragemode.youtuber")) return Type.YOUTUBER;
@@ -303,7 +302,7 @@ public class Main extends JavaPlugin{
 	}
 	
 	//User Type
-	public enum Type{
+	private static enum Type{
 		USER, PREMIUM, YOUTUBER, MODERATOR, ADMIN;
 	}
 	

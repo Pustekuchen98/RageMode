@@ -25,7 +25,7 @@ public class RoundStart implements CommandExecutor{
 			Player player = (Player)sender;
 			
 			 if (cmd.getName().equalsIgnoreCase("forcestart")){
-				 	if(!(plugin.getPower(player) >= 3)){
+				 	if(!(Main.getPower(player) >= 3)){
 				 		player.sendMessage(Strings.error_permission);
 				 	}else{
 				 		plugin.lobbytasks.lobbytime = 10;
@@ -33,7 +33,7 @@ public class RoundStart implements CommandExecutor{
 				 }
 				 	 
 			if (cmd.getName().equalsIgnoreCase("latestart")) {
-				if (!(plugin.getPower(player) >= 3)) {
+				if (!(Main.getPower(player) >= 3)) {
 					player.sendMessage(Strings.error_permission);
 				} else {
 					plugin.lobbytasks.lobbytime = 50;
