@@ -28,13 +28,9 @@ public class LobbyCommands implements CommandExecutor{
 		}else{
 			Player player = (Player)sender;
 			
-			if(cmd.getName().equalsIgnoreCase("hub")) doKick(player);
-			
-			if(cmd.getName().equalsIgnoreCase("leave")) doKick(player);
-			
-			if(cmd.getName().equalsIgnoreCase("lobby")) doKick(player);
-			
-			if(cmd.getName().equalsIgnoreCase("l")) doKick(player);	
+			if(cmd.getName().equalsIgnoreCase("hub")) {
+				doKick(player);
+			}
 		}	
 		return true;
 	}
