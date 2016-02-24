@@ -49,8 +49,11 @@ public class Shop implements Listener{
 	@EventHandler
 	public void onEntityInteract(PlayerInteractEntityEvent event) {
 		if(event.getRightClicked() instanceof Villager) {
-			openkitchooser(event.getPlayer());
-			event.setCancelled(true);
+			if(Main.isMySQL && Main.isShop){
+				openkitchooser(event.getPlayer());
+				event.setCancelled(true);
+				
+			}
 		}
 	}
 	
@@ -61,7 +64,7 @@ public class Shop implements Listener{
 		
 		if(event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
 			if(player.getItemInHand().getType() == Material.GOLD_NUGGET) {
-				openkitchooser(player);
+				if(Main.isMySQL && Main.isShop) openkitchooser(player);
 			}
 		}
 	}
