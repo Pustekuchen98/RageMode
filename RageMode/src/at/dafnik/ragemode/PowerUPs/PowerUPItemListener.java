@@ -60,7 +60,7 @@ public class PowerUPItemListener implements Listener{
 				plugin.poweruphashmap.remove(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
 				plugin.poweruplist.remove(holo);
 
-				switch(new Random().nextInt(8)) {
+				switch(new Random().nextInt(9)) {
 				case 0:
 					Items.givePlayerDoubleHeart(player);
 					player.sendMessage(Strings.powerup_get_0 + Strings.items_doubleheart + Strings.powerup_get_1);
@@ -112,7 +112,7 @@ public class PowerUPItemListener implements Listener{
 							plugin.powerupspeedeffect.remove(player);
 						}
 					}, time);
-					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_blindness + Strings.debug_powerup_get_2 + player.getName());
+					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_speed + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				case 7:
@@ -126,6 +126,12 @@ public class PowerUPItemListener implements Listener{
 						}
 					}, time);
 					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_invisibility + Strings.debug_powerup_get_2 + player.getName());
+					break;
+				
+				case 8:
+					player.sendMessage(Strings.powerup_get_0 + Strings.items_doublejump + Strings.powerup_get_1);
+					plugin.powerupdoublejump.add(player);
+					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_doublejump + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				default:

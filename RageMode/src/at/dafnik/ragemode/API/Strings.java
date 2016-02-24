@@ -170,4 +170,5 @@ public class Strings {
 	public static String items_blindness = "§1Blindness";
 	public static String items_speed = "§aSpeed";
 	public static String items_invisibility = "§fInvisibility";
+	public static String items_doublejump = "§5Double jump";
 }

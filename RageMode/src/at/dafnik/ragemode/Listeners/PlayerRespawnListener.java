@@ -56,6 +56,7 @@ public class PlayerRespawnListener implements Listener{
 		} else if(plugin.ingameplayer.contains(player)){
 			plugin.respawnsafe.add(player);
 			if(plugin.powerupspeedeffect.contains(player)) plugin.powerupspeedeffect.remove(player);
+			if(plugin.powerupdoublejump.contains(player)) plugin.powerupdoublejump.remove(player);
 			
 			player.removePotionEffect(PotionEffectType.REGENERATION);
 			player.getInventory().setHelmet(null);		

@@ -37,6 +37,7 @@ import at.dafnik.ragemode.Listeners.PlayerRespawnListener;
 import at.dafnik.ragemode.MySQL.ConfigStandart;
 import at.dafnik.ragemode.MySQL.MySQL;
 import at.dafnik.ragemode.MySQL.Ranking;
+import at.dafnik.ragemode.PowerUPs.DoubleJump;
 import at.dafnik.ragemode.PowerUPs.Healer;
 import at.dafnik.ragemode.PowerUPs.Mine;
 import at.dafnik.ragemode.PowerUPs.PowerUPItemListener;
@@ -106,6 +107,7 @@ public class Main extends JavaPlugin{
 	public List<Holograms> poweruplist = new ArrayList<>();
 	public static Integer powerupinteger = 0;
 	public List<Player> powerupspeedeffect = new ArrayList<>();
+	public List<Player> powerupdoublejump = new ArrayList<>();
 	
 	//----------------------------------------------------------------------
 	//Is MySQL On
@@ -219,6 +221,7 @@ public class Main extends JavaPlugin{
 		pm.registerEvents(new Bow(this), this);
 		pm.registerEvents(new Mine(this), this);
 		pm.registerEvents(new Healer(this), this);
+		pm.registerEvents(new DoubleJump(this), this);
 		
 		//Events
 		pm.registerEvents(new PlayerDeathListener(this), this);
@@ -257,9 +260,6 @@ public class Main extends JavaPlugin{
 		this.getCommand("tplobby").setExecutor(new Teleport(this));
 		
 		this.getCommand("hub").setExecutor(new LobbyCommands(this));
-		this.getCommand("leave").setExecutor(new LobbyCommands(this));
-		this.getCommand("lobby").setExecutor(new LobbyCommands(this));
-		this.getCommand("l").setExecutor(new LobbyCommands(this));
 	}
 	
 	//Load Config
