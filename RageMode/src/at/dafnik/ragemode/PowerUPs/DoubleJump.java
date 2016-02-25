@@ -20,6 +20,7 @@ import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.util.Vector;
 
 import at.dafnik.ragemode.Main.Main;
+import at.dafnik.ragemode.Main.Main.Status;
 import net.minecraft.server.v1_8_R3.MathHelper;
 
 public class DoubleJump implements Listener {
@@ -113,7 +114,7 @@ public class DoubleJump implements Listener {
 			if (player.isOnGround()) {
 				cooldown.put(player, true);
 			}
-		}
+		} else if(Main.status == Status.INGAME) player.setAllowFlight(false);
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -136,7 +137,8 @@ public class DoubleJump implements Listener {
 	
 				player.setAllowFlight(false);
 			}
-		}
+		} else if(Main.status == Status.INGAME) player.setAllowFlight(false);
+		
 	}
 
 	@SuppressWarnings("deprecation")
