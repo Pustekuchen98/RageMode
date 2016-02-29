@@ -15,7 +15,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.metadata.FixedMetadataValue;
 
 public class PlayerDeathListener implements Listener {
   private Main plugin;
@@ -67,7 +66,6 @@ public class PlayerDeathListener implements Listener {
 				if(victim.getMetadata("killedWith") != null && !victim.getMetadata("killedWith").isEmpty()) {
 
 					killground = victim.getMetadata("killedWith").get(0).asString();
-					victim.setMetadata("killedWith", new FixedMetadataValue(plugin, null));
 			
 					if (killground == "bow") {
 						
@@ -142,7 +140,7 @@ public class PlayerDeathListener implements Listener {
 			
 		} else event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_unknown_killer);
 		
-		if(victim.getMetadata("killedWith") != null) victim.removeMetadata("killedWith", plugin);
+		if(victim.getMetadata("killedWith") != null && !victim.getMetadata("killedWith").isEmpty()) victim.removeMetadata("killedWith", plugin);
 		
 		event.setDroppedExp(0);
 		event.getDrops().clear();
