@@ -532,7 +532,7 @@ public class Mapset implements CommandExecutor{
 					 }
 				 }
 			}
-		}
+		} else System.out.println(Strings.error_only_player_use);
 		return true;
 	}
 }

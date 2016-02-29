@@ -52,7 +52,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 					player.teleport(new TeleportAPI(plugin).getLobbyLocation());
 			 	}
 			}
-		}
+		} else System.out.println(Strings.error_only_player_use);
 		return true;
 	}
 }
