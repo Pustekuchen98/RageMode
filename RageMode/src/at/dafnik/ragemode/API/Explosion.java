@@ -45,7 +45,7 @@ public class Explosion {
 					Player killer = shooter;
 					Player victim = (Player) entities;
 					
-					victim.removeMetadata("killedWith", plugin);
+					if(victim.getMetadata("killedWith") != null && !victim.getMetadata("killedWith").isEmpty()) victim.removeMetadata("killedWith", plugin);
 					
 					if(ground == "bow") {
 						if(Main.isMySQL && Main.isShop) if(SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString())) damage = (radius - distance) * 9;		
