@@ -54,14 +54,11 @@ public class TeleportAPI {
 	public Location getRandomMapSpawnLocations() {
 		try {
 			int spawnnumber = plugin.getConfig().getInt("ragemode.mapspawn." +  plugin.votedmap + ".spawnnumber");
-			
 			Random r = new Random();
 			int randomzahl = r.nextInt(spawnnumber);
-			
-			Location loc;
+			Location loc = null;
 			
 			for(int i = 0; i < 40; i++) {
-			
 				String w = plugin.getConfig().getString("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".world");
 				double x = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".x");
 				double y = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".y");
@@ -77,9 +74,9 @@ public class TeleportAPI {
 				}
 			}
 			
-			return loc = null;
+			return loc;
 		} catch (IllegalArgumentException e) {
-			System.out.println("ERROR");
+			System.out.println(Strings.error_no_map);
 			return getLobbyLocation();
 		}
 	}
@@ -88,7 +85,6 @@ public class TeleportAPI {
 		Location loc;
 		
 		for(int i = 0; i < 40; i++) {
-		
 			String w = plugin.getConfig().getString("ragemode.mapspawn." + mapname + "." + wantto + ".world");
 			double x = plugin.getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".x");
 			double y = plugin.getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".y");
@@ -105,5 +101,19 @@ public class TeleportAPI {
 		}
 		
 		return null;
+	}
+	
+	public Location getMapMiddleLocation() {
+		String w = plugin.getConfig().getString("ragemode.mapspawn." + plugin.votedmap + ".middlepoint.world");
+		double x = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + ".middlepoint.x");
+		double y = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + ".middlepoint.y");
+		double z = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + ".middlepoint.z");
+		
+		if(w != null) {
+			Location loc = new Location(Bukkit.getWorld(w), x, y, z);
+			return loc;
+		} else {
+			return null;
+		}
 	}
 }
