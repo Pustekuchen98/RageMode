@@ -6,7 +6,6 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,8 +13,6 @@ import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
 
 import at.dafnik.ragemode.API.Holograms;
@@ -23,6 +20,7 @@ import at.dafnik.ragemode.API.Manager;
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.API.TeleportAPI;
 import at.dafnik.ragemode.API.Title;
+import at.dafnik.ragemode.Items.Items;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.MySQL.SQLCoins;
@@ -66,21 +64,20 @@ public class PlayerJoinListener implements Listener{
 			
 			player.setGameMode(GameMode.SURVIVAL);
 			
-			if(Main.getPower(player) > 0 ) player.sendMessage(Strings.lobby_rotate_your_mouse);
-			
 			Location loc = new TeleportAPI(plugin).getLobbyLocation();
 			if(loc == null) System.out.println(Strings.error_not_existing_lobbyspawn);
 			else player.teleport(loc);
 			
+			Manager.HelmetManagerMethode(player);
+			 
+			Title.sendTabList(player, "§bRageMode");
+			Title.sendTitle(player, fadein, stay, fadeout, "§6Welcome in");
+			Title.sendSubtitle(player, fadein, stay, fadeout, "§bRageMode");
+			
+			if(Main.getPower(player) > 0 ) player.sendMessage(Strings.lobby_rotate_your_mouse);
+			
 			if(Main.isMySQL && Main.isShop) {
-				ItemStack i = new ItemStack(Material.GOLD_NUGGET);
-				ItemMeta imd = i.getItemMeta();
-				imd.setDisplayName("§6Shop");
-				List<String> ilore = new ArrayList<String>();
-				ilore.add("§7Right click to use");
-				imd.setLore(ilore);
-				i.setItemMeta(imd);
-				player.getInventory().setItem(0, i);
+				Items.givePlayerShopItem(player);
 				
 				Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
 					 public void run(){
@@ -140,24 +137,17 @@ public class PlayerJoinListener implements Listener{
 							holo.display(player);	
 				     }
 				 }, 20*2);
-			}    
-		   
-		    Manager.HelmetManagerMethode(player);
-		 
-			Title.sendTabList(player, "§bRageMode");
-			Title.sendTitle(player, fadein, stay, fadeout, "§6Welcome in");
-			Title.sendSubtitle(player, fadein, stay, fadeout, "§bRageMode");
-		    
+			}    	    
 		    	   
 		} else if(Main.status == Status.INGAME){
+			Manager.DisplayNameManagerMethode(player, "spectator");
+			
 			plugin.spectatorlist.add(player);
 			
 			event.setJoinMessage(null);
 			
 			player.teleport(new TeleportAPI(plugin).getRandomMapSpawnLocations());
 			player.setGameMode(GameMode.SPECTATOR);		
-			
-			Manager.DisplayNameManagerMethode(player, "spectator");
 			
 			Title.sendTabList(player , "§bRageMode");
 		    Title.sendTitle(player, fadein, stay, fadeout, "§6Spectator");

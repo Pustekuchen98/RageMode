@@ -66,7 +66,7 @@ public class DoubleJump implements Listener {
 					for (Entity entities : player.getWorld().getNearbyEntities(loc, radius, radius, radius)) {
 						if (entities instanceof Player) {
 							if(((Player) entities) != player) {
-								if(!plugin.spectatorlist.contains(entities)) {
+								if(!(plugin.spectatorlist.contains(entities) && plugin.respawnsafe.contains(player))) {
 									Location eloc = entities.getLocation();
 									
 									double d4 = eloc.distance(loc) / radius;
@@ -84,6 +84,7 @@ public class DoubleJump implements Listener {
 	
 											Vector vector = new Vector(d5,d6, d7).normalize();
 											((Player) entities).setVelocity(vector);
+											((Player) entities).damage(1);
 										}
 									}	
 								}

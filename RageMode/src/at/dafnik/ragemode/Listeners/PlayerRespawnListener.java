@@ -30,17 +30,13 @@ public class PlayerRespawnListener implements Listener{
 	public void onRespawn(PlayerRespawnEvent event){
 		Player player = event.getPlayer();
 		
-		//Tp to Map
 		event.setRespawnLocation(new TeleportAPI(plugin).getRandomMapSpawnLocations());
-		
-		Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
-			 public void run(){
-				 if(plugin.ingameplayer.contains(player)) {
-					 player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100, 10));
-					 player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 100, 10));
-				 }
-		     }
-		 }, 1);
+	
+		player.getInventory().clear();
+		player.setFoodLevel(21);
+		player.setVelocity(new Vector(0, 0, 0));
+		player.setMaxHealth(20);
+		Title.sendTabList(player, "§bRageMode");
 		
 		Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
 			 public void run(){
@@ -54,12 +50,22 @@ public class PlayerRespawnListener implements Listener{
 			player.setGameMode(GameMode.SPECTATOR);
 			
 		} else if(plugin.ingameplayer.contains(player)){
+			Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
+				 public void run(){
+					 if(plugin.ingameplayer.contains(player)) {
+						 player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100, 10));
+						 player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 100, 10));
+						 player.getInventory().setHelmet(null);	
+					 }
+			     }
+			 }, 1);
+			
 			plugin.respawnsafe.add(player);
+			
 			if(plugin.powerupspeedeffect.contains(player)) plugin.powerupspeedeffect.remove(player);
 			if(plugin.powerupdoublejump.contains(player)) plugin.powerupdoublejump.remove(player);
 			
-			player.removePotionEffect(PotionEffectType.REGENERATION);
-			player.getInventory().setHelmet(null);		
+			player.removePotionEffect(PotionEffectType.REGENERATION);	
 			player.setGameMode(GameMode.SURVIVAL);
 			 
 			 Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
@@ -71,12 +77,7 @@ public class PlayerRespawnListener implements Listener{
 					 Manager.HelmetManagerMethode(player);
 			     }
 			 }, 60);
+			 
 		} else System.out.println(Strings.error_not_authenticated_player);
-		
-		player.getInventory().clear();
-		player.setFoodLevel(21);
-		player.setVelocity(new Vector(0, 0, 0));
-		player.setMaxHealth(20);
-		Title.sendTabList(player, "§bRageMode");
 	}
 }

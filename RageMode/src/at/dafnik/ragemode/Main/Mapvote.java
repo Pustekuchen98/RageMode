@@ -111,18 +111,15 @@ public class Mapvote implements CommandExecutor{
 								player.sendMessage(Strings.votes_you_have_voted + args[0]);
 								//Put the Player to already voted
 								plugin.voted.add(player.getName());
-							}else{
-								player.sendMessage(Strings.error_map_cannot_vote);
-							}
-						}else{
-							player.sendMessage(Strings.error_you_already_voted);
-						}
-					}else{
-						player.sendMessage(Strings.error_voting_finished);
-					}
-				} else {
-					player.sendMessage(Strings.error_map_cannot_vote);
-				}
+								
+							}else player.sendMessage(Strings.error_map_cannot_vote);
+							
+						} else player.sendMessage(Strings.error_you_already_voted);
+						
+					} else player.sendMessage(Strings.error_voting_finished);
+					
+				} else player.sendMessage(Strings.error_map_cannot_vote);
+				
 			}
 			
 			return true;
@@ -136,9 +133,7 @@ public class Mapvote implements CommandExecutor{
 			for(String all : plugin.mapstovote){
 				player.sendMessage(pre + "§3- §6" + all + "§3: §c" + plugin.votes.get(all));
 			}
-		}else{
-			player.sendMessage(Strings.error_voting_finished);
-		}
+		}else player.sendMessage(Strings.error_voting_finished);	
 	}
 	
 	public void getListBroadcast(){
@@ -149,7 +144,6 @@ public class Mapvote implements CommandExecutor{
 	}
 	
 	public void getResult() {
-		
 		int max = 0;
 		for(int i : plugin.votes.values()){
 			if(i > max){
