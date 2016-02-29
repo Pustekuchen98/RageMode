@@ -1,5 +1,8 @@
 package at.dafnik.ragemode.Items;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -17,6 +20,7 @@ public class Items {
 		i2.setItemMeta(imd2);
 		player.getInventory().setItem(7, i2);
 	}
+	
 	public static void givePlayerDoubleHeart(Player player) {
 		ItemStack i = new ItemStack(Material.REDSTONE, 1);
 		ItemMeta imd = i.getItemMeta();
@@ -31,6 +35,17 @@ public class Items {
 		imd3.setDisplayName(Strings.items_mine);
 		i3.setItemMeta(imd3);
 		player.getInventory().setItem(6, i3);
+	}
+	
+	public static void givePlayerShopItem(Player player) {
+		ItemStack i = new ItemStack(Material.GOLD_NUGGET);
+		ItemMeta imd = i.getItemMeta();
+		imd.setDisplayName("§6Shop");
+		List<String> ilore = new ArrayList<String>();
+		ilore.add("§7Right click to use");
+		imd.setLore(ilore);
+		i.setItemMeta(imd);
+		player.getInventory().setItem(0, i);
 	}
 	
 	public static void givePlayerItems(Player player){
