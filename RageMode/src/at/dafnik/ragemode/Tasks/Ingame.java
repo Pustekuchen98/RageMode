@@ -207,7 +207,7 @@ public class Ingame {
 	}
 	
 	public void RocketClean() {
-		for(Entity entities : plugin.powerupentity) entities.remove();
+		for(Entity entities : plugin.powerup_entity) entities.remove();
 		
 		Location loc = new TeleportAPI(plugin).getRandomMapSpawnLocations();
 		Firework firework = loc.getWorld().spawn(loc, Firework.class);
