@@ -88,3 +88,8 @@ RageMode/bin/at/dafnik/ragemode/Main/Main$1.class
 RageMode/bin/at/dafnik/ragemode/Weapons/AxeEvent$1.class
 RageMode/bin/at/dafnik/ragemode/Listeners/PlayerJoinListener$3.class
 RageMode/bin/at/dafnik/ragemode/PowerUPs/DoubleJump.class
+RageMode/bin/at/dafnik/ragemode/PowerUPs/Flash$1.class
+RageMode/bin/at/dafnik/ragemode/PowerUPs/Flash.class
+RageMode/bin/at/dafnik/ragemode/PowerUPs/Fly.class
+RageMode/bin/at/dafnik/ragemode/PowerUPs/FlyThread.class
+RageMode/bin/at/dafnik/ragemode/PowerUPs/PowerUPItemListener$4.class
