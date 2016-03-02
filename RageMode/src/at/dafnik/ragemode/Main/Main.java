@@ -59,8 +59,6 @@ public class Main extends JavaPlugin{
 	public Lobby lobbytasks;
 	//Register Mapvote
 	public Mapvote mapvote;
-	//Set Config Standarts
-	private ConfigStandart configstandart;
 	
 	//Villager
 	public Villager villager;
@@ -68,7 +66,7 @@ public class Main extends JavaPlugin{
 	public Holograms villagerholo;
 	
 	//BossBar
-	public BossBar bar = Bukkit.getServer().createBossBar("§bRageMode", BarColor.BLUE, BarStyle.SEGMENTED_6, BarFlag.CREATE_FOG);
+	public BossBar bar = Bukkit.getServer().createBossBar("§6You §3are §cplaying §bRageMode", BarColor.BLUE, BarStyle.SEGMENTED_6, BarFlag.CREATE_FOG);
 	
 	//--------------------------------------------------------------------
 	
@@ -172,8 +170,7 @@ public class Main extends JavaPlugin{
 		loadConfig();
 		
 		//Set Config Standart
-		configstandart = new ConfigStandart(this);
-		configstandart.setStandart();
+		new ConfigStandart(this).setStandart();
 		
 		//Register all Events and Commands
 		registerListeners();
@@ -225,29 +222,35 @@ public class Main extends JavaPlugin{
 		PluginManager pm = Bukkit.getPluginManager();
 		
 		//Items
-		pm.registerEvents(new AxeEvent(this), this);
-		pm.registerEvents(new Knife(this), this);
 		pm.registerEvents(new Compass(this), this);
-		pm.registerEvents(new Grenade(this), this);
-		pm.registerEvents(new Bow(this), this);
+		
+		//PowerUP's
+		pm.registerEvents(new PowerUPItemListener(this), this);
 		pm.registerEvents(new Mine(this), this);
 		pm.registerEvents(new Healer(this), this);
 		pm.registerEvents(new DoubleJump(this), this);
 		pm.registerEvents(new Flash(this), this);
 		pm.registerEvents(new Fly(this), this);
 		
-		//Events
+		//Weapons
+		pm.registerEvents(new AxeEvent(this), this);
+		pm.registerEvents(new Knife(this), this);
+		pm.registerEvents(new Grenade(this), this);
+		pm.registerEvents(new Bow(this), this);
+		
+		//Events - Combat
 		pm.registerEvents(new PlayerDeathListener(this), this);
+		pm.registerEvents(new PlayerRespawnListener(this), this);
+		
+		//Events - Listeners
 		pm.registerEvents(new PlayerJoinListener(this), this);
 		pm.registerEvents(new PlayerQuitListener(this), this);
 		pm.registerEvents(new Listeners(this), this);
-		pm.registerEvents(new PlayerRespawnListener(this), this);
 		pm.registerEvents(new AsyncPlayerChatListener(this), this);
 		pm.registerEvents(new FoodWeatherChangeListener(), this);
 		pm.registerEvents(new InventoryItemListener(this), this);
 		pm.registerEvents(new BlockBedListener(this), this);
 		pm.registerEvents(new Shop(this), this);
-		pm.registerEvents(new PowerUPItemListener(this), this);
 		
 		//Map classes
 		new Mapset(this);
@@ -286,37 +289,6 @@ public class Main extends JavaPlugin{
 	//Status
 	public enum Status{
 		PRE_LOBBY, LOBBY, WARMUP, INGAME, WIN, RESTART;
-	}
-	
-	//Power System
-	public static int getPower(Player p){
-		switch(getType(p)){
-			case ADMIN:
-				return 10;
-			case MODERATOR:
-				return 5;
-			case YOUTUBER:
-				return 3;
-			case PREMIUM:
-				return 1;
-			case USER:
-				return 0;
-			default:
-				return 0;
-		}
-	}
-	
-	private static Type getType(Player p){
-		if(p.hasPermission("ragemode.admin")) return Type.ADMIN;
-		if(p.hasPermission("ragemode.moderator")) return Type.MODERATOR;
-		if(p.hasPermission("ragemode.youtuber")) return Type.YOUTUBER;
-		if(p.hasPermission("ragemode.premium")) return Type.PREMIUM;
-		return Type.USER;
-	}
-	
-	//User Type
-	private static enum Type{
-		USER, PREMIUM, YOUTUBER, MODERATOR, ADMIN;
 	}
 	
 	private void PlantedRemover() {

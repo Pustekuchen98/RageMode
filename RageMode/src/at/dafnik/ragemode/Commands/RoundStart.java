@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Items.Items;
 import at.dafnik.ragemode.Main.Main;
+import at.dafnik.ragemode.Main.PowerSystem;
 
 public class RoundStart implements CommandExecutor{
 	
@@ -26,7 +27,7 @@ public class RoundStart implements CommandExecutor{
 			Player player = (Player)sender;
 			
 			 if (cmd.getName().equalsIgnoreCase("forcestart")){
-				 	if(!(Main.getPower(player) >= 3)){
+				 	if(!(PowerSystem.getPower(player) >= 3)){
 				 		player.sendMessage(Strings.error_permission);
 				 	}else{
 				 		plugin.lobbytasks.lobbytime = 10;
@@ -34,7 +35,7 @@ public class RoundStart implements CommandExecutor{
 				 }
 				 	 
 			if (cmd.getName().equalsIgnoreCase("latestart")) {
-				if (!(Main.getPower(player) >= 3)) {
+				if (!(PowerSystem.getPower(player) >= 3)) {
 					player.sendMessage(Strings.error_permission);
 				} else {
 					plugin.lobbytasks.lobbytime = 50;

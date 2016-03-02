@@ -23,6 +23,7 @@ import at.dafnik.ragemode.API.Title;
 import at.dafnik.ragemode.Items.Items;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
+import at.dafnik.ragemode.Main.PowerSystem;
 import at.dafnik.ragemode.MySQL.SQLCoins;
 import at.dafnik.ragemode.MySQL.SQLStats;
 
@@ -76,7 +77,7 @@ public class PlayerJoinListener implements Listener{
 			Title.sendTitle(player, fadein, stay, fadeout, "§6Welcome in");
 			Title.sendSubtitle(player, fadein, stay, fadeout, "§bRageMode");
 			
-			if(Main.getPower(player) > 0 ) player.sendMessage(Strings.lobby_rotate_your_mouse);
+			if(PowerSystem.getPower(player) > 0 ) player.sendMessage(Strings.lobby_rotate_your_mouse);
 			
 			if(Main.isMySQL && Main.isShop) {
 				Items.givePlayerShopItem(player);
@@ -173,7 +174,7 @@ public class PlayerJoinListener implements Listener{
 		Player player = event.getPlayer();
 		
 		if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY){
-			if(Main.getPower(player) > 0){
+			if(PowerSystem.getPower(player) > 0){
 				player.setAllowFlight(true);
 				player.setFlying(true);
 				
@@ -193,7 +194,7 @@ public class PlayerJoinListener implements Listener{
 			event.disallow(Result.KICK_OTHER, Strings.error_cant_join_at_the_moment);
 			
 		} else if(Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) {
-			power = Main.getPower(event.getPlayer());
+			power = PowerSystem.getPower(event.getPlayer());
 		
 			if(plugin.getServer().getOnlinePlayers().size() >= Bukkit.getMaxPlayers()){
 				if(power == 0){
@@ -203,7 +204,7 @@ public class PlayerJoinListener implements Listener{
 					int ind = 0;
 					while(ind < power){					
 						for(Player player : Bukkit.getOnlinePlayers()){
-							int kpower = Main.getPower(player);						
+							int kpower = PowerSystem.getPower(player);						
 							if(kpower == ind){
 								if(kpower == 0){
 									player.kickPlayer(Strings.error_you_kicked);

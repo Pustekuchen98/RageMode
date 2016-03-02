@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.API.TeleportAPI;
 import at.dafnik.ragemode.Main.Main;
+import at.dafnik.ragemode.Main.PowerSystem;
 
 public class Teleport implements CommandExecutor{
 	
@@ -25,7 +26,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 			
 			//Tpmap
 			if (cmd.getName().equalsIgnoreCase("tpmap")){
-			 	if(!(Main.getPower(player) >= 5)){
+			 	if(!(PowerSystem.getPower(player) >= 5)){
 			 		player.sendMessage(Strings.error_permission);
 			 	}else{
 			 		if(args.length == 2) {
@@ -46,7 +47,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 			}
 			 	 
 			if (cmd.getName().equalsIgnoreCase("tplobby")){
-				if(!(Main.getPower(player) >= 5)){
+				if(!(PowerSystem.getPower(player) >= 5)){
 					player.sendMessage(Strings.error_permission);
 			 	}else{ 
 					player.teleport(new TeleportAPI(plugin).getLobbyLocation());
