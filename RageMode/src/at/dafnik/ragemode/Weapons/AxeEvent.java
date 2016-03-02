@@ -9,7 +9,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
 
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
@@ -27,12 +26,13 @@ public class AxeEvent implements Listener{
 	public void Interact(PlayerInteractEvent event){
 		Player player = event.getPlayer();
 		if(event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
-			if(player.getItemInHand().getType() == Material.DIAMOND_AXE) {
-				if(Main.status == Status.INGAME) {
-					Item item = player.getWorld().dropItem(player.getEyeLocation(), player.getItemInHand());
+			if(Main.status == Status.INGAME) {
+				if(player.getInventory().getItemInMainHand().getType() == Material.DIAMOND_AXE) {
+				
+					Item item = player.getWorld().dropItem(player.getEyeLocation(), player.getInventory().getItemInMainHand());							
+					player.getInventory().remove(Material.DIAMOND_AXE);				
 					item.setVelocity(player.getLocation().getDirection().multiply(2D));
-					player.setItemInHand(new ItemStack(Material.AIR));
-					player.playSound(player.getLocation(), Sound.BLAZE_DEATH, 1000, 1);
+					player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_DEATH, 1000, 1);
 					AxeThrow axet = new AxeThrow(player, 0.5, item, plugin);
 					axet.start();
 					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {

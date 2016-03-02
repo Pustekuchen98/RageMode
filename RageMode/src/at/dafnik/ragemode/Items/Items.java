@@ -13,28 +13,44 @@ import at.dafnik.ragemode.API.Strings;
 
 public class Items {
 	
-	public static void giverPlayerClaymore(Player player) {
-		ItemStack i2 = new ItemStack(Material.FLOWER_POT_ITEM, 4);
-		ItemMeta imd2 = i2.getItemMeta();
-		imd2.setDisplayName(Strings.items_claymore);
-		i2.setItemMeta(imd2);
-		player.getInventory().setItem(7, i2);
-	}
-	
 	public static void givePlayerDoubleHeart(Player player) {
 		ItemStack i = new ItemStack(Material.REDSTONE, 1);
 		ItemMeta imd = i.getItemMeta();
 		imd.setDisplayName(Strings.items_doubleheart);
 		i.setItemMeta(imd);
-		player.getInventory().setItem(5, i);
+		player.getInventory().addItem(i);
 	}
 	
 	public static void givePlayerMine(Player player) {
-		ItemStack i3 = new ItemStack(Material.STONE_PLATE, 2);
-		ItemMeta imd3 = i3.getItemMeta();
-		imd3.setDisplayName(Strings.items_mine);
-		i3.setItemMeta(imd3);
-		player.getInventory().setItem(6, i3);
+		ItemStack i = new ItemStack(Material.STONE_PLATE, 2);
+		ItemMeta imd = i.getItemMeta();
+		imd.setDisplayName(Strings.items_mine);
+		i.setItemMeta(imd);
+		player.getInventory().addItem(i);
+	}
+	
+	public static void giverPlayerClaymore(Player player) {
+		ItemStack i = new ItemStack(Material.FLOWER_POT_ITEM, 4);
+		ItemMeta imd = i.getItemMeta();
+		imd.setDisplayName(Strings.items_claymore);
+		i.setItemMeta(imd);
+		player.getInventory().addItem(i);
+	}
+	
+	public static void givePlayerFlash(Player player) {
+		ItemStack i = new ItemStack(Material.SNOW_BALL, 4);
+		ItemMeta imd = i.getItemMeta();
+		imd.setDisplayName(Strings.items_flash);
+		i.setItemMeta(imd);
+		player.getInventory().addItem(i);
+	}
+	
+	public static void givePlayerFly(Player player) {
+		ItemStack i = new ItemStack(Material.NETHER_STAR, 1);
+		ItemMeta imd = i.getItemMeta();
+		imd.setDisplayName(Strings.items_fly);
+		i.setItemMeta(imd);
+		player.getInventory().addItem(i);
 	}
 	
 	public static void givePlayerShopItem(Player player) {
@@ -80,6 +96,12 @@ public class Items {
 		imd5.setDisplayName("§eCluster Bomb");
 		i5.setItemMeta(imd5);
 		player.getInventory().setItem(3, i5);
+		
+		ItemStack i6 = new ItemStack(Material.SNOW_BALL, 1);
+		ItemMeta imd6 = i6.getItemMeta();
+		imd6.setDisplayName(Strings.items_flash);
+		i6.setItemMeta(imd6);
+		player.getInventory().setItem(4, i6);
 		
 		ItemStack i9 = new ItemStack(Material.COMPASS);
 		ItemMeta imd9 = i9.getItemMeta();

@@ -63,7 +63,7 @@ public class Shop implements Listener{
 		Player player = event.getPlayer();
 		
 		if(event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
-			if(player.getItemInHand().getType() == Material.GOLD_NUGGET) {
+			if(player.getInventory().getItemInMainHand().getType() == Material.GOLD_NUGGET) {
 				if(Main.isMySQL && Main.isShop) openkitchooser(player);
 			}
 		}

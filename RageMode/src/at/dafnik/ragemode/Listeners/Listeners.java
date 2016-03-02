@@ -51,7 +51,7 @@ public class Listeners implements Listener {
 						  }
 					 }, 2);
 					
-					player.playSound(player.getLocation(), Sound.HURT_FLESH, 10, 1);
+					player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_HURT, 10, 1);
 					
 				} else if(plugin.spectatorlist.contains(player)) player.sendMessage(Strings.map_worldborder);
 					
@@ -66,6 +66,7 @@ public class Listeners implements Listener {
 					if(mapmiddle == null) {
 						System.out.println(Strings.error_not_existing_map_middle_point);
 						happened = true;
+						return;
 					}
 				}
 				

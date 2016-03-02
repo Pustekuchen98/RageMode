@@ -53,7 +53,7 @@ public class Grenade implements Listener{
 							Location loceggy = eggy.getLocation();
 								
 							loceggy.getWorld().playEffect(loceggy, Effect.EXPLOSION_HUGE, 1);
-							loceggy.getWorld().playSound(loceggy, Sound.EXPLODE, 1000.0F, 1.0F);
+							loceggy.getWorld().playSound(loceggy, Sound.ENTITY_GENERIC_EXPLODE, 1000.0F, 1.0F);
 							eggy.remove();
 	
 							int x;
@@ -130,7 +130,7 @@ public class Grenade implements Listener{
 								
 							} else event.setCancelled(true);
 							
-						}
+						} //Don't add else because bow is also with shootedWith
 						
 					} else event.setCancelled(true);
 				

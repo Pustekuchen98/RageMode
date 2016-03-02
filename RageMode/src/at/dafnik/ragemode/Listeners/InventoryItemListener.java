@@ -30,10 +30,12 @@ public class InventoryItemListener implements Listener{
 	//Cannot change Inventory
 	@EventHandler
 	public void IventoryMove(InventoryMoveItemEvent event) {
-		Player player = (Player) event.getSource().getHolder();
-		if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && plugin.builder.contains(player)
-				&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
-		else event.setCancelled(true);	
+		if(event.getSource().getHolder() instanceof Player) {
+			Player player = (Player) event.getSource().getHolder();
+			if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && plugin.builder.contains(player)
+					&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
+			else event.setCancelled(true);	
+		}
 	}
 		
 	//Cannot Click in the Inventory
@@ -41,7 +43,7 @@ public class InventoryItemListener implements Listener{
 	public void InventoryClick(InventoryClickEvent event) {
 		if(event.getWhoClicked() instanceof Player) {
 			Player player = (Player) event.getWhoClicked();
-
+			
 			if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && plugin.builder.contains(player)
 					&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
 			else event.setCancelled(true);	

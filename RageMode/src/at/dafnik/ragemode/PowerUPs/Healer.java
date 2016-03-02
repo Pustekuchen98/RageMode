@@ -28,13 +28,13 @@ public class Healer implements Listener{
 	public void Interact(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {			
-			if(player.getItemInHand().getType() == Material.REDSTONE) {
+			if(player.getInventory().getItemInMainHand().getType() == Material.REDSTONE) {
 				if(Main.status == Status.INGAME) {
 					player.setMaxHealth(40);
 					player.setHealth(40);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, time, 3));
 					player.getInventory().remove(Material.REDSTONE);
-					player.getWorld().playSound(player.getLocation(), Sound.EAT, 1000.0F, 1.0F);
+					player.getWorld().playSound(player.getLocation(), Sound.ENTITY_GENERIC_EAT, 1000.0F, 1.0F);
 						
 					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 						@Override

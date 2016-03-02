@@ -10,7 +10,7 @@ import org.bukkit.util.Vector;
 
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.MySQL.SQLCoins;
-import net.minecraft.server.v1_8_R3.MathHelper;
+import net.minecraft.server.v1_9_R1.MathHelper;
 
 public class Explosion {
 	
@@ -31,7 +31,7 @@ public class Explosion {
 	private void Explosioner() {
 		
 		loc.getWorld().playEffect(loc, Effect.EXPLOSION_HUGE, 1);
-		loc.getWorld().playSound(loc, Sound.EXPLODE, 1000.0F, 1.0F);
+		loc.getWorld().playSound(loc, Sound.ENTITY_GENERIC_EXPLODE, 1000.0F, 1.0F);
 		
 		if(Main.isMySQL && Main.isShop) if(ground == "bow" && SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString())) radius = 7;
 			

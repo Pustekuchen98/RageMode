@@ -50,7 +50,7 @@ public class Mine implements Listener{
 								victim.setLastDamageCause(new EntityDamageEvent(killer, DamageCause.PROJECTILE, 0));
 								
 								loc.getWorld().playEffect(loc, Effect.EXPLOSION_HUGE, 1);
-								loc.getWorld().playSound(loc, Sound.EXPLODE, 1000.0F, 1.0F);
+								loc.getWorld().playSound(loc, Sound.ENTITY_GENERIC_EXPLODE, 1000.0F, 1.0F);
 								loc.getBlock().setType(Material.AIR);
 								plugin.planted.remove(block.getLocation());													    
 							}
@@ -68,12 +68,12 @@ public class Mine implements Listener{
 		
 		if(Main.status == Status.INGAME) {
 			if(event.getBlockReplacedState().getType() == Material.AIR) {
-				if(player.getItemInHand().getType() == Material.STONE_PLATE) {
+				if(player.getInventory().getItemInMainHand().getType() == Material.STONE_PLATE) {
 					event.setCancelled(false);	
 					block.setMetadata("placedBy", new FixedMetadataValue(plugin, player.getName()));	
 					configset(block);
 						
-				} else if(player.getItemInHand().getType() == Material.FLOWER_POT_ITEM) {	
+				} else if(player.getInventory().getItemInMainHand().getType() == Material.FLOWER_POT_ITEM) {	
 					event.setCancelled(false);
 					new ClayMoreThread(player, 2F, block, plugin).start();		
 					configset(block);

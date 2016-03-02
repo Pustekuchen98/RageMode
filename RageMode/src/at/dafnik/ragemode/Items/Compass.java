@@ -22,7 +22,7 @@ public class Compass implements Listener{
 	public void onInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		
-		if(player.getItemInHand().getType() == Material.COMPASS) {
+		if(player.getInventory().getItemInMainHand().getType() == Material.COMPASS) {
 			Player target = getNearest(player);
 			if(target == null) {
 				player.sendMessage(Strings.item_compass_error);

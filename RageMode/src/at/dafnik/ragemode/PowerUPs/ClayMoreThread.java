@@ -72,7 +72,7 @@ public class ClayMoreThread implements Runnable{
 											
 											loc.getBlock().setType(Material.AIR);
 											loc.getWorld().playEffect(loc, Effect.EXPLOSION_HUGE, 1);
-											loc.getWorld().playSound(loc, Sound.EXPLODE, 1000.0F, 1.0F);
+											loc.getWorld().playSound(loc, Sound.ENTITY_GENERIC_EXPLODE, 1000.0F, 1.0F);
 										}
 									}, 1);							
 									this.stop();

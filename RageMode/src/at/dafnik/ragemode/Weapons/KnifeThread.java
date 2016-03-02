@@ -45,8 +45,8 @@ public class KnifeThread implements Runnable{
 						@Override
 						public void run() {
 							if(!plugin.spectatorlist.contains(player)) {
-								if(!plugin.powerupspeedeffect.contains(player)) {
-									if(player.getInventory().getItemInHand().getType() == Material.IRON_SPADE) {
+								if(!plugin.powerup_speedeffect.contains(player)) {
+									if(player.getInventory().getItemInMainHand().getType() == Material.IRON_SPADE) {
 										if(Main.isMySQL && Main.isShop) {
 											if(SQLCoins.getSpeedUpgrade(player.getUniqueId().toString())) player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 1));
 											else player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 0));

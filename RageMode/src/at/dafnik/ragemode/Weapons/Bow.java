@@ -33,8 +33,7 @@ public class Bow implements Listener{
 				if(arrow.getMetadata("shootedWith").isEmpty()) {
 					arrow.setMetadata("shootedWith", new FixedMetadataValue(plugin, "bow"));
 					
-					if (arrow.getShooter() instanceof Player) {
-						
+					if (arrow.getShooter() instanceof Player) {			
 						Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 							@Override
 							public void run() {			
@@ -71,7 +70,7 @@ public class Bow implements Listener{
 								
 							} else event.setCancelled(true);
 							
-						}
+						} //Don't add else because grenate is also with shootedWith
 						
 					} else event.setCancelled(true);
 				

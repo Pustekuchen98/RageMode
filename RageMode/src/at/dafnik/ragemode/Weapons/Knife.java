@@ -46,9 +46,10 @@ public class Knife implements Listener{
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
+		ItemStack item = event.getItem();
 		
 		if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-			if(player.getItemInHand().getType() == Material.IRON_SPADE) {
+			if(player.getInventory().getItemInMainHand().getType() == Material.IRON_SPADE) {
 				if(Main.status == Status.INGAME) {
 					if(allowed.get(player) == null) allowed.put(player, true);
 					
@@ -103,7 +104,7 @@ public class Knife implements Listener{
 							@Override
 							public void run(){
 								if(time.get(player) <=0){
-									give(player, time.get(player));
+									give(player, time.get(player), item);
 									allowed.replace(player, true);
 									Bukkit.getScheduler().cancelTask(idlists.get(0));
 									idlists.remove(0);
@@ -111,25 +112,25 @@ public class Knife implements Listener{
 								}
 								
 								if(time.get(player) == 10) {
-									give(player, time.get(player));
+									give(player, time.get(player), item);
 								} else if(time.get(player) == 9) {
-									give(player, time.get(player));
+									give(player, time.get(player), item);
 								} else if(time.get(player) == 8) {
-									give(player, time.get(player));	
+									give(player, time.get(player), item);	
 								} else if(time.get(player) == 7) {
-									give(player, time.get(player));
+									give(player, time.get(player), item);
 								} else if(time.get(player) == 6) {
-									give(player, time.get(player));
+									give(player, time.get(player), item);
 								} else if(time.get(player) == 5) {
-									give(player, time.get(player));
+									give(player, time.get(player), item);
 								} else if(time.get(player) == 4) {
-									give(player, time.get(player));
+									give(player, time.get(player), item);
 								} else if(time.get(player) == 3) {
-									give(player, time.get(player));
+									give(player, time.get(player), item);
 								} else if(time.get(player) == 2) {
-									give(player, time.get(player));
+									give(player, time.get(player), item);
 								} else if(time.get(player) == 1) {
-									give(player, time.get(player));
+									give(player, time.get(player), item);
 								}
 								
 								time.put(player, time.get(player) - 1);
@@ -141,16 +142,28 @@ public class Knife implements Listener{
 		}
 	}
 	
-	private void give(Player player, int howmany) {
+	private void give(Player player, int howmany, ItemStack item) {
 		if(!plugin.respawnsafe.contains(player)) {
-			ItemStack i = null;
+			/**ItemStack i = null;
 			if(!(howmany == 0)) i = new ItemStack(Material.IRON_SPADE, howmany);
 			else i = new ItemStack(Material.IRON_SPADE, 1);
 			ItemMeta imd = i.getItemMeta();
 			if(!(howmany == 0)) imd.setDisplayName("§cKnife §8[§6" + howmany + "§8]");
 			else imd.setDisplayName("§cKnife §8[§6Ready§8]");
 			i.setItemMeta(imd);
-			player.getInventory().setItem(1, i);
+			player.getInventory().setItem(1, i);**/
+			
+			if(howmany == 10) item.setDurability((short)250);
+			ItemMeta imd = item.getItemMeta();
+			if(!(howmany == 0)) {
+				imd.setDisplayName("§cKnife §8[§6" + howmany + "§8]");
+				item.setDurability((short) (item.getDurability() - 25));
+			} else {
+				imd.setDisplayName("§cKnife §8[§6Ready§8]");
+				item.setDurability((short)0);
+			}
+			item.setItemMeta(imd);
+			
 		}
 	}
 	
@@ -162,7 +175,7 @@ public class Knife implements Listener{
 				Player victim = (Player) event.getEntity();
 				
 				if (!plugin.respawnsafe.contains(victim)) {
-					if (killer.getItemInHand() != null && killer.getItemInHand().getType() == Material.IRON_SPADE) {
+					if (killer.getInventory().getItemInMainHand().getType() == Material.IRON_SPADE) {
 						
 						Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 							@Override
@@ -174,8 +187,7 @@ public class Knife implements Listener{
 									victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "knife"));
 									event.setCancelled(false);
 
-									double q = victim.getLocation().getDirection()
-											.dot(killer.getLocation().getDirection());
+									double q = victim.getLocation().getDirection().dot(killer.getLocation().getDirection());
 									if (q > 0) {
 										victim.setHealth(0);
 										if (killer.getHealth() + 6 > 20)
@@ -185,8 +197,7 @@ public class Knife implements Listener{
 
 										killer.sendMessage(Strings.kill_backstab_knife);
 
-									} else
-										victim.damage(11, killer);
+									} else victim.damage(14, killer);
 								}
 							}
 						}, 1);
