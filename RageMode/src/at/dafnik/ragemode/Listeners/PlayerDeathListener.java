@@ -71,6 +71,7 @@ public class PlayerDeathListener implements Listener {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_bow);
 						plugin.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_bow);
+						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.bowkill);
 						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.bowkill + Strings.kill_holo_points));
 		
@@ -78,6 +79,7 @@ public class PlayerDeathListener implements Listener {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_combat_axe);
 						plugin.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_combat_axe);
+						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.combataxekill);
 						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.combataxekill + Strings.kill_holo_points));
 						
@@ -85,6 +87,7 @@ public class PlayerDeathListener implements Listener {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname +Strings.kill_with + Strings.kill_with_grenade);
 						plugin.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_grenade);
+						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.grenadekill);
 						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.grenadekill + Strings.kill_holo_points));
 		
@@ -92,6 +95,7 @@ public class PlayerDeathListener implements Listener {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_mine);
 						plugin.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_mine);
+						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.minekill);
 						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.minekill + Strings.kill_holo_points));
 		
@@ -99,6 +103,7 @@ public class PlayerDeathListener implements Listener {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_claymore);
 						plugin.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_claymore);
+						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.claymorekill);
 						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.claymorekill + Strings.kill_holo_points));
 		
@@ -106,6 +111,7 @@ public class PlayerDeathListener implements Listener {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_knife);
 						plugin.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_knife);
+						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.knifekill);
 						victim.sendMessage(Strings.kill_points_negative + this.knifedeath);
 						givePlayerPoints(victim, "knife_death");
@@ -140,6 +146,7 @@ public class PlayerDeathListener implements Listener {
 			} else {
 				event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_suicide);
 				plugin.bar.setTitle(victim.getDisplayName() + Strings.kill_suicide);
+				resetBossBar();
 				victim.sendMessage("§c§l" + this.suicide);
 				givePlayerPoints(victim, "suicide");
 				holomaster(new Holograms(victim.getEyeLocation(), "§c" + this.suicide + Strings.kill_holo_points));
@@ -228,5 +235,14 @@ public class PlayerDeathListener implements Listener {
 				}
 			}, hololong);
 		}
+	}
+	
+	private void resetBossBar() {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+			@Override
+			public void run() {			
+				plugin.bar.setTitle("§6You §3are §cplaying §bRageMode");
+			}
+		}, 5*20);
 	}
 }
