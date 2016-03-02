@@ -35,11 +35,10 @@ public class Fly implements Listener{
 				if(event.getItem() != null) {
 					if(event.getItem().getType() == Material.NETHER_STAR) {
 						Player player = event.getPlayer();
-						ItemStack item = event.getItem();
 						
 						player.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, duration * 20, 15));
 						player.getInventory().setChestplate(new ItemStack(Material.ELYTRA, 1));
-						player.getInventory().remove(item);
+						player.getInventory().remove(event.getItem());
 						plugin.powerup_flyparticle.add(player);
 						
 						new FlyThread(plugin, player).start();

@@ -21,7 +21,7 @@ public class PowerUpper implements Runnable{
 	Thread thread;
 	boolean running;
 	Main plugin;
-	int time = 2;
+	int time = 1;
 	
 	public PowerUpper(Main main) {
 		this.plugin = main;
