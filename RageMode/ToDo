@@ -6,3 +6,5 @@ Added:
 	- Added PowerUP: Flash as PowerUP and on respwan, fly powerup 
 	- 1.9 Support
 	
+Changes:
+	- PowerUP Spawn time from 2 minutes to 1 minute
