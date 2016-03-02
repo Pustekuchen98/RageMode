@@ -67,8 +67,8 @@ public class PowerUpper implements Runnable{
 							Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 								@Override
 								public void run() {
-									imd.setDisplayName(String.valueOf(Main.powerupinteger));
-									Main.powerupinteger++;
+									imd.setDisplayName(String.valueOf(Main.powerup_integer));
+									Main.powerup_integer++;
 									imd.addEnchant(Enchantment.WATER_WORKER, 1, true);
 									item.setItemMeta(imd);
 									Entity entity = loc.getWorld().dropItem(loc, item);
@@ -79,9 +79,9 @@ public class PowerUpper implements Runnable{
 											Holograms holo = new Holograms(entity.getLocation(), "§a§lPowerUP");
 											for (Player players : Bukkit.getOnlinePlayers()) holo.display(players);
 											
-											plugin.poweruphashmap.put(Integer.valueOf(item.getItemMeta().getDisplayName()), holo);
-											plugin.poweruplist.add(holo);
-											plugin.powerupentity.add(entity);
+											plugin.powerup_hashmap.put(Integer.valueOf(item.getItemMeta().getDisplayName()), holo);
+											plugin.powerup_list.add(holo);
+											plugin.powerup_entity.add(entity);
 										}
 									}, 20);
 	

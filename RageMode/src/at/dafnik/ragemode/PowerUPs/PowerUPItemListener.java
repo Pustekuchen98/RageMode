@@ -35,7 +35,7 @@ public class PowerUPItemListener implements Listener{
 		Entity entity = event.getEntity();
 		
 		if(Main.status == Status.INGAME) {
-			if(plugin.powerupentity.contains(entity)) event.setCancelled(true);
+			if(plugin.powerup_entity.contains(entity)) event.setCancelled(true);
 			else event.setCancelled(false);
 		} else {
 			event.setCancelled(false);
@@ -52,15 +52,15 @@ public class PowerUPItemListener implements Listener{
 			if(player.hasPermission("ragemode.admin")) event.setCancelled(false);
 			else event.setCancelled(true);
 		} else {
-			if(plugin.powerupentity.contains(entity)) {
+			if(plugin.powerup_entity.contains(entity)) {
 				event.setCancelled(true);
 				
-				Holograms holo = plugin.poweruphashmap.get(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
+				Holograms holo = plugin.powerup_hashmap.get(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
 				for(Player players : Bukkit.getOnlinePlayers()) holo.destroy(players);
-				plugin.poweruphashmap.remove(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
-				plugin.poweruplist.remove(holo);
+				plugin.powerup_hashmap.remove(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
+				plugin.powerup_list.remove(holo);
 
-				switch(new Random().nextInt(9)) {
+				switch(new Random().nextInt(11)) {
 				case 0:
 					Items.givePlayerDoubleHeart(player);
 					player.sendMessage(Strings.powerup_get_0 + Strings.items_doubleheart + Strings.powerup_get_1);
@@ -99,54 +99,84 @@ public class PowerUPItemListener implements Listener{
 					
 				case 6:
 					player.sendMessage(Strings.powerup_get_0 + Strings.items_speed + Strings.powerup_get_1);
-					plugin.powerupspeedeffect.add(player);
-					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-						@Override
-						public void run() {
-							player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, (time-1), 3));
-						}
-					}, 20);
-					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-						@Override
-						public void run() {
-							plugin.powerupspeedeffect.remove(player);
-						}
-					}, time);
+					giveSpeed(player);
 					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_speed + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				case 7:
 					player.sendMessage(Strings.powerup_get_0 + Strings.items_invisibility + Strings.powerup_get_1);
-					player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, time, 3, false));
-					player.getInventory().setHelmet(null);
-					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-						@Override
-						public void run() {
-							Manager.HelmetManagerMethode(player);
-						}
-					}, time);
+					giveInvisibility(player);
 					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_invisibility + Strings.debug_powerup_get_2 + player.getName());
 					break;
 				
 				case 8:
 					player.sendMessage(Strings.powerup_get_0 + Strings.items_doublejump + Strings.powerup_get_1);
-					plugin.powerupdoublejump.add(player);
+					giveDoubleJump(player);
 					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_doublejump + Strings.debug_powerup_get_2 + player.getName());
+					break;
+					
+				case 9:
+					player.sendMessage(Strings.powerup_get_0 + Strings.items_flash + Strings.powerup_get_1);
+					Items.givePlayerFlash(player);
+					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_flash + Strings.debug_powerup_get_2 + player.getName());
+					break;
+					
+				case 10:
+					player.sendMessage(Strings.powerup_get_0 + Strings.items_fly + Strings.powerup_get_1);
+					Items.givePlayerFly(player);
+					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_fly + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				default:
 					System.out.println(Strings.error_randommizer_dont_work);
 				}
 
-				player.playSound(player.getLocation(), Sound.LEVEL_UP, 1000, 1);
+				player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1000, 1);
 					
 				entity.remove();
-				plugin.powerupentity.remove(entity);
+				plugin.powerup_entity.remove(entity);
 				
 			} else {
 				event.setCancelled(true);
 				entity.remove();
 			}
 		}
+	}
+	
+	private void giveDoubleJump(Player player) {
+		plugin.powerup_doublejump.add(player);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+			@Override
+			public void run() {
+				plugin.powerup_doublejump.remove(player);
+			}
+		}, time);
+	}
+	
+	private void giveInvisibility(Player player) {
+		player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, time, 3, false));
+		player.getInventory().setHelmet(null);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+			@Override
+			public void run() {
+				Manager.HelmetManagerMethode(player);
+			}
+		}, time);
+	}
+	
+	private void giveSpeed(Player player) {
+		plugin.powerup_speedeffect.add(player);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+			@Override
+			public void run() {
+				player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, (time-1), 3));
+			}
+		}, 20);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+			@Override
+			public void run() {
+				plugin.powerup_speedeffect.remove(player);
+			}
+		}, time);
 	}
 }
