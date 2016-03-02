@@ -21,7 +21,7 @@ import org.bukkit.util.Vector;
 
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
-import net.minecraft.server.v1_8_R3.MathHelper;
+import net.minecraft.server.v1_9_R1.MathHelper;
 
 public class DoubleJump implements Listener {
 	
@@ -40,7 +40,7 @@ public class DoubleJump implements Listener {
 		if(event.getEntity() instanceof Player) {
 			Player player = (Player) event.getEntity();
 			
-			if(plugin.powerupdoublejump.contains(player)) {
+			if(plugin.powerup_doublejump.contains(player)) {
 				if (smash.contains(player)) {
 					ArrayList<Block> blocks = new ArrayList<Block>();
 					blocks.add(player.getWorld().getBlockAt(player.getLocation().subtract(0, 1, 0)));
@@ -102,7 +102,7 @@ public class DoubleJump implements Listener {
 	public void onMove(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
 		
-		if(plugin.powerupdoublejump.contains(player)) {
+		if(plugin.powerup_doublejump.contains(player)) {
 			if (player.getGameMode() == GameMode.CREATIVE)
 				return;
 	
@@ -123,7 +123,7 @@ public class DoubleJump implements Listener {
 	public void onFly(PlayerToggleFlightEvent event) {
 		Player player = event.getPlayer();
 		
-		if(plugin.powerupdoublejump.contains(player)) {
+		if(plugin.powerup_doublejump.contains(player)) {
 			if (player.getGameMode() == GameMode.CREATIVE) return;
 			
 			if (cooldown.get(player) == true) {
@@ -133,7 +133,7 @@ public class DoubleJump implements Listener {
 	
 				for (Player pl : Bukkit.getOnlinePlayers()) {
 					pl.playEffect(player.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
-					pl.playSound(player.getLocation(), Sound.WITHER_SHOOT , 10000, 10);
+					pl.playSound(player.getLocation(), Sound.ENTITY_WITHER_SHOOT , 10000, 10);
 				}
 	
 				player.setAllowFlight(false);
@@ -147,7 +147,7 @@ public class DoubleJump implements Listener {
 	public void onSneak(PlayerToggleSneakEvent event) {
 		Player player = event.getPlayer();
 		
-		if(plugin.powerupdoublejump.contains(player)) {
+		if(plugin.powerup_doublejump.contains(player)) {
 			if (player.getGameMode() == GameMode.CREATIVE)
 				return;
 	
