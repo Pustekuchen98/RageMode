@@ -48,12 +48,14 @@ public class PlayerJoinListener implements Listener{
 		player.setWalkSpeed((float) 0.2);
 		player.setExp(0);
 		player.setLevel(0);
+		player.setGlowing(false);
 		player.removePotionEffect(PotionEffectType.REGENERATION);
 		player.removePotionEffect(PotionEffectType.SPEED);
 		player.removePotionEffect(PotionEffectType.JUMP);
 		player.removePotionEffect(PotionEffectType.BLINDNESS);
 		player.removePotionEffect(PotionEffectType.SLOW);
 		player.removePotionEffect(PotionEffectType.INVISIBILITY);
+		player.removePotionEffect(PotionEffectType.LEVITATION);
 		player.setFireTicks(0);
 		player.getInventory().clear();
 		
@@ -143,6 +145,7 @@ public class PlayerJoinListener implements Listener{
 			Manager.DisplayNameManagerMethode(player, "spectator");
 			
 			plugin.spectatorlist.add(player);
+			plugin.bar.addPlayer(player);
 			
 			event.setJoinMessage(null);
 			
@@ -155,7 +158,7 @@ public class PlayerJoinListener implements Listener{
 			
 			Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
 				 public void run(){
-			         for(Holograms holo : plugin.poweruplist) {
+			         for(Holograms holo : plugin.powerup_list) {
 			        	 holo.display(player);
 			         }
 			     }

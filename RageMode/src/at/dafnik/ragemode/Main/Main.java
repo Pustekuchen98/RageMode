@@ -7,6 +7,10 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarFlag;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -38,6 +42,8 @@ import at.dafnik.ragemode.MySQL.ConfigStandart;
 import at.dafnik.ragemode.MySQL.MySQL;
 import at.dafnik.ragemode.MySQL.Ranking;
 import at.dafnik.ragemode.PowerUPs.DoubleJump;
+import at.dafnik.ragemode.PowerUPs.Flash;
+import at.dafnik.ragemode.PowerUPs.Fly;
 import at.dafnik.ragemode.PowerUPs.Healer;
 import at.dafnik.ragemode.PowerUPs.Mine;
 import at.dafnik.ragemode.PowerUPs.PowerUPItemListener;
@@ -60,6 +66,9 @@ public class Main extends JavaPlugin{
 	public Villager villager;
 	//Villager Holo
 	public Holograms villagerholo;
+	
+	//BossBar
+	public BossBar bar = Bukkit.getServer().createBossBar("§bRageMode", BarColor.BLUE, BarStyle.SEGMENTED_6, BarFlag.CREATE_FOG);
 	
 	//--------------------------------------------------------------------
 	
@@ -102,12 +111,13 @@ public class Main extends JavaPlugin{
 	public List<Location> planted = new ArrayList<>();
 	
 	//PowerUP
-	public List<Entity> powerupentity = new ArrayList<>();
-	public HashMap<Integer, Holograms> poweruphashmap = new HashMap<>();
-	public List<Holograms> poweruplist = new ArrayList<>();
-	public static Integer powerupinteger = 0;
-	public List<Player> powerupspeedeffect = new ArrayList<>();
-	public List<Player> powerupdoublejump = new ArrayList<>();
+	public List<Entity> powerup_entity = new ArrayList<>();
+	public HashMap<Integer, Holograms> powerup_hashmap = new HashMap<>();
+	public List<Holograms> powerup_list = new ArrayList<>();
+	public static Integer powerup_integer = 0;
+	public List<Player> powerup_speedeffect = new ArrayList<>();
+	public List<Player> powerup_doublejump = new ArrayList<>();
+	public List<Player> powerup_flyparticle = new ArrayList<Player>();
 	
 	//----------------------------------------------------------------------
 	//Is MySQL On
@@ -128,12 +138,13 @@ public class Main extends JavaPlugin{
 			lobbytasks.wm.ct.stop();
 		}
 		
-		for(Entity entities : powerupentity) entities.remove();
+		for(Entity entities : powerup_entity) entities.remove();
 		
-		for (Holograms holo : poweruplist) {
-			for (Player players : Bukkit.getOnlinePlayers())
-				holo.display(players);
+		for (Holograms holo : powerup_list) {
+			for (Player players : Bukkit.getOnlinePlayers()) holo.display(players);;		
 		}
+		
+		bar.removeAll();
 		
 		if(villager != null) {
 			villager.remove();
@@ -152,7 +163,7 @@ public class Main extends JavaPlugin{
 			}
 		}
 		
-		getServer().getConsoleSender().sendMessage("§f[§4RageMode§f] §cStopped§8!");
+		getServer().getConsoleSender().sendMessage("§7[§bRageMode§7] §cStopped§8!");
 	}
 	
 	//Plugin start
@@ -175,7 +186,7 @@ public class Main extends JavaPlugin{
 		lobbytasks = new Lobby(this);
 		lobbytasks.lobbywplayers();
 		
-		getServer().getConsoleSender().sendMessage("§f[§4RageMode§f] §aStarted§8! §fThe most important things started §awell§8!");
+		getServer().getConsoleSender().sendMessage("§7[§bRageMode§7] §aStarted§8! §fThe most important things started §awell§8!");
 		
 		//Open MapVote Methode
 		mapvote = new Mapvote(this);
@@ -222,6 +233,8 @@ public class Main extends JavaPlugin{
 		pm.registerEvents(new Mine(this), this);
 		pm.registerEvents(new Healer(this), this);
 		pm.registerEvents(new DoubleJump(this), this);
+		pm.registerEvents(new Flash(this), this);
+		pm.registerEvents(new Fly(this), this);
 		
 		//Events
 		pm.registerEvents(new PlayerDeathListener(this), this);

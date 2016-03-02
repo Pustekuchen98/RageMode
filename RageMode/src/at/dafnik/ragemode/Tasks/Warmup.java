@@ -67,6 +67,7 @@ public class Warmup {
 						
 						team.addPlayer(player);
 						player.setScoreboard(board);
+						plugin.bar.addPlayer(player);
 						
 						//Put in Ingameplayer
 						plugin.ingameplayer.add(player);
