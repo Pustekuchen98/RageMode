@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import at.dafnik.ragemode.API.Strings;
+import at.dafnik.ragemode.Items.Items;
 import at.dafnik.ragemode.Main.Main;
 
 public class RoundStart implements CommandExecutor{
@@ -45,16 +46,20 @@ public class RoundStart implements CommandExecutor{
 					player.sendMessage(Strings.error_permission);
 				} else {
 					
-					List<Location> locs = new ArrayList<Location>();
+					/**List<Location> locs = new ArrayList<Location>();
 					locs.addAll(createCircle(player.getLocation(), 10));
 					
-					for(Location loc : locs)
-					loc.getWorld().strikeLightningEffect(loc);
+					for(Location loc : locs) {
+						loc.getWorld().strikeLightningEffect(loc);
 					
+						player.spawnParticle(Particle.DRAGON_BREATH, loc, 200);
+						player.spawnParticle(Particle.FIREWORKS_SPARK, loc, 200);
+					}**/
 					
-					if(plugin.powerupdoublejump.contains(player)) plugin.powerupdoublejump.remove(player);
-					else plugin.powerupdoublejump.add(player);
-								
+					//plugin.hasParticle.add(player);
+	
+					Items.givePlayerFly(player);
+					
 					player.sendMessage("r ");
 				
 				}
