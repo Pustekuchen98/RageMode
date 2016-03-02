@@ -25,7 +25,7 @@ public class Strings {
 	public static String error_not_existing_map_middle_point = log_pre + "WARNING: You haven't set the Map Middle Point and the approximately mapradius!";
 	public static String error_cast_to_int = log_pre + "ERROR: Cast to int error in Compass!";
 	public static String error_not_authenticated_player = log_pre +  "ERROR: Not authenticated player is on the server! Manager don't work";
-	public static String error_only_player_use = pre + "Only player can use these commands";
+	public static String error_only_player_use = log_pre + "Only player can use these commands";
 	public static String error_not_on_a_bungee = pre + "§cYou aren't on a BungeeCord Network";
 	public static String error_enter = pre + "§cWrong enter";
 	public static String error_enter_unknown_map = pre + "§cYou must enter a Mapname";
@@ -172,4 +172,6 @@ public class Strings {
 	public static String items_speed = "§aSpeed";
 	public static String items_invisibility = "§fInvisibility";
 	public static String items_doublejump = "§5Double jump";
+	public static String items_flash = "§fFlash";
+	public static String items_fly = "§5Fly";
 }
