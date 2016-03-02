@@ -1,8 +1,8 @@
 Fixes:
-	- On join you have against colors in the Join message
-	- After speed powerup and respawn, you will get knife speed agin
-	- Optimized Premium User kick
-	- Changed /rm messages
+	- Double Jump fixes
+	- some other little fixes
 
 Added:
-	- Added PowerUP: Double Jump
+	- Added PowerUP: Flash as PowerUP and on respwan, fly powerup 
+	- 1.9 Support
+	
