@@ -111,7 +111,7 @@ public class Strings {
 	public static String kill_with_claymore = "§6Claymore";
 	public static String kill_with_mine = "§6Mine";
 	public static String kill_with_bow = "§6Bow";
-	public static String kill_backstab_knife = pre + "§4§l+ §c3 §3Hearts";
+	public static String kill_backstab_knife = pre + "§4§l+ §c3 §4Hearts";
 	public static String kill_your_points = "§3Your points§8: §e";
 	public static String kill_unknown_killer = " §3died";
 	public static String kill_holo_points = " §3Points";
