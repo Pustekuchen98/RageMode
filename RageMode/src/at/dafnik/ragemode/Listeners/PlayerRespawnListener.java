@@ -36,11 +36,12 @@ public class PlayerRespawnListener implements Listener{
 		player.setFoodLevel(21);
 		player.setVelocity(new Vector(0, 0, 0));
 		player.setMaxHealth(20);
+		player.setGlowing(false);
 		Title.sendTabList(player, "§bRageMode");
 		
 		Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
 			 public void run(){
-		         for(Holograms holo : plugin.poweruplist) {
+		         for(Holograms holo : plugin.powerup_list) {
 		        	 holo.display(player);
 		         }
 		     }
@@ -62,8 +63,8 @@ public class PlayerRespawnListener implements Listener{
 			
 			plugin.respawnsafe.add(player);
 			
-			if(plugin.powerupspeedeffect.contains(player)) plugin.powerupspeedeffect.remove(player);
-			if(plugin.powerupdoublejump.contains(player)) plugin.powerupdoublejump.remove(player);
+			if(plugin.powerup_speedeffect.contains(player)) plugin.powerup_speedeffect.remove(player);
+			if(plugin.powerup_doublejump.contains(player)) plugin.powerup_doublejump.remove(player);
 			
 			player.removePotionEffect(PotionEffectType.REGENERATION);	
 			player.setGameMode(GameMode.SURVIVAL);
