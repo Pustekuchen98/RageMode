@@ -100,3 +100,13 @@ RageMode/bin/at/dafnik/ragemode/API/Explosion$1.class
 RageMode/bin/at/dafnik/ragemode/Shop/AdvancedInventoryMenu.class
 RageMode/bin/at/dafnik/ragemode/Shop/Shop.class
 RageMode/bin/at/dafnik/ragemode/Shop/createShopItems.class
+RageMode/bin/at/dafnik/ragemode/Shop/AdvancedShopPageBasic.class
+RageMode/bin/at/dafnik/ragemode/Shop/AdvancedShopPage_BowPowerUpgrade.class
+RageMode/bin/at/dafnik/ragemode/Shop/AdvancedShopPage_KnockbackAbilityUpgrade.class
+RageMode/bin/at/dafnik/ragemode/Shop/AdvancedShopPage_SpectralArrowUpgrade.class
+RageMode/bin/at/dafnik/ragemode/Shop/AdvancedShopPage_SpeedUpgrade.class
+RageMode/bin/at/dafnik/ragemode/Shop/createAdvancedInventoryMenuBasic.class
+RageMode/bin/at/dafnik/ragemode/Shop/createAdvancedInventoryMenu_BowPowerUpgrade.class
+RageMode/bin/at/dafnik/ragemode/Shop/createAdvancedInventoryMenu_KnockbackAbilityUpgrade.class
+RageMode/bin/at/dafnik/ragemode/Shop/createAdvancedInventoryMenu_SpectralArrowUpgrade.class
+RageMode/bin/at/dafnik/ragemode/Shop/createAdvancedInventoryMenu_SpeedUpgrade.class
