@@ -143,16 +143,7 @@ public class Knife implements Listener{
 	}
 	
 	private void give(Player player, int howmany, ItemStack item) {
-		if(!plugin.respawnsafe.contains(player)) {
-			/**ItemStack i = null;
-			if(!(howmany == 0)) i = new ItemStack(Material.IRON_SPADE, howmany);
-			else i = new ItemStack(Material.IRON_SPADE, 1);
-			ItemMeta imd = i.getItemMeta();
-			if(!(howmany == 0)) imd.setDisplayName("§cKnife §8[§6" + howmany + "§8]");
-			else imd.setDisplayName("§cKnife §8[§6Ready§8]");
-			i.setItemMeta(imd);
-			player.getInventory().setItem(1, i);**/
-			
+		if(!plugin.respawnsafe.contains(player)) {	
 			if(howmany == 10) item.setDurability((short)250);
 			ItemMeta imd = item.getItemMeta();
 			if(!(howmany == 0)) {
