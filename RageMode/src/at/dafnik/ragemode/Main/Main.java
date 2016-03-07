@@ -47,7 +47,10 @@ import at.dafnik.ragemode.PowerUPs.Fly;
 import at.dafnik.ragemode.PowerUPs.Healer;
 import at.dafnik.ragemode.PowerUPs.Mine;
 import at.dafnik.ragemode.PowerUPs.PowerUPItemListener;
-import at.dafnik.ragemode.Shop.AdvancedInventoryMenu;
+import at.dafnik.ragemode.Shop.AdvancedShopPage_BowPowerUpgrade;
+import at.dafnik.ragemode.Shop.AdvancedShopPage_KnockbackAbilityUpgrade;
+import at.dafnik.ragemode.Shop.AdvancedShopPage_SpectralArrowUpgrade;
+import at.dafnik.ragemode.Shop.AdvancedShopPage_SpeedUpgrade;
 import at.dafnik.ragemode.Shop.Shop;
 import at.dafnik.ragemode.Tasks.Lobby;
 import at.dafnik.ragemode.Weapons.AxeEvent;
@@ -140,8 +143,9 @@ public class Main extends JavaPlugin{
 		
 		for(Entity entities : powerup_entity) entities.remove();
 		
-		for (Holograms holo : powerup_list) {
-			for (Player players : Bukkit.getOnlinePlayers()) holo.destroy(players);;		
+		for (Player players : Bukkit.getOnlinePlayers()) {
+			for (Holograms holo : powerup_list) holo.destroy(players);;		
+			players.removeMetadata("killedWith", this);
 		}
 		
 		bar.removeAll();
@@ -255,7 +259,10 @@ public class Main extends JavaPlugin{
 		
 		//Events - Shop
 		pm.registerEvents(new Shop(this), this);
-		pm.registerEvents(new AdvancedInventoryMenu(this), this);
+		new AdvancedShopPage_SpeedUpgrade(this);
+		new AdvancedShopPage_KnockbackAbilityUpgrade(this);
+		new AdvancedShopPage_SpectralArrowUpgrade(this);
+		new AdvancedShopPage_BowPowerUpgrade(this);
 		
 		//Map classes
 		new Mapset(this);
