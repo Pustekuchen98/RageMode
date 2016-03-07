@@ -28,11 +28,15 @@ public class Shop implements Listener{
 	public int knockbackupgrade;
 	public int spectralarrowupgrade;
 	
-	public Shop(Main main) {
+	private Main plugin;
+	
+	public Shop(Main main) {		
 		this.speedupgrade = main.getConfig().getInt("ragemode.shop.knifeupgradeprice");
 		this.powerupgrade = main.getConfig().getInt("ragemode.shop.bowpowerupgradeprice");
 		this.knockbackupgrade = main.getConfig().getInt("ragemode.shop.knifeknockbackupgradeprice");
 		this.spectralarrowupgrade = main.getConfig().getInt("ragemode.shop.spectralarrowupgradeprice");
+		
+		this.plugin = main;
 	}
 	
 	@EventHandler
@@ -76,7 +80,7 @@ public class Shop implements Listener{
 		inventory.setItem(6, createShopItems.createMainShopInventory(player, Material.SPECTRAL_ARROW));
 		
 		player.openInventory(inventory);			
-		// |0|1|2|3|4|5|6|7|8| 		
+		// |0|1|2|3|4|5|6|7|8| 	
 	}
 	
 	
@@ -103,22 +107,22 @@ public class Shop implements Listener{
 						switch(event.getCurrentItem().getType()) {
 						case FEATHER:
 							player.closeInventory();
-							createShopItems.createAdvancedInventoryMenu(player, "Speed Upgrade", speedupgrade);					
+							new createAdvancedInventoryMenu_SpeedUpgrade(plugin, player).createBasics();				
 							break;
 						
 						case SULPHUR:
 							player.closeInventory();
-							createShopItems.createAdvancedInventoryMenu(player, "Bow Power Upgrade", powerupgrade);
+							new createAdvancedInventoryMenu_BowPowerUpgrade(plugin, player).createBasics();
 							break;
 							
 						case BLAZE_POWDER:
 							player.closeInventory();
-							createShopItems.createAdvancedInventoryMenu(player, "Knockback ability Upgrade", knockbackupgrade);
+							new createAdvancedInventoryMenu_KnockbackAbilityUpgrade(plugin, player).createBasics();
 							break;
 							
 						case SPECTRAL_ARROW:
 							player.closeInventory();
-							createShopItems.createAdvancedInventoryMenu(player, "Spectral Arrow Upgrade", spectralarrowupgrade);
+							new createAdvancedInventoryMenu_SpectralArrowUpgrade(plugin, player).createBasics();
 							break;
 							
 						default:
