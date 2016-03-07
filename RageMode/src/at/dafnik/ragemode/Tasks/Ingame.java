@@ -103,19 +103,28 @@ public class Ingame {
 						String winnername = playerwinner.getDisplayName();
 						Bukkit.broadcastMessage(Strings.ragemode_winner + winnername);
 						
-						for(Player player : Bukkit.getOnlinePlayers()) {
-							if(Main.isMySQL) SQLStats.addPlayedGames(player.getUniqueId().toString(), 1);
-							if(Main.isMySQL) SQLCoins.addCoins(player.getUniqueId().toString(), 10);
+						for(Player players : Bukkit.getOnlinePlayers()) {
+							if(Main.isMySQL) SQLStats.addPlayedGames(players.getUniqueId().toString(), 1);
+							if(Main.isMySQL) SQLCoins.addCoins(players.getUniqueId().toString(), 10);
 							//Title Send
-							Title.sendTitle(player, fadein, stay, fadeout, winnername);
-							Title.sendSubtitle(player, fadein, stay, fadeout, Strings.tasks_win_is_the_winner);
+							Title.sendTitle(players, fadein, stay, fadeout, winnername);
+							Title.sendSubtitle(players, fadein, stay, fadeout, Strings.tasks_win_is_the_winner);
 							
-							player.removePotionEffect(PotionEffectType.REGENERATION);
-							player.removePotionEffect(PotionEffectType.SPEED);
-							player.removePotionEffect(PotionEffectType.JUMP);
-							player.removePotionEffect(PotionEffectType.BLINDNESS);
-							player.removePotionEffect(PotionEffectType.SLOW);
-							player.removePotionEffect(PotionEffectType.INVISIBILITY);
+							players.removePotionEffect(PotionEffectType.REGENERATION);
+							players.removePotionEffect(PotionEffectType.SPEED);
+							players.removePotionEffect(PotionEffectType.JUMP);
+							players.removePotionEffect(PotionEffectType.BLINDNESS);
+							players.removePotionEffect(PotionEffectType.SLOW);
+							players.removePotionEffect(PotionEffectType.INVISIBILITY);
+							players.removePotionEffect(PotionEffectType.LEVITATION);
+							players.getInventory().setChestplate(null);
+							players.getInventory().setHelmet(null);
+							
+							plugin.powerup_doublejump.remove(players);
+							plugin.powerup_speedeffect.remove(players);
+							plugin.powerup_flyparticle.remove(players);
+							
+							Warmup.team.removeEntry(players.getName());
 						}
 					}
 					Bukkit.broadcastMessage(Strings.tasks_restart_countdown_0 + wintime + Strings.tasks_restart_countdown_01);
