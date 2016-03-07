@@ -112,7 +112,7 @@ public class Strings {
 	public static String kill_with_claymore = "§6Claymore";
 	public static String kill_with_mine = "§6Mine";
 	public static String kill_with_bow = "§6Bow";
-	public static String kill_backstab_knife = pre + "§4§l+ §c3 §4Hearts";
+	public static String kill_backstab_knife = pre + "§4§l+ §c3 §6Hearts";
 	public static String kill_your_points = "§3Your points§8: §e";
 	public static String kill_unknown_killer = " §3died";
 	public static String kill_holo_points = " §3Points";
@@ -132,7 +132,7 @@ public class Strings {
 	public static String inventory_inv_knockbackupgrade = "§fKnockback ability Upgrade";
 	public static String inventory_inv_knockbackupgrade_description = "§7Upgrade your Knife ability, when you right click your knife";
 	public static String inventory_inv_spectralarrowupgrade = "§fSpectral Arrow Upgrade";
-	public static String inventory_inv_spectralarrowupgrade_description = "§7Shoot spectral Arrow's with your bow";
+	public static String inventory_inv_spectralarrowupgrade_description = "§7Shoot spectral Arrows with your bow";
 	public static String inventory_invmore_back_to_inv = "§cBack to the shop";
 	public static String inventory_bought = " §a(bought)";
 	public static String inventory_not_bought = " §c(not bought)";
