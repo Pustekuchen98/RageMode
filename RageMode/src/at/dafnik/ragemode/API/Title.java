@@ -14,7 +14,6 @@ import org.bukkit.craftbukkit.v1_9_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 
-
 public class Title {
 	
 	public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String message) {
