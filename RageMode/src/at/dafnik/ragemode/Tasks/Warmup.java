@@ -3,7 +3,6 @@ package at.dafnik.ragemode.Tasks;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.NameTagVisibility;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.scoreboard.Team;
@@ -39,15 +38,15 @@ public class Warmup {
 	private int fadeout = 5;
 	private int stay = 20;
 	
+	public static Team team;
+	
 	public void warmup(){
 		Main.status = Status.WARMUP;
 		warmupid = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable(){
 			
-			@SuppressWarnings("deprecation")
 			public void run(){
 				
-				if(warmuptime == 10){
-					
+				if(warmuptime == 10){			
 					kt = new KnifeThread(plugin);
 					kt.start();
 					ct = new CompassThread(plugin);
@@ -57,34 +56,34 @@ public class Warmup {
 					
 					ScoreboardManager manager = Bukkit.getScoreboardManager();
 					Scoreboard board = manager.getNewScoreboard();
-					Team team = board.registerNewTeam("playeringame");
-					team.setNameTagVisibility(NameTagVisibility.NEVER);
+					Warmup.team = board.registerNewTeam("playeringame");
+					Warmup.team.setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.NEVER);
 					
 					String mapauthor = plugin.getConfig().getString("ragemode.mapspawn." +  plugin.votedmap + ".mapauthor");
 					if(mapauthor == null) mapauthor = "No author";
 					
-					for (Player player : Bukkit.getOnlinePlayers()) {
+					for (Player players : Bukkit.getOnlinePlayers()) {
 						
-						team.addPlayer(player);
-						player.setScoreboard(board);
-						plugin.bar.addPlayer(player);
+						Warmup.team.addEntry(players.getName());
+						players.setScoreboard(board);
+						plugin.bar.addPlayer(players);
 						
 						//Put in Ingameplayer
-						plugin.ingameplayer.add(player);
+						plugin.ingameplayer.add(players);
 						
 						//Add Player To PlayerPointslist
-						plugin.playerpoints.put(player, 0);
+						plugin.playerpoints.put(players, 0);
 						
-						player.setAllowFlight(false);
-						player.setFlySpeed((float) 0.2);
-						player.setLevel(0);
-						player.setGameMode(GameMode.SURVIVAL);
-						player.getInventory().clear();				
+						players.setAllowFlight(false);
+						players.setFlySpeed((float) 0.2);
+						players.setLevel(0);
+						players.setGameMode(GameMode.SURVIVAL);
+						players.getInventory().clear();				
 						
 						//Player Teleport
-						player.teleport(new TeleportAPI(plugin).getRandomMapSpawnLocations());
+						players.teleport(new TeleportAPI(plugin).getRandomMapSpawnLocations());
 						
-						Title.sendActionBar(player, "§3Choosen Map§8: §e" +  plugin.votedmap + " §8|| §3Author§8: §e" + mapauthor);
+						Title.sendActionBar(players, "§3Choosen Map§8: §e" +  plugin.votedmap + " §8|| §3Author§8: §e" + mapauthor);
 					}
 					
 					Bukkit.broadcastMessage(Main.pre + "§3The peace time ends in §e" + warmuptime + " §3seconds");
