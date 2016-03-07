@@ -36,7 +36,6 @@ public class CompassThread implements Runnable {
 		while(running) {
 			if(Main.status == Status.INGAME) {
 				for(Player player : Bukkit.getOnlinePlayers()) {
-				
 					Player target = getNearest(player);
 					if(target != null) {
 						player.setCompassTarget(target.getLocation());
@@ -45,7 +44,7 @@ public class CompassThread implements Runnable {
 			}
 			
 			try{
-				Thread.sleep(400);
+				Thread.sleep(500);
 			}catch (InterruptedException e){
 				e.printStackTrace();
 			}
