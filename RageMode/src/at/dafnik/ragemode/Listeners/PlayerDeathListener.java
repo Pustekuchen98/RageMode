@@ -56,17 +56,21 @@ public class PlayerDeathListener implements Listener {
 		//[Check] if MySQL add Death to Victim everytime he dies
 		if (Main.isMySQL) SQLStats.addDeaths(victim.getUniqueId().toString(), Integer.valueOf(1));
 		
+		//[Check] if Killer is a Player
 		if (killer instanceof Player) {
+			//[Check] if Killer is Victim
 			if(killer != victim) {
 				String killground = null;
 				
 				String killername = killer.getDisplayName();
 				String victimname = victim.getDisplayName();
 				
+				//[Check] if there is a killground
 				if(victim.getMetadata("killedWith") != null && !victim.getMetadata("killedWith").isEmpty()) {
 
 					killground = victim.getMetadata("killedWith").get(0).asString();
-			
+					
+					//[Check] what killground is
 					if (killground == "bow") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_bow);
@@ -116,14 +120,18 @@ public class PlayerDeathListener implements Listener {
 						victim.sendMessage(Strings.kill_points_negative + this.knifedeath);
 						givePlayerPoints(victim, "knife_death");
 						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.knifekill + Strings.kill_holo_points));
-		
-					} else event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_unknown_killer); 
 					
+					//[Check] what killground is. - Closed
+					} else event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_unknown_killer); 
+				
+				//[Check] if there is a killground. - Closed
 				} else event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_unknown_killer); 
 				
+				//[Check] if killground != null
 				if(killground != null) {
 					givePlayerPoints(killer, killground);
 					
+					//[Check] if killground isn't dead
 					if(killer != null && !(killer.isDead())){
 						killer.playSound(killer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1000.0F, 1.0F);
 						Title.sendActionBar(killer, Strings.kill_your_points + String.valueOf(this.plugin.playerpoints.get(killer)));
@@ -141,8 +149,11 @@ public class PlayerDeathListener implements Listener {
 					
 					killer.sendMessage(Main.pre + Strings.kill_your_points + String.valueOf(plugin.playerpoints.get(killer)));
 					killer.setPlayerListName(killer.getDisplayName() + " §8- [§6" + plugin.playerpoints.get(killer) + "§8]");
+					
+				//[Check] if killground != null. - Closed
 				}
-				
+			
+			//[Check] if Player is Victim - Closed
 			} else {
 				event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_suicide);
 				plugin.bar.setTitle(victim.getDisplayName() + Strings.kill_suicide);
@@ -151,10 +162,11 @@ public class PlayerDeathListener implements Listener {
 				givePlayerPoints(victim, "suicide");
 				holomaster(new Holograms(victim.getEyeLocation(), "§c" + this.suicide + Strings.kill_holo_points));
 			}
-			
+		
+		//[Check] if Killer is a Player
 		} else event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_unknown_killer);
 		
-		if(victim.getMetadata("killedWith") != null && !victim.getMetadata("killedWith").isEmpty()) victim.removeMetadata("killedWith", plugin);
+		victim.removeMetadata("killedWith", plugin);
 		
 		event.setDroppedExp(0);
 		event.getDrops().clear();
