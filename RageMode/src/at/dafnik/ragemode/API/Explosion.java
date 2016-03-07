@@ -1,5 +1,6 @@
 package at.dafnik.ragemode.API;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -54,6 +55,19 @@ public class Explosion {
 					else System.out.println(Strings.error_explosion_no_killground);
 
 					victim.damage(damage, killer);
+					
+					if(Main.isMySQL && Main.isShop) {
+						if(SQLCoins.getSpectralArrowUpgrade(shooter.getUniqueId().toString())) {
+							victim.setGlowing(true);
+							
+							Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+								@Override
+								public void run() {			
+									victim.setGlowing(false);
+								}
+							}, ((long)(damage/2))*20);
+						}
+					}
 
 					double d4 = eloc.distance(loc) / radius;
 
