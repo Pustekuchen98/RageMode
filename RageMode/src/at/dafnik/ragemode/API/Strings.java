@@ -8,6 +8,7 @@ public class Strings {
 	private static String log_pre = "[RageMode] ";
 	private static String debug_pre = "[Debug]> ";
 	
+	public static String error_wrong_inv_string = log_pre + "ERROR: There isn't an update, for using this";
 	public static String error_no_map = log_pre + "ERROR: TeleportAPI: getRandomMapSpawnLocation! Try catch faild!";
 	public static String error_explosion_no_killground = log_pre + "ERROR: ExplosionAPI doesn't work well. No Explosionground can found!";
 	public static String error_powerup_last = log_pre + "ERROR: PowerUP spawning failed! Caused by: No Map or no PowerUP Spawns";
@@ -130,6 +131,8 @@ public class Strings {
 	public static String inventory_inv_bowpowerupgrader_description = "§7Upgrade your Bow power, when you shoot with the Bow";
 	public static String inventory_inv_knockbackupgrade = "§fKnockback ability Upgrade";
 	public static String inventory_inv_knockbackupgrade_description = "§7Upgrade your Knife ability, when you right click your knife";
+	public static String inventory_inv_spectralarrowupgrade = "§fSpectral Arrow Upgrade";
+	public static String inventory_inv_spectralarrowupgrade_description = "§7Shoot spectral Arrow's with your bow";
 	public static String inventory_invmore_back_to_inv = "§cBack to the shop";
 	public static String inventory_bought = " §a(bought)";
 	public static String inventory_not_bought = " §c(not bought)";
@@ -144,9 +147,11 @@ public class Strings {
 	public static String inventory_invmore_description_powder_2 = "§fSo, when you buy this upgrade you will get explosion radius and damage tier 2.";
 	public static String inventory_invmore_description_blazepowder = "§fWhen you normally right click your knife. You will have knockback ability tier 1.";
 	public static String inventory_invmore_description_blazepowder_2 = "§fSo, when you buy this upgrade you will get knockback ability tier 2.";
-	public static String inventory_buy_succesfull = pre + "§aYour bought it successful";
+	public static String inventory_invmore_description_spectralarrow= "§fWhen you normally shoot with your bow. You will shoot normal arrows.";
+	public static String inventory_invmore_description_spectralarrow_2 = "§fSo, when you buy this upgrade you will shoot spectral arrows.";
+	public static String inventory_buy_succesfull = pre + "§aYou bought it successful";
 	public static String inventory_buy_new_coins = pre + "§cCoins at the moment§8: §6";
-	public static String inventory_buy_not_enough = pre + "§cYou haven't enough money§8. §cMissing coins§8: §6";
+	public static String inventory_buy_not_enough = pre + "§cYou haven't enough coins§8. §cMissing coins§8: §6";
 	public static String inventory_buy_already_buy = pre + "§cYou have already bought it";
 	
 	public static String coins_your = pre + "§cYou have §6";

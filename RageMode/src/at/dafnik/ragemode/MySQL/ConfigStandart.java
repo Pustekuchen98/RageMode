@@ -41,6 +41,7 @@ public class ConfigStandart {
 			plugin.getConfig().set("ragemode.shop.knifeupgradeprice", Integer.valueOf(20000));
 			plugin.getConfig().set("ragemode.shop.bowpowerupgradeprice", Integer.valueOf(20000));
 			plugin.getConfig().set("ragemode.shop.knifeknockbackupgradeprice", Integer.valueOf(20000));
+			plugin.getConfig().set("ragemode.shop.spectralarrowupgradeprice", Integer.valueOf(20000));
 			
 			//To Kill
 			plugin.getConfig().set("ragemode.points.bowkill", Integer.valueOf(30));

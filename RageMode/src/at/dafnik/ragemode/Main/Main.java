@@ -47,6 +47,8 @@ import at.dafnik.ragemode.PowerUPs.Fly;
 import at.dafnik.ragemode.PowerUPs.Healer;
 import at.dafnik.ragemode.PowerUPs.Mine;
 import at.dafnik.ragemode.PowerUPs.PowerUPItemListener;
+import at.dafnik.ragemode.Shop.AdvancedInventoryMenu;
+import at.dafnik.ragemode.Shop.Shop;
 import at.dafnik.ragemode.Tasks.Lobby;
 import at.dafnik.ragemode.Weapons.AxeEvent;
 import at.dafnik.ragemode.Weapons.Bow;
@@ -139,7 +141,7 @@ public class Main extends JavaPlugin{
 		for(Entity entities : powerup_entity) entities.remove();
 		
 		for (Holograms holo : powerup_list) {
-			for (Player players : Bukkit.getOnlinePlayers()) holo.display(players);;		
+			for (Player players : Bukkit.getOnlinePlayers()) holo.destroy(players);;		
 		}
 		
 		bar.removeAll();
@@ -214,7 +216,7 @@ public class Main extends JavaPlugin{
 		
 		mysql = new MySQL(host, database, username, password);
 		mysql.update("CREATE TABLE IF NOT EXISTS Stats(UUID varchar(64), KILLS int, DEATHS int, PLAYEDGAMES int, WONGAMES int, POINTS int, RESETS int, BOWKILLS int, AXTKILLS int, KNIFEKILLS int, SUICIDES int);");
-		mysql.update("CREATE TABLE IF NOT EXISTS Coins(UUID varchar(64), COINS int, SPEEDUPGRADE int, BOWPOWERUPGRADE int, KNOCKBACKUPGRADE int);");
+		mysql.update("CREATE TABLE IF NOT EXISTS Coins(UUID varchar(64), COINS int, SPEEDUPGRADE int, BOWPOWERUPGRADE int, KNOCKBACKUPGRADE int, SPECTRALARROWUPGRADE int);");
 	}
     
 	//Register All Events
@@ -250,7 +252,10 @@ public class Main extends JavaPlugin{
 		pm.registerEvents(new FoodWeatherChangeListener(), this);
 		pm.registerEvents(new InventoryItemListener(this), this);
 		pm.registerEvents(new BlockBedListener(this), this);
+		
+		//Events - Shop
 		pm.registerEvents(new Shop(this), this);
+		pm.registerEvents(new AdvancedInventoryMenu(this), this);
 		
 		//Map classes
 		new Mapset(this);

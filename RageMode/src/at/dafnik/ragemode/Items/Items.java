@@ -10,6 +10,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import at.dafnik.ragemode.API.Strings;
+import at.dafnik.ragemode.Main.Main;
+import at.dafnik.ragemode.MySQL.SQLCoins;
 
 public class Items {
 	
@@ -73,11 +75,31 @@ public class Items {
 		i.addEnchantment(Enchantment.DURABILITY, 3);
 		player.getInventory().setItem(0, i);
 		
-		ItemStack i2 = new ItemStack(Material.ARROW);
-		ItemMeta imd2 = i2.getItemMeta();
-		imd2.setDisplayName("§6Arrow");
-		i2.setItemMeta(imd2);
-		player.getInventory().setItem(35, i2);
+		if(Main.isMySQL && Main.isShop) {
+			if(SQLCoins.getSpectralArrowUpgrade(player.getUniqueId().toString())) {
+				ItemStack i2 = new ItemStack(Material.SPECTRAL_ARROW, 64);
+				ItemMeta imd2 = i2.getItemMeta();
+				imd2.setDisplayName("§6Spectral Arrow");
+				i2.setItemMeta(imd2);
+				player.getInventory().setItem(35, i2);
+				player.getInventory().setItem(34, i2);
+				player.getInventory().setItem(33, i2);
+				player.getInventory().setItem(32, i2);
+				player.getInventory().setItem(31, i2);
+			} else {
+				ItemStack i2 = new ItemStack(Material.ARROW);
+				ItemMeta imd2 = i2.getItemMeta();
+				imd2.setDisplayName("§6Arrow");
+				i2.setItemMeta(imd2);
+				player.getInventory().setItem(35, i2);
+			}
+		} else {
+			ItemStack i2 = new ItemStack(Material.ARROW);
+			ItemMeta imd2 = i2.getItemMeta();
+			imd2.setDisplayName("§6Arrow");
+			i2.setItemMeta(imd2);
+			player.getInventory().setItem(35, i2);
+		}
 		
 		ItemStack i3 = new ItemStack(Material.IRON_SPADE);
 		ItemMeta imd3 = i3.getItemMeta();
