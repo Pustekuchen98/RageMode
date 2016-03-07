@@ -160,7 +160,7 @@ public class SQLCoins {
 				ResultSet rs = Main.mysql.query("SELECT * FROM Coins WHERE UUID= '" + uuid + "'");
 				if((!rs.next()) || (Integer.valueOf(rs.getInt("KNOCKBACKUPGRADE")) == null));
 				
-				i = rs.getInt("BOWPOWERUPGRADE");
+				i = rs.getInt("KNOCKBACKUPGRADE");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}	
