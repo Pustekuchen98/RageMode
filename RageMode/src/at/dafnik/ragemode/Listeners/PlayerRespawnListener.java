@@ -38,6 +38,7 @@ public class PlayerRespawnListener implements Listener{
 		player.setMaxHealth(20);
 		player.setGlowing(false);
 		Title.sendTabList(player, "§bRageMode");
+		player.removeMetadata("killedWith", plugin);
 		
 		Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
 			 public void run(){
