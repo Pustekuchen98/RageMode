@@ -15,7 +15,7 @@ public class ConfigStandart {
 		String test = "test";
 		
 		if(!plugin.getConfig().getBoolean("ragemode.settings.safe")) {
-			plugin.getConfig().set("ragemode.settings.safe", true);
+			plugin.getConfig().set("ragemode.settings.safe", true);				
 			
 			//MySQL
 			plugin.getConfig().set("ragemode.settings.mysql.host", test);
@@ -56,7 +56,7 @@ public class ConfigStandart {
 			
 			//Mapsettings
 			plugin.getConfig().set("ragemode.ranking.rankingnumber", Integer.valueOf(0));
-			
+		
 			plugin.getConfig().set("ragemode.mapnames.mapnamenumber", Integer.valueOf(0));
 			
 			plugin.getConfig().set("ragemode.lobbyspawn.world", test);
@@ -69,7 +69,7 @@ public class ConfigStandart {
 			plugin.getConfig().set("ragemode.hologram.world", test);
 			plugin.getConfig().set("ragemode.hologram.x", Double.valueOf(0));
 			plugin.getConfig().set("ragemode.hologram.y", Double.valueOf(0));
-			plugin.getConfig().set("ragemode.hologram.z", Double.valueOf(0));
+			plugin.getConfig().set("ragemode.hologram.z", Double.valueOf(0));	
 			
 			plugin.saveConfig();
 		}
@@ -86,8 +86,7 @@ public class ConfigStandart {
 				
 			System.out.println("[RageMode]MySQL: OFF");
 		}
-			
-			
+					
 		//Is Bungee true or false
 		if(plugin.getConfig().getBoolean("ragemode.settings.bungee.switch")) {
 			Main.isBungee = true;

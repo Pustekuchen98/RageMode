@@ -175,12 +175,12 @@ public class Main extends JavaPlugin{
 		//Load Config
 		loadConfig();
 		
-		//Set Config Standart
-		new ConfigStandart(this).setStandart();
-		
 		//Register all Events and Commands
 		registerListeners();
 		registerCommands();
+		
+		//Set Config Standart
+		new ConfigStandart(this).setStandart();
 		
 		//All planted Things will be removed.
 		PlantedRemover();
@@ -199,7 +199,7 @@ public class Main extends JavaPlugin{
 		
 		//Check on Bungee
 		if(isBungee) getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-				
+		
 		//Check on MySQL
 		if(isMySQL) {	
 			//Connect MySQL
@@ -221,6 +221,17 @@ public class Main extends JavaPlugin{
 		mysql = new MySQL(host, database, username, password);
 		mysql.update("CREATE TABLE IF NOT EXISTS Stats(UUID varchar(64), KILLS int, DEATHS int, PLAYEDGAMES int, WONGAMES int, POINTS int, RESETS int, BOWKILLS int, AXTKILLS int, KNIFEKILLS int, SUICIDES int);");
 		mysql.update("CREATE TABLE IF NOT EXISTS Coins(UUID varchar(64), COINS int, SPEEDUPGRADE int, BOWPOWERUPGRADE int, KNOCKBACKUPGRADE int, SPECTRALARROWUPGRADE int);");
+		
+		if(getConfig().getString("ragemode.settings.version") != "1.4.0") {
+			mysql.update("ALTER TABLE Coins ADD SPECTRALARROWUPGRADE int DEFAULT 0");
+			
+			getConfig().set("ragemode.settings.version", "1.4.0");
+			
+			getConfig().set("ragemode.shop.spectralarrowupgradeprice", Integer.valueOf(20000));
+			
+			saveConfig();
+			System.out.println(Strings.ragemode_updated_mysql_succesful);
+		}
 	}
     
 	//Register All Events

@@ -102,6 +102,7 @@ public class Strings {
 	public static String ragemode_server_is_back = "§3The server is back soon";
 	public static String ragemode_mysql_connected = log_pre + "MySQL Connected";
 	public static String ragemode_mysql_disconnected = log_pre + "MySQL Disconnected";
+	public static String ragemode_updated_mysql_succesful = log_pre + "The MySQL Database, have been successful updated!";
 	
 	public static String kill_suicide = " §3suicided";
 	public static String kill_killed = " §3killed §r";
