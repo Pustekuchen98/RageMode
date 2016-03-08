@@ -43,7 +43,8 @@ public class Shop implements Listener{
 	public void onEntityDamage(EntityDamageByEntityEvent event) {
 		Entity entity = event.getEntity();
 		if(entity instanceof Villager) {
-			if(((Villager) entity).getName() == "§6Shop") event.setCancelled(true);
+			if(plugin.villager == (Villager) entity) event.setCancelled(true);
+			else event.setCancelled(false);
 		}
 	}
 	
