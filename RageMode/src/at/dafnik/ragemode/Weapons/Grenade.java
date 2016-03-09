@@ -21,17 +21,13 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
 import at.dafnik.ragemode.API.Explosion;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
 public class Grenade implements Listener{
 	
-	private Main plugin;
 	double radius = 5;
-	
-	public Grenade(Main main) {
-		this.plugin = main;
-	}
 	
 	@EventHandler
 	public void onHits(ProjectileHitEvent event) {
@@ -47,7 +43,7 @@ public class Grenade implements Listener{
 					Entity eggy = locegg.getWorld().dropItem(locegg, eggi);
 					Player killer = (Player) egg.getShooter();
 					
-					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,new Runnable() {
+					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(),new Runnable() {
 						@Override
 						public void run() {	
 							Location loceggy = eggy.getLocation();
@@ -86,14 +82,14 @@ public class Grenade implements Listener{
 									
 								arrow.setFireTicks(10000);
 								arrow.setCritical(true);						
-								arrow.setMetadata("shootedWith", new FixedMetadataValue(plugin, "grenade"));
-								//arrow.setMetadata("shooter", new FixedMetadataValue(plugin, killer.getName()));
+								arrow.setMetadata("shootedWith", new FixedMetadataValue(Main.getInstance(), "grenade"));
+								//arrow.setMetadata("shooter", new FixedMetadataValue(Main.getInstance(), killer.getName()));
 								arrow.setShooter(killer);
 	
-								Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,new Runnable() {
+								Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(),new Runnable() {
 									@Override
 									public void run() {										
-										new Explosion("grenade", arrow.getLocation(), killer, plugin);
+										new Explosion("grenade", arrow.getLocation(), killer);
 										
 										arrow.remove();
 									}
@@ -121,9 +117,9 @@ public class Grenade implements Listener{
 						if(shootedWith == "grenade") {	
 							if(arrow.getShooter() instanceof Player) {
 								Player victim = (Player) event.getEntity();
-								if (!plugin.respawnsafe.contains(victim)) {
-									victim.removeMetadata("killedWith", plugin);
-									victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "grenade"));
+								if (!Library.respawnsafe.contains(victim)) {
+									victim.removeMetadata("killedWith", Main.getInstance());
+									victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "grenade"));
 									event.setDamage(21);
 
 								} event.setCancelled(true);

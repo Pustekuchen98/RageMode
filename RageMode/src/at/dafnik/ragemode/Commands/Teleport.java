@@ -8,18 +8,12 @@ import org.bukkit.entity.Player;
 
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.API.TeleportAPI;
-import at.dafnik.ragemode.Main.Main;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.PowerSystem;
 
 public class Teleport implements CommandExecutor{
 	
-	private Main plugin;
-	
-	public Teleport(Main main){
-		this.plugin = main;
-	}
-	
-public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 		
 		if(sender instanceof Player){
 			Player player = (Player)sender;
@@ -30,12 +24,12 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 			 		player.sendMessage(Strings.error_permission);
 			 	}else{
 			 		if(args.length == 2) {
-			 			if(plugin.maps.contains(args[0].toLowerCase())){
+			 			if(Library.maps.contains(args[0].toLowerCase())){
 			 				String mapname = args[0].toLowerCase();
 			 				String chosenumber = args[1];
 			 				String wantto = chosenumber;
 			 				
-			 				Location loc = new TeleportAPI(plugin).getMapSpawnLocation(wantto, mapname);
+			 				Location loc = TeleportAPI.getMapSpawnLocation(wantto, mapname);
 			 				if(loc != null) player.teleport(loc);
 			 				else player.sendMessage(Strings.error_enter_unknown_spawnnumber);
 			 				
@@ -50,7 +44,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 				if(!(PowerSystem.getPower(player) >= 5)){
 					player.sendMessage(Strings.error_permission);
 			 	}else{ 
-					player.teleport(new TeleportAPI(plugin).getLobbyLocation());
+					player.teleport(TeleportAPI.getLobbyLocation());
 			 	}
 			}
 		} else System.out.println(Strings.error_only_player_use);

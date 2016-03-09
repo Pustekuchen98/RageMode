@@ -16,21 +16,16 @@ import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.API.TeleportAPI;
 import at.dafnik.ragemode.API.Title;
 import at.dafnik.ragemode.Items.Items;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 
 public class PlayerRespawnListener implements Listener{
-	
-	private Main plugin;
-	
-	public PlayerRespawnListener(Main main){
-		this.plugin = main;
-	}
 	
 	@EventHandler
 	public void onRespawn(PlayerRespawnEvent event){
 		Player player = event.getPlayer();
 		
-		event.setRespawnLocation(new TeleportAPI(plugin).getRandomMapSpawnLocations());
+		event.setRespawnLocation(TeleportAPI.getRandomMapSpawnLocations());
 	
 		player.getInventory().clear();
 		player.setFoodLevel(21);
@@ -38,23 +33,23 @@ public class PlayerRespawnListener implements Listener{
 		player.setMaxHealth(20);
 		player.setGlowing(false);
 		Title.sendTabList(player, "§bRageMode");
-		player.removeMetadata("killedWith", plugin);
+		player.removeMetadata("killedWith", Main.getInstance());
 		
-		Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable(){
 			 public void run(){
-		         for(Holograms holo : plugin.powerup_list) {
+		         for(Holograms holo : Library.powerup_list) {
 		        	 holo.display(player);
 		         }
 		     }
 		 }, 20);
 		
-		if(plugin.spectatorlist.contains(player)) {
+		if(Library.spectatorlist.contains(player)) {
 			player.setGameMode(GameMode.SPECTATOR);
 			
-		} else if(plugin.ingameplayer.contains(player)){
-			Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
+		} else if(Library.ingameplayer.contains(player)){
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable(){
 				 public void run(){
-					 if(plugin.ingameplayer.contains(player)) {
+					 if(Library.ingameplayer.contains(player)) {
 						 player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100, 10));
 						 player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 100, 10));
 						 player.getInventory().setHelmet(null);	
@@ -62,19 +57,19 @@ public class PlayerRespawnListener implements Listener{
 			     }
 			 }, 1);
 			
-			plugin.respawnsafe.add(player);
+			Library.respawnsafe.add(player);
 			
-			if(plugin.powerup_speedeffect.contains(player)) plugin.powerup_speedeffect.remove(player);
-			if(plugin.powerup_doublejump.contains(player)) plugin.powerup_doublejump.remove(player);
+			if(Library.powerup_speedeffect.contains(player)) Library.powerup_speedeffect.remove(player);
+			if(Library.powerup_doublejump.contains(player)) Library.powerup_doublejump.remove(player);
 			
 			player.removePotionEffect(PotionEffectType.REGENERATION);	
 			player.setGameMode(GameMode.SURVIVAL);
 			 
-			 Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
+			 Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable(){
 				 public void run(){	
 					 player.removePotionEffect(PotionEffectType.INVISIBILITY);
 					 player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
-					 plugin.respawnsafe.remove(player);
+					 Library.respawnsafe.remove(player);
 					 Items.givePlayerItems(player);	
 					 Manager.HelmetManagerMethode(player);
 			     }

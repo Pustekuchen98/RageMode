@@ -7,41 +7,40 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import at.dafnik.ragemode.API.Strings;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.Tasks.Ingame;
 
 public class PlayerQuitListener implements Listener{
 	
-	private Main plugin;
 	private Ingame Ingame;
 
-	public PlayerQuitListener(Main main){
-		this.plugin = main;
-		this.Ingame = new Ingame(plugin);
+	public PlayerQuitListener(){
+		this.Ingame = new Ingame();
 	}
 	
 	@EventHandler
 	public void Leave(PlayerQuitEvent event){
 		Player player = event.getPlayer();
 		
-		if(!plugin.spectatorlist.contains(player)) {
+		if(!Library.spectatorlist.contains(player)) {
 			event.setQuitMessage("§3> §r" + player.getDisplayName() + " §3has left the game");
 			
-			if(Bukkit.getOnlinePlayers().size() == 1 && plugin.villager != null) { 
-				plugin.villager.remove();
-				plugin.villager = null;
+			if(Bukkit.getOnlinePlayers().size() == 1 && Library.villager != null) { 
+				Library.villager.remove();
+				Library.villager = null;
 			}
 			
 			if(Main.status == Status.WARMUP || Main.status == Status.INGAME){		
 				//Remove Player from Playerpointslist
-				plugin.playerpoints.remove(player);
+				Library.playerpoints.remove(player);
 				
 				//Remove from PlayerIngameList
-				plugin.ingameplayer.remove(player);
+				Library.ingameplayer.remove(player);
 				
-				int playerint = plugin.ingameplayer.size();
-				int needplayers = plugin.getConfig().getInt("ragemode.settings.neededplayers");
+				int playerint = Library.ingameplayer.size();
+				int needplayers = Main.getInstance().getConfig().getInt("ragemode.settings.neededplayers");
 			
 				if (playerint <= needplayers -1) {
 					Bukkit.broadcastMessage(Strings.error_all_left);
@@ -49,10 +48,10 @@ public class PlayerQuitListener implements Listener{
 					Ingame.win();
 				}
 			}
-		} else if(plugin.spectatorlist.contains(player)) {
+		} else if(Library.spectatorlist.contains(player)) {
 			event.setQuitMessage(null);
 			
-			plugin.spectatorlist.remove(player);
+			Library.spectatorlist.remove(player);
 		} else {
 			Bukkit.broadcastMessage(Strings.error_not_authenticated_player);
 		}

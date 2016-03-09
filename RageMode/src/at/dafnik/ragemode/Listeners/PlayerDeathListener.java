@@ -5,6 +5,7 @@ import java.util.HashMap;
 import at.dafnik.ragemode.API.Holograms;
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.API.Title;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.MySQL.SQLCoins;
 import at.dafnik.ragemode.MySQL.SQLStats;
@@ -17,7 +18,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class PlayerDeathListener implements Listener {
-  private Main plugin;
   
   private int hololong = 2 * 20;
   
@@ -33,19 +33,17 @@ public class PlayerDeathListener implements Listener {
   
   private HashMap<Player, Integer> killstreak = new HashMap<>();
 
-  public PlayerDeathListener(Main main)
-  {
-    this.plugin = main;
-    
-	this.bowkill = main.getConfig().getInt("ragemode.points.bowkill");
-	this.knifekill = main.getConfig().getInt("ragemode.points.knifekill");
-	this.knifedeath = main.getConfig().getInt("ragemode.points.knifedeath");
-	this.suicide = main.getConfig().getInt("ragemode.points.suicide");
-	this.combataxekill = main.getConfig().getInt("ragemode.points.combat_axekill");
-	this.grenadekill = main.getConfig().getInt("ragemode.points.grenadekill");
-	this.claymorekill = main.getConfig().getInt("ragemode.points.clay_morekill");
-	this.minekill = main.getConfig().getInt("ragemode.points.minekill");
-	this.killstreakpoints = main.getConfig().getInt("ragemode.points.killstreakpoints");
+  public PlayerDeathListener()
+  {   
+	this.bowkill = Main.getInstance().getConfig().getInt("ragemode.points.bowkill");
+	this.knifekill = Main.getInstance().getConfig().getInt("ragemode.points.knifekill");
+	this.knifedeath = Main.getInstance().getConfig().getInt("ragemode.points.knifedeath");
+	this.suicide = Main.getInstance().getConfig().getInt("ragemode.points.suicide");
+	this.combataxekill = Main.getInstance().getConfig().getInt("ragemode.points.combat_axekill");
+	this.grenadekill = Main.getInstance().getConfig().getInt("ragemode.points.grenadekill");
+	this.claymorekill = Main.getInstance().getConfig().getInt("ragemode.points.clay_morekill");
+	this.minekill = Main.getInstance().getConfig().getInt("ragemode.points.minekill");
+	this.killstreakpoints = Main.getInstance().getConfig().getInt("ragemode.points.killstreakpoints");
   }
 
 	@EventHandler
@@ -74,7 +72,7 @@ public class PlayerDeathListener implements Listener {
 					if (killground == "bow") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_bow);
-						plugin.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_bow);
+						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_bow);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.bowkill);
 						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.bowkill + Strings.kill_holo_points));
@@ -82,7 +80,7 @@ public class PlayerDeathListener implements Listener {
 					} else if (killground == "combataxe") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_combat_axe);
-						plugin.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_combat_axe);
+						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_combat_axe);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.combataxekill);
 						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.combataxekill + Strings.kill_holo_points));
@@ -90,7 +88,7 @@ public class PlayerDeathListener implements Listener {
 					} else if (killground == "grenade") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname +Strings.kill_with + Strings.kill_with_grenade);
-						plugin.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_grenade);
+						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_grenade);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.grenadekill);
 						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.grenadekill + Strings.kill_holo_points));
@@ -98,7 +96,7 @@ public class PlayerDeathListener implements Listener {
 					} else if (killground == "mine") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_mine);
-						plugin.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_mine);
+						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_mine);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.minekill);
 						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.minekill + Strings.kill_holo_points));
@@ -106,7 +104,7 @@ public class PlayerDeathListener implements Listener {
 					} else if (killground == "claymore") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_claymore);
-						plugin.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_claymore);
+						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_claymore);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.claymorekill);
 						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.claymorekill + Strings.kill_holo_points));
@@ -114,7 +112,7 @@ public class PlayerDeathListener implements Listener {
 					} else if(killground == "knife") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_knife);
-						plugin.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_knife);
+						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_knife);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.knifekill);
 						victim.sendMessage(Strings.kill_points_negative + this.knifedeath);
@@ -134,7 +132,7 @@ public class PlayerDeathListener implements Listener {
 					//[Check] if killground isn't dead
 					if(killer != null && !(killer.isDead())){
 						killer.playSound(killer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1000.0F, 1.0F);
-						Title.sendActionBar(killer, Strings.kill_your_points + String.valueOf(this.plugin.playerpoints.get(killer)));
+						Title.sendActionBar(killer, Strings.kill_your_points + String.valueOf(Library.playerpoints.get(killer)));
 					}
 					
 					//Killstreaker
@@ -147,8 +145,8 @@ public class PlayerDeathListener implements Listener {
 						Bukkit.broadcastMessage(Main.pre + killername + Strings.killstreak);
 					}
 					
-					killer.sendMessage(Main.pre + Strings.kill_your_points + String.valueOf(plugin.playerpoints.get(killer)));
-					killer.setPlayerListName(killer.getDisplayName() + " §8- [§6" + plugin.playerpoints.get(killer) + "§8]");
+					killer.sendMessage(Main.pre + Strings.kill_your_points + String.valueOf(Library.playerpoints.get(killer)));
+					killer.setPlayerListName(killer.getDisplayName() + " §8- [§6" + Library.playerpoints.get(killer) + "§8]");
 					
 				//[Check] if killground != null. - Closed
 				}
@@ -156,7 +154,7 @@ public class PlayerDeathListener implements Listener {
 			//[Check] if Player is Victim - Closed
 			} else {
 				event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_suicide);
-				plugin.bar.setTitle(victim.getDisplayName() + Strings.kill_suicide);
+				Library.bar.setTitle(victim.getDisplayName() + Strings.kill_suicide);
 				resetBossBar();
 				victim.sendMessage("§c§l" + this.suicide);
 				givePlayerPoints(victim, "suicide");
@@ -166,13 +164,13 @@ public class PlayerDeathListener implements Listener {
 		//[Check] if Killer is a Player
 		} else event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_unknown_killer);
 		
-		victim.removeMetadata("killedWith", plugin);
+		victim.removeMetadata("killedWith", Main.getInstance());
 		
 		event.setDroppedExp(0);
 		event.getDrops().clear();
 		
 		//Auto Respawn
-		Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable() {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 			public void run() {
 				victim.spigot().respawn();
 			}
@@ -182,10 +180,10 @@ public class PlayerDeathListener implements Listener {
 		if(killstreak.get(victim) == null) killstreak.put(victim, 0);
 		else killstreak.replace(victim, killstreak.get(victim), 0);
 		
-		if(this.plugin.playerpoints.get(victim) == null) victim.sendMessage(Main.pre + Strings.kill_your_points + "0");
-		else victim.sendMessage(Main.pre + Strings.kill_your_points + String.valueOf(plugin.playerpoints.get(victim)));
+		if(Library.playerpoints.get(victim) == null) victim.sendMessage(Main.pre + Strings.kill_your_points + "0");
+		else victim.sendMessage(Main.pre + Strings.kill_your_points + String.valueOf(Library.playerpoints.get(victim)));
 		
-		victim.setPlayerListName(victim.getDisplayName() + " §8- [§6" + plugin.playerpoints.get(victim) + "§8]");
+		victim.setPlayerListName(victim.getDisplayName() + " §8- [§6" + Library.playerpoints.get(victim) + "§8]");
 	}
 	
 
@@ -224,15 +222,15 @@ public class PlayerDeathListener implements Listener {
 			}
 		}
 		
-		if (plugin.playerpoints.get(player) == null) {
-			plugin.playerpoints.put(player, 0);
+		if (Library.playerpoints.get(player) == null) {
+			Library.playerpoints.put(player, 0);
 		} else {
-			int points = plugin.playerpoints.get(player);
+			int points = Library.playerpoints.get(player);
 			if (points + toBePoints < 0) points = 0;
 			else if (points + toBePoints >= 0) points += toBePoints;
 			else System.out.println(Strings.error_playerdeath_points);
 			
-			plugin.playerpoints.put(player, points);
+			Library.playerpoints.put(player, points);
 		}
 	}
 	
@@ -240,7 +238,7 @@ public class PlayerDeathListener implements Listener {
 		for(Player players : Bukkit.getOnlinePlayers()) {
 			holo.display(players);
 			
-			Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 				@Override
 				public void run() {
 					holo.destroy(players);		
@@ -250,10 +248,10 @@ public class PlayerDeathListener implements Listener {
 	}
 	
 	private void resetBossBar() {
-		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 			@Override
 			public void run() {			
-				plugin.bar.setTitle("§6You §3are §cplaying §bRageMode");
+				Library.bar.setTitle("§6You §3are §cplaying §bRageMode");
 			}
 		}, 5*20);
 	}

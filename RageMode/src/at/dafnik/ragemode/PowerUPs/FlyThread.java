@@ -2,17 +2,15 @@ package at.dafnik.ragemode.PowerUPs;
 
 import org.bukkit.entity.Player;
 
-import at.dafnik.ragemode.Main.Main;
+import at.dafnik.ragemode.Main.Library;
 
 public class FlyThread implements Runnable{
 
 	private Player player;
 	Thread thread;
 	private Boolean running = false;
-	private Main plugin;
 	
-	public FlyThread(Main main, Player player) {
-		this.plugin = main;
+	public FlyThread(Player player) {
 		this.player = player;
 		
 		this.thread = new Thread(this);
@@ -42,7 +40,7 @@ public class FlyThread implements Runnable{
 			}
 			
 			if(player.isOnGround()) {
-				plugin.powerup_flyparticle.remove(player);
+				Library.powerup_flyparticle.remove(player);
 				player.getInventory().setChestplate(null);
 				this.stop();
 			}

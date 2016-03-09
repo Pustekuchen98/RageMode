@@ -16,12 +16,6 @@ import at.dafnik.ragemode.Main.Main.Status;
 
 public class Healer implements Listener{
 	
-	private Main plugin;
-	
-	public Healer(Main main) {
-		this.plugin = main;
-	}
-	
 	private int time = 15*20;
 	
 	@EventHandler
@@ -36,7 +30,7 @@ public class Healer implements Listener{
 					player.getInventory().remove(Material.REDSTONE);
 					player.getWorld().playSound(player.getLocation(), Sound.ENTITY_GENERIC_EAT, 1000.0F, 1.0F);
 						
-					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 						@Override
 						public void run() {		
 							player.setMaxHealth(20);

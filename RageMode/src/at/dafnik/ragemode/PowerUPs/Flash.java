@@ -17,12 +17,7 @@ import at.dafnik.ragemode.Main.Main.Status;
 
 public class Flash implements Listener{
 	
-	private Main plugin;
 	int duration = 10;
-	
-	public Flash(Main main) {
-		this.plugin = main;
-	}
 	
 	@EventHandler
 	public void onHit(ProjectileHitEvent event) {
@@ -40,7 +35,7 @@ public class Flash implements Listener{
 							players.setGlowing(true);
 							players.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 3*20, 2));
 								
-							Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+							Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 								@Override
 								public void run() {			
 									players.setGlowing(false);

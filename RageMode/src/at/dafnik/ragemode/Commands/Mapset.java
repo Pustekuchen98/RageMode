@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import at.dafnik.ragemode.API.Strings;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
@@ -168,11 +169,11 @@ public class Mapset implements CommandExecutor{
 								player.sendMessage(Strings.error_permission);
 							}else{
 								if(Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) {
-									if(plugin.builder.contains(player)) {
-										plugin.builder.remove(player);
+									if(Library.builder.contains(player)) {
+										Library.builder.remove(player);
 										player.sendMessage(Strings.map_edit_disallowed);
 									} else {
-										plugin.builder.add(player);
+										Library.builder.add(player);
 										player.sendMessage(Strings.map_edit_allowed);
 									}
 								} else player.sendMessage(Strings.map_edit_not_yet);
@@ -194,7 +195,7 @@ public class Mapset implements CommandExecutor{
 									plugin.getConfig().set("ragemode.mapspawn." + mapname + ".mapauthor", "None");
 									plugin.saveConfig();
 									
-									plugin.maps.add(mapname);	
+									Library.maps.add(mapname);	
 									
 									player.sendMessage(Strings.map_create + args[1]);								
 								} else {
@@ -260,7 +261,7 @@ public class Mapset implements CommandExecutor{
 								player.sendMessage(Strings.error_permission);
 							}else{
 								if(args.length == 3) {
-									if(plugin.maps.contains(args[1].toLowerCase())) {
+									if(Library.maps.contains(args[1].toLowerCase())) {
 										String mapname = args[1].toLowerCase();
 										String mapauthor = args[2];
 										
@@ -281,7 +282,7 @@ public class Mapset implements CommandExecutor{
 								player.sendMessage(Strings.error_permission);
 							}else{
 								if(args.length == 2) {
-									if(plugin.maps.contains(args[1].toLowerCase())) {
+									if(Library.maps.contains(args[1].toLowerCase())) {
 										//Set Arena name
 										String mapname = args[1].toLowerCase();
 										String w = player.getWorld().getName();
@@ -325,7 +326,7 @@ public class Mapset implements CommandExecutor{
 								player.sendMessage(Strings.error_permission);
 							}else{
 								if(args.length == 2) {
-									if(plugin.maps.contains(args[1].toLowerCase())) {
+									if(Library.maps.contains(args[1].toLowerCase())) {
 										//Set Arena name
 										String mapname = args[1].toLowerCase();
 										String w = player.getWorld().getName();
@@ -363,7 +364,7 @@ public class Mapset implements CommandExecutor{
 								player.sendMessage(Strings.error_permission);
 							}else{
 								if(args.length == 3) {
-									if(plugin.maps.contains(args[1].toLowerCase())) {
+									if(Library.maps.contains(args[1].toLowerCase())) {
 										//Set Arena name
 										String mapname = args[1].toLowerCase();
 										String radius = args[2];

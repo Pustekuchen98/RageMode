@@ -19,6 +19,7 @@ import org.bukkit.event.player.PlayerToggleFlightEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.util.Vector;
 
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import net.minecraft.server.v1_9_R1.MathHelper;
@@ -27,12 +28,8 @@ public class DoubleJump implements Listener {
 	
 	private HashMap<Player, Boolean> cooldown = new HashMap<Player, Boolean>();
 	private ArrayList<Player> smash = new ArrayList<Player>();
-    private Main plugin;
     int radius = 5;
     
-    public DoubleJump(Main main) {
-    	this.plugin = main;
-    }
 	
 	@SuppressWarnings("deprecation")
 	@EventHandler
@@ -40,7 +37,7 @@ public class DoubleJump implements Listener {
 		if(event.getEntity() instanceof Player) {
 			Player player = (Player) event.getEntity();
 			
-			if(plugin.powerup_doublejump.contains(player)) {
+			if(Library.powerup_doublejump.contains(player)) {
 				if (smash.contains(player)) {
 					ArrayList<Block> blocks = new ArrayList<Block>();
 					blocks.add(player.getWorld().getBlockAt(player.getLocation().subtract(0, 1, 0)));
@@ -66,7 +63,7 @@ public class DoubleJump implements Listener {
 					for (Entity entities : player.getWorld().getNearbyEntities(loc, radius, radius, radius)) {
 						if (entities instanceof Player) {
 							if(((Player) entities) != player) {
-								if(!(plugin.spectatorlist.contains(entities) && plugin.respawnsafe.contains(player))) {
+								if(!(Library.spectatorlist.contains(entities) && Library.respawnsafe.contains(player))) {
 									Location eloc = entities.getLocation();
 									
 									double d4 = eloc.distance(loc) / radius;
@@ -102,7 +99,7 @@ public class DoubleJump implements Listener {
 	public void onMove(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
 		
-		if(plugin.powerup_doublejump.contains(player)) {
+		if(Library.powerup_doublejump.contains(player)) {
 			if (player.getGameMode() == GameMode.CREATIVE)
 				return;
 	
@@ -123,7 +120,7 @@ public class DoubleJump implements Listener {
 	public void onFly(PlayerToggleFlightEvent event) {
 		Player player = event.getPlayer();
 		
-		if(plugin.powerup_doublejump.contains(player)) {
+		if(Library.powerup_doublejump.contains(player)) {
 			if (player.getGameMode() == GameMode.CREATIVE) return;
 			
 			if (cooldown.get(player) == true) {
@@ -147,7 +144,7 @@ public class DoubleJump implements Listener {
 	public void onSneak(PlayerToggleSneakEvent event) {
 		Player player = event.getPlayer();
 		
-		if(plugin.powerup_doublejump.contains(player)) {
+		if(Library.powerup_doublejump.contains(player)) {
 			if (player.getGameMode() == GameMode.CREATIVE)
 				return;
 	

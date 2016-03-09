@@ -17,6 +17,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 
 import at.dafnik.ragemode.API.Strings;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.MySQL.SQLCoins;
@@ -28,22 +29,18 @@ public class Shop implements Listener{
 	public int knockbackupgrade;
 	public int spectralarrowupgrade;
 	
-	private Main plugin;
-	
-	public Shop(Main main) {		
-		this.speedupgrade = main.getConfig().getInt("ragemode.shop.knifeupgradeprice");
-		this.powerupgrade = main.getConfig().getInt("ragemode.shop.bowpowerupgradeprice");
-		this.knockbackupgrade = main.getConfig().getInt("ragemode.shop.knifeknockbackupgradeprice");
-		this.spectralarrowupgrade = main.getConfig().getInt("ragemode.shop.spectralarrowupgradeprice");
-		
-		this.plugin = main;
+	public Shop() {		
+		this.speedupgrade = Main.getInstance().getConfig().getInt("ragemode.shop.knifeupgradeprice");
+		this.powerupgrade = Main.getInstance().getConfig().getInt("ragemode.shop.bowpowerupgradeprice");
+		this.knockbackupgrade = Main.getInstance().getConfig().getInt("ragemode.shop.knifeknockbackupgradeprice");
+		this.spectralarrowupgrade = Main.getInstance().getConfig().getInt("ragemode.shop.spectralarrowupgradeprice");
 	}
 	
 	@EventHandler
 	public void onEntityDamage(EntityDamageByEntityEvent event) {
 		Entity entity = event.getEntity();
 		if(entity instanceof Villager) {
-			if(plugin.villager == (Villager) entity) event.setCancelled(true);
+			if(Library.villager == (Villager) entity) event.setCancelled(true);
 			else event.setCancelled(false);
 		}
 	}
@@ -108,22 +105,22 @@ public class Shop implements Listener{
 						switch(event.getCurrentItem().getType()) {
 						case FEATHER:
 							player.closeInventory();
-							new createAdvancedInventoryMenu_SpeedUpgrade(plugin, player).createBasics();				
+							new createAdvancedInventoryMenu_SpeedUpgrade(Main.getInstance(), player).createBasics();				
 							break;
 						
 						case SULPHUR:
 							player.closeInventory();
-							new createAdvancedInventoryMenu_BowPowerUpgrade(plugin, player).createBasics();
+							new createAdvancedInventoryMenu_BowPowerUpgrade(Main.getInstance(), player).createBasics();
 							break;
 							
 						case BLAZE_POWDER:
 							player.closeInventory();
-							new createAdvancedInventoryMenu_KnockbackAbilityUpgrade(plugin, player).createBasics();
+							new createAdvancedInventoryMenu_KnockbackAbilityUpgrade(Main.getInstance(), player).createBasics();
 							break;
 							
 						case SPECTRAL_ARROW:
 							player.closeInventory();
-							new createAdvancedInventoryMenu_SpectralArrowUpgrade(plugin, player).createBasics();
+							new createAdvancedInventoryMenu_SpectralArrowUpgrade(Main.getInstance(), player).createBasics();
 							break;
 							
 						default:

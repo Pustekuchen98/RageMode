@@ -14,17 +14,16 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import at.dafnik.ragemode.API.Holograms;
 import at.dafnik.ragemode.API.Strings;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
 public class PowerUpper implements Runnable{
 	Thread thread;
 	boolean running;
-	Main plugin;
 	int time = 1;
 	
-	public PowerUpper(Main main) {
-		this.plugin = main;
+	public PowerUpper() {
 		this.thread = new Thread(this);
 	}
 	
@@ -45,18 +44,18 @@ public class PowerUpper implements Runnable{
 	public void run() {
 		while(running) {
 			if(Main.status == Status.INGAME) {
-				String mapname = plugin.votedmap;		
-				int spawnnumber = plugin.getConfig().getInt("ragemode.powerupspawn." + mapname + ".spawnnumber");
+				String mapname = Library.votedmap;		
+				int spawnnumber = Main.getInstance().getConfig().getInt("ragemode.powerupspawn." + mapname + ".spawnnumber");
 	
 				if(mapname != null && spawnnumber != 0) {
 					Random random = new Random();
 					int zahl = random.nextInt(spawnnumber);
 					
 					for(int i = 0; i < 20; i++) {
-						String w = plugin.getConfig().getString("ragemode.powerupspawn." + mapname + "." + zahl + ".world");
-						double x = plugin.getConfig().getDouble("ragemode.powerupspawn." + mapname + "." + zahl + ".x");
-						double y = plugin.getConfig().getDouble("ragemode.powerupspawn." + mapname + "." + zahl + ".y");
-						double z = plugin.getConfig().getDouble("ragemode.powerupspawn." + mapname + "." + zahl + ".z");
+						String w = Main.getInstance().getConfig().getString("ragemode.powerupspawn." + mapname + "." + zahl + ".world");
+						double x = Main.getInstance().getConfig().getDouble("ragemode.powerupspawn." + mapname + "." + zahl + ".x");
+						double y = Main.getInstance().getConfig().getDouble("ragemode.powerupspawn." + mapname + "." + zahl + ".y");
+						double z = Main.getInstance().getConfig().getDouble("ragemode.powerupspawn." + mapname + "." + zahl + ".z");
 						
 						if(w != null) {
 							Location loc = new Location(Bukkit.getWorld(w), x, y, z);
@@ -64,24 +63,24 @@ public class PowerUpper implements Runnable{
 							ItemStack item = new ItemStack(Material.EMERALD_BLOCK);
 							ItemMeta imd = item.getItemMeta();
 							
-							Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+							Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 								@Override
 								public void run() {
-									imd.setDisplayName(String.valueOf(Main.powerup_integer));
-									Main.powerup_integer++;
+									imd.setDisplayName(String.valueOf(Library.powerup_integer));
+									Library.powerup_integer++;
 									imd.addEnchant(Enchantment.WATER_WORKER, 1, true);
 									item.setItemMeta(imd);
 									Entity entity = loc.getWorld().dropItem(loc, item);
 									
-									Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+									Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 										@Override
 										public void run() {
 											Holograms holo = new Holograms(entity.getLocation(), "§a§lPowerUP");
 											for (Player players : Bukkit.getOnlinePlayers()) holo.display(players);
 											
-											plugin.powerup_hashmap.put(Integer.valueOf(item.getItemMeta().getDisplayName()), holo);
-											plugin.powerup_list.add(holo);
-											plugin.powerup_entity.add(entity);
+											Library.powerup_hashmap.put(Integer.valueOf(item.getItemMeta().getDisplayName()), holo);
+											Library.powerup_list.add(holo);
+											Library.powerup_entity.add(entity);
 										}
 									}, 20);
 	

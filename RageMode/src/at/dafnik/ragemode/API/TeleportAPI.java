@@ -5,23 +5,18 @@ import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 
 public class TeleportAPI {
 	
-	private Main plugin;
-	
-	public TeleportAPI(Main main) {
-		this.plugin = main;
-	}
-	
-	public Location getLobbyLocation() {
-		String w = plugin.getConfig().getString("ragemode.lobbyspawn.world");
-		double x = plugin.getConfig().getDouble("ragemode.lobbyspawn.x");
-		double y = plugin.getConfig().getDouble("ragemode.lobbyspawn.y");
-		double z = plugin.getConfig().getDouble("ragemode.lobbyspawn.z");
-		double yaw = plugin.getConfig().getDouble("ragemode.lobbyspawn.yaw");
-		double pitch = plugin.getConfig().getDouble("ragemode.lobbyspawn.pitch");
+	public static Location getLobbyLocation() {
+		String w = Main.getInstance().getConfig().getString("ragemode.lobbyspawn.world");
+		double x = Main.getInstance().getConfig().getDouble("ragemode.lobbyspawn.x");
+		double y = Main.getInstance().getConfig().getDouble("ragemode.lobbyspawn.y");
+		double z = Main.getInstance().getConfig().getDouble("ragemode.lobbyspawn.z");
+		double yaw = Main.getInstance().getConfig().getDouble("ragemode.lobbyspawn.yaw");
+		double pitch = Main.getInstance().getConfig().getDouble("ragemode.lobbyspawn.pitch");
 		
 		if(w != null) {
 			Location loc = new Location(Bukkit.getWorld(w), x, y, z);
@@ -33,13 +28,13 @@ public class TeleportAPI {
 		}
 	}
 	
-	public Location getVillagerShopLocation() {
-		String w = plugin.getConfig().getString("ragemode.villagershopspawn.world");
-		double x = plugin.getConfig().getDouble("ragemode.villagershopspawn.x");
-		double y = plugin.getConfig().getDouble("ragemode.villagershopspawn.y");
-		double z = plugin.getConfig().getDouble("ragemode.villagershopspawn.z");
-		double yaw = plugin.getConfig().getDouble("ragemode.villagershopspawn.yaw");
-		double pitch = plugin.getConfig().getDouble("ragemode.villagershopspawn.pitch");
+	public static Location getVillagerShopLocation() {
+		String w = Main.getInstance().getConfig().getString("ragemode.villagershopspawn.world");
+		double x = Main.getInstance().getConfig().getDouble("ragemode.villagershopspawn.x");
+		double y = Main.getInstance().getConfig().getDouble("ragemode.villagershopspawn.y");
+		double z = Main.getInstance().getConfig().getDouble("ragemode.villagershopspawn.z");
+		double yaw = Main.getInstance().getConfig().getDouble("ragemode.villagershopspawn.yaw");
+		double pitch = Main.getInstance().getConfig().getDouble("ragemode.villagershopspawn.pitch");
 		
 		if(w != null) {
 			Location loc = new Location(Bukkit.getWorld(w), x, y, z);
@@ -51,20 +46,20 @@ public class TeleportAPI {
 		}
 	}
 	
-	public Location getRandomMapSpawnLocations() {
+	public static Location getRandomMapSpawnLocations() {
 		try {
-			int spawnnumber = plugin.getConfig().getInt("ragemode.mapspawn." +  plugin.votedmap + ".spawnnumber");
+			int spawnnumber = Main.getInstance().getConfig().getInt("ragemode.mapspawn." +  Library.votedmap + ".spawnnumber");
 			Random r = new Random();
 			int randomzahl = r.nextInt(spawnnumber);
 			Location loc = null;
 			
 			for(int i = 0; i < 40; i++) {
-				String w = plugin.getConfig().getString("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".world");
-				double x = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".x");
-				double y = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".y");
-				double z = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".z");
-				double yaw = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".yaw");
-				double pitch = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + "." + randomzahl + ".pitch");
+				String w = Main.getInstance().getConfig().getString("ragemode.mapspawn." + Library.votedmap + "." + randomzahl + ".world");
+				double x = Main.getInstance().getConfig().getDouble("ragemode.mapspawn." + Library.votedmap + "." + randomzahl + ".x");
+				double y = Main.getInstance().getConfig().getDouble("ragemode.mapspawn." + Library.votedmap + "." + randomzahl + ".y");
+				double z = Main.getInstance().getConfig().getDouble("ragemode.mapspawn." + Library.votedmap + "." + randomzahl + ".z");
+				double yaw = Main.getInstance().getConfig().getDouble("ragemode.mapspawn." + Library.votedmap + "." + randomzahl + ".yaw");
+				double pitch = Main.getInstance().getConfig().getDouble("ragemode.mapspawn." + Library.votedmap + "." + randomzahl + ".pitch");
 				
 				if(w != null) {
 					loc = new Location(Bukkit.getWorld(w), x, y, z);
@@ -81,16 +76,16 @@ public class TeleportAPI {
 		}
 	}
 	
-	public Location getMapSpawnLocation(String wantto, String mapname) {
+	public static Location getMapSpawnLocation(String wantto, String mapname) {
 		Location loc;
 		
 		for(int i = 0; i < 40; i++) {
-			String w = plugin.getConfig().getString("ragemode.mapspawn." + mapname + "." + wantto + ".world");
-			double x = plugin.getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".x");
-			double y = plugin.getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".y");
-			double z = plugin.getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".z");
-			double yaw = plugin.getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".yaw");
-			double pitch = plugin.getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".pitch");
+			String w = Main.getInstance().getConfig().getString("ragemode.mapspawn." + mapname + "." + wantto + ".world");
+			double x = Main.getInstance().getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".x");
+			double y = Main.getInstance().getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".y");
+			double z = Main.getInstance().getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".z");
+			double yaw = Main.getInstance().getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".yaw");
+			double pitch = Main.getInstance().getConfig().getDouble("ragemode.mapspawn." + mapname + "." + wantto + ".pitch");
 			
 			if(w != null) {
 				loc = new Location(Bukkit.getWorld(w), x, y, z);
@@ -103,11 +98,11 @@ public class TeleportAPI {
 		return null;
 	}
 	
-	public Location getMapMiddleLocation() {
-		String w = plugin.getConfig().getString("ragemode.mapspawn." + plugin.votedmap + ".middlepoint.world");
-		double x = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + ".middlepoint.x");
-		double y = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + ".middlepoint.y");
-		double z = plugin.getConfig().getDouble("ragemode.mapspawn." + plugin.votedmap + ".middlepoint.z");
+	public static Location getMapMiddleLocation() {
+		String w = Main.getInstance().getConfig().getString("ragemode.mapspawn." + Library.votedmap + ".middlepoint.world");
+		double x = Main.getInstance().getConfig().getDouble("ragemode.mapspawn." + Library.votedmap + ".middlepoint.x");
+		double y = Main.getInstance().getConfig().getDouble("ragemode.mapspawn." + Library.votedmap + ".middlepoint.y");
+		double z = Main.getInstance().getConfig().getDouble("ragemode.mapspawn." + Library.votedmap + ".middlepoint.z");
 		
 		if(w != null) {
 			Location loc = new Location(Bukkit.getWorld(w), x, y, z);

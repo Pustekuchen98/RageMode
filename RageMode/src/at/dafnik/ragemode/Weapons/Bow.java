@@ -11,16 +11,11 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import at.dafnik.ragemode.API.Explosion;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
 public class Bow implements Listener{
-	
-	private Main plugin;
-
-	public Bow(Main main){
-		this.plugin = main;
-	}
 	
 	double radius = 5;
 	
@@ -31,13 +26,13 @@ public class Bow implements Listener{
 			
 			if(Main.status == Status.INGAME) {
 				if(arrow.getMetadata("shootedWith").isEmpty()) {
-					arrow.setMetadata("shootedWith", new FixedMetadataValue(plugin, "bow"));
+					arrow.setMetadata("shootedWith", new FixedMetadataValue(Main.getInstance(), "bow"));
 					
 					if (arrow.getShooter() instanceof Player) {			
-						Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 							@Override
 							public void run() {			
-								new Explosion("bow", event.getEntity().getLocation(), ((Player) arrow.getShooter()), plugin);
+								new Explosion("bow", event.getEntity().getLocation(), ((Player) arrow.getShooter()));
 								
 								arrow.remove();
 							}
@@ -61,9 +56,9 @@ public class Bow implements Listener{
 						if(shootedWith == "bow") {	
 							if(arrow.getShooter() instanceof Player) {
 								Player victim = (Player) event.getEntity();
-								if (!plugin.respawnsafe.contains(victim)) {
-									victim.removeMetadata("killedWith", plugin);
-									victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "bow"));
+								if (!Library.respawnsafe.contains(victim)) {
+									victim.removeMetadata("killedWith", Main.getInstance());
+									victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "bow"));
 									event.setDamage(21);
 
 								} event.setCancelled(true);

@@ -1,16 +1,8 @@
 package at.dafnik.ragemode.Main;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarFlag;
-import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -65,16 +57,6 @@ public class Main extends JavaPlugin{
 	//Register Mapvote
 	public Mapvote mapvote;
 	
-	//Villager
-	public Villager villager;
-	//Villager Holo
-	public Holograms villagerholo;
-	
-	//BossBar
-	public BossBar bar = Bukkit.getServer().createBossBar("§6You §3are §cplaying §bRageMode", BarColor.BLUE, BarStyle.SEGMENTED_6, BarFlag.CREATE_FOG);
-	
-	//--------------------------------------------------------------------
-	
 	//General Prefix
 	public static String pre = "§7[§bRageMode§7] ";
 	//Start Status
@@ -82,45 +64,7 @@ public class Main extends JavaPlugin{
 	//MySQL
 	public static MySQL mysql;
 	
-	//--------------------------------------------------------------------
-	//Player List which voted
-	public List<String> voted = new ArrayList<>();
-	//Maps with votes
-	public HashMap<String, Integer> votes = new HashMap<>();
-	//Map list
-	public List <String> maps = new ArrayList<>();
-	//Map to vote
-	public List <String> mapstovote = new ArrayList<>();
-	//Voted Map
-	public String votedmap;
-	
-	//----------------------------------------------------------------------
-	//Player Ingamelist
-	public List<Player> ingameplayer = new ArrayList<Player>();
-	
-	//Player Spectator
-	public List<Player> spectatorlist = new ArrayList<Player>();
-	
-	//Respawnschutz
-	public List<Player> respawnsafe = new ArrayList<>();
-	
-	//Player Win System
-	public HashMap<Player, Integer> playerpoints = new HashMap<>();
-	
-	//Allowed to build
-	public List<Player> builder = new ArrayList<>();
-	
-	//Planted Things
-	public List<Location> planted = new ArrayList<>();
-	
-	//PowerUP
-	public List<Entity> powerup_entity = new ArrayList<>();
-	public HashMap<Integer, Holograms> powerup_hashmap = new HashMap<>();
-	public List<Holograms> powerup_list = new ArrayList<>();
-	public static Integer powerup_integer = 0;
-	public List<Player> powerup_speedeffect = new ArrayList<>();
-	public List<Player> powerup_doublejump = new ArrayList<>();
-	public List<Player> powerup_flyparticle = new ArrayList<Player>();
+	public static Main instance = null;
 	
 	//----------------------------------------------------------------------
 	//Is MySQL On
@@ -141,21 +85,21 @@ public class Main extends JavaPlugin{
 			lobbytasks.wm.ct.stop();
 		}
 		
-		for(Entity entities : powerup_entity) entities.remove();
+		for(Entity entities : Library.powerup_entity) entities.remove();
 		
 		for (Player players : Bukkit.getOnlinePlayers()) {
-			for (Holograms holo : powerup_list) holo.destroy(players);;		
+			for (Holograms holo : Library.powerup_list) holo.destroy(players);;		
 			players.removeMetadata("killedWith", this);
 		}
 		
-		bar.removeAll();
+		Library.bar.removeAll();
 		
-		if(villager != null) {
-			villager.remove();
-			villager = null;
+		if(Library.villager != null) {
+			Library.villager.remove();
+			Library.villager = null;
 			
 			if(Bukkit.getOnlinePlayers().size() == 0) {
-				Location loc = new TeleportAPI(this).getVillagerShopLocation();
+				Location loc = TeleportAPI.getVillagerShopLocation();
 				loc.getWorld().getBlockAt(loc).setType(Material.LAVA);
 				
 				Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
@@ -172,6 +116,8 @@ public class Main extends JavaPlugin{
 	
 	//Plugin start
 	public void onEnable(){
+		instance = this;
+		
 		//Load Config
 		loadConfig();
 		
@@ -180,13 +126,13 @@ public class Main extends JavaPlugin{
 		registerCommands();
 		
 		//Set Config Standart
-		new ConfigStandart(this).setStandart();
+		ConfigStandart.setStandart();
 		
 		//All planted Things will be removed.
 		PlantedRemover();
 		
 		//Start Tasks
-		lobbytasks = new Lobby(this);
+		lobbytasks = new Lobby();
 		lobbytasks.lobbywplayers();
 		
 		getServer().getConsoleSender().sendMessage("§7[§bRageMode§7] §aStarted§8! §fThe most important things started §awell§8!");
@@ -206,9 +152,14 @@ public class Main extends JavaPlugin{
 			ConnectMySQL();
 			
 			//MySQL Ranking
-			Ranking ranking = new Ranking(this);
-			ranking.set();
+			Ranking.set();
 		}
+		
+		makeUpdate();
+	}
+	
+	public static Main getInstance() {
+		return instance;
 	}
 	
 	//Connect to MySQL
@@ -221,55 +172,57 @@ public class Main extends JavaPlugin{
 		mysql = new MySQL(host, database, username, password);
 		mysql.update("CREATE TABLE IF NOT EXISTS Stats(UUID varchar(64), KILLS int, DEATHS int, PLAYEDGAMES int, WONGAMES int, POINTS int, RESETS int, BOWKILLS int, AXTKILLS int, KNIFEKILLS int, SUICIDES int);");
 		mysql.update("CREATE TABLE IF NOT EXISTS Coins(UUID varchar(64), COINS int, SPEEDUPGRADE int, BOWPOWERUPGRADE int, KNOCKBACKUPGRADE int, SPECTRALARROWUPGRADE int);");
-		
+	}
+    
+	private void makeUpdate() {
 		if(getConfig().getString("ragemode.settings.version") != "1.4.0") {
-			mysql.update("ALTER TABLE Coins ADD SPECTRALARROWUPGRADE int DEFAULT 0");
-			
 			getConfig().set("ragemode.settings.version", "1.4.0");
+			
+			if(isMySQL) mysql.update("ALTER TABLE Coins ADD SPECTRALARROWUPGRADE int DEFAULT 0");
 			
 			getConfig().set("ragemode.shop.spectralarrowupgradeprice", Integer.valueOf(20000));
 			
 			saveConfig();
-			System.out.println(Strings.ragemode_updated_mysql_succesful);
+			System.out.println(Strings.ragemode_updated_mysql_succesful + " lel");
 		}
 	}
-    
+
 	//Register All Events
 	private void registerListeners() {
 		PluginManager pm = Bukkit.getPluginManager();
 		
 		//Items
-		pm.registerEvents(new Compass(this), this);
+		pm.registerEvents(new Compass(), this);
 		
 		//PowerUP's
-		pm.registerEvents(new PowerUPItemListener(this), this);
-		pm.registerEvents(new Mine(this), this);
-		pm.registerEvents(new Healer(this), this);
-		pm.registerEvents(new DoubleJump(this), this);
-		pm.registerEvents(new Flash(this), this);
-		pm.registerEvents(new Fly(this), this);
+		pm.registerEvents(new PowerUPItemListener(), this);
+		pm.registerEvents(new Mine(), this);
+		pm.registerEvents(new Healer(), this);
+		pm.registerEvents(new DoubleJump(), this);
+		pm.registerEvents(new Flash(), this);
+		pm.registerEvents(new Fly(), this);
 		
 		//Weapons
-		pm.registerEvents(new AxeEvent(this), this);
-		pm.registerEvents(new Knife(this), this);
-		pm.registerEvents(new Grenade(this), this);
-		pm.registerEvents(new Bow(this), this);
+		pm.registerEvents(new AxeEvent(), this);
+		pm.registerEvents(new Knife(), this);
+		pm.registerEvents(new Grenade(), this);
+		pm.registerEvents(new Bow(), this);
 		
 		//Events - Combat
-		pm.registerEvents(new PlayerDeathListener(this), this);
-		pm.registerEvents(new PlayerRespawnListener(this), this);
+		pm.registerEvents(new PlayerDeathListener(), this);
+		pm.registerEvents(new PlayerRespawnListener(), this);
 		
 		//Events - Listeners
-		pm.registerEvents(new PlayerJoinListener(this), this);
-		pm.registerEvents(new PlayerQuitListener(this), this);
-		pm.registerEvents(new Listeners(this), this);
-		pm.registerEvents(new AsyncPlayerChatListener(this), this);
+		pm.registerEvents(new PlayerJoinListener(), this);
+		pm.registerEvents(new PlayerQuitListener(), this);
+		pm.registerEvents(new Listeners(), this);
+		pm.registerEvents(new AsyncPlayerChatListener(), this);
 		pm.registerEvents(new FoodWeatherChangeListener(), this);
-		pm.registerEvents(new InventoryItemListener(this), this);
-		pm.registerEvents(new BlockBedListener(this), this);
+		pm.registerEvents(new InventoryItemListener(), this);
+		pm.registerEvents(new BlockBedListener(), this);
 		
 		//Events - Shop
-		pm.registerEvents(new Shop(this), this);
+		pm.registerEvents(new Shop(), this);
 		new AdvancedShopPage_SpeedUpgrade(this);
 		new AdvancedShopPage_KnockbackAbilityUpgrade(this);
 		new AdvancedShopPage_SpectralArrowUpgrade(this);
@@ -295,8 +248,8 @@ public class Main extends JavaPlugin{
 		this.getCommand("latestart").setExecutor(new RoundStart(this));
 		this.getCommand("test").setExecutor(new RoundStart(this));
 		
-		this.getCommand("tpmap").setExecutor(new Teleport(this));
-		this.getCommand("tplobby").setExecutor(new Teleport(this));
+		this.getCommand("tpmap").setExecutor(new Teleport());
+		this.getCommand("tplobby").setExecutor(new Teleport());
 		
 		this.getCommand("hub").setExecutor(new LobbyCommands(this));
 	}
@@ -332,11 +285,11 @@ public class Main extends JavaPlugin{
 	}
 	
 	public Villager VillagerShopSpawner() {
-		Location loc = new TeleportAPI(this).getVillagerShopLocation();
+		Location loc = TeleportAPI.getVillagerShopLocation();
 		
 		if(loc != null) {
 			Villager villager = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
-			villagerholo = new Holograms(new Location(loc.getWorld(), loc.getX(), loc.getY()+1.7, loc.getZ()), "§6Shop");
+			Library.villagerholo = new Holograms(new Location(loc.getWorld(), loc.getX(), loc.getY()+1.7, loc.getZ()), "§6Shop");
 			villager.setAgeLock(true);
 			villager.setCanPickupItems(false);
 			new VillagerThread(villager, loc).start();

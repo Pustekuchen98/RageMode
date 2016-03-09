@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.MySQL.SQLCoins;
@@ -14,12 +15,8 @@ public class KnifeThread implements Runnable{
 	private Thread thread;
 	private boolean running;
 	
-	private Main plugin;
-	
-	public KnifeThread(Main main){
+	public KnifeThread(){
 		this.thread = new Thread(this);
-		
-		this.plugin = main;
 	}
 	
 	public void start(){
@@ -41,11 +38,11 @@ public class KnifeThread implements Runnable{
 			
 			if(Main.status == Status.INGAME) {
 				for(Player player : Bukkit.getOnlinePlayers()) {
-					 Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+					 Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 						@Override
 						public void run() {
-							if(!plugin.spectatorlist.contains(player)) {
-								if(!plugin.powerup_speedeffect.contains(player)) {
+							if(!Library.spectatorlist.contains(player)) {
+								if(!Library.powerup_speedeffect.contains(player)) {
 									if(player.getInventory().getItemInMainHand().getType() == Material.IRON_SPADE) {
 										if(Main.isMySQL && Main.isShop) {
 											if(SQLCoins.getSpeedUpgrade(player.getUniqueId().toString())) player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 1));

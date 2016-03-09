@@ -4,19 +4,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import at.dafnik.ragemode.API.Strings;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
 public class Lobby {
 	
-	private String pre;
-	private Main plugin;
+	private String pre = Main.pre;
 	public Warmup wm;
 	
-	public Lobby(Main main){
-		this.plugin = main;
-		this.pre = Main.pre;
-		this.wm = new Warmup(plugin);
+	public Lobby(){
+		this.wm = new Warmup();
 	}
 	
 	public int lobbywplayerstime = 10;
@@ -29,16 +27,16 @@ public class Lobby {
 	
 	public void lobbywplayers(){
 		Main.status = Status.PRE_LOBBY;
-		lobbywplayersid = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable(){
+		lobbywplayersid = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable(){
 			
 			@Override
 			public void run(){
 				
-				int needplayers = plugin.getConfig().getInt("ragemode.settings.neededplayers");
+				int needplayers = Main.getInstance().getConfig().getInt("ragemode.settings.neededplayers");
 				
 				if(lobbywplayerstime <=0){
 					lobbywplayerstime = 10;
-					plugin.getServer().getScheduler().cancelTask(lobbywplayersid);
+					Main.getInstance().getServer().getScheduler().cancelTask(lobbywplayersid);
 					if(Bukkit.getOnlinePlayers().size() < needplayers){
 						Bukkit.broadcastMessage(Strings.error_not_enough_player);
 						Bukkit.broadcastMessage(Strings.error_needed_player + needplayers);
@@ -50,7 +48,7 @@ public class Lobby {
 				}
 				
 				if(Main.isShop && Main.isMySQL) {
-					if(Bukkit.getOnlinePlayers().size() > 0 && plugin.villager == null) plugin.villager = plugin.VillagerShopSpawner();		
+					if(Bukkit.getOnlinePlayers().size() > 0 && Library.villager == null) Library.villager = Main.getInstance().VillagerShopSpawner();		
 				}
 				
 				lobbywplayerstime--;
@@ -59,14 +57,14 @@ public class Lobby {
 	}
 	
 	public void lobby(){
-		lobbyid = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable(){
+		lobbyid = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable(){
 			
 			@Override
 			public void run(){
 				
 				Main.status = Status.LOBBY;
 				
-				int needplayers = plugin.getConfig().getInt("ragemode.settings.neededplayers");
+				int needplayers = Main.getInstance().getConfig().getInt("ragemode.settings.neededplayers");
 				
 				for(Player player : Bukkit.getOnlinePlayers()){
 					player.setLevel(lobbytime);
@@ -74,26 +72,26 @@ public class Lobby {
 				
 				if(lobbytime <= 0){
 					lobbytime = 50;
-					plugin.getServer().getScheduler().cancelTask(lobbyid);
+					Main.getInstance().getServer().getScheduler().cancelTask(lobbyid);
 					if (Bukkit.getOnlinePlayers().size() < needplayers) {
 						Bukkit.broadcastMessage(Strings.error_not_enough_player);
 						Bukkit.broadcastMessage(Strings.error_needed_player + needplayers);
-						plugin.mapvote.Mapvotenull();
+						Main.getInstance().mapvote.Mapvotenull();
 						lobbywplayers();
 						return;
 					}
 					
-					plugin.mapvote.getResult();
+					Main.getInstance().mapvote.getResult();
 					
-					if(plugin.villager != null) {
-						plugin.villager.remove();
-						plugin.villager = null;
+					if(Library.villager != null) {
+						Library.villager.remove();
+						Library.villager = null;
 					}
 					
 					//Mapname
-					Bukkit.broadcastMessage(pre + "§eMap§8: §6" + plugin.votedmap);
+					Bukkit.broadcastMessage(pre + "§eMap§8: §6" + Library.votedmap);
 					//Mapauthor
-					String mapauthor = plugin.getConfig().getString("ragemode.mapspawn." + plugin.votedmap + ".mapauthor");
+					String mapauthor = Main.getInstance().getConfig().getString("ragemode.mapspawn." + Library.votedmap + ".mapauthor");
 					if(mapauthor == null) mapauthor = "No author";
 					Bukkit.broadcastMessage(pre + "§eAuthor§8: §6" + mapauthor);
 					
@@ -102,7 +100,7 @@ public class Lobby {
 				}else if(lobbytime == 50){
 					Bukkit.broadcastMessage(pre + "§ePlayers online§8: §b" + Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers());
 					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");
-					plugin.mapvote.getListBroadcast();
+					Main.getInstance().mapvote.getListBroadcast();
 					
 				}else if(lobbytime == 40){
 					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");
@@ -110,7 +108,7 @@ public class Lobby {
 				}else if(lobbytime == 30){
 					Bukkit.broadcastMessage(pre + "§ePlayers online§8: §b" + Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers());
 					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");
-					plugin.mapvote.getListBroadcast();
+					Main.getInstance().mapvote.getListBroadcast();
 					
 				}else if(lobbytime == 20){
 					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");
@@ -118,7 +116,7 @@ public class Lobby {
 				}else if(lobbytime == 10){
 					Bukkit.broadcastMessage(pre + "§ePlayers online§8: §b" + Bukkit.getOnlinePlayers().size() + "§8/§b" + Bukkit.getMaxPlayers());		
 					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");
-					plugin.mapvote.getListBroadcast();
+					Main.getInstance().mapvote.getListBroadcast();
 					
 				}else if(lobbytime == 5){
 					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");

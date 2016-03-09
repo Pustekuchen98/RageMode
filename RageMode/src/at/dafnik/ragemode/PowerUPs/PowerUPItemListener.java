@@ -18,24 +18,20 @@ import at.dafnik.ragemode.API.Holograms;
 import at.dafnik.ragemode.API.Manager;
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Items.Items;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
 public class PowerUPItemListener implements Listener{
 	
-	private Main plugin;
 	private int time = 30*20;
-	
-	public PowerUPItemListener(Main main){
-		this.plugin = main;
-	}
 	
 	@EventHandler
 	public void DespawnItem(ItemDespawnEvent event) {
 		Entity entity = event.getEntity();
 		
 		if(Main.status == Status.INGAME) {
-			if(plugin.powerup_entity.contains(entity)) event.setCancelled(true);
+			if(Library.powerup_entity.contains(entity)) event.setCancelled(true);
 			else event.setCancelled(false);
 		} else {
 			event.setCancelled(false);
@@ -52,13 +48,13 @@ public class PowerUPItemListener implements Listener{
 			if(player.hasPermission("ragemode.admin")) event.setCancelled(false);
 			else event.setCancelled(true);
 		} else {
-			if(plugin.powerup_entity.contains(entity)) {
+			if(Library.powerup_entity.contains(entity)) {
 				event.setCancelled(true);
 				
-				Holograms holo = plugin.powerup_hashmap.get(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
+				Holograms holo = Library.powerup_hashmap.get(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
 				for(Player players : Bukkit.getOnlinePlayers()) holo.destroy(players);
-				plugin.powerup_hashmap.remove(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
-				plugin.powerup_list.remove(holo);
+				Library.powerup_hashmap.remove(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
+				Library.powerup_list.remove(holo);
 
 				switch(new Random().nextInt(11)) {
 				case 0:
@@ -134,7 +130,7 @@ public class PowerUPItemListener implements Listener{
 				player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1000, 1);
 					
 				entity.remove();
-				plugin.powerup_entity.remove(entity);
+				Library.powerup_entity.remove(entity);
 				
 			} else {
 				event.setCancelled(true);
@@ -144,11 +140,11 @@ public class PowerUPItemListener implements Listener{
 	}
 	
 	private void giveDoubleJump(Player player) {
-		plugin.powerup_doublejump.add(player);
-		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+		Library.powerup_doublejump.add(player);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 			@Override
 			public void run() {
-				plugin.powerup_doublejump.remove(player);
+				Library.powerup_doublejump.remove(player);
 			}
 		}, time);
 	}
@@ -156,7 +152,7 @@ public class PowerUPItemListener implements Listener{
 	private void giveInvisibility(Player player) {
 		player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, time, 3, false));
 		player.getInventory().setHelmet(null);
-		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 			@Override
 			public void run() {
 				Manager.HelmetManagerMethode(player);
@@ -165,17 +161,17 @@ public class PowerUPItemListener implements Listener{
 	}
 	
 	private void giveSpeed(Player player) {
-		plugin.powerup_speedeffect.add(player);
-		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+		Library.powerup_speedeffect.add(player);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 			@Override
 			public void run() {
 				player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, (time-1), 3));
 			}
 		}, 20);
-		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 			@Override
 			public void run() {
-				plugin.powerup_speedeffect.remove(player);
+				Library.powerup_speedeffect.remove(player);
 			}
 		}, time);
 	}

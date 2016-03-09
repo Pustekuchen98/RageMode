@@ -25,17 +25,12 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import at.dafnik.ragemode.API.Strings;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.MySQL.SQLCoins;
 
 public class Knife implements Listener{
-	
-	private Main plugin;
-	
-	public Knife(Main main) {
-		this.plugin = main;
-	}
 	
 	List<Integer> idlists = new ArrayList<>();
 	List<Player> knifelist = new ArrayList<>();
@@ -88,7 +83,7 @@ public class Knife implements Listener{
 								vector.setY(vectory);
 								
 								if(entities instanceof Player){
-									if(plugin.ingameplayer.contains((Player)entities) && !(plugin.respawnsafe.contains((Player)entities))){
+									if(Library.ingameplayer.contains((Player)entities) && !(Library.respawnsafe.contains((Player)entities))){
 										entities.setVelocity(vector);
 										((Player) entities).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 3*20, 3));
 										((Player) entities).addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 3*20, 3));
@@ -100,7 +95,7 @@ public class Knife implements Listener{
 						
 						if(time.get(player) == null || time.get(player) == 0) time.put(player, 10);
 						
-						idlists.add(Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable(){
+						idlists.add(Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable(){
 							@Override
 							public void run(){
 								if(time.get(player) <=0){
@@ -143,7 +138,7 @@ public class Knife implements Listener{
 	}
 	
 	private void give(Player player, int howmany, ItemStack item) {
-		if(!plugin.respawnsafe.contains(player)) {	
+		if(!Library.respawnsafe.contains(player)) {	
 			if(howmany == 10) item.setDurability((short)250);
 			ItemMeta imd = item.getItemMeta();
 			if(!(howmany == 0)) {
@@ -165,17 +160,17 @@ public class Knife implements Listener{
 				Player killer = (Player) event.getDamager();
 				Player victim = (Player) event.getEntity();
 				
-				if (!plugin.respawnsafe.contains(victim)) {
+				if (!Library.respawnsafe.contains(victim)) {
 					if (killer.getInventory().getItemInMainHand().getType() == Material.IRON_SPADE) {
 						
-						Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 							@Override
 							public void run() {
 								if (knifelist.contains(killer)) {
 									knifelist.remove(killer);
 
-									victim.removeMetadata("killedWith", plugin);
-									victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "knife"));
+									victim.removeMetadata("killedWith", Main.getInstance());
+									victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "knife"));
 									event.setCancelled(false);
 
 									double q = victim.getLocation().getDirection().dot(killer.getLocation().getDirection());

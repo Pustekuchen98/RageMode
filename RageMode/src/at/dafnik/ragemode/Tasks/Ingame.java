@@ -12,6 +12,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.potion.PotionEffectType;
 
 import at.dafnik.ragemode.Main.Main.Status;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.MySQL.SQLCoins;
 import at.dafnik.ragemode.MySQL.SQLStats;
@@ -22,13 +23,11 @@ import at.dafnik.ragemode.Commands.LobbyCommands;
 
 public class Ingame {
 	
-	private Main plugin;
 	private LobbyCommands LobbyCommands;
 	public Player playerwinner;
 	
-	public Ingame(Main main){
-		this.plugin = main;
-		this.LobbyCommands = new LobbyCommands(plugin);
+	public Ingame(){
+		this.LobbyCommands = new LobbyCommands(Main.getInstance());
 	}
 	
 	public int ingameid;
@@ -41,9 +40,9 @@ public class Ingame {
 	private int stay = 60;
 	
 	public void ingame(){
-		ingameid = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable(){
+		ingameid = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable(){
 			
-			public int ingametime = plugin.getConfig().getInt("ragemode.settings.gametime");
+			public int ingametime = Main.getInstance().getConfig().getInt("ragemode.settings.gametime");
 			
 			public void run(){
 				
@@ -73,7 +72,7 @@ public class Ingame {
 					
 					win();
 					
-					plugin.getServer().getScheduler().cancelTask(ingameid);
+					Main.getInstance().getServer().getScheduler().cancelTask(ingameid);
 				}
 				
 				ingametime--;
@@ -83,7 +82,7 @@ public class Ingame {
 	
 	public void win() {
 		Main.status = Status.WIN;
-		winid = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+		winid = Main.getInstance().getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
 			@Override
 			public void run() {
 				RocketClean();
@@ -120,9 +119,9 @@ public class Ingame {
 							players.getInventory().setChestplate(null);
 							players.getInventory().setHelmet(null);
 							
-							plugin.powerup_doublejump.remove(players);
-							plugin.powerup_speedeffect.remove(players);
-							plugin.powerup_flyparticle.remove(players);
+							Library.powerup_doublejump.remove(players);
+							Library.powerup_speedeffect.remove(players);
+							Library.powerup_flyparticle.remove(players);
 							
 							Warmup.team.removeEntry(players.getName());
 						}
@@ -140,8 +139,8 @@ public class Ingame {
 				} else if (wintime == 1) {
 					Bukkit.broadcastMessage(Strings.tasks_restart_countdown_1 + wintime + Strings.tasks_restart_countdown_21);
 				} else if (wintime == 0) {
-					plugin.getServer().broadcastMessage(Strings.tasks_restart_now);
-					plugin.getServer().getScheduler().cancelTask(winid);
+					Main.getInstance().getServer().broadcastMessage(Strings.tasks_restart_now);
+					Main.getInstance().getServer().getScheduler().cancelTask(winid);
 					kickPlayer();
 					
 					restart();
@@ -168,10 +167,10 @@ public class Ingame {
 			} else {			
 				int yourpoints;
 				
-				if(plugin.spectatorlist.contains(player)) {
+				if(Library.spectatorlist.contains(player)) {
 					yourpoints = -10;
 				} else {
-					yourpoints = plugin.playerpoints.get(player);
+					yourpoints = Library.playerpoints.get(player);
 				}
 				
 				if(playerwinner == null){
@@ -195,8 +194,8 @@ public class Ingame {
 							+ "\n§eThe server is back in few seconds");
 				 } else {
 					 int winnerpoints = 0;
-					 if(plugin.playerpoints.get(playerwinner) == null) winnerpoints = 0;			 
-					 else winnerpoints = plugin.playerpoints.get(playerwinner);
+					 if(Library.playerpoints.get(playerwinner) == null) winnerpoints = 0;			 
+					 else winnerpoints = Library.playerpoints.get(playerwinner);
 					
 					 if(yourpoints == -10) {
 						 player.kickPlayer(Main.pre + 
@@ -216,9 +215,9 @@ public class Ingame {
 	}
 	
 	public void RocketClean() {
-		for(Entity entities : plugin.powerup_entity) entities.remove();
+		for(Entity entities : Library.powerup_entity) entities.remove();
 		
-		Location loc = new TeleportAPI(plugin).getRandomMapSpawnLocations();
+		Location loc = TeleportAPI.getRandomMapSpawnLocations();
 		Firework firework = loc.getWorld().spawn(loc, Firework.class);
 		FireworkMeta data = (FireworkMeta) firework.getFireworkMeta();
 		data.addEffect(FireworkEffect.builder().withColor(Color.AQUA, Color.BLACK, Color.BLUE, Color.FUCHSIA, Color.GRAY, Color.GREEN, Color.LIME, Color.MAROON, Color.NAVY, Color.NAVY, Color.OLIVE, Color.ORANGE, Color.PURPLE, Color.RED, Color.SILVER, Color.TEAL, Color.WHITE, Color.YELLOW).with(Type.BALL).with(Type.BALL_LARGE).with(Type.BURST).with(Type.CREEPER).with(Type.STAR).withFade(Color.AQUA, Color.BLACK, Color.BLUE, Color.FUCHSIA, Color.GRAY, Color.GREEN, Color.LIME, Color.MAROON, Color.NAVY, Color.NAVY, Color.OLIVE, Color.ORANGE, Color.PURPLE, Color.RED, Color.SILVER, Color.TEAL, Color.WHITE, Color.YELLOW).build());
@@ -229,14 +228,14 @@ public class Ingame {
 	
 	public void getPlayerWinner() {
 		int max = 0;
-		for(int i : plugin.playerpoints.values()){
+		for(int i : Library.playerpoints.values()){
 			if(i > max){
 				max = i;
 			}
 		}
 		
-		for(Player all : plugin.playerpoints.keySet()){
-			if(plugin.playerpoints.get(all) == max){
+		for(Player all : Library.playerpoints.keySet()){
+			if(Library.playerpoints.get(all) == max){
 				playerwinner = all;
 			}
 		}

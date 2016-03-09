@@ -6,6 +6,7 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
 
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
@@ -17,15 +18,11 @@ public class AxeThrow implements Runnable{
 	private boolean running;
 	private Item item;
 	
-	private Main plugin;
-	
-	public AxeThrow(Player player, double radius, Item item, Main main){
+	public AxeThrow(Player player, double radius, Item item){
 		this.player = player;
 		this.radius = radius;
 		this.item = item;
 		this.thread = new Thread(this);
-		
-		this.plugin = main;
 	}
 	
 	public void start(){
@@ -50,14 +47,14 @@ public class AxeThrow implements Runnable{
 					
 					if(victim != player){
 						if(Main.status == Status.INGAME) {
-							if(!plugin.spectatorlist.contains(victim)) {
-								if(!plugin.respawnsafe.contains(victim)) {
+							if(!Library.spectatorlist.contains(victim)) {
+								if(!Library.respawnsafe.contains(victim)) {
 
-							        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+							        Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 										@Override
 										public void run() {
-											victim.removeMetadata("killedWith", plugin);
-											victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "combataxe"));
+											victim.removeMetadata("killedWith", Main.getInstance());
+											victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "combataxe"));
 											victim.damage(41, player);
 										}
 									}, 1);

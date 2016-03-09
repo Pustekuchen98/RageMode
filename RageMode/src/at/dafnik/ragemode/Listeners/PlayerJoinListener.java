@@ -21,6 +21,7 @@ import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.API.TeleportAPI;
 import at.dafnik.ragemode.API.Title;
 import at.dafnik.ragemode.Items.Items;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.Main.PowerSystem;
@@ -29,15 +30,10 @@ import at.dafnik.ragemode.MySQL.SQLStats;
 
 public class PlayerJoinListener implements Listener{
 
-	private Main plugin;
 	private int power;
 	private int fadein = 5;
 	private int fadeout = 5;
 	private int stay = 20;
-	
-	public PlayerJoinListener(Main main){
-		this.plugin = main;
-	}
 	
 	@EventHandler
 	public void Join(PlayerJoinEvent event){
@@ -67,7 +63,7 @@ public class PlayerJoinListener implements Listener{
 			
 			player.setGameMode(GameMode.SURVIVAL);
 			
-			Location loc = new TeleportAPI(plugin).getLobbyLocation();
+			Location loc = TeleportAPI.getLobbyLocation();
 			if(loc == null) System.out.println(Strings.error_not_existing_lobbyspawn);
 			else player.teleport(loc);
 			
@@ -82,9 +78,9 @@ public class PlayerJoinListener implements Listener{
 			if(Main.isMySQL && Main.isShop) {
 				Items.givePlayerShopItem(player);
 				
-				Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
+				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable(){
 					 public void run(){
-						  if(plugin.villager != null && plugin.villagerholo != null) plugin.villagerholo.display(player);
+						  if(Library.villager != null && Library.villagerholo != null) Library.villagerholo.display(player);
 				     }
 				 }, 20);
 			}
@@ -92,12 +88,12 @@ public class PlayerJoinListener implements Listener{
 			if(Main.isMySQL) {
 				SQLStats.createPlayer(player.getUniqueId().toString());
 				
-				Bukkit.getScheduler().runTaskLater(this.plugin, new Runnable(){
+				Bukkit.getScheduler().runTaskLater(Main.getInstance(), new Runnable(){
 					 public void run(){
-						 String w = plugin.getConfig().getString("ragemode.hologram.world");
-							double x = plugin.getConfig().getDouble("ragemode.hologram.x");
-							double y = plugin.getConfig().getDouble("ragemode.hologram.y");
-							double z = plugin.getConfig().getDouble("ragemode.hologram.z");
+						 String w = Main.getInstance().getConfig().getString("ragemode.hologram.world");
+							double x = Main.getInstance().getConfig().getDouble("ragemode.hologram.x");
+							double y = Main.getInstance().getConfig().getDouble("ragemode.hologram.y");
+							double z = Main.getInstance().getConfig().getDouble("ragemode.hologram.z");
 							
 							Location loc = new Location(Bukkit.getWorld(w), x, y, z);
 							List<String> lines = new ArrayList<String>();
@@ -145,21 +141,21 @@ public class PlayerJoinListener implements Listener{
 		} else if(Main.status == Status.INGAME){
 			Manager.DisplayNameManagerMethode(player, "spectator");
 			
-			plugin.spectatorlist.add(player);
-			plugin.bar.addPlayer(player);
+			Library.spectatorlist.add(player);
+			Library.bar.addPlayer(player);
 			
 			event.setJoinMessage(null);
 			
-			player.teleport(new TeleportAPI(plugin).getRandomMapSpawnLocations());
+			player.teleport(TeleportAPI.getRandomMapSpawnLocations());
 			player.setGameMode(GameMode.SPECTATOR);		
 			
 			Title.sendTabList(player , "§bRageMode");
 		    Title.sendTitle(player, fadein, stay, fadeout, "§6Spectator");
 		    Title.sendSubtitle(player, fadein, 40, fadeout, "§bmode");
 			
-			Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable(){
 				 public void run(){
-			         for(Holograms holo : plugin.powerup_list) {
+			         for(Holograms holo : Library.powerup_list) {
 			        	 holo.display(player);
 			         }
 			     }
@@ -196,7 +192,7 @@ public class PlayerJoinListener implements Listener{
 		} else if(Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) {
 			power = PowerSystem.getPower(event.getPlayer());
 		
-			if(plugin.getServer().getOnlinePlayers().size() >= Bukkit.getMaxPlayers()){
+			if(Main.getInstance().getServer().getOnlinePlayers().size() >= Bukkit.getMaxPlayers()){
 				if(power == 0){
 					event.disallow(Result.KICK_OTHER, Strings.error_game_is_full);
 					return;

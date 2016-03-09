@@ -12,6 +12,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.metadata.FixedMetadataValue;
 
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
@@ -23,16 +24,12 @@ public class ClayMoreThread implements Runnable{
 	Thread thread;
 	boolean running;
 	
-	private Main plugin;
-	
-	public ClayMoreThread(Player setter, double radius, Block block, Main main) {
+	public ClayMoreThread(Player setter, double radius, Block block) {
 		this.radius = radius;
 		this.setter = setter;
 		this.block = block;
 		
 		this.thread = new Thread(this);
-		
-		this.plugin = main;
 	}
 	
 	public void start() {
@@ -57,16 +54,16 @@ public class ClayMoreThread implements Runnable{
 						
 					if(victim != setter) {	
 						if(Main.status == Status.INGAME) {
-							if(!plugin.spectatorlist.contains(victim)) {
-								if(!plugin.respawnsafe.contains(victim)) {
+							if(!Library.spectatorlist.contains(victim)) {
+								if(!Library.respawnsafe.contains(victim)) {
 									Location loc = block.getLocation();
 									
-									Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+									Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 										@SuppressWarnings("deprecation")
 										@Override
 										public void run() {
-											victim.removeMetadata("killedWith", plugin);
-											victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "claymore"));
+											victim.removeMetadata("killedWith", Main.getInstance());
+											victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "claymore"));
 											victim.damage(11, setter);
 											victim.setLastDamageCause(new EntityDamageEvent(setter, DamageCause.PROJECTILE, 0));
 											
@@ -84,7 +81,7 @@ public class ClayMoreThread implements Runnable{
 			}
 		
 			if(block == null){
-				Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 					@Override
 					public void run() {
 						block.getLocation().getBlock().setType(Material.AIR);

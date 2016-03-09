@@ -4,17 +4,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
 public class CompassThread implements Runnable {
 	Thread thread;
 	boolean running;
-	public boolean runningsave = true;
-	Main plugin;
 	
 	public CompassThread(Main main) {
-		this.plugin = main;
 		this.thread = new Thread(this);
 	}
 	
@@ -61,7 +59,7 @@ public class CompassThread implements Runnable {
 					if(entity instanceof Player) {
 						if(!entity.isDead()) {
 							Player gettet = (Player) entity;
-							if(!(plugin.spectatorlist.contains(gettet))) {
+							if(!(Library.spectatorlist.contains(gettet))) {
 								double dis = player.getLocation().distance(entity.getLocation());
 								if(dis < distance) {
 									distance = dis;

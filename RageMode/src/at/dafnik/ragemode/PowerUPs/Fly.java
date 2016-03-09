@@ -15,17 +15,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
 public class Fly implements Listener{
 	
 	private int duration = 3;
-	private Main plugin;
-	
-	public Fly(Main main) {
-		this.plugin = main;
-	}
 	
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
@@ -39,9 +35,9 @@ public class Fly implements Listener{
 						player.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, duration * 20, 15));
 						player.getInventory().setChestplate(new ItemStack(Material.ELYTRA, 1));
 						player.getInventory().remove(event.getItem());
-						plugin.powerup_flyparticle.add(player);
+						Library.powerup_flyparticle.add(player);
 						
-						new FlyThread(plugin, player).start();
+						new FlyThread(player).start();
 					}
 				}
 			}
@@ -54,7 +50,7 @@ public class Fly implements Listener{
 			Player player = event.getPlayer();
 			Location loc = player.getLocation();
 			
-			if(plugin.powerup_flyparticle.contains(player)) {
+			if(Library.powerup_flyparticle.contains(player)) {
 				Random random = new Random();
 				int irand = random.nextInt(10);
 				

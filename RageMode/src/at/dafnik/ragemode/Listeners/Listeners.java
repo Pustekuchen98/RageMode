@@ -19,16 +19,11 @@ import org.bukkit.util.Vector;
 
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.API.TeleportAPI;
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
 public class Listeners implements Listener {
-	
-	private Main plugin;
-	
-	public Listeners(Main main) {
-		this.plugin = main;
-	}
 	
 	List<Player> vectorlist = new ArrayList<Player>();
 	Boolean happened = false;
@@ -42,10 +37,10 @@ public class Listeners implements Listener {
 		
 		if(Main.status == Status.INGAME){	
 			if(event.getTo().getY() <= 0.0D){
-				player.teleport(new TeleportAPI(plugin).getRandomMapSpawnLocations());
+				player.teleport(TeleportAPI.getRandomMapSpawnLocations());
 				
-				if(plugin.ingameplayer.contains(player)) {
-					Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable(){
+				if(Library.ingameplayer.contains(player)) {
+					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable(){
 						 public void run(){
 							 player.setHealth(0.0D);
 						  }
@@ -53,7 +48,7 @@ public class Listeners implements Listener {
 					
 					player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_HURT, 10, 1);
 					
-				} else if(plugin.spectatorlist.contains(player)) player.sendMessage(Strings.map_worldborder);
+				} else if(Library.spectatorlist.contains(player)) player.sendMessage(Strings.map_worldborder);
 					
 				else System.out.println(Strings.error_not_authenticated_player);
 				
@@ -62,7 +57,7 @@ public class Listeners implements Listener {
 			
 			if(!happened) {
 				if(mapmiddle == null) {
-					mapmiddle = new TeleportAPI(plugin).getMapMiddleLocation();
+					mapmiddle = TeleportAPI.getMapMiddleLocation();
 					if(mapmiddle == null) {
 						System.out.println(Strings.error_not_existing_map_middle_point);
 						happened = true;
@@ -70,7 +65,7 @@ public class Listeners implements Listener {
 					}
 				}
 				
-				Integer distance = plugin.getConfig().getInt("ragemode.mapspawn." + plugin.votedmap + ".mapradius");
+				Integer distance = Main.getInstance().getConfig().getInt("ragemode.mapspawn." + Library.votedmap + ".mapradius");
 				
 				if(mapmiddle.distance(loc) > distance) {
 					int aX = mapmiddle.getBlockX();
@@ -101,7 +96,7 @@ public class Listeners implements Listener {
 						player.sendMessage(Strings.map_worldborder);
 						vectorlist.add(player);
 						
-						Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 							@Override
 							public void run() {
 								vectorlist.remove(player);
@@ -129,7 +124,7 @@ public class Listeners implements Listener {
 	
 			if(entity instanceof Player) {
 				Player player = (Player) entity;
-				if(plugin.respawnsafe.contains(player)) {
+				if(Library.respawnsafe.contains(player)) {
 					event.setCancelled(true);
 				}
 			}			
@@ -155,14 +150,14 @@ public class Listeners implements Listener {
 				
 			} else if (Main.status == Status.WARMUP) {
 				event.setMotd("§4RageMode §8- §cWarmup\n"
-							+ "§3Played Map§8: §6" + plugin.votedmap);
+							+ "§3Played Map§8: §6" + Library.votedmap);
 			} else if (Main.status == Status.INGAME) {
 				event.setMotd("§4RageMode §8- §4Ingame\n"
-							+ "§3Played Map§8: §6" + plugin.votedmap);
+							+ "§3Played Map§8: §6" + Library.votedmap);
 			} else if (Main.status == Status.WIN || Main.status == Status.RESTART) {
-				if(plugin.lobbytasks.wm.ig.playerwinner != null) {
+				if(Main.getInstance().lobbytasks.wm.ig.playerwinner != null) {
 					event.setMotd("§4RageMode §8- §eWin\n"
-								+ "§3Winner§8: §6" + plugin.lobbytasks.wm.ig.playerwinner.getDisplayName() + " §8- §6" + plugin.playerpoints.get(plugin.lobbytasks.wm.ig.playerwinner));
+								+ "§3Winner§8: §6" + Main.getInstance().lobbytasks.wm.ig.playerwinner.getDisplayName() + " §8- §6" + Library.playerpoints.get(Main.getInstance().lobbytasks.wm.ig.playerwinner));
 				} else {
 					event.setMotd("§4RageMode §8- §eWin\n"
 								+ "§4No §3Winner");

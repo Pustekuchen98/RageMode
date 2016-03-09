@@ -8,16 +8,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import at.dafnik.ragemode.API.Strings;
-import at.dafnik.ragemode.Main.Main;
+import at.dafnik.ragemode.Main.Library;
 
 public class Compass implements Listener{
 	
 	double distance = Double.MAX_VALUE;
-	private Main plugin;
 	
-	public Compass(Main main) {
-		this.plugin = main;
-	}
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
@@ -48,7 +44,7 @@ public class Compass implements Listener{
 			for(Entity entity : player.getNearbyEntities(3000, 3000, 3000)) {
 				if(entity instanceof Player) {
 					Player gettet = (Player) entity;
-					if(!(plugin.spectatorlist.contains(gettet))) {
+					if(!(Library.spectatorlist.contains(gettet))) {
 						double dis = player.getLocation().distance(entity.getLocation());
 						if(dis < distance) {
 							distance = dis;

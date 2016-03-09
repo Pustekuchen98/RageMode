@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.MySQL.SQLCoins;
 import net.minecraft.server.v1_9_R1.MathHelper;
@@ -19,12 +20,10 @@ public class Explosion {
 	private double radius = 5;
 	private String ground = null;
 	private Player shooter;
-	Main plugin;
 	
-	public Explosion(String ground, Location loc, Player shooter, Main main) {
+	public Explosion(String ground, Location loc, Player shooter) {
 		this.ground = ground;
 		this.loc = loc;
-		this.plugin = main;
 		this.shooter = shooter;
 		Explosioner();
 	}
@@ -38,7 +37,7 @@ public class Explosion {
 			
 		for (Entity entities : loc.getWorld().getNearbyEntities(loc, radius, radius, radius)) {
 			if (entities instanceof Player) {
-				if(!plugin.spectatorlist.contains(entities)) {
+				if(!Library.spectatorlist.contains(entities)) {
 					double distance = loc.distance(entities.getLocation());
 					Location eloc = entities.getLocation();
 					double damage = (radius - distance) * 7;
@@ -46,12 +45,12 @@ public class Explosion {
 					Player killer = shooter;
 					Player victim = (Player) entities;
 					
-					if(victim.getMetadata("killedWith") != null && !victim.getMetadata("killedWith").isEmpty()) victim.removeMetadata("killedWith", plugin);
+					if(victim.getMetadata("killedWith") != null && !victim.getMetadata("killedWith").isEmpty()) victim.removeMetadata("killedWith", Main.getInstance());
 					
 					if(ground == "bow") {
 						if(Main.isMySQL && Main.isShop) if(SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString())) damage = (radius - distance) * 9;		
-						victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "bow"));
-					} else if(ground == "grenade") victim.setMetadata("killedWith", new FixedMetadataValue(plugin, "grenade"));
+						victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "bow"));
+					} else if(ground == "grenade") victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "grenade"));
 					else System.out.println(Strings.error_explosion_no_killground);
 
 					victim.damage(damage, killer);
@@ -60,7 +59,7 @@ public class Explosion {
 						if(SQLCoins.getSpectralArrowUpgrade(shooter.getUniqueId().toString())) {
 							victim.setGlowing(true);
 							
-							Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+							Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 								@Override
 								public void run() {			
 									victim.setGlowing(false);

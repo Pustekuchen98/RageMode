@@ -20,22 +20,17 @@ import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Main;
 
 public class Ranking {
-	
-	private Main plugin;
-	private Boolean happened = false;
-	
-	public Ranking(Main main) {
-		this.plugin = main;
-	}
+
+	private static Boolean happened = false;
 	
 	static HashMap<Integer, String> rang = new HashMap<Integer, String>();
 	
-	public void set() {
+	public static void set() {
 		
 		if(Main.isMySQL) {
 			
-			int howmany = plugin.getConfig().getInt("ragemode.ranking.rankingnumber");
-			int rotation = plugin.getConfig().getInt("ragemode.ranking.rotation");
+			int howmany = Main.getInstance().getConfig().getInt("ragemode.ranking.rankingnumber");
+			int rotation = Main.getInstance().getConfig().getInt("ragemode.ranking.rotation");
 			
 			ResultSet rs = Main.mysql.query("SELECT UUID FROM Stats ORDER BY POINTS DESC LIMIT " + howmany);
 			
@@ -53,10 +48,10 @@ public class Ranking {
 			List<Location> LOC = new ArrayList<Location>();
 			
 			for(int ix = 0; ix < howmany; ix++) {
-				String w = plugin.getConfig().getString("ragemode.ranking.positions." + ix + ".world");
-				double x = plugin.getConfig().getInt("ragemode.ranking.positions." + ix + ".x");
-				double y = plugin.getConfig().getInt("ragemode.ranking.positions." + ix + ".y");
-				double z = plugin.getConfig().getInt("ragemode.ranking.positions." + ix + ".z");
+				String w = Main.getInstance().getConfig().getString("ragemode.ranking.positions." + ix + ".world");
+				double x = Main.getInstance().getConfig().getInt("ragemode.ranking.positions." + ix + ".x");
+				double y = Main.getInstance().getConfig().getInt("ragemode.ranking.positions." + ix + ".y");
+				double z = Main.getInstance().getConfig().getInt("ragemode.ranking.positions." + ix + ".z");
 				
 				Location lloc = new Location(Bukkit.getWorld(w), x, y, z);
 				

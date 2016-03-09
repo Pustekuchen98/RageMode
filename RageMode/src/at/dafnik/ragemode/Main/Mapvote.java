@@ -42,7 +42,7 @@ public class Mapvote implements CommandExecutor{
 				
 				if(!mapsinlist.contains(randomzahl)) {
 					mapsinlist.add(randomzahl);
-					plugin.mapstovote.add(plugin.getConfig().getString("ragemode.mapnames.mapnames." + randomzahl));
+					Library.mapstovote.add(plugin.getConfig().getString("ragemode.mapnames.mapnames." + randomzahl));
 				} else {
 					i--;
 				}
@@ -54,18 +54,18 @@ public class Mapvote implements CommandExecutor{
 		int mapnamenumber = plugin.getConfig().getInt("ragemode.mapnames.mapnamenumber");
 		
 		for (int i = 0; i < mapnamenumber; i++) {	
-			plugin.maps.add(plugin.getConfig().getString("ragemode.mapnames.mapnames." + i));
+			Library.maps.add(plugin.getConfig().getString("ragemode.mapnames.mapnames." + i));
 		}
 	}
 		
 	// Put Votes on null
 	public void Mapvotenull() {
-		for (String all : plugin.mapstovote) {
-			plugin.votes.put(all, 0);
+		for (String all : Library.mapstovote) {
+			Library.votes.put(all, 0);
 		}
 		
-		for(int i = 0; i < plugin.voted.size(); i++) {
-			plugin.voted.remove(0);
+		for(int i = 0; i < Library.voted.size(); i++) {
+			Library.voted.remove(0);
 		}
 	}
 	
@@ -84,7 +84,7 @@ public class Mapvote implements CommandExecutor{
 				} else if(Main.status == Status.PRE_LOBBY){
 					player.sendMessage(Strings.error_voting_finished);
 				} else {
-					player.sendMessage(Main.pre + "§eMap§8: §6" + plugin.votedmap);
+					player.sendMessage(Main.pre + "§eMap§8: §6" + Library.votedmap);
 				}
 			}
 			
@@ -98,19 +98,19 @@ public class Mapvote implements CommandExecutor{
 					//If Ingame
 					if(Main.status == Status.LOBBY){
 						//Check of Player has also voted
-						if(!plugin.voted.contains(player.getName())){
+						if(!Library.voted.contains(player.getName())){
 							//Check of Map is in Maplist
-							if(plugin.mapstovote.contains(args[0].toLowerCase())) {
+							if(Library.mapstovote.contains(args[0].toLowerCase())) {
 							
 								//Get all Already votes
-								int votes = plugin.votes.get(args[0].toLowerCase());
+								int votes = Library.votes.get(args[0].toLowerCase());
 								votes++;
 								//Put all votes again on
-								plugin.votes.put(args[0].toLowerCase(), votes);
+								Library.votes.put(args[0].toLowerCase(), votes);
 							
 								player.sendMessage(Strings.votes_you_have_voted + args[0]);
 								//Put the Player to already voted
-								plugin.voted.add(player.getName());
+								Library.voted.add(player.getName());
 								
 							}else player.sendMessage(Strings.error_map_cannot_vote);
 							
@@ -130,31 +130,31 @@ public class Mapvote implements CommandExecutor{
 	public void getListCommand(Player player){
 		if(Main.status == Status.LOBBY){
 			player.sendMessage(Strings.votes_vote_for_map);
-			for(String all : plugin.mapstovote){
-				player.sendMessage(pre + "§3- §6" + all + "§3: §c" + plugin.votes.get(all));
+			for(String all : Library.mapstovote){
+				player.sendMessage(pre + "§3- §6" + all + "§3: §c" + Library.votes.get(all));
 			}
 		}else player.sendMessage(Strings.error_voting_finished);	
 	}
 	
 	public void getListBroadcast(){
 		Bukkit.broadcastMessage(Strings.votes_vote_for_map);
-		for(String all : plugin.mapstovote){
-			Bukkit.broadcastMessage(pre + "§3- §6" + all + "§8: §c" + plugin.votes.get(all));
+		for(String all : Library.mapstovote){
+			Bukkit.broadcastMessage(pre + "§3- §6" + all + "§8: §c" + Library.votes.get(all));
 		}
 	}
 	
 	public void getResult() {
 		int max = 0;
-		for(int i : plugin.votes.values()){
+		for(int i : Library.votes.values()){
 			if(i > max){
 				max = i;
 			}
 		}
 		
-		for(String all : plugin.votes.keySet()){
-			if(plugin.votes.get(all) == max){
+		for(String all : Library.votes.keySet()){
+			if(Library.votes.get(all) == max){
 				 mapwinner = all;
-				 plugin.votedmap = mapwinner;
+				 Library.votedmap = mapwinner;
 			}
 		}
 	}
