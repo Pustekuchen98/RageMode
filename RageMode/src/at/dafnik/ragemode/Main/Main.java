@@ -175,15 +175,18 @@ public class Main extends JavaPlugin{
 	}
     
 	private void makeUpdate() {
-		if(getConfig().getString("ragemode.settings.version") != "1.4.0") {
-			getConfig().set("ragemode.settings.version", "1.4.0");
+		if(getConfig().getString("ragemode.settings.version") == null) getConfig().set("ragemode.settings.version", "1.3.3d");
 			
+		if(!(getConfig().getString("ragemode.settings.version").equalsIgnoreCase(getDescription().getVersion()))) {
+			getConfig().set("ragemode.settings.version", "1.4.0");
+				
 			if(isMySQL) mysql.update("ALTER TABLE Coins ADD SPECTRALARROWUPGRADE int DEFAULT 0");
 			
 			getConfig().set("ragemode.shop.spectralarrowupgradeprice", Integer.valueOf(20000));
 			
 			saveConfig();
-			System.out.println(Strings.ragemode_updated_mysql_succesful + " lel");
+			System.out.println(Strings.ragemode_updated_mysql_succesful);
+			
 		}
 	}
 
