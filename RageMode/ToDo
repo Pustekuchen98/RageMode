@@ -3,10 +3,13 @@ Fixes:
 	- some other little fixes
 
 Added:
-	- PowerUP: Flash as PowerUP and on respwan, fly powerup 
+	- PowerUP: Flash and fly PowerUP 
 	- 1.9 Support
-	- Shop Upgrade: Spectral Arrow Upgrade
-	- Smooth Updates! You haven't to recreate the config and the MySQL Database
+	- Shop Upgrade: spectral Arrow Upgrade
+	- Smooth Updates! You haven't to recreate the configuration and the MySQL Database
+	- Auto Update Check for the newest version
 	
 Changes:
 	- PowerUP Spawn time from 2 minutes to 1 minute
+	- rewritten Shop system, now it's easier for me to add new upgrades
+	- performance improvements up to 50%!
