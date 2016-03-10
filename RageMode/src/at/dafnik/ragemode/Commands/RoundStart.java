@@ -16,12 +16,6 @@ import at.dafnik.ragemode.Main.PowerSystem;
 
 public class RoundStart implements CommandExecutor{
 	
-	private Main plugin;
-	
-	public RoundStart(Main main){
-		this.plugin = main;
-	}
-	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 		if(sender instanceof Player){
 			Player player = (Player)sender;
@@ -30,7 +24,7 @@ public class RoundStart implements CommandExecutor{
 				 	if(!(PowerSystem.getPower(player) >= 3)){
 				 		player.sendMessage(Strings.error_permission);
 				 	}else{
-				 		plugin.lobbytasks.lobbytime = 10;
+				 		Main.getInstance().lobbytasks.lobbytime = 10;
 				 	}
 				 }
 				 	 
@@ -38,7 +32,7 @@ public class RoundStart implements CommandExecutor{
 				if (!(PowerSystem.getPower(player) >= 3)) {
 					player.sendMessage(Strings.error_permission);
 				} else {
-					plugin.lobbytasks.lobbytime = 50;
+					Main.getInstance().lobbytasks.lobbytime = 50;
 				}
 			}
 			

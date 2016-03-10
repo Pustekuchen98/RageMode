@@ -105,22 +105,22 @@ public class Shop implements Listener{
 						switch(event.getCurrentItem().getType()) {
 						case FEATHER:
 							player.closeInventory();
-							new createAdvancedInventoryMenu_SpeedUpgrade(Main.getInstance(), player).createBasics();				
+							new createAdvancedInventoryMenu_SpeedUpgrade(player).createBasics();				
 							break;
 						
 						case SULPHUR:
 							player.closeInventory();
-							new createAdvancedInventoryMenu_BowPowerUpgrade(Main.getInstance(), player).createBasics();
+							new createAdvancedInventoryMenu_BowPowerUpgrade(player).createBasics();
 							break;
 							
 						case BLAZE_POWDER:
 							player.closeInventory();
-							new createAdvancedInventoryMenu_KnockbackAbilityUpgrade(Main.getInstance(), player).createBasics();
+							new createAdvancedInventoryMenu_KnockbackAbilityUpgrade(player).createBasics();
 							break;
 							
 						case SPECTRAL_ARROW:
 							player.closeInventory();
-							new createAdvancedInventoryMenu_SpectralArrowUpgrade(Main.getInstance(), player).createBasics();
+							new createAdvancedInventoryMenu_SpectralArrowUpgrade(player).createBasics();
 							break;
 							
 						default:

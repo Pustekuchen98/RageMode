@@ -27,7 +27,7 @@ public class Ingame {
 	public Player playerwinner;
 	
 	public Ingame(){
-		this.LobbyCommands = new LobbyCommands(Main.getInstance());
+		this.LobbyCommands = new LobbyCommands();
 	}
 	
 	public int ingameid;

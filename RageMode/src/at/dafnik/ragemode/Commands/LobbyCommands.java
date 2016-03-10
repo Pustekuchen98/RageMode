@@ -13,12 +13,6 @@ import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Main;
 
 public class LobbyCommands implements CommandExecutor{
-	
-	public Main plugin;
-	
-	public LobbyCommands(Main main){
-		this.plugin = main;
-	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
@@ -40,11 +34,11 @@ public class LobbyCommands implements CommandExecutor{
 			DataOutputStream out = new DataOutputStream(b);
 			try {
 				out.writeUTF("Connect");
-				out.writeUTF(plugin.getConfig().getString("ragemode.settings.bungee.lobbyserver"));
+				out.writeUTF(Main.getInstance().getConfig().getString("ragemode.settings.bungee.lobbyserver"));
 			} catch (IOException eee) {
 				
 			}
-			player.sendPluginMessage(this.plugin, "BungeeCord", b.toByteArray());
+			player.sendPluginMessage(Main.getInstance(), "BungeeCord", b.toByteArray());
 		} else {
 			player.sendMessage(Strings.error_not_on_a_bungee);
 		}

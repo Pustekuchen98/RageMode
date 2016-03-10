@@ -13,13 +13,11 @@ import net.md_5.bungee.api.ChatColor;
 public abstract class AdvancedShopPageBasic implements Listener{
 
 	public String pagename = "";
-	private Main plugin;
 	
-	public AdvancedShopPageBasic(Main main, String pagename) {
+	public AdvancedShopPageBasic(String pagename) {
 		this.pagename = pagename;
-		this.plugin = main;
 		
-		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+		Main.getInstance().getServer().getPluginManager().registerEvents(this, Main.getInstance());
 	}
 	
 	@EventHandler

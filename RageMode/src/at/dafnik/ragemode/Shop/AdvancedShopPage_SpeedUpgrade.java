@@ -13,10 +13,10 @@ public class AdvancedShopPage_SpeedUpgrade extends AdvancedShopPageBasic {
 	private int upgradecost = 0;
 	private static String pagename = "Speed Upgrade";
 	
-	public AdvancedShopPage_SpeedUpgrade(Main main) {
-		super(main, pagename);
+	public AdvancedShopPage_SpeedUpgrade() {
+		super(pagename);
 		
-		this.upgradecost = main.getConfig().getInt("ragemode.shop.knifeupgradeprice");
+		this.upgradecost = Main.getInstance().getConfig().getInt("ragemode.shop.knifeupgradeprice");
 	}
 
 	@Override

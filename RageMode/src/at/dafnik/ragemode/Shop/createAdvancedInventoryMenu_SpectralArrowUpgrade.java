@@ -13,10 +13,10 @@ public class createAdvancedInventoryMenu_SpectralArrowUpgrade extends createAdva
 	public static Material material = Material.SPECTRAL_ARROW;
 	private int upgradecost = 0;
 	
-	public createAdvancedInventoryMenu_SpectralArrowUpgrade(Main main, Player player) {
+	public createAdvancedInventoryMenu_SpectralArrowUpgrade(Player player) {
 		super(player, wantsdisplayname, material);
 		
-		this.upgradecost = main.getConfig().getInt("ragemode.shop.spectralarrowupgradeprice");
+		this.upgradecost = Main.getInstance().getConfig().getInt("ragemode.shop.spectralarrowupgradeprice");
 	}
 	
 	@Override

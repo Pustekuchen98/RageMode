@@ -13,10 +13,10 @@ public class AdvancedShopPage_SpectralArrowUpgrade extends AdvancedShopPageBasic
 	private int upgradecost = 0;
 	private static String pagename = "Spectral Arrow Upgrade";
 	
-	public AdvancedShopPage_SpectralArrowUpgrade(Main main) {
-		super(main, pagename);
+	public AdvancedShopPage_SpectralArrowUpgrade() {
+		super(pagename);
 		
-		this.upgradecost = main.getConfig().getInt("ragemode.shop.spectralarrowupgradeprice");
+		this.upgradecost = Main.getInstance().getConfig().getInt("ragemode.shop.spectralarrowupgradeprice");
 	}
 	
 	@Override

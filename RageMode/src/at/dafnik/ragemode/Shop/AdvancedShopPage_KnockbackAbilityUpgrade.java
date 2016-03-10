@@ -13,10 +13,10 @@ public class AdvancedShopPage_KnockbackAbilityUpgrade extends AdvancedShopPageBa
 	private int upgradecost = 0;
 	private static String pagename = "Knockback ability Upgrade";
 	
-	public AdvancedShopPage_KnockbackAbilityUpgrade(Main main) {
-		super(main, pagename);
+	public AdvancedShopPage_KnockbackAbilityUpgrade() {
+		super(pagename);
 		
-		this.upgradecost = main.getConfig().getInt("ragemode.shop.knifeknockbackupgradeprice");
+		this.upgradecost = Main.getInstance().getConfig().getInt("ragemode.shop.knifeknockbackupgradeprice");
 	}
 	
 	@Override

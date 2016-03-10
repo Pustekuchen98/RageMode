@@ -13,10 +13,10 @@ public class createAdvancedInventoryMenu_KnockbackAbilityUpgrade extends createA
 	public static Material material = Material.BLAZE_POWDER;
 	private int upgradecost = 0;
 	
-	public createAdvancedInventoryMenu_KnockbackAbilityUpgrade(Main main, Player player) {
+	public createAdvancedInventoryMenu_KnockbackAbilityUpgrade(Player player) {
 		super(player, wantsdisplayname, material);
 		
-		this.upgradecost = main.getConfig().getInt("ragemode.shop.knifeknockbackupgradeprice");
+		this.upgradecost = Main.getInstance().getConfig().getInt("ragemode.shop.knifeknockbackupgradeprice");
 	}
 	
 	@Override

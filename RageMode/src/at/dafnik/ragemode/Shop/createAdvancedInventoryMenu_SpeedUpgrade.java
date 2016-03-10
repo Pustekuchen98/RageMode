@@ -13,10 +13,10 @@ public class createAdvancedInventoryMenu_SpeedUpgrade extends createAdvancedInve
 	private static Material material = Material.FEATHER;
 	private int upgradecost = 0;
 	
-	public createAdvancedInventoryMenu_SpeedUpgrade(Main main, Player player) {
+	public createAdvancedInventoryMenu_SpeedUpgrade(Player player) {
 		super(player, wantsdisplayname, material);
 		
-		this.upgradecost = main.getConfig().getInt("ragemode.shop.knifeupgradeprice");
+		this.upgradecost = Main.getInstance().getConfig().getInt("ragemode.shop.knifeupgradeprice");
 	}
 	
 	@Override

@@ -13,10 +13,10 @@ public class createAdvancedInventoryMenu_BowPowerUpgrade extends createAdvancedI
 	public static Material material = Material.SULPHUR;
 	private int upgradecost = 0;
 	
-	public createAdvancedInventoryMenu_BowPowerUpgrade(Main main, Player player) {
+	public createAdvancedInventoryMenu_BowPowerUpgrade(Player player) {
 		super(player, wantsdisplayname, material);
 		
-		this.upgradecost = main.getConfig().getInt("ragemode.shop.bowpowerupgradeprice");
+		this.upgradecost = Main.getInstance().getConfig().getInt("ragemode.shop.bowpowerupgradeprice");
 	}
 	
 	@Override

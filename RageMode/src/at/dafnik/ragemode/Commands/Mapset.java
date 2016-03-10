@@ -12,12 +12,10 @@ import at.dafnik.ragemode.Main.Main.Status;
 
 public class Mapset implements CommandExecutor{
 	
-	private Main plugin;
 	private String pre;
 	int zahl = 0;
 	
-	public Mapset(Main main){
-		this.plugin = main;
+	public Mapset(){
 		this.pre = Main.pre;
 	}
 	
@@ -130,13 +128,13 @@ public class Mapset implements CommandExecutor{
 								double yaw = player.getLocation().getYaw();
 								double pitch = player.getLocation().getPitch();
 			    	        
-								plugin.getConfig().set("ragemode.lobbyspawn.world", w);
-								plugin.getConfig().set("ragemode.lobbyspawn.x", Double.valueOf(x));
-								plugin.getConfig().set("ragemode.lobbyspawn.y", Double.valueOf(y));
-								plugin.getConfig().set("ragemode.lobbyspawn.z", Double.valueOf(z));
-								plugin.getConfig().set("ragemode.lobbyspawn.yaw", Double.valueOf(yaw));
-								plugin.getConfig().set("ragemode.lobbyspawn.pitch", Double.valueOf(pitch));
-								plugin.saveConfig();
+								Main.getInstance().getConfig().set("ragemode.lobbyspawn.world", w);
+								Main.getInstance().getConfig().set("ragemode.lobbyspawn.x", Double.valueOf(x));
+								Main.getInstance().getConfig().set("ragemode.lobbyspawn.y", Double.valueOf(y));
+								Main.getInstance().getConfig().set("ragemode.lobbyspawn.z", Double.valueOf(z));
+								Main.getInstance().getConfig().set("ragemode.lobbyspawn.yaw", Double.valueOf(yaw));
+								Main.getInstance().getConfig().set("ragemode.lobbyspawn.pitch", Double.valueOf(pitch));
+								Main.getInstance().saveConfig();
 			    	        
 								player.sendMessage(Strings.lobby_set_spawn);
 							}
@@ -153,13 +151,13 @@ public class Mapset implements CommandExecutor{
 								double yaw = player.getLocation().getYaw();
 								double pitch = player.getLocation().getPitch();
 
-								plugin.getConfig().set("ragemode.villagershopspawn.world", w);
-								plugin.getConfig().set("ragemode.villagershopspawn.x", Double.valueOf(x));
-								plugin.getConfig().set("ragemode.villagershopspawn.y", Double.valueOf(y));
-								plugin.getConfig().set("ragemode.villagershopspawn.z", Double.valueOf(z));
-								plugin.getConfig().set("ragemode.villagershopspawn.yaw", Double.valueOf(yaw));
-								plugin.getConfig().set("ragemode.villagershopspawn.pitch", Double.valueOf(pitch));
-								plugin.saveConfig();
+								Main.getInstance().getConfig().set("ragemode.villagershopspawn.world", w);
+								Main.getInstance().getConfig().set("ragemode.villagershopspawn.x", Double.valueOf(x));
+								Main.getInstance().getConfig().set("ragemode.villagershopspawn.y", Double.valueOf(y));
+								Main.getInstance().getConfig().set("ragemode.villagershopspawn.z", Double.valueOf(z));
+								Main.getInstance().getConfig().set("ragemode.villagershopspawn.yaw", Double.valueOf(yaw));
+								Main.getInstance().getConfig().set("ragemode.villagershopspawn.pitch", Double.valueOf(pitch));
+								Main.getInstance().saveConfig();
 
 								player.sendMessage(Strings.map_set_villagershop);
 							}
@@ -187,13 +185,13 @@ public class Mapset implements CommandExecutor{
 									String mapname = args[1].toLowerCase();
 									int settetnumber;
 									
-									int mapnamenumber = plugin.getConfig().getInt("ragemode.mapnames.mapnamenumber");
+									int mapnamenumber = Main.getInstance().getConfig().getInt("ragemode.mapnames.mapnamenumber");
 									settetnumber = mapnamenumber;
 									mapnamenumber++;
-									plugin.getConfig().set("ragemode.mapnames.mapnamenumber", Integer.valueOf(mapnamenumber));
-									plugin.getConfig().set("ragemode.mapnames.mapnames." + settetnumber, mapname);
-									plugin.getConfig().set("ragemode.mapspawn." + mapname + ".mapauthor", "None");
-									plugin.saveConfig();
+									Main.getInstance().getConfig().set("ragemode.mapnames.mapnamenumber", Integer.valueOf(mapnamenumber));
+									Main.getInstance().getConfig().set("ragemode.mapnames.mapnames." + settetnumber, mapname);
+									Main.getInstance().getConfig().set("ragemode.mapspawn." + mapname + ".mapauthor", "None");
+									Main.getInstance().saveConfig();
 									
 									Library.maps.add(mapname);	
 									
@@ -209,22 +207,22 @@ public class Mapset implements CommandExecutor{
 							}else{		
 								if(args.length == 1) {
 									int settetnumber;
-									int rankingnumber = plugin.getConfig().getInt("ragemode.ranking.rankingnumber");
+									int rankingnumber = Main.getInstance().getConfig().getInt("ragemode.ranking.rankingnumber");
 									settetnumber = rankingnumber;
 									rankingnumber++;
-									plugin.getConfig().set("ragemode.ranking.rankingnumber", rankingnumber);
+									Main.getInstance().getConfig().set("ragemode.ranking.rankingnumber", rankingnumber);
 									
 									String w = player.getWorld().getName();
 									int x = player.getLocation().getBlockX();
 									int y = player.getLocation().getBlockY();
 									int z = player.getLocation().getBlockZ();
 									
-									plugin.getConfig().set("ragemode.ranking.positions." + settetnumber + ".world", w);
-									plugin.getConfig().set("ragemode.ranking.positions." + settetnumber + ".x", Integer.valueOf(x));
-									plugin.getConfig().set("ragemode.ranking.positions." + settetnumber + ".y", Integer.valueOf(y));
-									plugin.getConfig().set("ragemode.ranking.positions." + settetnumber + ".z", Integer.valueOf(z));
+									Main.getInstance().getConfig().set("ragemode.ranking.positions." + settetnumber + ".world", w);
+									Main.getInstance().getConfig().set("ragemode.ranking.positions." + settetnumber + ".x", Integer.valueOf(x));
+									Main.getInstance().getConfig().set("ragemode.ranking.positions." + settetnumber + ".y", Integer.valueOf(y));
+									Main.getInstance().getConfig().set("ragemode.ranking.positions." + settetnumber + ".z", Integer.valueOf(z));
 									
-									plugin.saveConfig();
+									Main.getInstance().saveConfig();
 									
 									player.sendMessage(Strings.statsadmin_succesfull);
 									
@@ -234,22 +232,22 @@ public class Mapset implements CommandExecutor{
 									} else if(args.length == 3){
 										String eingabe = args[2].toUpperCase();
 										if(eingabe.equals("NORTH")) {
-											plugin.getConfig().set("ragemode.ranking.rotation", Integer.valueOf(0));
+											Main.getInstance().getConfig().set("ragemode.ranking.rotation", Integer.valueOf(0));
 											player.sendMessage(Strings.lobby_set_rotation + eingabe);
 										} else if(eingabe.equals("EAST")) {
-											plugin.getConfig().set("ragemode.ranking.rotation", Integer.valueOf(1));
+											Main.getInstance().getConfig().set("ragemode.ranking.rotation", Integer.valueOf(1));
 											player.sendMessage(Strings.lobby_set_rotation + eingabe);
 										} else if(eingabe.equals("SOUTH")) {
-											plugin.getConfig().set("ragemode.ranking.rotation", Integer.valueOf(2));
+											Main.getInstance().getConfig().set("ragemode.ranking.rotation", Integer.valueOf(2));
 											player.sendMessage(Strings.lobby_set_rotation + eingabe);
 										} else if(eingabe.equals("WEST")) {
-											plugin.getConfig().set("ragemode.ranking.rotation", Integer.valueOf(3));
+											Main.getInstance().getConfig().set("ragemode.ranking.rotation", Integer.valueOf(3));
 											player.sendMessage(Strings.lobby_set_rotation + eingabe);
 										} else {
 											player.sendMessage(Strings.error_enter);
 										}
 										
-										plugin.saveConfig();
+										Main.getInstance().saveConfig();
 									}
 								} else {
 									player.sendMessage(Strings.error_enter);
@@ -265,8 +263,8 @@ public class Mapset implements CommandExecutor{
 										String mapname = args[1].toLowerCase();
 										String mapauthor = args[2];
 										
-										plugin.getConfig().set("ragemode.mapspawn." + mapname + ".mapauthor", mapauthor);
-										plugin.saveConfig();
+										Main.getInstance().getConfig().set("ragemode.mapspawn." + mapname + ".mapauthor", mapauthor);
+										Main.getInstance().saveConfig();
 										
 										player.sendMessage(Strings.map_set_author + mapauthor);
 									} else {
@@ -293,23 +291,23 @@ public class Mapset implements CommandExecutor{
 										double pitch = player.getLocation().getPitch();
 										
 										int spawnnumbertoshow;
-										int spawnnumber = plugin.getConfig().getInt("ragemode.mapspawn." + mapname + ".spawnnumber");
+										int spawnnumber = Main.getInstance().getConfig().getInt("ragemode.mapspawn." + mapname + ".spawnnumber");
 										spawnnumbertoshow = spawnnumber;
 										if(spawnnumber == 0) {
 											
 										}
 						            
-										plugin.getConfig().set("ragemode.mapspawn." + mapname + "." + spawnnumber + ".world", w);
-										plugin.getConfig().set("ragemode.mapspawn." + mapname + "." + spawnnumber + ".x", Double.valueOf(x));
-										plugin.getConfig().set("ragemode.mapspawn." + mapname + "." + spawnnumber + ".y", Double.valueOf(y));
-										plugin.getConfig().set("ragemode.mapspawn." + mapname + "." + spawnnumber + ".z", Double.valueOf(z));
-										plugin.getConfig().set("ragemode.mapspawn." + mapname + "." + spawnnumber + ".yaw", Double.valueOf(yaw));
-										plugin.getConfig().set("ragemode.mapspawn." + mapname + "." + spawnnumber + ".pitch", Double.valueOf(pitch));
+										Main.getInstance().getConfig().set("ragemode.mapspawn." + mapname + "." + spawnnumber + ".world", w);
+										Main.getInstance().getConfig().set("ragemode.mapspawn." + mapname + "." + spawnnumber + ".x", Double.valueOf(x));
+										Main.getInstance().getConfig().set("ragemode.mapspawn." + mapname + "." + spawnnumber + ".y", Double.valueOf(y));
+										Main.getInstance().getConfig().set("ragemode.mapspawn." + mapname + "." + spawnnumber + ".z", Double.valueOf(z));
+										Main.getInstance().getConfig().set("ragemode.mapspawn." + mapname + "." + spawnnumber + ".yaw", Double.valueOf(yaw));
+										Main.getInstance().getConfig().set("ragemode.mapspawn." + mapname + "." + spawnnumber + ".pitch", Double.valueOf(pitch));
 										
 										spawnnumber++;
-										plugin.getConfig().set("ragemode.mapspawn." + mapname + ".spawnnumber", Integer.valueOf(spawnnumber));
+										Main.getInstance().getConfig().set("ragemode.mapspawn." + mapname + ".spawnnumber", Integer.valueOf(spawnnumber));
 										 
-										plugin.saveConfig();
+										Main.getInstance().saveConfig();
 				
 										player.sendMessage(Strings.map_set_coordinates + spawnnumbertoshow + " §3| §3Mapname§8: §6" + mapname);
 									} else {
@@ -335,18 +333,18 @@ public class Mapset implements CommandExecutor{
 										double z = player.getLocation().getZ();
 										
 										int settetspawnnumber;
-										int spawnnumber = plugin.getConfig().getInt("ragemode.powerupspawn." + mapname + ".spawnnumber");
+										int spawnnumber = Main.getInstance().getConfig().getInt("ragemode.powerupspawn." + mapname + ".spawnnumber");
 										settetspawnnumber = spawnnumber;
 										
-										plugin.getConfig().set("ragemode.powerupspawn." + mapname + "." + spawnnumber + ".world", w);
-										plugin.getConfig().set("ragemode.powerupspawn." + mapname + "." + spawnnumber + ".x", Double.valueOf(x));
-										plugin.getConfig().set("ragemode.powerupspawn." + mapname + "." + spawnnumber + ".y", Double.valueOf(y));
-										plugin.getConfig().set("ragemode.powerupspawn." + mapname + "." + spawnnumber + ".z", Double.valueOf(z));
+										Main.getInstance().getConfig().set("ragemode.powerupspawn." + mapname + "." + spawnnumber + ".world", w);
+										Main.getInstance().getConfig().set("ragemode.powerupspawn." + mapname + "." + spawnnumber + ".x", Double.valueOf(x));
+										Main.getInstance().getConfig().set("ragemode.powerupspawn." + mapname + "." + spawnnumber + ".y", Double.valueOf(y));
+										Main.getInstance().getConfig().set("ragemode.powerupspawn." + mapname + "." + spawnnumber + ".z", Double.valueOf(z));
 										
 										spawnnumber++;
-										plugin.getConfig().set("ragemode.powerupspawn." + mapname + ".spawnnumber", Integer.valueOf(spawnnumber));
+										Main.getInstance().getConfig().set("ragemode.powerupspawn." + mapname + ".spawnnumber", Integer.valueOf(spawnnumber));
 		 
-										plugin.saveConfig();
+										Main.getInstance().saveConfig();
 				
 										player.sendMessage(Strings.map_set_powerup_coordinates + settetspawnnumber + " §3| §3Mapname§8: §6" + mapname);
 				
@@ -373,14 +371,14 @@ public class Mapset implements CommandExecutor{
 										double y = player.getLocation().getY();
 										double z = player.getLocation().getZ();
 						            
-										plugin.getConfig().set("ragemode.mapspawn." + mapname + ".middlepoint.world", w);
-										plugin.getConfig().set("ragemode.mapspawn." + mapname + ".middlepoint.x", Double.valueOf(x));
-										plugin.getConfig().set("ragemode.mapspawn." + mapname + ".middlepoint.y", Double.valueOf(y));
-										plugin.getConfig().set("ragemode.mapspawn." + mapname + ".middlepoint.z", Double.valueOf(z));
+										Main.getInstance().getConfig().set("ragemode.mapspawn." + mapname + ".middlepoint.world", w);
+										Main.getInstance().getConfig().set("ragemode.mapspawn." + mapname + ".middlepoint.x", Double.valueOf(x));
+										Main.getInstance().getConfig().set("ragemode.mapspawn." + mapname + ".middlepoint.y", Double.valueOf(y));
+										Main.getInstance().getConfig().set("ragemode.mapspawn." + mapname + ".middlepoint.z", Double.valueOf(z));
 										
-										plugin.getConfig().set("ragemode.mapspawn." + mapname + ".mapradius", Integer.valueOf(radius));
+										Main.getInstance().getConfig().set("ragemode.mapspawn." + mapname + ".mapradius", Integer.valueOf(radius));
 										
-										plugin.saveConfig();
+										Main.getInstance().saveConfig();
 				
 										player.sendMessage(Strings.map_set_middlepoint + " §8| §3Mapname§8: §6" + mapname + " §8| §3Mapradius§8: §6" + radius);
 									} else {
@@ -396,8 +394,8 @@ public class Mapset implements CommandExecutor{
 								 player.sendMessage(Strings.error_permission);
 							 }else{
 								 if(args.length == 2) {
-									 plugin.getConfig().set("ragemode.settings.neededplayers", Integer.valueOf(args[1]));
-									 plugin.saveConfig();
+									 Main.getInstance().getConfig().set("ragemode.settings.neededplayers", Integer.valueOf(args[1]));
+									 Main.getInstance().saveConfig();
 				 			
 									 player.sendMessage(Strings.game_set_needed_players + args[1]);
 								 } else {
@@ -409,11 +407,11 @@ public class Mapset implements CommandExecutor{
 								 player.sendMessage(Strings.error_permission);
 							 }else{
 								 if(args.length == 2) {
-									 plugin.getConfig().set("ragemode.settings.gametime", Integer.valueOf(args[1]));
-									 int gametime = plugin.getConfig().getInt("ragemode.settings.gametime");
+									 Main.getInstance().getConfig().set("ragemode.settings.gametime", Integer.valueOf(args[1]));
+									 int gametime = Main.getInstance().getConfig().getInt("ragemode.settings.gametime");
 									 gametime = gametime * 60;
-									 plugin.getConfig().set("ragemode.settings.gametime", Integer.valueOf(gametime));
-									 plugin.saveConfig();
+									 Main.getInstance().getConfig().set("ragemode.settings.gametime", Integer.valueOf(gametime));
+									 Main.getInstance().saveConfig();
 									 
 									 player.sendMessage(Strings.game_set_time + gametime/60);
 								 } else {
@@ -430,11 +428,11 @@ public class Mapset implements CommandExecutor{
 								 double y = player.getLocation().getY();
 								 double z = player.getLocation().getZ();
 								 
-								 plugin.getConfig().set("ragemode.hologram.world", w);
-								 plugin.getConfig().set("ragemode.hologram.x", Double.valueOf(x));
-								 plugin.getConfig().set("ragemode.hologram.y", Double.valueOf(y));
-								 plugin.getConfig().set("ragemode.hologram.z", Double.valueOf(z));
-								 plugin.saveConfig();
+								 Main.getInstance().getConfig().set("ragemode.hologram.world", w);
+								 Main.getInstance().getConfig().set("ragemode.hologram.x", Double.valueOf(x));
+								 Main.getInstance().getConfig().set("ragemode.hologram.y", Double.valueOf(y));
+								 Main.getInstance().getConfig().set("ragemode.hologram.z", Double.valueOf(z));
+								 Main.getInstance().saveConfig();
 								 
 								 player.sendMessage(Strings.lobby_set_hologram);
 							 }
@@ -445,14 +443,14 @@ public class Mapset implements CommandExecutor{
 								if(args.length == 3) {
 									if(args[1].equals("switch")) {	
 										if(args[2].equals("on")) {		
-											plugin.getConfig().set("ragemode.settings.bungee.switch", true);
-											plugin.saveConfig();
+											Main.getInstance().getConfig().set("ragemode.settings.bungee.switch", true);
+											Main.getInstance().saveConfig();
 											 
 											player.sendMessage(Strings.bungee_switch_on);
 											
 										} else if(args[2].equals("off")) {	
-											plugin.getConfig().set("ragemode.settings.bungee.switch", false);
-											plugin.saveConfig();
+											Main.getInstance().getConfig().set("ragemode.settings.bungee.switch", false);
+											Main.getInstance().saveConfig();
 											
 											player.sendMessage(Strings.bungee_switch_off);
 											
@@ -460,8 +458,8 @@ public class Mapset implements CommandExecutor{
 											player.sendMessage(Strings.error_enter);
 										}
 									} else if(args[1].equals("setlobbyserver")) {	
-										plugin.getConfig().set("ragemode.settings.bungee.lobbyserver", args[2]);
-										plugin.saveConfig();
+										Main.getInstance().getConfig().set("ragemode.settings.bungee.lobbyserver", args[2]);
+										Main.getInstance().saveConfig();
 										
 										player.sendMessage(Strings.bungee_switch_off + args[2]);
 										
@@ -480,40 +478,40 @@ public class Mapset implements CommandExecutor{
 									String eingabe = args[1];
 									
 									if (args[1].equals("sethost")) {
-										plugin.getConfig().set("ragemode.settings.mysql.host",eingabe);
-										plugin.saveConfig();
+										Main.getInstance().getConfig().set("ragemode.settings.mysql.host",eingabe);
+										Main.getInstance().saveConfig();
 
 										player.sendMessage(Strings.mysql_set_host+ eingabe);
 
 									} else if (args[1].equals("setdatabase")) {
-										plugin.getConfig().set("ragemode.settings.mysql.database",eingabe);
-										plugin.saveConfig();
+										Main.getInstance().getConfig().set("ragemode.settings.mysql.database",eingabe);
+										Main.getInstance().saveConfig();
 
 										player.sendMessage(Strings.mysql_set_database+ eingabe);
 
 									} else if (args[1].equals("setusername")) {
-										plugin.getConfig().set("ragemode.settings.mysql.username",eingabe);
-										plugin.saveConfig();
+										Main.getInstance().getConfig().set("ragemode.settings.mysql.username",eingabe);
+										Main.getInstance().saveConfig();
 
 										player.sendMessage(Strings.mysql_set_username + eingabe);
 
 									} else if (args[1].equals("setpassword")) {
-										plugin.getConfig().set("ragemode.settings.mysql.password", eingabe);
-										plugin.saveConfig();
+										Main.getInstance().getConfig().set("ragemode.settings.mysql.password", eingabe);
+										Main.getInstance().saveConfig();
 
 										player.sendMessage(Strings.mysql_set_password + eingabe);
 
 									} else if (args[1].equals("switch")) {
 										if (args[2].equals("on")) {
 
-											plugin.getConfig().set("ragemode.settings.mysql.switch", true);
-											plugin.saveConfig();
+											Main.getInstance().getConfig().set("ragemode.settings.mysql.switch", true);
+											Main.getInstance().saveConfig();
 
 											player.sendMessage(Strings.mysql_switch_on);
 
 										} else if (args[2].equals("off")) {
-											plugin.getConfig().set("ragemode.settings.mysql.switch", false);
-											plugin.saveConfig();
+											Main.getInstance().getConfig().set("ragemode.settings.mysql.switch", false);
+											Main.getInstance().saveConfig();
 
 											player.sendMessage(Strings.mysql_switch_off);
 

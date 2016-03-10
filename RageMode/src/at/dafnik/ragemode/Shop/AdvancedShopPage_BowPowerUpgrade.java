@@ -13,10 +13,10 @@ public class AdvancedShopPage_BowPowerUpgrade extends AdvancedShopPageBasic{
 	private int upgradecost = 0;
 	private static String pagename = "Bow Power Upgrade";
 	
-	public AdvancedShopPage_BowPowerUpgrade(Main main) {
-		super(main, pagename);
+	public AdvancedShopPage_BowPowerUpgrade() {
+		super(pagename);
 		
-		this.upgradecost = main.getConfig().getInt("ragemode.shop.bowpowerupgradeprice");
+		this.upgradecost = Main.getInstance().getConfig().getInt("ragemode.shop.bowpowerupgradeprice");
 	}
 	
 	@Override
