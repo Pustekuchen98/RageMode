@@ -111,3 +111,5 @@ RageMode/bin/at/dafnik/ragemode/Shop/createAdvancedInventoryMenu_KnockbackAbilit
 RageMode/bin/at/dafnik/ragemode/Shop/createAdvancedInventoryMenu_SpectralArrowUpgrade.class
 RageMode/bin/at/dafnik/ragemode/Shop/createAdvancedInventoryMenu_SpeedUpgrade.class
 RageMode/bin/at/dafnik/ragemode/Main/Library.class
+RageMode/bin/at/dafnik/ragemode/TabCompleter/AbstractTabCompleter.class
+RageMode/bin/at/dafnik/ragemode/TabCompleter/VoteTabCompleter.class
