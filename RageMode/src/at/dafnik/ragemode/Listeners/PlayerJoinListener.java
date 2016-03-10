@@ -124,6 +124,7 @@ public class PlayerJoinListener implements Listener{
 						} catch (ArithmeticException ex) {
 							siegwahrscheinlichkeit = 0;
 						}
+						int rundsieg = (int) siegwahrscheinlichkeit;
 
 						lines.add(Strings.stats_your_name_first + player.getDisplayName() + Strings.stats_your_name_two);
 						lines.add(Strings.stats_points + points);
@@ -137,7 +138,7 @@ public class PlayerJoinListener implements Listener{
 						lines.add(Strings.stats_kd + rund);
 						lines.add(Strings.stats_playedgames + playedgames);
 						lines.add(Strings.stats_wongames + wongames);
-						lines.add(Strings.stats_winningchances + siegwahrscheinlichkeit + "§7%");
+						lines.add(Strings.stats_winningchances + rundsieg + "§7%");
 						lines.add(Strings.stats_statsreset + resets);
 						
 						Holograms holo = new Holograms(loc, lines);
