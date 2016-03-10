@@ -68,50 +68,50 @@ public class ConfigStandart {
 			Main.getInstance().saveConfig();
 		}
 		
-		System.out.println("[RageMode]Settings:");
+		System.out.println("[RageMode] Settings:");
 			
 		//is Mysql or not
 		if(Main.getInstance().getConfig().getBoolean("ragemode.settings.mysql.switch")) {
 			Main.isMySQL = true;
 				
-			System.out.println("[RageMode]MySQL: ON");
+			System.out.println("[RageMode] MySQL: ON");
 		} else {
 			Main.isMySQL = false;
 				
-			System.out.println("[RageMode]MySQL: OFF");
+			System.out.println("[RageMode] MySQL: OFF");
 		}
 					
 		//Is Bungee true or false
 		if(Main.getInstance().getConfig().getBoolean("ragemode.settings.bungee.switch")) {
 			Main.isBungee = true;
 				
-			System.out.println("[RageMode]BungeeCord-Network-Support: ON");
+			System.out.println("[RageMode] BungeeCord-Network-Support: ON");
 		} else {
 			Main.isBungee = false;
 			
-			System.out.println("[RageMode]BungeeCord-Network-Support: OFF");
+			System.out.println("[RageMode] BungeeCord-Network-Support: OFF");
 		}
 			
 		//Is Bungee true or false
 		if(Main.getInstance().getConfig().getBoolean("ragemode.settings.debug.switch")) {
 			Main.isDebug = true;
 						
-			System.out.println("[RageMode]Debug-Modus: ON");
+			System.out.println("[RageMode] Debug-Modus: ON");
 		} else {
 			Main.isDebug = false;
 						
-			System.out.println("[RageMode]Debug-Modus: OFF");
+			System.out.println("[RageMode] Debug-Modus: OFF");
 		}
 		
 		//Is Bungee true or false
 		if(Main.getInstance().getConfig().getBoolean("ragemode.shop.switch")) {
 			Main.isShop = true;
 								
-			System.out.println("[RageMode]Shop-Modus: ON");
+			System.out.println("[RageMode] Shop-Modus: ON");
 		} else {
 			Main.isShop = false;
 								
-			System.out.println("[RageMode]Shop-Modus: OFF");
+			System.out.println("[RageMode] Shop-Modus: OFF");
 		}
 	}
 }
