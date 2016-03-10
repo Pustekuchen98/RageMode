@@ -140,7 +140,7 @@ public class Strings {
 	public static String tasks_restart_countdown_21 = " §csecond";
 	public static String tasks_restart_now = pre + "§4§lRESTART";
 	
-	public static String ragemode_winner = pre + "§37he winner is§8: §r";
+	public static String ragemode_winner = pre + "§7The winner is§8: §r";
 	public static String ragemode_server_is_back = "§7The server is back soon";
 	public static String ragemode_mysql_connected = log_pre + "MySQL Connected";
 	public static String ragemode_mysql_disconnected = log_pre + "MySQL Disconnected";
@@ -158,7 +158,7 @@ public class Strings {
 	public static String kill_backstab_knife = pre + "§4§l+ §c3 §6Hearts";
 	public static String kill_your_points = "§7Your points§8: §e";
 	public static String kill_unknown_killer = " §7died";
-	public static String kill_holo_points = " §37oints";
+	public static String kill_holo_points = " §7Points";
 	public static String kill_points_plus = pre + "§a§l+";
 	public static String kill_points_negative = pre + "§c§l";
 	
