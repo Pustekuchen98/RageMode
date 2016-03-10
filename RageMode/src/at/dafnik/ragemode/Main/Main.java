@@ -135,7 +135,7 @@ public class Main extends JavaPlugin{
 		//Register all Events and Commands
 		registerListeners();
 		registerCommands();
-		
+				
 		//Set Config Standart
 		ConfigStandart.setStandart();
 		
@@ -146,13 +146,14 @@ public class Main extends JavaPlugin{
 		lobbytasks = new Lobby();
 		lobbytasks.lobbywplayers();
 		
-		getServer().getConsoleSender().sendMessage("§7[§bRageMode§7] §aStarted§8! §fThe most important things started §awell§8!");
-		
 		//Open MapVote Methode
-		mapvote = new Mapvote(this);
+		mapvote = new Mapvote();
 		mapvote.MapsToVoteAdd();
 		mapvote.AllMapsAdd();
 		mapvote.Mapvotenull();
+		
+		
+		getServer().getConsoleSender().sendMessage("§7[§bRageMode§7] §aStarted§8! §fThe most important things started §awell§8!");
 		
 		//Check on Bungee
 		if(isBungee) getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
@@ -269,10 +270,6 @@ public class Main extends JavaPlugin{
 		new AdvancedShopPage_KnockbackAbilityUpgrade();
 		new AdvancedShopPage_SpectralArrowUpgrade();
 		new AdvancedShopPage_BowPowerUpgrade();
-		
-		//Map classes
-		new Mapset();
-		new Mapvote(this);
 	}
 	
 	//Register all Commands

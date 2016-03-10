@@ -12,25 +12,23 @@ import org.bukkit.entity.Player;
 
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Main.Status;
+import at.dafnik.ragemode.TabCompleter.VoteTabCompleter;
 
 public class Mapvote implements CommandExecutor{
 	
-	private Main plugin;
-	private String pre;
+	//private Main plugin;
 	private String mapwinner;
 	private List<Integer> mapsinlist = new ArrayList<Integer>();
 	
-	public Mapvote(Main main){
-		this.plugin = main;
-		this.pre = Main.pre;
-		
-		plugin.getCommand("list").setExecutor(this);
-		plugin.getCommand("vote").setExecutor(this);
+	public Mapvote(){		
+		Main.getInstance().getCommand("list").setExecutor(this);
+		Main.getInstance().getCommand("vote").setExecutor(this);
+		Main.getInstance().getCommand("vote").setTabCompleter(new VoteTabCompleter());
 	}
 	
 	//Add Map name to the Variable
 	public void MapsToVoteAdd(){
-		int mapnamenumber = plugin.getConfig().getInt("ragemode.mapnames.mapnamenumber");
+		int mapnamenumber = Main.getInstance().getConfig().getInt("ragemode.mapnames.mapnamenumber");
 		
 		if(mapnamenumber <= 0) {
 			System.out.println(Strings.error_no_created_maps);
@@ -42,7 +40,7 @@ public class Mapvote implements CommandExecutor{
 				
 				if(!mapsinlist.contains(randomzahl)) {
 					mapsinlist.add(randomzahl);
-					Library.mapstovote.add(plugin.getConfig().getString("ragemode.mapnames.mapnames." + randomzahl));
+					Library.mapstovote.add(Main.getInstance().getConfig().getString("ragemode.mapnames.mapnames." + randomzahl));
 				} else {
 					i--;
 				}
@@ -51,10 +49,10 @@ public class Mapvote implements CommandExecutor{
 	}
 	
 	public void AllMapsAdd(){
-		int mapnamenumber = plugin.getConfig().getInt("ragemode.mapnames.mapnamenumber");
+		int mapnamenumber = Main.getInstance().getConfig().getInt("ragemode.mapnames.mapnamenumber");
 		
 		for (int i = 0; i < mapnamenumber; i++) {	
-			Library.maps.add(plugin.getConfig().getString("ragemode.mapnames.mapnames." + i));
+			Library.maps.add(Main.getInstance().getConfig().getString("ragemode.mapnames.mapnames." + i));
 		}
 	}
 		
@@ -131,7 +129,7 @@ public class Mapvote implements CommandExecutor{
 		if(Main.status == Status.LOBBY){
 			player.sendMessage(Strings.votes_vote_for_map);
 			for(String all : Library.mapstovote){
-				player.sendMessage(pre + "§7- §e" + all + "§8: §b" + Library.votes.get(all));
+				player.sendMessage(Main.pre + "§7- §e" + all + "§8: §b" + Library.votes.get(all));
 			}
 		}else player.sendMessage(Strings.error_voting_finished);	
 	}
@@ -139,7 +137,7 @@ public class Mapvote implements CommandExecutor{
 	public void getListBroadcast(){
 		Bukkit.broadcastMessage(Strings.votes_vote_for_map);
 		for(String all : Library.mapstovote){
-			Bukkit.broadcastMessage(pre + "§7- §e" + all + "§8: §b" + Library.votes.get(all));
+			Bukkit.broadcastMessage(Main.pre + "§7- §e" + all + "§8: §b" + Library.votes.get(all));
 		}
 	}
 	
