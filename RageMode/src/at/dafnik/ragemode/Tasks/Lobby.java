@@ -4,13 +4,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import at.dafnik.ragemode.API.Strings;
+import at.dafnik.ragemode.API.Title;
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
 public class Lobby {
 	
-	private String pre = Main.pre;
 	public Warmup wm;
 	
 	public Lobby(){
@@ -89,53 +89,62 @@ public class Lobby {
 					}
 					
 					//Mapname
-					Bukkit.broadcastMessage(pre + "§eMap§8: §6" + Library.votedmap);
+					Bukkit.broadcastMessage(Strings.tasks_lobby_map_voted + Library.votedmap);
 					//Mapauthor
 					String mapauthor = Main.getInstance().getConfig().getString("ragemode.mapspawn." + Library.votedmap + ".mapauthor");
-					if(mapauthor == null) mapauthor = "No author";
-					Bukkit.broadcastMessage(pre + "§eAuthor§8: §6" + mapauthor);
+					if(mapauthor == null) mapauthor = Strings.tasks_lobby_no_author;
+					Bukkit.broadcastMessage(Strings.tasks_lobby_author + mapauthor);
 					
 					wm.warmup();
 				
 				}else if(lobbytime == 50){
-					Bukkit.broadcastMessage(pre + "§ePlayers online§8: §b" + Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers());
-					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");
+					Bukkit.broadcastMessage(Strings.tasks_lobby_player_online);
+					Bukkit.broadcastMessage(Strings.tasks_lobby_countdown_first + lobbytime + Strings.tasks_lobby_countdown_two);
+					doTitle();
 					Main.getInstance().mapvote.getListBroadcast();
 					
 				}else if(lobbytime == 40){
-					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");
+					Bukkit.broadcastMessage(Strings.tasks_lobby_countdown_first + lobbytime + Strings.tasks_lobby_countdown_two);
 					
 				}else if(lobbytime == 30){
-					Bukkit.broadcastMessage(pre + "§ePlayers online§8: §b" + Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers());
-					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");
+					Bukkit.broadcastMessage(Strings.tasks_lobby_player_online);
+					Bukkit.broadcastMessage(Strings.tasks_lobby_countdown_first + lobbytime + Strings.tasks_lobby_countdown_two);
+					doTitle();
 					Main.getInstance().mapvote.getListBroadcast();
 					
 				}else if(lobbytime == 20){
-					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");
+					Bukkit.broadcastMessage(Strings.tasks_lobby_countdown_first + lobbytime + Strings.tasks_lobby_countdown_two);
 					
 				}else if(lobbytime == 10){
-					Bukkit.broadcastMessage(pre + "§ePlayers online§8: §b" + Bukkit.getOnlinePlayers().size() + "§8/§b" + Bukkit.getMaxPlayers());		
-					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");
+					Bukkit.broadcastMessage(Strings.tasks_lobby_player_online);
+					Bukkit.broadcastMessage(Strings.tasks_lobby_countdown_first + lobbytime + Strings.tasks_lobby_countdown_two);
+					doTitle();
 					Main.getInstance().mapvote.getListBroadcast();
 					
 				}else if(lobbytime == 5){
-					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");
+					Bukkit.broadcastMessage(Strings.tasks_lobby_countdown_first + lobbytime + Strings.tasks_lobby_countdown_two);
 					
 				}else if(lobbytime == 4){
-					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");
+					Bukkit.broadcastMessage(Strings.tasks_lobby_countdown_first + lobbytime + Strings.tasks_lobby_countdown_two);
 					
 				}else if(lobbytime == 3){
-					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");
+					Bukkit.broadcastMessage(Strings.tasks_lobby_countdown_first + lobbytime + Strings.tasks_lobby_countdown_two);
 					
 				}else if(lobbytime == 2){
-					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3seconds");
+					Bukkit.broadcastMessage(Strings.tasks_lobby_countdown_first + lobbytime + Strings.tasks_lobby_countdown_two);
 					
 				}else if(lobbytime == 1){
-					Bukkit.broadcastMessage(pre + "§3The round starts in §e" + lobbytime + " §3second");
+					Bukkit.broadcastMessage(Strings.tasks_lobby_countdown_first + lobbytime + Strings.tasks_lobby_countdown_two_0);
 				}
 				
 				lobbytime--;	
 			}
 		}, 0L, 20L);
+	}
+	
+	private void doTitle() {
+		for(Player player : Bukkit.getOnlinePlayers()) {
+			Title.sendTitle(player, Library.fadein, Library.stay, Library.fadeout, "§cRageMode");
+		}
 	}
 }

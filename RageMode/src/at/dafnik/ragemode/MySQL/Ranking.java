@@ -91,7 +91,7 @@ public class Ranking {
 						BlockState b = newloc.getBlock().getState();
 						Sign S = (Sign) b;
 						
-						S.setLine(0, "Rank #" + id);
+						S.setLine(0, "#" + id);
 						S.setLine(1, name);
 						S.setLine(2, SQLStats.getPoints(rang.get(id)) + " Points");
 						S.setLine(3, SQLStats.getWonGames(rang.get(id)) + " Wins");

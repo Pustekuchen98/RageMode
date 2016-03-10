@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 
 import at.dafnik.ragemode.API.Holograms;
+import at.dafnik.ragemode.API.Strings;
 
 public class Library {
 
@@ -24,7 +25,7 @@ public class Library {
 		public static Holograms villagerholo;
 		
 		//BossBar
-		public static BossBar bar = Bukkit.getServer().createBossBar("§6You §3are §cplaying §bRageMode", BarColor.BLUE, BarStyle.SEGMENTED_6, BarFlag.CREATE_FOG);
+		public static BossBar bar = Bukkit.getServer().createBossBar(Strings.bossbar, BarColor.BLUE, BarStyle.SOLID, BarFlag.PLAY_BOSS_MUSIC);
 		
 		
 		//--------------------------------------------------------------------
@@ -66,4 +67,9 @@ public class Library {
 		public static List<Player> powerup_speedeffect = new ArrayList<>();
 		public static List<Player> powerup_doublejump = new ArrayList<>();
 		public static List<Player> powerup_flyparticle = new ArrayList<Player>();
+		
+		//Title
+		public static int fadein = 5;
+		public static int fadeout = 5;
+		public static int stay = 20;
 }

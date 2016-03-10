@@ -103,7 +103,6 @@ public class Ingame {
 						Bukkit.broadcastMessage(Strings.ragemode_winner + winnername);
 						
 						for(Player players : Bukkit.getOnlinePlayers()) {
-							if(Main.isMySQL) SQLStats.addPlayedGames(players.getUniqueId().toString(), 1);
 							if(Main.isMySQL) SQLCoins.addCoins(players.getUniqueId().toString(), 10);
 							//Title Send
 							Title.sendTitle(players, fadein, stay, fadeout, winnername);
@@ -175,39 +174,34 @@ public class Ingame {
 				
 				if(playerwinner == null){
 					if(yourpoints == -10) {
-						player.kickPlayer(Main.pre + 
-								"\n§3Thanks for watching §4RageMode§8!"
-								+ "\n§3The winner of this round is§8: §r" + "§cNobody"
-								+ "\n§eThe server is back in few seconds");
+						player.kickPlayer(Strings.tasks_ingame_kick_first_spectator
+								+ Strings.tasks_ingame_kick_the_winner + Strings.tasks_ingame_kick_winner_nobody
+								+ Strings.tasks_ingame_kick_back);
 					} else {
-						player.kickPlayer(Main.pre + 
-								"\n§3Thanks for playing §4RageMode§8!"
-								+ "\n§3The winner of this round is§8: §r" + "§cNobody"
+						player.kickPlayer(Strings.tasks_ingame_kick_first_playing
+								+ Strings.tasks_ingame_kick_the_winner + Strings.tasks_ingame_kick_winner_nobody
 								+ "\n" + Strings.kill_your_points + yourpoints 
-								+ "\n§eThe server is back in few seconds");
+								+ Strings.tasks_ingame_kick_back);
 					}
 				}else if(playerwinner == player){	
-					player.kickPlayer(Main.pre + 
-							"\n§3Thanks for playing §4RageMode§8!"
-							+ "\n§6You are the winner§8!"
+					player.kickPlayer(Strings.tasks_ingame_kick_first_playing
+							+ Strings.tasks_ingame_kick_you_winner
 							+ "\n" + Strings.kill_your_points + yourpoints
-							+ "\n§eThe server is back in few seconds");
+							+ Strings.tasks_ingame_kick_back);
 				 } else {
 					 int winnerpoints = 0;
 					 if(Library.playerpoints.get(playerwinner) == null) winnerpoints = 0;			 
 					 else winnerpoints = Library.playerpoints.get(playerwinner);
 					
 					 if(yourpoints == -10) {
-						 player.kickPlayer(Main.pre + 
-								   "\n§3Thanks for watching §4RageMode§8!"
-								 + "\n§3The winner of this round is§8: §r" + playerwinner.getDisplayName() + " §3with§8: §e" + winnerpoints + " §3points"
-								 + "\n§eThe server is back in few seconds");
+						 player.kickPlayer(Strings.tasks_ingame_kick_first_spectator
+								 + Strings.tasks_ingame_kick_the_winner + playerwinner.getDisplayName() + Strings.tasks_ingame_kick_with + winnerpoints + Strings.tasks_ingame_kick_points
+								 + Strings.tasks_ingame_kick_back);
 					} else {
-						player.kickPlayer(Main.pre + 
-								  "\n§3Thanks for playing §4RageMode§8!"
-								+ "\n§3The winner of this round is§8: §r" + playerwinner.getDisplayName() + " §3with§8: §e" + winnerpoints + " §3points"
+						player.kickPlayer(Strings.tasks_ingame_kick_first_playing
+								+ Strings.tasks_ingame_kick_the_winner + playerwinner.getDisplayName() + Strings.tasks_ingame_kick_with + winnerpoints + Strings.tasks_ingame_kick_points
 								+ "\n" + Strings.kill_your_points + yourpoints
-								+ "\n§eThe server is back in few seconds");
+								+ Strings.tasks_ingame_kick_back);
 					}	
 				}
 			}

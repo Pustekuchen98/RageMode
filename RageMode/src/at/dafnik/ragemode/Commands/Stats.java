@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Main;
+import at.dafnik.ragemode.MySQL.SQLCoins;
 import at.dafnik.ragemode.MySQL.SQLStats;
 
 public class Stats implements CommandExecutor {
@@ -122,6 +123,7 @@ public class Stats implements CommandExecutor {
 	
 	public void StatsCommand(Player player, OfflinePlayer wantedPlayer) {
 		if(Main.isMySQL) {
+			player.sendMessage(Strings.stats_are_loading);
 			int kills = SQLStats.getKills(wantedPlayer.getUniqueId().toString());
 			int deaths = SQLStats.getDeaths(wantedPlayer.getUniqueId().toString());
 			int playedgames = SQLStats.getPlayedGames(wantedPlayer.getUniqueId().toString());
@@ -132,6 +134,7 @@ public class Stats implements CommandExecutor {
 			int axtkills = SQLStats.getAxtKills(wantedPlayer.getUniqueId().toString());
 			int suicides = SQLStats.getSuicides(wantedPlayer.getUniqueId().toString());
 			int resets = SQLStats.getResets(wantedPlayer.getUniqueId().toString());
+			int coins = SQLCoins.getCoins(wantedPlayer.getUniqueId().toString());
 			
 			float KD;
 			try {
@@ -141,18 +144,29 @@ public class Stats implements CommandExecutor {
 			}
 			float rund = (float)(((int)(KD*100))/100.0);
 			
-			player.sendMessage(Main.pre + "§e" + wantedPlayer.getName() + "§3's Stats§8:");
-			player.sendMessage(Main.pre + "§3Points§8: §e" + points);
-			player.sendMessage(Main.pre + "§3All Kills§8: §e" + kills);
-			player.sendMessage(Main.pre + "§3Bow Kills§8: §e" + bowkills);
-			player.sendMessage(Main.pre + "§3Knife Kills§8: §e" + knifekills);
-			player.sendMessage(Main.pre + "§3Axt Kills§8: §e" + axtkills);
-			player.sendMessage(Main.pre + "§3Deaths§8: §e" + deaths);
-			player.sendMessage(Main.pre + "§3Kills/Deaths§8: §e" + rund);
-			player.sendMessage(Main.pre + "§3Played game§8: §e" + playedgames);
-			player.sendMessage(Main.pre + "§3Won games§8: §e" + wongames);
-			player.sendMessage(Main.pre + "§3Suicides§8: §e" + suicides);
-			player.sendMessage(Main.pre + "§3Stats resets§8: §e" + resets);
+			float siegwahrscheinlichkeit;
+			try {
+				siegwahrscheinlichkeit = (((float) wongames) / ((float) playedgames)) * 100;
+			} catch (ArithmeticException ex) {
+				siegwahrscheinlichkeit = 0;
+			}
+			int rundsieg = (int) siegwahrscheinlichkeit;
+			
+			player.sendMessage(Strings.stats_your_name_first + "§6" +wantedPlayer.getName() + Strings.stats_your_name_two);
+			player.sendMessage(Strings.stats_points + points);
+			if(wantedPlayer == player) player.sendMessage(Strings.stats_coins + coins);
+			player.sendMessage(Strings.stats_allkills + kills);
+			player.sendMessage(Strings.stats_explosivekills + bowkills);
+			player.sendMessage(Strings.stats_knifekills + knifekills);
+			player.sendMessage(Strings.stats_axtkills + axtkills);
+			player.sendMessage(Strings.stats_deaths + deaths);
+			player.sendMessage(Strings.stats_suicides + suicides);
+			player.sendMessage(Strings.stats_kd + rund);
+			player.sendMessage(Strings.stats_playedgames + playedgames);
+			player.sendMessage(Strings.stats_wongames + wongames);
+			player.sendMessage(Strings.stats_winningchances + rundsieg + "§7%");
+			player.sendMessage(Strings.stats_statsreset + resets);
+			player.sendMessage("§7------------------------");
 		
 		} else {
 			player.sendMessage(Strings.error_not_mysql_enabled);

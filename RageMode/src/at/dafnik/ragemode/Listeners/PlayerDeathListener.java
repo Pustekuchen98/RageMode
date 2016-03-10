@@ -251,7 +251,7 @@ public class PlayerDeathListener implements Listener {
 		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 			@Override
 			public void run() {			
-				Library.bar.setTitle("§6You §3are §cplaying §bRageMode");
+				Library.bar.setTitle(Strings.bossbar);
 			}
 		}, 5*20);
 	}

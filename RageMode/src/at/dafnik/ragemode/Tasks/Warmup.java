@@ -15,6 +15,7 @@ import at.dafnik.ragemode.Items.Items;
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
+import at.dafnik.ragemode.MySQL.SQLStats;
 import at.dafnik.ragemode.PowerUPs.PowerUpper;
 import at.dafnik.ragemode.Weapons.KnifeThread;
 
@@ -32,10 +33,6 @@ public class Warmup {
 	
 	public long warmuptime = 10;
 	public int warmupid;
-	
-	private int fadein = 5;
-	private int fadeout = 5;
-	private int stay = 20;
 	
 	public static Team team;
 	
@@ -61,7 +58,10 @@ public class Warmup {
 					String mapauthor = Main.getInstance().getConfig().getString("ragemode.mapspawn." +  Library.votedmap + ".mapauthor");
 					if(mapauthor == null) mapauthor = "No author";
 					
+					Bukkit.broadcastMessage(Strings.tasks_warmup_teleport_to_map);
+					
 					for (Player players : Bukkit.getOnlinePlayers()) {
+						if(Main.isMySQL) SQLStats.addPlayedGames(players.getUniqueId().toString(), 1);
 						
 						Warmup.team.addEntry(players.getName());
 						players.setScoreboard(board);
@@ -82,16 +82,16 @@ public class Warmup {
 						//Player Teleport
 						players.teleport(TeleportAPI.getRandomMapSpawnLocations());
 						
-						Title.sendActionBar(players, "§3Choosen Map§8: §e" +  Library.votedmap + " §8|| §3Author§8: §e" + mapauthor);
+						Title.sendActionBar(players, Strings.tasks_warmup_voted_map +  Library.votedmap + Strings.tasks_warmup_voted_map_1 + mapauthor);
 					}
 					
-					Bukkit.broadcastMessage(Main.pre + "§3The peace time ends in §e" + warmuptime + " §3seconds");
+					Bukkit.broadcastMessage(Strings.tasks_warmup_peacetime_ends_in + warmuptime + Strings.tasks_warmup_peacetime_ends_in_0);
 					
 				}else if(warmuptime == 0){
 					if(Main.status != Status.WIN && Main.status != Status.RESTART) {
-						Bukkit.broadcastMessage(Strings.tasks_ingame_peacetime_ends);
+						Bukkit.broadcastMessage(Strings.tasks_warmup_peacetime_ends);
 						for(Player player : Bukkit.getOnlinePlayers()) {
-							Title.sendFullTitle(player, fadein, stay, fadeout, "§eThe peace time ends", "§cnow");
+							Title.sendFullTitle(player, Library.fadein, Library.stay, Library.fadeout, Strings.tasks_warmup_peactime_ends_now, Strings.tasks_warmup_peactime_ends_now_0);
 							Items.givePlayerItems(player);
 						}
 						

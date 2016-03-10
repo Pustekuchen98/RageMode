@@ -131,7 +131,7 @@ public class Mapvote implements CommandExecutor{
 		if(Main.status == Status.LOBBY){
 			player.sendMessage(Strings.votes_vote_for_map);
 			for(String all : Library.mapstovote){
-				player.sendMessage(pre + "§3- §6" + all + "§3: §c" + Library.votes.get(all));
+				player.sendMessage(pre + "§7- §e" + all + "§8: §b" + Library.votes.get(all));
 			}
 		}else player.sendMessage(Strings.error_voting_finished);	
 	}
@@ -139,7 +139,7 @@ public class Mapvote implements CommandExecutor{
 	public void getListBroadcast(){
 		Bukkit.broadcastMessage(Strings.votes_vote_for_map);
 		for(String all : Library.mapstovote){
-			Bukkit.broadcastMessage(pre + "§3- §6" + all + "§8: §c" + Library.votes.get(all));
+			Bukkit.broadcastMessage(pre + "§7- §e" + all + "§8: §b" + Library.votes.get(all));
 		}
 	}
 	

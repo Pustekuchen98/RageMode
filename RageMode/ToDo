@@ -8,8 +8,10 @@ Added:
 	- Shop Upgrade: spectral Arrow Upgrade
 	- Smooth Updates! You haven't to recreate the configuration and the MySQL Database
 	- Auto Update Check for the newest version
+	- BossBar
 	
 Changes:
 	- PowerUP Spawn time from 2 minutes to 1 minute
 	- rewritten Shop system, now it's easier for me to add new upgrades
 	- performance improvements up to 50%!
+	- Overworked all messages!

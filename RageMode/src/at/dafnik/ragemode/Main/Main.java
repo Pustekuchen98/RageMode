@@ -66,7 +66,7 @@ public class Main extends JavaPlugin{
 	public Mapvote mapvote;
 	
 	//General Prefix
-	public static String pre = "§7[§bRageMode§7] ";
+	public static String pre = "§f[§cRageMode§f] ";
 	//Start Status
 	public static Status status = Status.PRE_LOBBY;
 	//MySQL
@@ -213,21 +213,20 @@ public class Main extends JavaPlugin{
 			
 			newversion = children.item(1).getTextContent();
 			
+			if(!getDescription().getVersion().equalsIgnoreCase(newversion)) {
+				System.out.println("[RageMode] There is a new version of RageMode:");
+				System.out.println("[RageMode] Running version: " + getDescription().getVersion());
+				System.out.println("[RageMode] New version: " + newversion);
+				System.out.println("[RageMode] Download link: https://www.spigotmc.org/resources/ragemode-minecaft-1-8-x.12029/history");
+			} else {
+				System.out.println("[RageMode] Your RageMode version is up to date!");
+			}
+			
 		} catch (Exception e) {
 			System.out.println("[RageMode] Checking for updates FAILED!");
 			System.out.println("[RageMode] Check your internet connection!");
 			if(isDebug) e.printStackTrace();
 		}
-		
-		if(!getDescription().getVersion().equalsIgnoreCase(newversion)) {
-			System.out.println("[RageMode] There is a new version of RageMode:");
-			System.out.println("[RageMode] Running version: " + getDescription().getVersion());
-			System.out.println("[RageMode] New version: " + newversion);
-			System.out.println("[RageMode] Download link: https://www.spigotmc.org/resources/ragemode-minecaft-1-8-x.12029/history");
-		} else {
-			System.out.println("[RageMode] Your RageMode version is up to date!");
-		}
-		
 	}
 
 	//Register All Events
