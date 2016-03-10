@@ -211,12 +211,14 @@ public class Ingame {
 	public void RocketClean() {
 		for(Entity entities : Library.powerup_entity) entities.remove();
 		
-		Location loc = TeleportAPI.getRandomMapSpawnLocations();
-		Firework firework = loc.getWorld().spawn(loc, Firework.class);
-		FireworkMeta data = (FireworkMeta) firework.getFireworkMeta();
-		data.addEffect(FireworkEffect.builder().withColor(Color.AQUA, Color.BLACK, Color.BLUE, Color.FUCHSIA, Color.GRAY, Color.GREEN, Color.LIME, Color.MAROON, Color.NAVY, Color.NAVY, Color.OLIVE, Color.ORANGE, Color.PURPLE, Color.RED, Color.SILVER, Color.TEAL, Color.WHITE, Color.YELLOW).with(Type.BALL).with(Type.BALL_LARGE).with(Type.BURST).with(Type.CREEPER).with(Type.STAR).withFade(Color.AQUA, Color.BLACK, Color.BLUE, Color.FUCHSIA, Color.GRAY, Color.GREEN, Color.LIME, Color.MAROON, Color.NAVY, Color.NAVY, Color.OLIVE, Color.ORANGE, Color.PURPLE, Color.RED, Color.SILVER, Color.TEAL, Color.WHITE, Color.YELLOW).build());
-		data.setPower(4);
-		firework.setFireworkMeta(data);	
+		for(int i = 0; i < 10; i++) {
+			Location loc = TeleportAPI.getRandomMapSpawnLocations();
+			Firework firework = loc.getWorld().spawn(loc, Firework.class);
+			FireworkMeta data = (FireworkMeta) firework.getFireworkMeta();
+			data.addEffect(FireworkEffect.builder().withColor(Color.AQUA, Color.BLACK, Color.BLUE, Color.FUCHSIA, Color.GRAY, Color.GREEN, Color.LIME, Color.MAROON, Color.NAVY, Color.NAVY, Color.OLIVE, Color.ORANGE, Color.PURPLE, Color.RED, Color.SILVER, Color.TEAL, Color.WHITE, Color.YELLOW).with(Type.BALL).with(Type.BALL_LARGE).with(Type.BURST).with(Type.CREEPER).with(Type.STAR).withFade(Color.AQUA, Color.BLACK, Color.BLUE, Color.FUCHSIA, Color.GRAY, Color.GREEN, Color.LIME, Color.MAROON, Color.NAVY, Color.NAVY, Color.OLIVE, Color.ORANGE, Color.PURPLE, Color.RED, Color.SILVER, Color.TEAL, Color.WHITE, Color.YELLOW).build());
+			data.setPower(4);
+			firework.setFireworkMeta(data);	
+		}
 	}
 	
 	
