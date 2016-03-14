@@ -113,3 +113,4 @@ RageMode/bin/at/dafnik/ragemode/Shop/createAdvancedInventoryMenu_SpeedUpgrade.cl
 RageMode/bin/at/dafnik/ragemode/Main/Library.class
 RageMode/bin/at/dafnik/ragemode/TabCompleter/AbstractTabCompleter.class
 RageMode/bin/at/dafnik/ragemode/TabCompleter/VoteTabCompleter.class
+RageMode/bin/at/dafnik/ragemode/Shop/VillagerThread.class
