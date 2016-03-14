@@ -1,6 +1,7 @@
 package at.dafnik.ragemode.Listeners;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -17,10 +18,10 @@ public class InventoryItemListener implements Listener{
 	@EventHandler
 	public void DropItem(PlayerDropItemEvent event){
 		Player player = event.getPlayer();
-
+		
 		if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && Library.builder.contains(player)
 				&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
-		else event.setCancelled(true);	
+		else event.setCancelled(true);
 	}
 	
 	//Cannot change Inventory
@@ -45,5 +46,14 @@ public class InventoryItemListener implements Listener{
 			else event.setCancelled(true);	
 		
 		} else event.setCancelled(true);
+	}
+	
+	@EventHandler
+	public void SwapHand(PlayerSwapHandItemsEvent event) {
+		Player player = event.getPlayer();
+		
+		if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && Library.builder.contains(player)
+				&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
+		else event.setCancelled(true);
 	}
 }
