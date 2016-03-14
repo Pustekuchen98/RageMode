@@ -24,18 +24,23 @@ public class AbstractTabCompleter implements TabCompleter{
 		return null;
 	}
 	
+	public Boolean Status() {
+		return true;
+	}
+	
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] arguments) {
 		if(command.getName().equalsIgnoreCase(commandString()) && arguments.length > argumentsInt()) {
 			if(sender instanceof Player) {
-				
-				List<String> list = (List<String>) returnList();
-				if(list == null) {
-					List<String> empty = new ArrayList<>();
-					list = empty;
+				if(Status()) {
+					List<String> list = (List<String>) returnList();
+					if(list == null) {
+						List<String> empty = new ArrayList<>();
+						list = empty;
+					}
+					
+					return list;
 				}
-				
-				return list;
 			} else {
 				System.out.println(Strings.error_only_player_use);
 				return null;
