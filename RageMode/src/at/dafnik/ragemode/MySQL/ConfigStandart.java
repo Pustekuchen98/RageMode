@@ -11,6 +11,12 @@ public class ConfigStandart {
 		if(!Main.getInstance().getConfig().getBoolean("ragemode.settings.safe")) {
 			Main.getInstance().getConfig().set("ragemode.settings.safe", true);				
 			
+			//Version
+			Main.getInstance().getConfig().set("ragemode.settings.version", Main.getInstance().getDescription().getVersion());
+			
+			//Update check
+			Main.getInstance().getConfig().set("ragemode.settings.updatecheck", true);
+			
 			//MySQL
 			Main.getInstance().getConfig().set("ragemode.settings.mysql.host", test);
 			Main.getInstance().getConfig().set("ragemode.settings.mysql.database", test);
@@ -68,7 +74,7 @@ public class ConfigStandart {
 			Main.getInstance().saveConfig();
 		}
 		
-		System.out.println("[RageMode] Settings:");
+		System.out.println("[RageMode] Settings: -----------------------");
 			
 		//is Mysql or not
 		if(Main.getInstance().getConfig().getBoolean("ragemode.settings.mysql.switch")) {
@@ -113,5 +119,18 @@ public class ConfigStandart {
 								
 			System.out.println("[RageMode] Shop-Modus: OFF");
 		}
+		
+		//Is Bungee true or false
+		if(Main.getInstance().getConfig().getBoolean("ragemode.settings.updatecheck")) {
+			Main.wantUpdate = true;
+								
+			System.out.println("[RageMode] Update Check: ON");
+		} else {
+			Main.wantUpdate = false;
+								
+			System.out.println("[RageMode] Update Check: OFF");
+		}
+		
+		System.out.println("[RageMode] ---------------------------------");
 	}
 }

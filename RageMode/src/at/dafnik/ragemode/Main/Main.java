@@ -2,6 +2,7 @@ package at.dafnik.ragemode.Main;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.net.UnknownHostException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -52,6 +53,7 @@ import at.dafnik.ragemode.Shop.AdvancedShopPage_KnockbackAbilityUpgrade;
 import at.dafnik.ragemode.Shop.AdvancedShopPage_SpectralArrowUpgrade;
 import at.dafnik.ragemode.Shop.AdvancedShopPage_SpeedUpgrade;
 import at.dafnik.ragemode.Shop.Shop;
+import at.dafnik.ragemode.Shop.VillagerThread;
 import at.dafnik.ragemode.Tasks.Lobby;
 import at.dafnik.ragemode.Weapons.AxeEvent;
 import at.dafnik.ragemode.Weapons.Bow;
@@ -86,6 +88,8 @@ public class Main extends JavaPlugin{
 	public static boolean isDebug;
 	//Is Shop
 	public static boolean isShop;
+	//want update check
+	public static boolean wantUpdate;
 	
 	//------------------------------------------------------------------------
 	
@@ -192,6 +196,7 @@ public class Main extends JavaPlugin{
 			
 		if(!(getConfig().getString("ragemode.settings.version").equalsIgnoreCase(getDescription().getVersion()))) {
 			getConfig().set("ragemode.settings.version", "1.4.0");
+			getConfig().set("ragemode.settings.updatecheck", true);
 				
 			if(isMySQL) mysql.update("ALTER TABLE Coins ADD SPECTRALARROWUPGRADE int DEFAULT 0");
 			
@@ -201,32 +206,37 @@ public class Main extends JavaPlugin{
 			System.out.println(Strings.ragemode_updated_mysql_succesful);	
 		}
 		
-		System.out.println("[RageMode] Checking for updates...");
 		
-		try{
-			URL filesFeed = new URL(url);
+		if(getConfig().getBoolean("ragemode.settings.updatecheck")) {
+			System.out.println("[RageMode] Checking for updates...");
 			
-			InputStream input = filesFeed.openConnection().getInputStream();
-			Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(input);
-			
-			Node latesFile = document.getElementsByTagName("item").item(0);
-			NodeList children = latesFile.getChildNodes();
-			
-			newversion = children.item(1).getTextContent();
-			
-			if(!getDescription().getVersion().equalsIgnoreCase(newversion)) {
-				System.out.println("[RageMode] There is a new version of RageMode:");
-				System.out.println("[RageMode] Running version: " + getDescription().getVersion());
-				System.out.println("[RageMode] New version: " + newversion);
-				System.out.println("[RageMode] Download link: https://www.spigotmc.org/resources/ragemode-minecaft-1-8-x.12029/history");
-			} else {
-				System.out.println("[RageMode] Your RageMode version is up to date!");
+			try{
+				URL filesFeed = new URL(url);
+				
+				InputStream input = filesFeed.openConnection().getInputStream();
+				Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(input);
+				
+				Node latesFile = document.getElementsByTagName("item").item(0);
+				NodeList children = latesFile.getChildNodes();
+				
+				newversion = children.item(1).getTextContent();
+				
+				if(!getDescription().getVersion().equalsIgnoreCase(newversion)) {
+					System.out.println("[RageMode] There is a new version of RageMode:");
+					System.out.println("[RageMode] Running version: " + getDescription().getVersion());
+					System.out.println("[RageMode] New version: " + newversion);
+					System.out.println("[RageMode] Download link: https://www.spigotmc.org/resources/ragemode-minecaft-1-8-x.12029/history");
+				} else {
+					System.out.println("[RageMode] Your RageMode version is up to date!");
+				}
+				
+			} catch (Exception e) {	
+				if(e instanceof UnknownHostException) System.out.println("[RageMode] Checking for updates FAILED! - Please check your internet connection!");
+				else {
+					System.out.println("[RageMode] Checking for updates FAILED!");
+					if(isDebug) e.printStackTrace();
+				}
 			}
-			
-		} catch (Exception e) {
-			System.out.println("[RageMode] Checking for updates FAILED!");
-			System.out.println("[RageMode] Check your internet connection!");
-			if(isDebug) e.printStackTrace();
 		}
 	}
 
