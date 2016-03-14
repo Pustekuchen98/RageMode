@@ -1,5 +1,6 @@
 package at.dafnik.ragemode.Commands;
 
+import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -169,9 +170,11 @@ public class Mapset implements CommandExecutor{
 								if(Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) {
 									if(Library.builder.contains(player)) {
 										Library.builder.remove(player);
+										player.setGameMode(GameMode.ADVENTURE);
 										player.sendMessage(Strings.map_edit_disallowed);
 									} else {
 										Library.builder.add(player);
+										player.setGameMode(GameMode.CREATIVE);
 										player.sendMessage(Strings.map_edit_allowed);
 									}
 								} else player.sendMessage(Strings.map_edit_not_yet);
