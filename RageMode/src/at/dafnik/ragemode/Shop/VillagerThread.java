@@ -1,4 +1,4 @@
-package at.dafnik.ragemode.Main;
+package at.dafnik.ragemode.Shop;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Villager;
