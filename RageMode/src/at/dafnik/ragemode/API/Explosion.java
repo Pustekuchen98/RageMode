@@ -40,7 +40,7 @@ public class Explosion {
 				if(!Library.spectatorlist.contains(entities)) {
 					double distance = loc.distance(entities.getLocation());
 					Location eloc = entities.getLocation();
-					double damage = (radius - distance) * 7;
+					double damage = (radius - distance) * 7;					
 					
 					Player killer = shooter;
 					Player victim = (Player) entities;
