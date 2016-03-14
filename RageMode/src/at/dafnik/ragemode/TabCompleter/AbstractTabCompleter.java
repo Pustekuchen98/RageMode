@@ -16,7 +16,11 @@ public class AbstractTabCompleter implements TabCompleter{
 		return null;
 	}
 	
-	public int argumentsInt() {
+	public int argumentsMaxInt() {
+		return 0;
+	}
+	
+	public int argumentsMinInt() {
 		return 0;
 	}
 	
@@ -30,7 +34,7 @@ public class AbstractTabCompleter implements TabCompleter{
 	
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] arguments) {
-		if(command.getName().equalsIgnoreCase(commandString()) && arguments.length > argumentsInt()) {
+		if(command.getName().equalsIgnoreCase(commandString()) && arguments.length > argumentsMinInt() && arguments.length < argumentsMaxInt()) {
 			if(sender instanceof Player) {
 				if(Status()) {
 					List<String> list = (List<String>) returnList();
