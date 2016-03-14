@@ -5,9 +5,10 @@ Fixes:
 Added:
 	- PowerUP: Flash and fly PowerUP 
 	- 1.9 Support
-	- Shop Upgrade: spectral Arrow Upgrade
+	- Shop Upgrade:  spectral Arrow Upgrade
 	- Smooth Updates! You haven't to recreate the configuration and the MySQL Database
 	- Auto Update Check for the newest version
+	- Enable or disable Auto Update Check
 	- BossBar
 	- AutoTabComplete for /vote
 	

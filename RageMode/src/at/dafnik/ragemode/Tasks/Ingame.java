@@ -85,7 +85,8 @@ public class Ingame {
 		winid = Main.getInstance().getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
 			@Override
 			public void run() {
-				RocketClean();
+				
+				if(wintime > 3) RocketClean();
 				
 				if(wintime == 10) {	
 					getPlayerWinner();
@@ -145,7 +146,6 @@ public class Ingame {
 					restart();
 				}
 				wintime--;
-				RocketClean();
 			}
 		}, 0L, 20L);
 	}
@@ -210,13 +210,16 @@ public class Ingame {
 	
 	public void RocketClean() {
 		for(Entity entities : Library.powerup_entity) entities.remove();
+		for(int i = 0; i < Library.powerup_hashmap.size(); i++) {
+			for(Player players : Bukkit.getOnlinePlayers()) Library.powerup_hashmap.get(i).destroy(players);
+		}
 		
 		for(int i = 0; i < 10; i++) {
 			Location loc = TeleportAPI.getRandomMapSpawnLocations();
 			Firework firework = loc.getWorld().spawn(loc, Firework.class);
 			FireworkMeta data = (FireworkMeta) firework.getFireworkMeta();
 			data.addEffect(FireworkEffect.builder().withColor(Color.AQUA, Color.BLACK, Color.BLUE, Color.FUCHSIA, Color.GRAY, Color.GREEN, Color.LIME, Color.MAROON, Color.NAVY, Color.NAVY, Color.OLIVE, Color.ORANGE, Color.PURPLE, Color.RED, Color.SILVER, Color.TEAL, Color.WHITE, Color.YELLOW).with(Type.BALL).with(Type.BALL_LARGE).with(Type.BURST).with(Type.CREEPER).with(Type.STAR).withFade(Color.AQUA, Color.BLACK, Color.BLUE, Color.FUCHSIA, Color.GRAY, Color.GREEN, Color.LIME, Color.MAROON, Color.NAVY, Color.NAVY, Color.OLIVE, Color.ORANGE, Color.PURPLE, Color.RED, Color.SILVER, Color.TEAL, Color.WHITE, Color.YELLOW).build());
-			data.setPower(4);
+			data.setPower(7);
 			firework.setFireworkMeta(data);	
 		}
 	}
