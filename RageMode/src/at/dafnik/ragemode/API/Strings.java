@@ -37,6 +37,7 @@ public class Strings {
 	public static String error_unknown_map = pre + "§cUnknown map";
 	public static String error_not_mysql_enabled = pre + "§cYou haven't enabled the MySQL Database";
 	public static String error_cant_join_at_the_moment = pre + "\n§cYou can't join at the moment";
+	public static String error_ragemode_update = pre + "\n§4The server is in maintance mode\n§eThere is an update which is being installed";
 	public static String error_game_is_full = pre + "\n§4The server is full\n§7You need §6premium §7to join full games";
 	public static String error_you_kicked = pre + "\n§cYou haven been kicked by a §6premium\n§3Only other §6premiums §7can't be kicked";
 	public static String error_all_left = pre + "§cBecause all player left the game, the game stopped";
@@ -144,7 +145,7 @@ public class Strings {
 	public static String ragemode_server_is_back = "§7The server is back soon";
 	public static String ragemode_mysql_connected = log_pre + "MySQL Connected";
 	public static String ragemode_mysql_disconnected = log_pre + "MySQL Disconnected";
-	public static String ragemode_updated_mysql_succesful = log_pre + "The MySQL Database, have been successful updated!";
+	public static String ragemode_updated_succesful = log_pre + "The Updatechanges have been successful updated!";
 	
 	public static String kill_suicide = " §7suicided";
 	public static String kill_killed = " §7killed §r";
