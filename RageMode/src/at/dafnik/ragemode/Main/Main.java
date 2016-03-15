@@ -1,11 +1,5 @@
 package at.dafnik.ragemode.Main;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.net.UnknownHostException;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,9 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import at.dafnik.ragemode.API.Holograms;
 import at.dafnik.ragemode.API.Strings;
@@ -77,9 +68,6 @@ public class Main extends JavaPlugin{
 	public static MySQL mysql;
 	
 	public static Main instance = null;
-	
-	public static String url = "http://dafnikdev.bplaced.net";
-	public static String newversion = "";
 	
 	//----------------------------------------------------------------------
 	//Is MySQL On
@@ -194,7 +182,7 @@ public class Main extends JavaPlugin{
 	}
     
 	private void makeUpdate() {
-		if(getConfig().getString("ragemode.settings.version") == null) getConfig().set("ragemode.settings.version", "THIS_IS_AN_EASTEREGG_!_YOU_WILL_NEVER_SEE_IT_!");
+		if(getConfig().getString("ragemode.settings.version") == null) getConfig().set("ragemode.settings.version", "NOP_LEL");
 			
 		if(!(getConfig().getString("ragemode.settings.version").equalsIgnoreCase(getDescription().getVersion()))) {
 			getConfig().set("ragemode.settings.version", "1.4.0");
@@ -205,41 +193,10 @@ public class Main extends JavaPlugin{
 			getConfig().set("ragemode.shop.spectralarrowupgradeprice", Integer.valueOf(20000));
 			
 			saveConfig();
-			System.out.println(Strings.ragemode_updated_mysql_succesful);	
+			System.out.println(Strings.ragemode_updated_succesful);	
 		}
 		
-		
-		if(getConfig().getBoolean("ragemode.settings.updatecheck")) {
-			System.out.println("[RageMode] Checking for updates...");
-			
-			try{
-				URL filesFeed = new URL(url);
-				
-				InputStream input = filesFeed.openConnection().getInputStream();
-				Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(input);
-				
-				Node latesFile = document.getElementsByTagName("item").item(0);
-				NodeList children = latesFile.getChildNodes();
-				
-				newversion = children.item(1).getTextContent();
-				
-				if(!getDescription().getVersion().equalsIgnoreCase(newversion)) {
-					System.out.println("[RageMode] There is a new version of RageMode:");
-					System.out.println("[RageMode] Running version: " + getDescription().getVersion());
-					System.out.println("[RageMode] New version: " + newversion);
-					System.out.println("[RageMode] Download link: https://www.spigotmc.org/resources/ragemode-minecaft-1-8-x.12029/history");
-				} else {
-					System.out.println("[RageMode] Your RageMode version is up to date!");
-				}
-				
-			} catch (Exception e) {	
-				if(e instanceof UnknownHostException) System.out.println("[RageMode] Checking for updates FAILED! - Please check your internet connection!");
-				else {
-					System.out.println("[RageMode] Checking for updates FAILED!");
-					if(isDebug) e.printStackTrace();
-				}
-			}
-		}
+		new Updater().start();
 	}
 
 	//Register All Events
@@ -249,7 +206,7 @@ public class Main extends JavaPlugin{
 		//Items
 		pm.registerEvents(new Compass(), this);
 		
-		//PowerUP's
+		//PowerUPs
 		pm.registerEvents(new PowerUPItemListener(), this);
 		pm.registerEvents(new Mine(), this);
 		pm.registerEvents(new Healer(), this);

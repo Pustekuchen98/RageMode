@@ -197,7 +197,7 @@ public class PlayerJoinListener implements Listener{
 	public void PlayerPreLogin(PlayerLoginEvent event){		
 		if(Main.status == Status.WARMUP || Main.status == Status.WIN || Main.status == Status.RESTART){
 			event.disallow(Result.KICK_OTHER, Strings.error_cant_join_at_the_moment);
-			
+		
 		} else if(Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) {
 			power = PowerSystem.getPower(event.getPlayer());
 		
