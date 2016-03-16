@@ -35,73 +35,71 @@ public class Grenade implements Listener{
 		if (event.getEntity() instanceof Egg && event.getEntity().getShooter() instanceof Player) {
 			Egg egg = (Egg) event.getEntity();
 
-			if (egg.getShooter() instanceof Player) {
-				if(Main.status == Status.INGAME) {
-					Location locegg = egg.getLocation();
-					
-					ItemStack eggi = new ItemStack(Material.EGG);
-					Entity eggy = locegg.getWorld().dropItem(locegg, eggi);
-					Player killer = (Player) egg.getShooter();
-					
-					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(),new Runnable() {
-						@Override
-						public void run() {	
-							Location loceggy = eggy.getLocation();
-								
-							loceggy.getWorld().playEffect(loceggy, Effect.EXPLOSION_HUGE, 1);
-							loceggy.getWorld().playSound(loceggy, Sound.ENTITY_GENERIC_EXPLODE, 1000.0F, 1.0F);
-							eggy.remove();
-	
-							int x;
-							int y;
-							int z;
-	
-							int rand1;
-							int rand2;
-	
-							Random r = new Random();
-	
-							for (int i = 0; i < 25; i++) {
-	
-								rand1 = r.nextInt(2);
-								rand2 = r.nextInt(2);
-	
-								x = r.nextInt(10);
-								y = r.nextInt(10);
-								z = r.nextInt(10);
-	
-								if (rand1 == 1) {
-									z *= -1;
-								}
-									
-								if (rand2 == 1) {
-									x *= -1;
-								}
-	
-								Arrow arrow = loceggy.getWorld().spawnArrow(loceggy, new Vector(x, y, z), 1.0F, 0.3F);
-									
-								arrow.setFireTicks(10000);
-								arrow.setCritical(true);						
-								arrow.setMetadata("shootedWith", new FixedMetadataValue(Main.getInstance(), "grenade"));
-								//arrow.setMetadata("shooter", new FixedMetadataValue(Main.getInstance(), killer.getName()));
-								arrow.setShooter(killer);
-	
-								Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(),new Runnable() {
-									@Override
-									public void run() {										
-										new Explosion("grenade", arrow.getLocation(), killer);
-										
-										arrow.remove();
-									}
-								}, 45);
+			if(Main.status == Status.INGAME) {
+				Location locegg = egg.getLocation();
+				
+				ItemStack eggi = new ItemStack(Material.EGG);
+				Entity eggy = locegg.getWorld().dropItem(locegg, eggi);
+				Player killer = (Player) egg.getShooter();
+				
+				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(),new Runnable() {
+					@Override
+					public void run() {	
+						Location loceggy = eggy.getLocation();
+							
+						loceggy.getWorld().playEffect(loceggy, Effect.EXPLOSION_HUGE, 1);
+						loceggy.getWorld().playSound(loceggy, Sound.ENTITY_GENERIC_EXPLODE, 1000.0F, 1.0F);
+						eggy.remove();
+		
+						int x;
+						int y;
+						int z;
+		
+						int rand1;
+						int rand2;
+		
+						Random r = new Random();
+		
+						for (int i = 0; i < 25; i++) {
+		
+							rand1 = r.nextInt(2);
+							rand2 = r.nextInt(2);
+		
+							x = r.nextInt(10);
+							y = r.nextInt(10);
+							z = r.nextInt(10);
+		
+							if (rand1 == 1) {
+								z *= -1;
 							}
+								
+							if (rand2 == 1) {
+								x *= -1;
+							}
+		
+							Arrow arrow = loceggy.getWorld().spawnArrow(loceggy, new Vector(x, y, z), 1.0F, 0.3F);
+								
+							arrow.setFireTicks(10000);
+							arrow.setCritical(true);						
+							arrow.setMetadata("shootedWith", new FixedMetadataValue(Main.getInstance(), "grenade"));
+							//arrow.setMetadata("shooter", new FixedMetadataValue(Main.getInstance(), killer.getName()));
+							arrow.setShooter(killer);
+		
+							Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(),new Runnable() {
+								@Override
+								public void run() {										
+									new Explosion("grenade", arrow.getLocation(), killer);
+									
+									arrow.remove();
+								}
+							}, 45);
 						}
-					}, 45);
-				} else {
-					egg.remove();
-				}
+					}
+				}, 45);
+			} else {
+				egg.remove();
 			}
-		}
+		}	
 	}
 	
 	@EventHandler
