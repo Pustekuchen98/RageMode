@@ -44,10 +44,7 @@ public class PowerUPItemListener implements Listener{
 		Entity entity = event.getItem();
 		Item item = event.getItem();
 		
-		if(Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) {
-			if(player.hasPermission("ragemode.admin")) event.setCancelled(false);
-			else event.setCancelled(true);
-		} else {
+		if(Main.status == Status.INGAME) {
 			if(Library.powerup_entity.contains(entity)) {
 				event.setCancelled(true);
 				

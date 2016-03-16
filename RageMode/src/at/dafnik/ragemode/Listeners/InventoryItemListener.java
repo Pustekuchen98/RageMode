@@ -7,12 +7,26 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
 public class InventoryItemListener implements Listener{
+	
+	//Pickup
+	@EventHandler
+	public void ItemPickUp(PlayerPickupItemEvent event) {
+		Player player = event.getPlayer();
+		
+		if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && Library.builder.contains(player)
+				&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
+		else if(Main.status != Status.INGAME){
+			event.setCancelled(true);
+			event.getItem().remove();
+		} else event.setCancelled(true);
+	}
 	
 	//Dropping is off
 	@EventHandler
