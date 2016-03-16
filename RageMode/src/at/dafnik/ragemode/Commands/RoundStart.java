@@ -3,14 +3,20 @@ package at.dafnik.ragemode.Commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 
+import at.dafnik.ragemode.API.OwnFireworkThread;
 import at.dafnik.ragemode.API.Strings;
-import at.dafnik.ragemode.Items.Items;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.PowerSystem;
 
@@ -51,12 +57,15 @@ public class RoundStart implements CommandExecutor{
 						player.spawnParticle(Particle.FIREWORKS_SPARK, loc, 200);
 					}**/
 					
-					//plugin.hasParticle.add(player);
-	
-					Items.givePlayerFly(player);
 					
-					player.sendMessage("r ");
-				
+					Location loc = player.getLocation();
+					Item item = loc.getWorld().dropItem(loc, new ItemStack(Material.FIREBALL));
+					Vector vector = new Vector(0, 2.2, 0);
+					item.setVelocity(vector);
+					for(Player players : Bukkit.getOnlinePlayers()) players.playSound(loc, Sound.ENTITY_FIREWORK_LAUNCH, 1000, 1);
+					new OwnFireworkThread(player, item).start();
+								
+					player.sendMessage("r ");			
 				}
 			}
 		} else System.out.println(Strings.error_only_player_use);

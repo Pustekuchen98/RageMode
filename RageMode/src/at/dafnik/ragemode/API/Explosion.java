@@ -44,7 +44,7 @@ public class Explosion {
 					
 					Player killer = shooter;
 					Player victim = (Player) entities;
-					
+						
 					if(victim.getMetadata("killedWith") != null && !victim.getMetadata("killedWith").isEmpty()) victim.removeMetadata("killedWith", Main.getInstance());
 					
 					if(ground == "bow") {
