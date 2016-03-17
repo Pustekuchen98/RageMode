@@ -1,4 +1,4 @@
-package at.dafnik.ragemode.PowerUPs;
+package at.dafnik.ragemode.Threads;
 
 import java.util.Random;
 
@@ -18,12 +18,12 @@ import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
-public class PowerUpper implements Runnable{
+public class PowerUpperThread implements Runnable{
 	Thread thread;
 	boolean running;
 	int time = 1;
 	
-	public PowerUpper() {
+	public PowerUpperThread() {
 		this.thread = new Thread(this);
 	}
 	

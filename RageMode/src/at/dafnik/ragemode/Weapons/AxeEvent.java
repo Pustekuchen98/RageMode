@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
+import at.dafnik.ragemode.Threads.AxeThrowThread;
 
 public class AxeEvent implements Listener{
 	  
@@ -26,7 +27,7 @@ public class AxeEvent implements Listener{
 					player.getInventory().remove(Material.DIAMOND_AXE);				
 					item.setVelocity(player.getLocation().getDirection().multiply(2D));
 					player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_DEATH, 1000, 1);
-					AxeThrow axet = new AxeThrow(player, 0.5, item);
+					AxeThrowThread axet = new AxeThrowThread(player, 0.5, item);
 					axet.start();
 					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 						@Override

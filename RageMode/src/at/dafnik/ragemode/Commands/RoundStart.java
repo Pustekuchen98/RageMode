@@ -15,7 +15,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
-import at.dafnik.ragemode.API.OwnFireworkThread;
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.PowerSystem;
@@ -63,7 +62,7 @@ public class RoundStart implements CommandExecutor{
 					Vector vector = new Vector(0, 2.2, 0);
 					item.setVelocity(vector);
 					for(Player players : Bukkit.getOnlinePlayers()) players.playSound(loc, Sound.ENTITY_FIREWORK_LAUNCH, 1000, 1);
-					new OwnFireworkThread(player, item).start();
+					//new OwnFireworkThread(player, item).start();
 								
 					player.sendMessage("r ");			
 				}

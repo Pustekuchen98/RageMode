@@ -10,19 +10,19 @@ import org.bukkit.scoreboard.Team;
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.API.TeleportAPI;
 import at.dafnik.ragemode.API.Title;
-import at.dafnik.ragemode.Items.CompassThread;
 import at.dafnik.ragemode.Items.Items;
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.MySQL.SQLStats;
-import at.dafnik.ragemode.PowerUPs.PowerUpper;
+import at.dafnik.ragemode.Threads.CompassThread;
+import at.dafnik.ragemode.Threads.PowerUpperThread;
 import at.dafnik.ragemode.Weapons.KnifeThread;
 
 public class Warmup {
 	
 	public Ingame ig;
-	public PowerUpper pu;
+	public PowerUpperThread pu;
 	
 	public CompassThread ct;
 	public KnifeThread kt;
@@ -47,7 +47,7 @@ public class Warmup {
 					kt.start();
 					ct = new CompassThread(Main.getInstance());
 					ct.start();
-					pu = new PowerUpper();
+					pu = new PowerUpperThread();
 					pu.start();
 					
 					ScoreboardManager manager = Bukkit.getScoreboardManager();

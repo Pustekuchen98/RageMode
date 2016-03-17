@@ -1,4 +1,4 @@
-package at.dafnik.ragemode.PowerUPs;
+package at.dafnik.ragemode.Threads;
 
 import org.bukkit.entity.Player;
 

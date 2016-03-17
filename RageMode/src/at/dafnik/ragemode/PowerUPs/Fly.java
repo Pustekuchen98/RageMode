@@ -18,6 +18,7 @@ import org.bukkit.potion.PotionEffectType;
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
+import at.dafnik.ragemode.Threads.FlyThread;
 
 public class Fly implements Listener{
 	

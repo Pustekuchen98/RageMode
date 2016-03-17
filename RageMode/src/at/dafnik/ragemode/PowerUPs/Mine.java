@@ -18,6 +18,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
+import at.dafnik.ragemode.Threads.ClayMoreThread;
 
 public class Mine implements Listener{
 	

@@ -3,6 +3,7 @@ package at.dafnik.ragemode.Main;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.net.NoRouteToHostException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.nio.channels.Channels;
@@ -78,7 +79,7 @@ public class Updater implements Runnable{
 								System.out.println("[RageMode] Download completed!");								
 									
 							} catch (Exception e) {
-								if(e instanceof UnknownHostException) System.out.println("[RageMode] Checking for updates FAILED! - Please check your internet connection!");
+								if(e instanceof UnknownHostException || e instanceof NoRouteToHostException) System.out.println("[RageMode] Checking for updates FAILED! - Please check your internet connection!");
 								else {
 									System.out.println("[RageMode] Checking for updates FAILED! - Unknown exception!");
 									if(Main.isDebug) e.printStackTrace();

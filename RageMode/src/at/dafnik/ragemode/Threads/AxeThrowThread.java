@@ -1,4 +1,4 @@
-package at.dafnik.ragemode.Weapons;
+package at.dafnik.ragemode.Threads;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
@@ -10,7 +10,7 @@ import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
-public class AxeThrow implements Runnable{
+public class AxeThrowThread implements Runnable{
 	
 	private Thread thread;
 	private Player player;
@@ -18,7 +18,7 @@ public class AxeThrow implements Runnable{
 	private boolean running;
 	private Item item;
 	
-	public AxeThrow(Player player, double radius, Item item){
+	public AxeThrowThread(Player player, double radius, Item item){
 		this.player = player;
 		this.radius = radius;
 		this.item = item;
