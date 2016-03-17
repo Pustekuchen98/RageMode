@@ -1,4 +1,4 @@
-package at.dafnik.ragemode.Weapons;
+package at.dafnik.ragemode.Threads;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

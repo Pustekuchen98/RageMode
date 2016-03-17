@@ -16,8 +16,8 @@ import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.MySQL.SQLStats;
 import at.dafnik.ragemode.Threads.CompassThread;
+import at.dafnik.ragemode.Threads.KnifeThread;
 import at.dafnik.ragemode.Threads.PowerUpperThread;
-import at.dafnik.ragemode.Weapons.KnifeThread;
 
 public class Warmup {
 	
