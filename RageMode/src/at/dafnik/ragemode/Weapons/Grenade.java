@@ -23,11 +23,14 @@ import org.bukkit.util.Vector;
 import at.dafnik.ragemode.API.Explosion;
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
+import at.dafnik.ragemode.Main.PowerSystem;
 import at.dafnik.ragemode.Main.Main.Status;
+import at.dafnik.ragemode.Threads.ArrowSparcleThread;
 
 public class Grenade implements Listener{
 	
 	double radius = 5;
+	private ArrowSparcleThread thread = null;
 	
 	@EventHandler
 	public void onHits(ProjectileHitEvent event) {
@@ -79,11 +82,16 @@ public class Grenade implements Listener{
 		
 							Arrow arrow = loceggy.getWorld().spawnArrow(loceggy, new Vector(x, y, z), 1.0F, 0.3F);
 								
-							arrow.setFireTicks(10000);
-							arrow.setCritical(true);						
+							arrow.setFireTicks(10000);						
 							arrow.setMetadata("shootedWith", new FixedMetadataValue(Main.getInstance(), "grenade"));
 							//arrow.setMetadata("shooter", new FixedMetadataValue(Main.getInstance(), killer.getName()));
 							arrow.setShooter(killer);
+							
+							if(PowerSystem.getPower(killer) > 0) {
+								thread = new ArrowSparcleThread(arrow); 
+								thread.start();
+							}							
+							else arrow.setCritical(true);
 		
 							Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(),new Runnable() {
 								@Override
@@ -91,6 +99,7 @@ public class Grenade implements Listener{
 									new Explosion("grenade", arrow.getLocation(), killer);
 									
 									arrow.remove();
+									if(thread != null) thread.stop();
 								}
 							}, 45);
 						}

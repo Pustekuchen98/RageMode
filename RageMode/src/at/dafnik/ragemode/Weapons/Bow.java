@@ -3,6 +3,7 @@ package at.dafnik.ragemode.Weapons;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -14,10 +15,22 @@ import at.dafnik.ragemode.API.Explosion;
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
+import at.dafnik.ragemode.Main.PowerSystem;
+import at.dafnik.ragemode.Threads.ArrowSparcleThread;
 
 public class Bow implements Listener{
-	
-	double radius = 5;
+		
+	@EventHandler
+	public void shootArrow(EntityShootBowEvent event) {
+		if(event.getEntity() instanceof Player && event.getProjectile() instanceof Arrow) {
+			if(Main.status == Status.INGAME) {
+				Player player = (Player) event.getEntity();
+				Arrow arrow = (Arrow) event.getProjectile();
+				if(PowerSystem.getPower(player) > 0) new ArrowSparcleThread(arrow).start(); 
+				
+			} else event.setCancelled(true);
+		} else event.setCancelled(true);
+	}
 	
 	@EventHandler
 	public void HitEvent(ProjectileHitEvent event){	

@@ -9,6 +9,7 @@ public class ArrowSparcleThread implements Runnable {
 	private Thread thread;
 	private boolean running;
 	private Arrow item;
+	private int zaehler;
 	
 	public ArrowSparcleThread(Arrow item){
 		this.item = item;
@@ -31,21 +32,23 @@ public class ArrowSparcleThread implements Runnable {
 	@Override
 	public void run() {
 		while(running){
-			
 			Location loc = item.getLocation();
 			
-			loc.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, loc.getX(), loc.getY(), loc.getZ(), 10, 0.05, 0.05, 0.05, 0.05);
+			loc.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, loc.getX(), loc.getY(), loc.getZ(), 5, 0.02, 0.02, 0.02, 0.02);
 			
 			try{
-				Thread.sleep(10);
+				Thread.sleep(5);
 			}catch (InterruptedException e){
 				e.printStackTrace();
 			}
 			
+			zaehler++;
+			
 			if(item.isOnGround()) {
 				this.stop();
-				item.remove();
 			}
+			
+			if(zaehler > 800) this.stop();
 		}
 	}
 }
