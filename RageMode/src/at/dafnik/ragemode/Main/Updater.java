@@ -87,10 +87,10 @@ public class Updater implements Runnable{
 							}
 							
 						} else System.out.println("[RageMode] Your RageMode version is up to date!");
-					} else System.out.println("[RageMode] The new version of RageMode has been downloaded! You have to move it from \"/plugins/RageMode\" to \"/plugins/\" and to delete the old version.");
+					} else System.out.println("[RageMode] The new version of RageMode has been downloaded! You have to delete the old version and to move it from \"/plugins/RageMode\" to \"/plugins/\"");
 					
 				} catch (Exception e) {	
-					if(e instanceof UnknownHostException) System.out.println("[RageMode] Checking for updates FAILED! - Please check your internet connection!");
+					if(e instanceof UnknownHostException || e instanceof NoRouteToHostException) System.out.println("[RageMode] Checking for updates FAILED! - Please check your internet connection!");
 					else {
 						System.out.println("[RageMode] Checking for updates FAILED! - Unknown exception!");
 						if(Main.isDebug) e.printStackTrace();

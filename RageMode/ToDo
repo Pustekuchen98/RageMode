@@ -3,14 +3,15 @@ Fixes:
 	- some other little fixes
 
 Added:
-	- PowerUP: Flash and fly PowerUP 
+	- PowerUP: new Flash and Fly PowerUP 
 	- 1.9 Support
-	- Shop Upgrade:  spectral Arrow Upgrade
+	- Shop Upgrade: spectral Arrow Upgrade
 	- Smooth Updates! You haven't to recreate the configuration and the MySQL Database
-	- Auto Update Check for the newest version
+	- Auto Update Check for the newest versions
 	- Enable or disable Auto Update Check
 	- BossBar
-	- AutoTabComplete for /vote
+	- AutoTabComplete for /vote, /rm and /tpmap
+	- Premium and upper feature: Particles for the arrows!
 	
 Changes:
 	- PowerUP Spawn time from 2 minutes to 1 minute

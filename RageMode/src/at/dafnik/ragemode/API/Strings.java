@@ -145,7 +145,7 @@ public class Strings {
 	public static String ragemode_server_is_back = "§7The server is back soon";
 	public static String ragemode_mysql_connected = log_pre + "MySQL Connected";
 	public static String ragemode_mysql_disconnected = log_pre + "MySQL Disconnected";
-	public static String ragemode_updated_succesful = log_pre + "The Updatechanges have been successful updated!";
+	public static String ragemode_updated_succesful = log_pre + "The Configuration and your MySQL Database have been succesfull updated!";
 	
 	public static String kill_suicide = " §7suicided";
 	public static String kill_killed = " §7killed §r";

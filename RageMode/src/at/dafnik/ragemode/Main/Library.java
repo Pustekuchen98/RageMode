@@ -25,8 +25,7 @@ public class Library {
 		public static Holograms villagerholo;
 		
 		//BossBar
-		public static BossBar bar = Bukkit.getServer().createBossBar(Strings.bossbar, BarColor.BLUE, BarStyle.SOLID, BarFlag.PLAY_BOSS_MUSIC);
-		
+		public static BossBar bar = Bukkit.getServer().createBossBar(Strings.bossbar, BarColor.BLUE, BarStyle.SOLID, BarFlag.PLAY_BOSS_MUSIC);	
 		
 		//--------------------------------------------------------------------
 		//Player List which voted

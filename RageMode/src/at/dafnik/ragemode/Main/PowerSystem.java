@@ -4,8 +4,8 @@ import org.bukkit.entity.Player;
 
 public class PowerSystem {
 	
-	public static int getPower(Player p){
-		switch(getType(p)){
+	public static int getPower(Player player){
+		switch(getType(player)){
 			case ADMIN:
 				return 10;
 			case MODERATOR:
@@ -21,11 +21,11 @@ public class PowerSystem {
 		}
 	}
 	
-	private static Type getType(Player p){
-		if(p.hasPermission("ragemode.admin")) return Type.ADMIN;
-		if(p.hasPermission("ragemode.moderator")) return Type.MODERATOR;
-		if(p.hasPermission("ragemode.youtuber")) return Type.YOUTUBER;
-		if(p.hasPermission("ragemode.premium")) return Type.PREMIUM;
+	private static Type getType(Player player){
+		if(player.hasPermission("ragemode.admin")) return Type.ADMIN;
+		if(player.hasPermission("ragemode.moderator")) return Type.MODERATOR;
+		if(player.hasPermission("ragemode.youtuber")) return Type.YOUTUBER;
+		if(player.hasPermission("ragemode.premium")) return Type.PREMIUM;
 		return Type.USER;
 	}
 	
