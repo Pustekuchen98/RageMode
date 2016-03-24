@@ -1,4 +1,4 @@
-package at.dafnik.ragemode.Shop;
+package at.dafnik.ragemode.Shop.Creator;
 
 import java.util.ArrayList;
 import java.util.List;

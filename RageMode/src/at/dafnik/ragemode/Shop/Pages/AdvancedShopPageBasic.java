@@ -1,4 +1,4 @@
-package at.dafnik.ragemode.Shop;
+package at.dafnik.ragemode.Shop.Pages;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
+import at.dafnik.ragemode.Shop.Shop;
 import net.md_5.bungee.api.ChatColor;
 
 public abstract class AdvancedShopPageBasic implements Listener{

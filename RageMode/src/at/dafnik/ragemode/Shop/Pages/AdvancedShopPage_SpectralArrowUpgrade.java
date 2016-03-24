@@ -1,4 +1,4 @@
-package at.dafnik.ragemode.Shop;
+package at.dafnik.ragemode.Shop.Pages;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;

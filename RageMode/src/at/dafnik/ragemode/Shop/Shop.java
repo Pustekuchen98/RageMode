@@ -21,6 +21,10 @@ import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.MySQL.SQLCoins;
+import at.dafnik.ragemode.Shop.Creator.createAdvancedInventoryMenu_BowPowerUpgrade;
+import at.dafnik.ragemode.Shop.Creator.createAdvancedInventoryMenu_KnockbackAbilityUpgrade;
+import at.dafnik.ragemode.Shop.Creator.createAdvancedInventoryMenu_SpectralArrowUpgrade;
+import at.dafnik.ragemode.Shop.Creator.createAdvancedInventoryMenu_SpeedUpgrade;
 
 public class Shop implements Listener{
 	

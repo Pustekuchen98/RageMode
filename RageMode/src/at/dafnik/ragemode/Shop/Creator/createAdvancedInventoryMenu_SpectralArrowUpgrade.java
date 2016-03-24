@@ -1,4 +1,4 @@
-package at.dafnik.ragemode.Shop;
+package at.dafnik.ragemode.Shop.Creator;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
