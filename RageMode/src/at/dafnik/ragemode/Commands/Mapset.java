@@ -149,15 +149,11 @@ public class Mapset implements CommandExecutor{
 								double x = player.getLocation().getX();
 								double y = player.getLocation().getY();
 								double z = player.getLocation().getZ();
-								double yaw = player.getLocation().getYaw();
-								double pitch = player.getLocation().getPitch();
 
 								Main.getInstance().getConfig().set("ragemode.villagershopspawn.world", w);
 								Main.getInstance().getConfig().set("ragemode.villagershopspawn.x", Double.valueOf(x));
 								Main.getInstance().getConfig().set("ragemode.villagershopspawn.y", Double.valueOf(y));
 								Main.getInstance().getConfig().set("ragemode.villagershopspawn.z", Double.valueOf(z));
-								Main.getInstance().getConfig().set("ragemode.villagershopspawn.yaw", Double.valueOf(yaw));
-								Main.getInstance().getConfig().set("ragemode.villagershopspawn.pitch", Double.valueOf(pitch));
 								Main.getInstance().saveConfig();
 
 								player.sendMessage(Strings.map_set_villagershop);

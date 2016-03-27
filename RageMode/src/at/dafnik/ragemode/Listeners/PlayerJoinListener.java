@@ -30,9 +30,7 @@ import at.dafnik.ragemode.MySQL.SQLStats;
 
 public class PlayerJoinListener implements Listener{
 
-	private 
-	int power;
-	
+	private int power;
 	
 	@EventHandler
 	public void Join(PlayerJoinEvent event){
@@ -55,7 +53,7 @@ public class PlayerJoinListener implements Listener{
 		player.setFireTicks(0);
 		player.getInventory().clear();
 		
-		if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) {
+		if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) {			
 			Manager.DisplayNameManagerMethode(player, "normal");
 			
 			event.setJoinMessage("§7» §r" + player.getDisplayName() + " §7joined the game");

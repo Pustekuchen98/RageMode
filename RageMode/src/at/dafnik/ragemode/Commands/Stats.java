@@ -29,20 +29,20 @@ public class Stats implements CommandExecutor {
 				
 			}
 			
-			if(cmd.getName().equalsIgnoreCase("statsreset")){	
-					if(PlayedBefore(player, player.getName())){	
-						SQLStats.setKills(player.getUniqueId().toString(), 0);
-						SQLStats.setDeaths(player.getUniqueId().toString(), 0);
-						SQLStats.setPlayedGames(player.getUniqueId().toString(), 0);
-						SQLStats.setWonGames(player.getUniqueId().toString(), 0);
-						SQLStats.setPoints(player.getUniqueId().toString(), 0);
-						SQLStats.setBowKills(player.getUniqueId().toString(), 0);
-						SQLStats.setKnifeKills(player.getUniqueId().toString(), 0);
-						SQLStats.setAxtKills(player.getUniqueId().toString(), 0);
-						SQLStats.setSuicides(player.getUniqueId().toString(), 0);
-						SQLStats.addResets(player.getUniqueId().toString(),  1);			
-						
-						player.sendMessage(Strings.stats_reset);	
+			if(cmd.getName().equalsIgnoreCase("statsreset")) {	
+				if(PlayedBefore(player, player.getName())) {	
+					SQLStats.setKills(player.getUniqueId().toString(), 0);
+					SQLStats.setDeaths(player.getUniqueId().toString(), 0);
+					SQLStats.setPlayedGames(player.getUniqueId().toString(), 0);
+					SQLStats.setWonGames(player.getUniqueId().toString(), 0);
+					SQLStats.setPoints(player.getUniqueId().toString(), 0);
+					SQLStats.setBowKills(player.getUniqueId().toString(), 0);
+					SQLStats.setKnifeKills(player.getUniqueId().toString(), 0);
+					SQLStats.setAxtKills(player.getUniqueId().toString(), 0);
+					SQLStats.setSuicides(player.getUniqueId().toString(), 0);
+					SQLStats.addResets(player.getUniqueId().toString(),  1);			
+					
+					player.sendMessage(Strings.stats_reset);	
 				}
 			}
 			
@@ -88,7 +88,9 @@ public class Stats implements CommandExecutor {
 								else StatsAdminCommands(player);
 								
 							} else StatsAdminCommands(player);
-						}
+							
+						} else player.sendMessage(Strings.error_no_uuid);
+						
 					} else StatsAdminCommands(player);
 					
 				} else player.sendMessage(Strings.error_permission);

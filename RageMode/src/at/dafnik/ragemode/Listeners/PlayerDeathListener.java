@@ -75,7 +75,7 @@ public class PlayerDeathListener implements Listener {
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_bow);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.bowkill);
-						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.bowkill + Strings.kill_holo_points));
+						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.bowkill + Strings.kill_holo_points));
 		
 					} else if (killground == "combataxe") {
 						
@@ -83,7 +83,7 @@ public class PlayerDeathListener implements Listener {
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_combat_axe);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.combataxekill);
-						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.combataxekill + Strings.kill_holo_points));
+						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.combataxekill + Strings.kill_holo_points));
 						
 					} else if (killground == "grenade") {
 						
@@ -91,7 +91,7 @@ public class PlayerDeathListener implements Listener {
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_grenade);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.grenadekill);
-						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.grenadekill + Strings.kill_holo_points));
+						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.grenadekill + Strings.kill_holo_points));
 		
 					} else if (killground == "mine") {
 						
@@ -99,7 +99,7 @@ public class PlayerDeathListener implements Listener {
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_mine);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.minekill);
-						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.minekill + Strings.kill_holo_points));
+						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.minekill + Strings.kill_holo_points));
 		
 					} else if (killground == "claymore") {
 						
@@ -107,7 +107,7 @@ public class PlayerDeathListener implements Listener {
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_claymore);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.claymorekill);
-						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.claymorekill + Strings.kill_holo_points));
+						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.claymorekill + Strings.kill_holo_points));
 		
 					} else if(killground == "knife") {
 						
@@ -117,7 +117,7 @@ public class PlayerDeathListener implements Listener {
 						killer.sendMessage(Strings.kill_points_plus + this.knifekill);
 						victim.sendMessage(Strings.kill_points_negative + this.knifedeath);
 						givePlayerPoints(victim, "knife_death");
-						holomaster(new Holograms(victim.getEyeLocation(), "§c+§6" + this.knifekill + Strings.kill_holo_points));
+						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.knifekill + Strings.kill_holo_points));
 					
 					//[Check] what killground is. - Closed
 					} else event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_unknown_killer); 
@@ -158,7 +158,7 @@ public class PlayerDeathListener implements Listener {
 				resetBossBar();
 				victim.sendMessage("§c§l" + this.suicide);
 				givePlayerPoints(victim, "suicide");
-				holomaster(new Holograms(victim.getEyeLocation(), "§c" + this.suicide + Strings.kill_holo_points));
+				createHologram(new Holograms(victim.getEyeLocation(), "§c" + this.suicide + Strings.kill_holo_points));
 			}
 		
 		//[Check] if Killer is a Player
@@ -220,6 +220,9 @@ public class PlayerDeathListener implements Listener {
 				SQLStats.addKills(playeruuid, 1);
 				SQLCoins.addCoins(playeruuid, 20);
 			}
+		
+		} else if(killground == "killstreak") {
+			SQLStats.addPoints(playeruuid, toBePoints);
 		}
 		
 		if (Library.playerpoints.get(player) == null) {
@@ -234,7 +237,7 @@ public class PlayerDeathListener implements Listener {
 		}
 	}
 	
-	private void holomaster(Holograms holo) {
+	private void createHologram(Holograms holo) {
 		for(Player players : Bukkit.getOnlinePlayers()) {
 			holo.display(players);
 			
@@ -253,6 +256,6 @@ public class PlayerDeathListener implements Listener {
 			public void run() {			
 				Library.bar.setTitle(Strings.bossbar);
 			}
-		}, 5*20);
+		}, 6*20);
 	}
 }
