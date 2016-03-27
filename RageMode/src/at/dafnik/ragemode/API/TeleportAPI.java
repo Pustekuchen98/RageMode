@@ -33,13 +33,9 @@ public class TeleportAPI {
 		double x = Main.getInstance().getConfig().getDouble("ragemode.villagershopspawn.x");
 		double y = Main.getInstance().getConfig().getDouble("ragemode.villagershopspawn.y");
 		double z = Main.getInstance().getConfig().getDouble("ragemode.villagershopspawn.z");
-		double yaw = Main.getInstance().getConfig().getDouble("ragemode.villagershopspawn.yaw");
-		double pitch = Main.getInstance().getConfig().getDouble("ragemode.villagershopspawn.pitch");
 		
 		if(w != null) {
 			Location loc = new Location(Bukkit.getWorld(w), x, y, z);
-			loc.setYaw((float) yaw);
-			loc.setPitch((float) pitch);
 			return loc;
 		} else {
 			return null;
@@ -77,7 +73,7 @@ public class TeleportAPI {
 	}
 	
 	public static Location getMapSpawnLocation(String wantto, String mapname) {
-		Location loc;
+		Location loc = null;
 		
 		for(int i = 0; i < 40; i++) {
 			String w = Main.getInstance().getConfig().getString("ragemode.mapspawn." + mapname + "." + wantto + ".world");
@@ -95,7 +91,7 @@ public class TeleportAPI {
 			}
 		}
 		
-		return null;
+		return loc;
 	}
 	
 	public static Location getMapMiddleLocation() {
