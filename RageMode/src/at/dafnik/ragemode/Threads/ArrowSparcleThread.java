@@ -37,14 +37,14 @@ public class ArrowSparcleThread implements Runnable {
 			loc.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, loc.getX(), loc.getY(), loc.getZ(), 5, 0.02, 0.02, 0.02, 0.02);
 			
 			try{
-				Thread.sleep(5);
+				Thread.sleep(20);
 			}catch (InterruptedException e){
 				e.printStackTrace();
 			}
 			
 			zaehler++;
 			
-			if(item.isOnGround()) {
+			if(item.isOnGround() || item.isDead() || item == null) {
 				this.stop();
 			}
 			
