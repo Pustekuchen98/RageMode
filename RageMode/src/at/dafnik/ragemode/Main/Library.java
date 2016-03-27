@@ -13,6 +13,8 @@ import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 
 import at.dafnik.ragemode.API.Holograms;
 import at.dafnik.ragemode.API.Strings;
@@ -26,6 +28,11 @@ public class Library {
 		
 		//BossBar
 		public static BossBar bar = Bukkit.getServer().createBossBar(Strings.bossbar, BarColor.BLUE, BarStyle.SOLID, BarFlag.PLAY_BOSS_MUSIC);	
+		
+		//Teams
+		public static List<Team> teams = new ArrayList<>();
+		public static Team ingame;
+		public static Scoreboard scoreboard;
 		
 		//--------------------------------------------------------------------
 		//Player List which voted

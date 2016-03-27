@@ -3,8 +3,6 @@ package at.dafnik.ragemode.Tasks;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.scoreboard.Team;
 
 import at.dafnik.ragemode.API.Strings;
@@ -32,24 +30,17 @@ public class Warmup {
 	public long warmuptime = 10;
 	public int warmupid;
 	
-	public static Team team;
 	
 	public void warmup(){
 		Main.status = Status.WARMUP;
 		warmupid = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable(){
 			
-			public void run(){
-				
+			public void run(){			
 				if(warmuptime == 10){			
 					kt = new KnifeThread();
 					kt.start();
 					pu = new PowerUpperThread();
 					pu.start();
-					
-					ScoreboardManager manager = Bukkit.getScoreboardManager();
-					Scoreboard board = manager.getNewScoreboard();
-					Warmup.team = board.registerNewTeam("playeringame");
-					Warmup.team.setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.NEVER);
 					
 					String mapauthor = Main.getInstance().getConfig().getString("ragemode.mapspawn." +  Library.votedmap + ".mapauthor");
 					if(mapauthor == null) mapauthor = "No author";
@@ -59,8 +50,12 @@ public class Warmup {
 					for (Player players : Bukkit.getOnlinePlayers()) {
 						if(Main.isMySQL) SQLStats.addPlayedGames(players.getUniqueId().toString(), 1);
 						
-						Warmup.team.addEntry(players.getName());
-						players.setScoreboard(board);
+						for(Team teams : Library.teams) teams.removeEntry(players.getName());
+						
+						Library.ingame.addEntry(players.getName());
+						players.setScoreboard(Library.scoreboard);
+						
+						//Add Bossbar
 						Library.bar.addPlayer(players);
 						
 						//Put in Ingameplayer

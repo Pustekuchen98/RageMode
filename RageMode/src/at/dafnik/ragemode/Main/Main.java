@@ -10,6 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.scoreboard.Team;
 
 import at.dafnik.ragemode.API.Holograms;
 import at.dafnik.ragemode.API.Strings;
@@ -94,6 +96,9 @@ public class Main extends JavaPlugin{
 		for (Player players : Bukkit.getOnlinePlayers()) {
 			for (Holograms holo : Library.powerup_list) holo.destroy(players);;		
 			players.removeMetadata("killedWith", this);
+			
+			for(Team teams : Library.teams) teams.removeEntry(players.getName());
+			Library.ingame.removeEntry(players.getName());
 		}
 		
 		Library.bar.removeAll();
@@ -238,6 +243,34 @@ public class Main extends JavaPlugin{
 		new AdvancedShopPage_KnockbackAbilityUpgrade();
 		new AdvancedShopPage_SpectralArrowUpgrade();
 		new AdvancedShopPage_BowPowerUpgrade();
+		
+		//Register Scorebords
+		ScoreboardManager manager = Bukkit.getScoreboardManager();
+		Library.scoreboard = manager.getNewScoreboard();
+		
+		Team admin = Library.scoreboard.registerNewTeam("players_admin");
+		admin.setPrefix("§4");
+		
+		Team moderator = Library.scoreboard.registerNewTeam("players_mod");
+		moderator.setPrefix("§c");
+		
+		Team youtuber = Library.scoreboard.registerNewTeam("players_yout");
+		youtuber.setPrefix("§5");
+		
+		Team premium = Library.scoreboard.registerNewTeam("players_pre");
+		premium.setPrefix("§6");
+		
+		Team user = Library.scoreboard.registerNewTeam("players_user"); 
+		user.setPrefix("§a");
+		
+		Library.ingame = Library.scoreboard.registerNewTeam("players_ingame");
+		Library.ingame.setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.NEVER);
+		
+		Library.teams.add(admin);
+		Library.teams.add(moderator);
+		Library.teams.add(youtuber);
+		Library.teams.add(premium);
+		Library.teams.add(user);
 	}
 	
 	//Register all Commands

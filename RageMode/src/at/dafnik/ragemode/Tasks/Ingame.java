@@ -123,7 +123,7 @@ public class Ingame {
 							Library.powerup_speedeffect.remove(players);
 							Library.powerup_flyparticle.remove(players);
 							
-							Warmup.team.removeEntry(players.getName());
+							Library.ingame.removeEntry(players.getName());
 						}
 					}
 					Bukkit.broadcastMessage(Strings.tasks_restart_countdown_0 + wintime + Strings.tasks_restart_countdown_01);
