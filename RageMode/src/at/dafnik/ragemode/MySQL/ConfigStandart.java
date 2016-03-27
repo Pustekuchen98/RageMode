@@ -124,11 +124,11 @@ public class ConfigStandart {
 		if(Main.getInstance().getConfig().getBoolean("ragemode.settings.updatecheck")) {
 			Main.wantUpdate = true;
 								
-			System.out.println("[RageMode] Update Check: ON");
+			System.out.println("[RageMode] Update-Check: ON");
 		} else {
 			Main.wantUpdate = false;
 								
-			System.out.println("[RageMode] Update Check: OFF");
+			System.out.println("[RageMode] Update-Check: OFF");
 		}
 		
 		System.out.println("[RageMode] ---------------------------------");
