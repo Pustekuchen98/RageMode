@@ -2,6 +2,7 @@ package at.dafnik.ragemode.Threads;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -38,7 +39,7 @@ public class KnifeThread implements Runnable{
 			
 			if(Main.status == Status.INGAME) {
 				for(Player player : Bukkit.getOnlinePlayers()) {
-					 Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 						@Override
 						public void run() {
 							if(!Library.spectatorlist.contains(player)) {
@@ -55,6 +56,11 @@ public class KnifeThread implements Runnable{
 							}
 						}
 					}, 1);
+					 
+					Player target = getNearest(player);
+					if(target != null) {
+						player.setCompassTarget(target.getLocation());
+					} 
 				}
 			}
 
@@ -64,5 +70,30 @@ public class KnifeThread implements Runnable{
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	private Player getNearest(Player player) {
+		double distance = Double.MAX_VALUE;
+		Player target = null;
+		
+		if(!player.getNearbyEntities(3000, 3000, 3000).isEmpty()) {
+			for(Entity entity : player.getNearbyEntities(3000, 3000, 3000)) {
+				if(entity != null) {
+					if(entity instanceof Player) {
+						if(!entity.isDead()) {
+							Player gettet = (Player) entity;
+							if(!(Library.spectatorlist.contains(gettet))) {
+								double dis = player.getLocation().distance(entity.getLocation());
+								if(dis < distance) {
+									distance = dis;
+									target = (Player) entity;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return target;
 	}
 }

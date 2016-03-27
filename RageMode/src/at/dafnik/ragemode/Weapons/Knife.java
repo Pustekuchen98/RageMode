@@ -202,3 +202,4 @@ public class Knife implements Listener{
 		if(event.getItem().getType() == Material.IRON_SPADE && Main.status == Status.INGAME) knifelist.add(event.getPlayer()); //Killer will be addet to the List
 	}
 }
+
