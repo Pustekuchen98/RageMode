@@ -14,12 +14,12 @@ import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.MySQL.SQLStats;
 import at.dafnik.ragemode.Threads.KnifeThread;
-import at.dafnik.ragemode.Threads.PowerUpperThread;
+import at.dafnik.ragemode.Threads.PowerUpThread;
 
 public class Warmup {
 	
 	public Ingame ig;
-	public PowerUpperThread pu;
+	public PowerUpThread pu;
 	
 	public KnifeThread kt;
 	
@@ -39,7 +39,7 @@ public class Warmup {
 				if(warmuptime == 10){			
 					kt = new KnifeThread();
 					kt.start();
-					pu = new PowerUpperThread();
+					pu = new PowerUpThread();
 					pu.start();
 					
 					String mapauthor = Main.getInstance().getConfig().getString("ragemode.mapspawn." +  Library.votedmap + ".mapauthor");

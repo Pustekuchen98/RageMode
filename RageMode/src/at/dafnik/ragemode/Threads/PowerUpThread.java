@@ -11,6 +11,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.util.Vector;
 
 import at.dafnik.ragemode.API.Holograms;
 import at.dafnik.ragemode.API.Strings;
@@ -18,12 +19,12 @@ import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
-public class PowerUpperThread implements Runnable{
+public class PowerUpThread implements Runnable{
 	Thread thread;
 	boolean running;
 	int time = 1;
 	
-	public PowerUpperThread() {
+	public PowerUpThread() {
 		this.thread = new Thread(this);
 	}
 	
@@ -71,6 +72,7 @@ public class PowerUpperThread implements Runnable{
 									imd.addEnchant(Enchantment.WATER_WORKER, 1, true);
 									item.setItemMeta(imd);
 									Entity entity = loc.getWorld().dropItem(loc, item);
+									entity.setVelocity((new Vector(0, 0, 0)));
 									
 									Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 										@Override
