@@ -14,7 +14,6 @@ public class Strings {
 	public static String error_no_map = log_pre + "ERROR: TeleportAPI: getRandomMapSpawnLocation! Try catch faild!";
 	public static String error_explosion_no_killground = log_pre + "ERROR: ExplosionAPI doesn't work well. No Explosionground can found!";
 	public static String error_powerup_last = log_pre + "ERROR: PowerUP spawning failed! Caused by: No Map or no PowerUP Spawns";
-	public static String error_powerup_spawn = log_pre + "ERROR: PowerUP spawing failed! Caused by: Coordinates Error. Trying Spawn function again.";
 	public static String error_randommizer_dont_work = log_pre + "ERROR: PowerUPItemListener - Randomizer doesn't work!";
 	public static String error_more_rankingwall_places_then_player_in_mysql = log_pre + "WARNING: More Ranking Places than players registered in your MySQL Database!";
 	public static String error_rankingwall_headrotation = log_pre + "ERROR: Please set the rotation of the Ranking Heads! /rm setranking setrotation";
@@ -60,6 +59,7 @@ public class Strings {
 	public static String map_set_middlepoint = pre + "§7Set §asuccesfull §7middlepoint";
 	public static String map_worldborder = pre + "§cThis is the worldborder";
 	public static String map_edit_not_yet = pre + "§cYou can only build on the map during §aLobby §cand §aPre Lobby";
+	public static String map_spawnpowerup = pre + "§aThe PowerUP has been succusfull spawned";
 	
 	public static String game_set_needed_players = pre + "§7You have set the needed player number §asuccesful§8: §6";
 	public static String game_set_time = pre + "§7You have set the gametime succesfull§8: §6";

@@ -107,4 +107,31 @@ public class TeleportAPI {
 			return null;
 		}
 	}
+	
+	public static Location getRandomPowerUPSpawnLocation() {
+		try {
+			int spawnnumber = Main.getInstance().getConfig().getInt("ragemode.powerupspawn." + Library.votedmap + ".spawnnumber");
+			Random r = new Random();
+			int randomzahl = r.nextInt(spawnnumber);
+			Location loc = null;
+			
+			for(int i = 0; i < 40; i++) {
+				String w = Main.getInstance().getConfig().getString("ragemode.powerupspawn." + Library.votedmap + "." + randomzahl + ".world");
+				double x = Main.getInstance().getConfig().getDouble("ragemode.powerupspawn." + Library.votedmap + "." + randomzahl + ".x");
+				double y = Main.getInstance().getConfig().getDouble("ragemode.powerupspawn." + Library.votedmap + "." + randomzahl + ".y");
+				double z = Main.getInstance().getConfig().getDouble("ragemode.powerupspawn." + Library.votedmap + "." + randomzahl + ".z");
+				
+				if(w != null) {
+					loc = new Location(Bukkit.getWorld(w), x, y, z);
+					if (Main.isDebug) System.out.print(Strings.debug_powerup_spawn_1 + randomzahl + Strings.debug_powerup_spawn_2 + w + ", " + x	+ " ," + y + ", " + z);
+					return loc;
+				}
+			}
+			
+			return loc;
+		} catch (IllegalArgumentException e) {
+			System.out.println(Strings.error_no_map);
+			return getLobbyLocation();
+		}
+	}
 }

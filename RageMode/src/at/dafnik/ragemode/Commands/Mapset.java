@@ -1,6 +1,9 @@
 package at.dafnik.ragemode.Commands;
 
+import java.util.Set;
+
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,6 +13,7 @@ import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
+import at.dafnik.ragemode.Threads.PowerUpThread;
 
 public class Mapset implements CommandExecutor{
 	
@@ -64,6 +68,7 @@ public class Mapset implements CommandExecutor{
 						player.sendMessage(pre + "/rm setmapmiddle §8<§aMapname§8> §8<§aApproximately Blockradius of the map§8>");
 						player.sendMessage(pre + "/rm setmapspawn §8<§aMapname§8>");
 						player.sendMessage(pre + "/rm setpowerupspawn §8<§aMapname§8>");
+						player.sendMessage(pre + "/rm spawnpowerup");
 						player.sendMessage(pre + "/rm setneededplayers §8<§aNeeded Players§8>");
 						player.sendMessage(pre + "/rm setgametime §8<§aMinutes§8>");
 						player.sendMessage(pre + "/rm sethologram");
@@ -387,7 +392,7 @@ public class Mapset implements CommandExecutor{
 									player.sendMessage(Strings.error_enter);
 								}
 							 }
-						 }else if(args[0].equalsIgnoreCase("setneededplayers")){
+						 } else if(args[0].equalsIgnoreCase("setneededplayers")){
 							 //Permissions Access
 							 if(!player.hasPermission("ragemode.admin")){
 								 player.sendMessage(Strings.error_permission);
@@ -401,6 +406,20 @@ public class Mapset implements CommandExecutor{
 									 player.sendMessage(Strings.error_enter);
 								 }
 							 }
+							 
+						 } else if(args[0].equalsIgnoreCase("spawnpowerup")){
+							//Permissions Access
+							if(!player.hasPermission("ragemode.admin")){
+								player.sendMessage(Strings.error_permission);
+							} else {
+								if (args.length == 1) {															
+									PowerUpThread.spawnPowerUP(player.getTargetBlock((Set<Material>) null, 5).getLocation());
+
+									player.sendMessage(Strings.map_spawnpowerup);
+								} else {
+									player.sendMessage(Strings.error_enter);
+								}
+							}
 						 } else if(args[0].equalsIgnoreCase("setgametime")){
 							 if(!player.hasPermission("ragemode.admin")){
 								 player.sendMessage(Strings.error_permission);

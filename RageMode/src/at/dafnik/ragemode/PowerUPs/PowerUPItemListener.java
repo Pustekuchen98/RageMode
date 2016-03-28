@@ -128,8 +128,8 @@ public class PowerUPItemListener implements Listener{
 					
 				entity.remove();
 				Library.powerup_entity.remove(entity);
-				
-			} else {
+			
+			} else if(entity.getName() != "PowerUPEntity"){
 				event.setCancelled(true);
 				entity.remove();
 			}
