@@ -200,7 +200,7 @@ public class Main extends JavaPlugin{
 			System.out.println(Strings.ragemode_updated_succesful);	
 		}
 		
-		new Updater().start();
+		if(Main.wantUpdate) new Updater().start();
 	}
 
 	//Register All Events
