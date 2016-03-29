@@ -54,7 +54,7 @@ class PlayerListName implements Runnable {
 			if((Library.teams.get(0).getPrefix().length() + player.getName().length()) <= 16) Library.teams.get(0).addEntry(player.getName());
 		
 		} else if (player.hasPermission("ragemode.moderator")) {
-			player.setDisplayName("§cModerator §8| §c" + player.getName());
+			player.setDisplayName("§cMod. §8| §c" + player.getName());
 			if((Library.teams.get(1).getPrefix().length() + player.getName().length()) <= 16) Library.teams.get(1).addEntry(player.getName());
 			
 		} else if (player.hasPermission("ragemode.youtuber")) {

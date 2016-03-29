@@ -29,8 +29,7 @@ public class DoubleJump implements Listener {
 	private HashMap<Player, Boolean> cooldown = new HashMap<Player, Boolean>();
 	private ArrayList<Player> smash = new ArrayList<Player>();
     int radius = 5;
-    
-	
+    	
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void EntityDamage(EntityDamageEvent event) {
@@ -127,10 +126,11 @@ public class DoubleJump implements Listener {
 				event.setCancelled(true);
 				cooldown.put(player, false);
 				player.setVelocity(player.getLocation().getDirection().multiply(1.0D).setY(0.9D));
-	
+				
+				player.getLocation().getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_SHOOT, 10000, 10);
+				
 				for (Player pl : Bukkit.getOnlinePlayers()) {
 					pl.playEffect(player.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
-					pl.playSound(player.getLocation(), Sound.ENTITY_WITHER_SHOOT , 10000, 10);
 				}
 	
 				player.setAllowFlight(false);

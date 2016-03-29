@@ -33,17 +33,22 @@ public class Warmup {
 	
 	public void warmup(){
 		Main.status = Status.WARMUP;
+		
+		String mapauthor1 = Main.getInstance().getConfig().getString("ragemode.mapspawn." +  Library.votedmap + ".mapauthor");
+		final String mapauthor;
+		if(mapauthor1 == null) mapauthor = "No author";
+		else mapauthor = mapauthor1;
+		
 		warmupid = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable(){
-			
-			public void run(){			
+	
+			public void run() {
+				for(Player players : Bukkit.getOnlinePlayers()) Title.sendActionBar(players, Strings.tasks_warmup_voted_map +  Library.votedmap + Strings.tasks_warmup_voted_map_1 + mapauthor);
+				
 				if(warmuptime == 10){			
 					kt = new KnifeThread();
 					kt.start();
 					pu = new PowerUpThread();
 					pu.start();
-					
-					String mapauthor = Main.getInstance().getConfig().getString("ragemode.mapspawn." +  Library.votedmap + ".mapauthor");
-					if(mapauthor == null) mapauthor = "No author";
 					
 					Bukkit.broadcastMessage(Strings.tasks_warmup_teleport_to_map);
 					
@@ -72,13 +77,11 @@ public class Warmup {
 						
 						//Player Teleport
 						players.teleport(TeleportAPI.getRandomMapSpawnLocations());
-						
-						Title.sendActionBar(players, Strings.tasks_warmup_voted_map +  Library.votedmap + Strings.tasks_warmup_voted_map_1 + mapauthor);
 					}
 					
 					Bukkit.broadcastMessage(Strings.tasks_warmup_peacetime_ends_in + warmuptime + Strings.tasks_warmup_peacetime_ends_in_0);
 					
-				}else if(warmuptime == 0){
+				} else if(warmuptime == 0){
 					if(Main.status != Status.WIN && Main.status != Status.RESTART) {
 						Bukkit.broadcastMessage(Strings.tasks_warmup_peacetime_ends);
 						for(Player player : Bukkit.getOnlinePlayers()) {

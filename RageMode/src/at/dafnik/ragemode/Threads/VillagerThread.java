@@ -1,4 +1,4 @@
-package at.dafnik.ragemode.Shop;
+package at.dafnik.ragemode.Threads;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Villager;
@@ -38,7 +38,7 @@ public class VillagerThread implements Runnable{
 			if(villager.getLocation() != loc) villager.teleport(loc);
 			
 			try {
-				Thread.sleep(40);
+				Thread.sleep(20);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

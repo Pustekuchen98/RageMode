@@ -3,6 +3,7 @@ package at.dafnik.ragemode.Commands;
 import java.util.Set;
 
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -412,8 +413,10 @@ public class Mapset implements CommandExecutor{
 							if(!player.hasPermission("ragemode.admin")){
 								player.sendMessage(Strings.error_permission);
 							} else {
-								if (args.length == 1) {															
-									PowerUpThread.spawnPowerUP(player.getTargetBlock((Set<Material>) null, 5).getLocation());
+								if (args.length == 1) {		
+									Location loc = player.getTargetBlock((Set<Material>) null, 5).getLocation();
+									loc.setY(loc.getY()+1);
+									PowerUpThread.spawnPowerUP(loc);
 
 									player.sendMessage(Strings.map_spawnpowerup);
 								} else {
