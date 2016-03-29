@@ -31,7 +31,7 @@ public class Listeners implements Listener {
 	Location mapmiddle = null;
 	
 	@EventHandler
-	public void onMove(PlayerMoveEvent event){
+	public void onPlayerMove(PlayerMoveEvent event){
 		Player player = event.getPlayer();
 		Location loc = player.getLocation();
 		

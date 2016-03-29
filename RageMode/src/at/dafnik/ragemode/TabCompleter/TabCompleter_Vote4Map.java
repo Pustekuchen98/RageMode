@@ -6,31 +6,31 @@ import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
-public class RMTabCompleter extends AbstractTabCompleter{
-	
+public class TabCompleter_Vote4Map extends AbstractTabCompleter{
+
 	@Override
 	public List<String> returnList() {
-		return Library.maps;
+		return Library.mapstovote;
 	}
 	
 	@Override
 	public String commandString() {
-		return "rm";
+		return "vote";
 	}
 	
 	@Override
 	public int argumentsMaxInt() {
-		return 3;
+		return 2;
 	}
 	
 	@Override
 	public int argumentsMinInt() {
-		return 1;
+		return 0;
 	}
 	
 	@Override
 	public Boolean Status() {
-		if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) return true;
+		if(Main.status == Status.LOBBY) return true;
 		else return false;
 	}
 }

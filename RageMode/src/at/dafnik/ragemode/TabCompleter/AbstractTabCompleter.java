@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 import at.dafnik.ragemode.API.Strings;
 
-public class AbstractTabCompleter implements TabCompleter{
+public abstract class AbstractTabCompleter implements TabCompleter{
 
 	public String commandString() {
 		return null;

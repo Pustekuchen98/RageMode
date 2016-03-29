@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Main.Status;
-import at.dafnik.ragemode.TabCompleter.VoteTabCompleter;
+import at.dafnik.ragemode.TabCompleter.TabCompleter_Vote4Map;
 
 public class Mapvote implements CommandExecutor{
 	
@@ -23,7 +23,7 @@ public class Mapvote implements CommandExecutor{
 	public Mapvote(){		
 		Main.getInstance().getCommand("list").setExecutor(this);
 		Main.getInstance().getCommand("vote").setExecutor(this);
-		Main.getInstance().getCommand("vote").setTabCompleter(new VoteTabCompleter());
+		Main.getInstance().getCommand("vote").setTabCompleter(new TabCompleter_Vote4Map());
 	}
 	
 	//Add Map name to the Variable

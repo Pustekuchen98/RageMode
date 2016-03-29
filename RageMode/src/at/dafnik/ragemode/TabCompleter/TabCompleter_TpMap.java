@@ -3,8 +3,10 @@ package at.dafnik.ragemode.TabCompleter;
 import java.util.List;
 
 import at.dafnik.ragemode.Main.Library;
+import at.dafnik.ragemode.Main.Main;
+import at.dafnik.ragemode.Main.Main.Status;
 
-public class TpMapTabCompleter extends AbstractTabCompleter{
+public class TabCompleter_TpMap extends AbstractTabCompleter{
 	
 	@Override
 	public List<String> returnList() {
@@ -28,6 +30,7 @@ public class TpMapTabCompleter extends AbstractTabCompleter{
 	
 	@Override
 	public Boolean Status() {
-		return true;
+		if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) return true;
+		else return false;
 	}
 }

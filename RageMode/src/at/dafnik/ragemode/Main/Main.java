@@ -47,8 +47,9 @@ import at.dafnik.ragemode.Shop.Pages.AdvancedShopPage_BowPowerUpgrade;
 import at.dafnik.ragemode.Shop.Pages.AdvancedShopPage_KnockbackAbilityUpgrade;
 import at.dafnik.ragemode.Shop.Pages.AdvancedShopPage_SpectralArrowUpgrade;
 import at.dafnik.ragemode.Shop.Pages.AdvancedShopPage_SpeedUpgrade;
-import at.dafnik.ragemode.TabCompleter.RMTabCompleter;
-import at.dafnik.ragemode.TabCompleter.TpMapTabCompleter;
+import at.dafnik.ragemode.TabCompleter.TabCompleter_RMCommands;
+import at.dafnik.ragemode.TabCompleter.TabCompleter_RMMaps;
+import at.dafnik.ragemode.TabCompleter.TabCompleter_TpMap;
 import at.dafnik.ragemode.Tasks.Lobby;
 import at.dafnik.ragemode.Threads.VillagerThread;
 import at.dafnik.ragemode.Weapons.AxeEvent;
@@ -237,6 +238,8 @@ public class Main extends JavaPlugin{
 		pm.registerEvents(new FoodWeatherChangeListener(), this);
 		pm.registerEvents(new InventoryItemListener(), this);
 		pm.registerEvents(new BlockBedListener(), this);
+		//FUCK SPIGOT 1.9
+		//pm.registerEvents(new PlayerRide(), this);
 		
 		//Events - Shop
 		pm.registerEvents(new Shop(), this);
@@ -277,7 +280,8 @@ public class Main extends JavaPlugin{
 	//Register all Commands
 	private void registerCommands(){
 		this.getCommand("rm").setExecutor(new Mapset());
-		this.getCommand("rm").setTabCompleter(new RMTabCompleter());
+		this.getCommand("rm").setTabCompleter(new TabCompleter_RMMaps());
+		this.getCommand("rm").setTabCompleter(new TabCompleter_RMCommands());
 		
 		this.getCommand("coins").setExecutor(new Coins());
 		this.getCommand("coinsadmin").setExecutor(new Coins());
@@ -291,7 +295,7 @@ public class Main extends JavaPlugin{
 		this.getCommand("test").setExecutor(new RoundStart());
 		
 		this.getCommand("tpmap").setExecutor(new Teleport());
-		this.getCommand("tpmap").setTabCompleter(new TpMapTabCompleter());
+		this.getCommand("tpmap").setTabCompleter(new TabCompleter_TpMap());
 		this.getCommand("tplobby").setExecutor(new Teleport());
 		
 		this.getCommand("hub").setExecutor(new LobbyCommands());
