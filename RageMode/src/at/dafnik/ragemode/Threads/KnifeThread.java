@@ -35,8 +35,7 @@ public class KnifeThread implements Runnable{
 
 	@Override
 	public void run() {
-		while(running){
-			
+		while(running){	
 			if(Main.status == Status.INGAME) {
 				for(Player player : Bukkit.getOnlinePlayers()) {
 					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
