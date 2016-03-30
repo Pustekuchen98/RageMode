@@ -33,6 +33,7 @@ import at.dafnik.ragemode.Listeners.PlayerQuitListener;
 import at.dafnik.ragemode.Listeners.Listeners;
 import at.dafnik.ragemode.Listeners.PlayerDeathListener;
 import at.dafnik.ragemode.Listeners.PlayerRespawnListener;
+import at.dafnik.ragemode.Listeners.PlayerRide;
 import at.dafnik.ragemode.MySQL.ConfigStandart;
 import at.dafnik.ragemode.MySQL.MySQL;
 import at.dafnik.ragemode.MySQL.Ranking;
@@ -239,7 +240,7 @@ public class Main extends JavaPlugin{
 		pm.registerEvents(new InventoryItemListener(), this);
 		pm.registerEvents(new BlockBedListener(), this);
 		//FUCK SPIGOT 1.9
-		//pm.registerEvents(new PlayerRide(), this);
+		pm.registerEvents(new PlayerRide(), this);
 		
 		//Events - Shop
 		pm.registerEvents(new Shop(), this);
