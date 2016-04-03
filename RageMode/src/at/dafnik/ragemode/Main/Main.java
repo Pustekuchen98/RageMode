@@ -239,7 +239,6 @@ public class Main extends JavaPlugin{
 		pm.registerEvents(new FoodWeatherChangeListener(), this);
 		pm.registerEvents(new InventoryItemListener(), this);
 		pm.registerEvents(new BlockBedListener(), this);
-		//FUCK SPIGOT 1.9
 		pm.registerEvents(new PlayerRide(), this);
 		
 		//Events - Shop

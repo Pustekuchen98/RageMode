@@ -1,24 +1,15 @@
 package at.dafnik.ragemode.Commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_9_R1.entity.CraftEntity;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Ocelot;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.PowerSystem;
-import net.minecraft.server.v1_9_R1.AttributeInstance;
-import net.minecraft.server.v1_9_R1.EntityInsentient;
-import net.minecraft.server.v1_9_R1.GenericAttributes;
-import net.minecraft.server.v1_9_R1.PathEntity;
 
 public class RoundStart implements CommandExecutor{
 	
@@ -72,7 +63,7 @@ public class RoundStart implements CommandExecutor{
 					if(!happened) {
 					pet = (Ocelot) player.getWorld().spawnEntity(player.getLocation(), EntityType.OCELOT);
 					pet.setOwner(player);
-					PetFollow(player, pet, 0.2);
+					//PetFollow(player, pet, 0.2);
 					happened = true;
 					} else {
 						pet.remove();
@@ -97,32 +88,4 @@ public class RoundStart implements CommandExecutor{
 		return locations;
 	}*/
 	
-	public void PetFollow(final Player player , final Entity pet , final double speed){
-		new BukkitRunnable() {
-			@SuppressWarnings("deprecation")
-			public void run() {
-				if ((!pet.isValid() || (!player.isOnline()))) {
-					this.cancel();
-				}
-				net.minecraft.server.v1_9_R1.Entity pett = ((CraftEntity) pet).getHandle();
-				((EntityInsentient) pett).getNavigation().a(2);
-				Object petf = ((CraftEntity) pet).getHandle();
-				Location targetLocation = player.getLocation();
-				PathEntity path;
-				path = ((EntityInsentient) petf).getNavigation().a(targetLocation.getX() + 1, targetLocation.getY(), targetLocation.getZ() + 1);
-				if (path != null) {
-					((EntityInsentient) petf).getNavigation().a(path, 1.0D);
-					((EntityInsentient) petf).getNavigation().a(2.0D);
-				}
-				
-				int distance = (int) Bukkit.getPlayer(player.getName()).getLocation().distance(pet.getLocation());
-				if (distance > 10 && !pet.isDead() && player.isOnGround()) {
-					pet.teleport(player.getLocation());
-				}
-				
-				AttributeInstance attributes = ((EntityInsentient)((CraftEntity)pet).getHandle()).getAttributeInstance(GenericAttributes.MOVEMENT_SPEED);
-				attributes.setValue(speed);
-			}
-		}.runTaskTimer(Main.getInstance(), 0L, 20L);
-	}
 }
