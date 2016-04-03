@@ -49,20 +49,20 @@ public class Strings {
 	public static String error_inventory_false_click = pre + "§cFalse click";
 	public static String error_no_uuid = pre + "§cThe player hasn't played before on this server";
 	
-	public static String map_create = pre + "§7You create the Map §asuccesfull§8: §6";
-	public static String map_set_villagershop = pre + "§7You set the villagershop spawn §asuccesfull";
+	public static String map_create = pre + "§7You create the Map §asuccessful§8: §6";
+	public static String map_set_villagershop = pre + "§7You set the villagershop spawn §asuccessful";
 	public static String map_edit_allowed = pre + "§7You are §aallowed §3to build in your world";
 	public static String map_edit_disallowed = pre + "§7You are §cdisallowed §7to build in your world";
-	public static String map_set_author = pre + "§7You have set the author §asuccesfull§8: §6";
-	public static String map_set_coordinates = pre + "§7Set succesfull Spawn§8: §a";
-	public static String map_set_powerup_coordinates = pre + "§7Set succesfull PowerUp Spawns§8: §a";
-	public static String map_set_middlepoint = pre + "§7Set §asuccesfull §7middlepoint";
+	public static String map_set_author = pre + "§7You have set the author §asuccessful§8: §6";
+	public static String map_set_coordinates = pre + "§7Set successful Spawn§8: §a";
+	public static String map_set_powerup_coordinates = pre + "§7Set successful PowerUp Spawns§8: §a";
+	public static String map_set_middlepoint = pre + "§7Set §asuccessful §7middlepoint";
 	public static String map_worldborder = pre + "§cThis is the worldborder";
 	public static String map_edit_not_yet = pre + "§cYou can only build on the map during §aLobby §cand §aPre Lobby";
 	public static String map_spawnpowerup = pre + "§aThe PowerUP has been succusfull spawned";
 	
 	public static String game_set_needed_players = pre + "§7You have set the needed player number §asuccesful§8: §6";
-	public static String game_set_time = pre + "§7You have set the gametime succesfull§8: §6";
+	public static String game_set_time = pre + "§7You have set the gametime successful§8: §6";
 	
 	public static String lobby_set_hologram = pre + "§7You have set the hologram §asuccesful";
 	public static String lobby_set_spawn = pre + "§7You have set the Lobby Spawn §asuccesful";
@@ -70,7 +70,7 @@ public class Strings {
 	
 	public static String bungee_switch_on = pre + "§7You have switch the Bungee module §aon";
 	public static String bungee_switch_off = pre + "§7You have switch the Bungee module §coff";
-	public static String bungee_lobby_server = pre + "§7You have set the lobbyserver §asuccesfull§8: §6";
+	public static String bungee_lobby_server = pre + "§7You have set the lobbyserver §asuccessful§8: §6";
 	
 	public static String mysql_set_host = pre + "§7You have set the host§8: §6";
 	public static String mysql_set_database = pre + "§7You have set the database§8: §6";
@@ -80,7 +80,7 @@ public class Strings {
 	public static String mysql_switch_off = pre + "§7You have switch the MySQL Module §coff";
 	
 	public static String stats_reset = pre + "§7Your stats has been §aresettet";
-	public static String statsadmin_succesfull = pre + "§7The command was §asuccesful";
+	public static String statsadmin_successful = pre + "§7The command was §asuccesful";
 	public static String stats_admin = pre + "/statsadmin §8<§aadd §8| §aremove§8> §8<§akills §8| §adeaths §8| §awongames §8| §aplayedgames §8| §apoints §8| §aresets §8| §abowkills §8| §aknifekills §8| §aaxtkills§8 §8| §asuicides§8> §8<§aplayername§8> <§anumber§8>";
 	public static String stats_are_loading = "§7Please wait a moment, your stats are being loaded...";
 	public static String stats_your_name_first = "§7-= §eStats from ";
@@ -145,7 +145,7 @@ public class Strings {
 	public static String ragemode_server_is_back = "§7The server is back soon";
 	public static String ragemode_mysql_connected = log_pre + "MySQL Connected";
 	public static String ragemode_mysql_disconnected = log_pre + "MySQL Disconnected";
-	public static String ragemode_updated_succesful = log_pre + "The Configuration and your MySQL Database have been succesfull updated!";
+	public static String ragemode_updated_succesful = log_pre + "The Configuration and your MySQL Database have been successful updated!";
 	
 	public static String kill_suicide = " §7suicided";
 	public static String kill_killed = " §7killed §r";
@@ -193,7 +193,7 @@ public class Strings {
 	public static String inventory_invmore_description_blazepowder_2 = "§fSo, when you buy this upgrade you will get knockback ability tier 2.";
 	public static String inventory_invmore_description_spectralarrow= "§fWhen you normally shoot with your bow. You will shoot normal arrows.";
 	public static String inventory_invmore_description_spectralarrow_2 = "§fSo, when you buy this upgrade you will shoot spectral arrows.";
-	public static String inventory_buy_succesfull = pre + "§aYou bought it successful";
+	public static String inventory_buy_successful = pre + "§aYou bought it successful";
 	public static String inventory_buy_new_coins = pre + "§cCoins at the moment§8: §6";
 	public static String inventory_buy_not_enough = pre + "§cYou haven't enough coins§8. §cMissing coins§8: §6";
 	public static String inventory_buy_already_buy = pre + "§cYou have already bought it";

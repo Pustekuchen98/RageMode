@@ -229,7 +229,7 @@ public class Mapset implements CommandExecutor{
 									
 									Main.getInstance().saveConfig();
 									
-									player.sendMessage(Strings.statsadmin_succesfull);
+									player.sendMessage(Strings.statsadmin_successful);
 									
 								} else if(args[1].equalsIgnoreCase("setrotation")) {
 									if(args.length == 2) {

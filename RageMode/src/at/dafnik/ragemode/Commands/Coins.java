@@ -37,10 +37,10 @@ public class Coins implements CommandExecutor{
 								OfflinePlayer lookedfor = Bukkit.getOfflinePlayer(args[1]);
 								if(args[0].equalsIgnoreCase("add")) {
 									SQLCoins.addCoins(lookedfor.getUniqueId().toString(), Integer.valueOf(args[2]));
-									player.sendMessage(Strings.statsadmin_succesfull);
+									player.sendMessage(Strings.statsadmin_successful);
 								} else if(args[0].equalsIgnoreCase("remove")) {
 									SQLCoins.removeCoins(lookedfor.getUniqueId().toString(), Integer.valueOf(args[2]));
-									player.sendMessage(Strings.statsadmin_succesfull);
+									player.sendMessage(Strings.statsadmin_successful);
 								} else CoinsAdminCommands(player);
 							}
 						} else CoinsAdminCommands(player);

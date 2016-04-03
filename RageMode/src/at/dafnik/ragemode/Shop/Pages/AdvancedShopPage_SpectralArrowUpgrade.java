@@ -28,7 +28,7 @@ public class AdvancedShopPage_SpectralArrowUpgrade extends AdvancedShopPageBasic
 				if(SQLCoins.getCoins(player.getUniqueId().toString()) >= upgradecost) {
 					SQLCoins.removeCoins(player.getUniqueId().toString(), upgradecost);
 					SQLCoins.setSpectralArrowUpgrade(player.getUniqueId().toString(), true);
-					player.sendMessage(Strings.inventory_buy_succesfull);
+					player.sendMessage(Strings.inventory_buy_successful);
 					player.sendMessage(Strings.inventory_buy_new_coins + SQLCoins.getCoins(player.getUniqueId().toString()));
 				} else {
 					int need = upgradecost - SQLCoins.getCoins(player.getUniqueId().toString());
