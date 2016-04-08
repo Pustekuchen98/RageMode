@@ -28,8 +28,8 @@ import at.dafnik.ragemode.Main.PowerSystem;
 import at.dafnik.ragemode.MySQL.SQLCoins;
 import at.dafnik.ragemode.MySQL.SQLStats;
 
-public class PlayerJoinListener implements Listener{
-
+public class PlayerJoinListener implements Listener {
+	
 	private int power;
 	
 	@EventHandler
@@ -155,6 +155,8 @@ public class PlayerJoinListener implements Listener{
 			
 			player.teleport(TeleportAPI.getRandomMapSpawnLocations());
 			player.setGameMode(GameMode.SPECTATOR);		
+			player.setAllowFlight(true);
+			player.setFlying(true);
 			
 			Title.sendTabList(player , "§bRageMode");
 		    Title.sendTitle(player, Library.fadein, Library.stay, Library.fadeout, "§6Spectator");
@@ -184,7 +186,7 @@ public class PlayerJoinListener implements Listener{
 				int slot = event.getNewSlot()+1;
 				float speed = (float) slot / 10;
 				player.setFlySpeed(speed);
-			}else{
+			} else {
 				player.setAllowFlight(false);
 			}
 		}

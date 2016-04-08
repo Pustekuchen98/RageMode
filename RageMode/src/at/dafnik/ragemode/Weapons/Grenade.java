@@ -8,6 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Egg;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -16,6 +17,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
@@ -31,6 +33,15 @@ public class Grenade implements Listener{
 	
 	double radius = 5;
 	private ArrowSparcleThread thread = null;
+	
+	@EventHandler
+	public void onChickenSpawn(EntitySpawnEvent event) {
+		if(event.getEntity() instanceof Chicken) {
+			if(Main.status == Status.INGAME || Main.status == Status.WIN) {
+				event.setCancelled(true);
+			}
+		}
+	}
 	
 	@EventHandler
 	public void onHits(ProjectileHitEvent event) {

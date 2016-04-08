@@ -31,7 +31,9 @@ public class PlayerRide implements Listener{
 				Entity ontheTop = getHighestEntity(player);
 				
 				if(entity != ontheTop) {
-					ontheTop.setPassenger(event.getRightClicked());				
+					try { 
+						ontheTop.setPassenger(event.getRightClicked());						
+					} catch (Exception ex) {}
 					
 					reloadPacket();
 				}

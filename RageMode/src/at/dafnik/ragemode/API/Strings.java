@@ -7,7 +7,7 @@ import at.dafnik.ragemode.Main.Main;
 public class Strings {
 	
 	private static String pre = Main.pre;
-	private static String log_pre = "[RageMode] ";
+	public static String log_pre = "[RageMode] ";
 	private static String debug_pre = "[Debug]> ";
 	
 	public static String error_wrong_inv_string = log_pre + "ERROR: There isn't an update, for using this";
@@ -35,7 +35,7 @@ public class Strings {
 	public static String error_permission = pre + "§cYou aren't allowed to use the command";
 	public static String error_unknown_map = pre + "§cUnknown map";
 	public static String error_not_mysql_enabled = pre + "§cYou haven't enabled the MySQL Database";
-	public static String error_cant_join_at_the_moment = pre + "\n§cYou can't join at the moment";
+	public static String error_cant_join_at_the_moment = pre + "\n§7You can't join at the moment";
 	public static String error_ragemode_update = pre + "\n§4The server is in maintance mode\n§eThere is an update which is being installed";
 	public static String error_game_is_full = pre + "\n§4The server is full\n§7You need §6premium §7to join full games";
 	public static String error_you_kicked = pre + "\n§cYou haven been kicked by a §6premium\n§3Only other §6premiums §7can't be kicked";
@@ -48,6 +48,7 @@ public class Strings {
 	public static String error_no_winner = pre + "§7There is no §ewinner §7in §cRageMode";
 	public static String error_inventory_false_click = pre + "§cFalse click";
 	public static String error_no_uuid = pre + "§cThe player hasn't played before on this server";
+	public static String error_thread_exception = "thread crashed! The game goes on!";
 	
 	public static String map_create = pre + "§7You create the Map §asuccessful§8: §6";
 	public static String map_set_villagershop = pre + "§7You set the villagershop spawn §asuccessful";

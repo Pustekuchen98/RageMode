@@ -13,15 +13,17 @@ import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.MySQL.SQLStats;
+import at.dafnik.ragemode.Threads.CompassThread;
 import at.dafnik.ragemode.Threads.KnifeThread;
 import at.dafnik.ragemode.Threads.PowerUpThread;
 
 public class Warmup {
 	
 	public Ingame ig;
-	public PowerUpThread pu;
 	
+	public PowerUpThread pu;
 	public KnifeThread kt;
+	public CompassThread ct;
 	
 	public Warmup(){
 		this.ig = new Ingame();
@@ -47,6 +49,10 @@ public class Warmup {
 				if(warmuptime == 10){			
 					kt = new KnifeThread();
 					kt.start();
+					
+					ct = new CompassThread();
+					ct.start();
+					
 					pu = new PowerUpThread();
 					pu.start();
 					
