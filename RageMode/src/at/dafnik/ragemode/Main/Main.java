@@ -184,9 +184,17 @@ public class Main extends JavaPlugin{
 		String username = getConfig().getString("ragemode.settings.mysql.username");
 		String password = getConfig().getString("ragemode.settings.mysql.password");
 		
+		try {
 		mysql = new MySQL(host, database, username, password);
 		mysql.update("CREATE TABLE IF NOT EXISTS Stats(UUID varchar(64), KILLS int, DEATHS int, PLAYEDGAMES int, WONGAMES int, POINTS int, RESETS int, BOWKILLS int, AXTKILLS int, KNIFEKILLS int, SUICIDES int);");
 		mysql.update("CREATE TABLE IF NOT EXISTS Coins(UUID varchar(64), COINS int, SPEEDUPGRADE int, BOWPOWERUPGRADE int, KNOCKBACKUPGRADE int, SPECTRALARROWUPGRADE int);");
+		
+		} catch (Exception ex) {			
+			Main.isMySQL = false;
+			Main.isShop = false;
+			
+			System.out.println(Strings.log_pre + "INFO: MySQL disabled!");
+		}
 	}
     
 	private void makeUpdate() {

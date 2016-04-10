@@ -17,7 +17,7 @@ public class Strings {
 	public static String error_randommizer_dont_work = log_pre + "ERROR: PowerUPItemListener - Randomizer doesn't work!";
 	public static String error_more_rankingwall_places_then_player_in_mysql = log_pre + "WARNING: More Ranking Places than players registered in your MySQL Database!";
 	public static String error_rankingwall_headrotation = log_pre + "ERROR: Please set the rotation of the Ranking Heads! /rm setranking setrotation";
-	public static String error_could_not_connect_to_mysql = log_pre + "MySQL Couldn't Connect! Error: ";
+	public static String error_could_not_connect_to_mysql = log_pre + "MySQL Couldn't Connect!";
 	public static String error_could_not_disconnect_to_mysql = log_pre + "MySQL Couldn't Disconnect! Error: ";
 	public static String error_no_created_maps = log_pre + "ERROR: You've got no Maps in the config! You can add Maps and spawns with /rm";
 	public static String error_not_existing_villagerspawn = log_pre + "ERROR: You haven't set the villager shop spawn!";

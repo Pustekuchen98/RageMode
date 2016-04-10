@@ -31,8 +31,7 @@ public class MySQL {
 			con =  DriverManager.getConnection("jdbc:mysql://" + HOST + ":3306/" + DATABASE + "?autoReconnect=true", USER, PASSWORD);
 			System.out.println(Strings.ragemode_mysql_connected);
 		} catch (SQLException e){
-			System.out.println(Strings.error_could_not_connect_to_mysql + e.getMessage());
-			e.printStackTrace();
+			System.out.println(Strings.error_could_not_connect_to_mysql);
 		}
 	}
 	
@@ -43,8 +42,7 @@ public class MySQL {
 				System.out.println(Strings.ragemode_mysql_disconnected);
 			}
 		} catch (SQLException e) {
-			System.out.println(Strings.error_could_not_disconnect_to_mysql + e.getMessage());
-			e.printStackTrace();
+			System.out.println(Strings.error_could_not_disconnect_to_mysql);
 		}
 	}
 	
