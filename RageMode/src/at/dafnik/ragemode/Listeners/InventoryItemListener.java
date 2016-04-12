@@ -1,5 +1,6 @@
 package at.dafnik.ragemode.Listeners;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.event.EventHandler;
@@ -43,9 +44,19 @@ public class InventoryItemListener implements Listener{
 	public void IventoryMove(InventoryMoveItemEvent event) {
 		if(event.getSource().getHolder() instanceof Player) {
 			Player player = (Player) event.getSource().getHolder();
+			Material item = event.getItem().getType();
+			
 			if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && Library.builder.contains(player)
 					&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
-			else event.setCancelled(true);	
+			
+			else {
+				if(item == Material.BOW || item == Material.IRON_SPADE || item == Material.DIAMOND_AXE || item == Material.ARROW
+						|| item == Material.COMPASS || item == Material.LEATHER_HELMET) {
+					event.setCancelled(true);
+				} else {
+					event.setCancelled(false);
+				}
+			}
 		}
 	}
 		
@@ -53,12 +64,21 @@ public class InventoryItemListener implements Listener{
 	@EventHandler
 	public void InventoryClick(InventoryClickEvent event) {
 		if(event.getWhoClicked() instanceof Player) {
-			Player player = (Player) event.getWhoClicked();
-			
-			if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && Library.builder.contains(player)
-					&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
-			else event.setCancelled(true);	
-		
+			if(event.getCurrentItem() != null) {
+				Player player = (Player) event.getWhoClicked();
+				Material item = event.getCurrentItem().getType();
+				
+				if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && Library.builder.contains(player)
+						&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
+				else {
+					if(item == Material.BOW || item == Material.IRON_SPADE || item == Material.DIAMOND_AXE || item == Material.ARROW
+							|| item == Material.COMPASS || item == Material.LEATHER_HELMET) {
+						event.setCancelled(true);
+					} else {
+						event.setCancelled(false);
+					}
+				}
+			}
 		} else event.setCancelled(true);
 	}
 	
