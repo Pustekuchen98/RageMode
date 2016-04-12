@@ -50,7 +50,7 @@ public class CompassThread implements Runnable {
 			try {
 				Thread.sleep(20);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				this.stop();
 			}
 		}	
 	}

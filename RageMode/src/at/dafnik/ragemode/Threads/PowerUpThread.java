@@ -54,7 +54,7 @@ public class PowerUpThread implements Runnable{
 			try {
 				Thread.sleep(time*60*1000);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				this.stop();
 			}
 		}
 	}

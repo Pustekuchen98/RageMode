@@ -3,7 +3,7 @@ Fixes:
 	- some other little fixes
 
 Added:
-	- PowerUP: new Flash and Fly PowerUP 
+	- PowerUP: new Flash, Fly and C4 PowerUP 
 	- 1.9 Support
 	- Shop Upgrade: spectral Arrow Upgrade
 	- Smooth Updates! You haven't to recreate the configuration and the MySQL Database
@@ -20,3 +20,4 @@ Changes:
 	- performance improvements up to 50%!
 	- Overworked all messages
 	- more fireworks on round end
+	- Fixes for all threads

@@ -79,7 +79,8 @@ public class AxeThrowThread implements Runnable{
 			try{
 				Thread.sleep(10);
 			}catch (InterruptedException e){
-				e.printStackTrace();
+				item.remove();
+				this.stop();
 			}
 		}
 	}
