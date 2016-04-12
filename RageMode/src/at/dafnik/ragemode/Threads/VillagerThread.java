@@ -37,6 +37,8 @@ public class VillagerThread implements Runnable{
 		while(running) {
 			if(villager.getLocation() != loc) villager.teleport(loc);
 			
+			if(villager.isDead() || villager == null) this.stop();
+			
 			try {
 				Thread.sleep(20);
 			} catch (InterruptedException e) {

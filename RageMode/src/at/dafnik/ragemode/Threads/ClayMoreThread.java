@@ -48,31 +48,33 @@ public class ClayMoreThread implements Runnable{
 	@Override
 	public void run() {
 		while(running) {
-			for(Entity entity : block.getLocation().getWorld().getNearbyEntities(block.getLocation(), radius, radius, radius)) {
-				if(entity instanceof Player) {
-					Player victim = (Player) entity;
-						
-					if(victim != setter) {	
-						if(Main.status == Status.INGAME) {
-							if(!Library.spectatorlist.contains(victim)) {
-								if(!Library.respawnsafe.contains(victim)) {
-									Location loc = block.getLocation();
-									
-									Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
-										@SuppressWarnings("deprecation")
-										@Override
-										public void run() {
-											victim.removeMetadata("killedWith", Main.getInstance());
-											victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "claymore"));
-											victim.damage(11, setter);
-											victim.setLastDamageCause(new EntityDamageEvent(setter, DamageCause.PROJECTILE, 0));
-											
-											loc.getBlock().setType(Material.AIR);
-											loc.getWorld().playEffect(loc, Effect.EXPLOSION_HUGE, 1);
-											loc.getWorld().playSound(loc, Sound.ENTITY_GENERIC_EXPLODE, 1000.0F, 1.0F);
-										}
-									}, 1);							
-									this.stop();
+			if(!block.getLocation().getWorld().getNearbyEntities(block.getLocation(), radius, radius, radius).isEmpty()) {
+				for(Entity entity : block.getLocation().getWorld().getNearbyEntities(block.getLocation(), radius, radius, radius)) {
+					if(entity instanceof Player) {
+						Player victim = (Player) entity;
+							
+						if(victim != setter) {	
+							if(Main.status == Status.INGAME) {
+								if(!Library.spectatorlist.contains(victim)) {
+									if(!Library.respawnsafe.contains(victim)) {
+										Location loc = block.getLocation();
+										
+										Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+											@SuppressWarnings("deprecation")
+											@Override
+											public void run() {
+												victim.removeMetadata("killedWith", Main.getInstance());
+												victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "claymore"));
+												victim.damage(11, setter);
+												victim.setLastDamageCause(new EntityDamageEvent(setter, DamageCause.PROJECTILE, 0));
+												
+												loc.getBlock().setType(Material.AIR);
+												loc.getWorld().playEffect(loc, Effect.EXPLOSION_HUGE, 1);
+												loc.getWorld().playSound(loc, Sound.ENTITY_GENERIC_EXPLODE, 1000.0F, 1.0F);
+											}
+										}, 1);							
+										this.stop();
+									}
 								}
 							}
 						}
@@ -90,10 +92,11 @@ public class ClayMoreThread implements Runnable{
 				this.stop();
 			}
 			
-			try{
+			try {
 				Thread.sleep(10);
-			}catch (InterruptedException e){
-				e.printStackTrace();
+			} catch (InterruptedException e) {
+				block.setType(Material.AIR);
+				this.stop();
 			}
 		}	
 	}

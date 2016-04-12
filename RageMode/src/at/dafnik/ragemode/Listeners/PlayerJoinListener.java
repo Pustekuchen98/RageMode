@@ -38,6 +38,7 @@ public class PlayerJoinListener implements Listener {
 		
 		player.setHealth(20);
 		player.setSaturation(20);
+		player.setFoodLevel(20);
 		player.setMaxHealth(20);
 		player.setWalkSpeed((float) 0.2);
 		player.setExp(0);

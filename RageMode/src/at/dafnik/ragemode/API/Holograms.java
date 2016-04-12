@@ -129,12 +129,12 @@ public class Holograms {
      * @param p The target player
      * @return true, if the action was successful, else false (including the try to remove a non-existing hologram)
      */
-    public boolean destroy(Player p) {
-        if (this.players.contains(p.getUniqueId())) {
+    public boolean destroy(Player player) {
+        if (this.players.contains(player.getUniqueId())) {
             for (int i = 0; i < this.destroyCache.size(); i++) {
-                this.sendPacket(p, this.destroyCache.get(i));
+                this.sendPacket(player, this.destroyCache.get(i));
             }
-            this.players.remove(p.getUniqueId());
+            this.players.remove(player.getUniqueId());
             return true;
         }
         return false;

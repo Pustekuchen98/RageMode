@@ -16,16 +16,12 @@ public class CompassThread implements Runnable {
 	
 	public CompassThread() {
 		this.thread = new Thread(this);
-		
-		System.out.println("ini");
 	}
 	
 	public void start() {
 		this.running = true;
 		
 		if(this.running) this.thread.start();
-		
-		System.out.println("started");
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -49,14 +45,13 @@ public class CompassThread implements Runnable {
 				} catch (Exception ex) {
 					System.out.println(Strings.log_pre + "Compass" + Strings.error_thread_exception);
 				}
-			}
+			}		
 			
 			try {
 				Thread.sleep(20);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
 		}	
 	}
 

@@ -1,6 +1,5 @@
 package at.dafnik.ragemode.Threads;
 
-import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Arrow;
 
@@ -32,23 +31,17 @@ public class ArrowSparcleThread implements Runnable {
 	@Override
 	public void run() {
 		while(running){
-			Location loc = item.getLocation();
-			
-			loc.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, loc.getX(), loc.getY(), loc.getZ(), 5, 0.02, 0.02, 0.02, 0.02);
-			
-			try{
-				Thread.sleep(20);
-			}catch (InterruptedException e){
-				e.printStackTrace();
-			}
-			
+			item.getLocation().getWorld().spawnParticle(Particle.FIREWORKS_SPARK, item.getLocation().getX(), item.getLocation().getY(), item.getLocation().getZ(), 5, 0.02, 0.02, 0.02, 0.02);			
 			zaehler++;
 			
-			if(item.isOnGround() || item.isDead() || item == null) {
+			if(item.isOnGround() || item.isDead() || item == null) this.stop();
+			if(zaehler > 800) this.stop();
+			
+			try {
+				Thread.sleep(20);
+			} catch (InterruptedException e) {
 				this.stop();
 			}
-			
-			if(zaehler > 800) this.stop();
 		}
 	}
 }

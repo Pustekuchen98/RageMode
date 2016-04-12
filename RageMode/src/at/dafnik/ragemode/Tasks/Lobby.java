@@ -48,7 +48,7 @@ public class Lobby {
 				}
 				
 				if(Main.isShop && Main.isMySQL) {
-					if(Bukkit.getOnlinePlayers().size() > 0 && Library.villager == null) Library.villager = Main.getInstance().VillagerShopSpawner();		
+					if(Bukkit.getOnlinePlayers().size() > 0 && Library.villager == null) Library.villager = Main.getInstance().spawnVillagerShop();		
 				}
 				
 				lobbywplayerstime--;
