@@ -51,6 +51,7 @@ public class Explosion {
 						if(Main.isMySQL && Main.isShop) if(SQLCoins.getBowPowerUpgrade(shooter.getUniqueId().toString())) damage = (radius - distance) * 9;		
 						victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "bow"));
 					} else if(ground == "grenade") victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "grenade"));
+					else if(ground == "c4") victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "c4"));
 					else System.out.println(Strings.error_explosion_no_killground);
 
 					victim.damage(damage, killer);

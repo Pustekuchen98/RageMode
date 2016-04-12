@@ -29,6 +29,7 @@ public class PlayerDeathListener implements Listener {
   private int grenadekill;
   private int claymorekill;
   private int minekill;
+  private int c4kill;
   private int killstreakpoints;
   
   private HashMap<Player, Integer> killstreak = new HashMap<>();
@@ -43,6 +44,7 @@ public class PlayerDeathListener implements Listener {
 	this.grenadekill = Main.getInstance().getConfig().getInt("ragemode.points.grenadekill");
 	this.claymorekill = Main.getInstance().getConfig().getInt("ragemode.points.clay_morekill");
 	this.minekill = Main.getInstance().getConfig().getInt("ragemode.points.minekill");
+	this.c4kill = Main.getInstance().getConfig().getInt("ragemode.points.c4");
 	this.killstreakpoints = Main.getInstance().getConfig().getInt("ragemode.points.killstreakpoints");
   }
 
@@ -108,7 +110,15 @@ public class PlayerDeathListener implements Listener {
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.claymorekill);
 						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.claymorekill + Strings.kill_holo_points));
-		
+					
+					} else if(killground == "c4") {
+						
+						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_c4);
+						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_c4);
+						resetBossBar();
+						killer.sendMessage(Strings.kill_points_plus + this.c4kill);
+						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.c4kill + Strings.kill_holo_points));
+						
 					} else if(killground == "knife") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_knife);
@@ -210,6 +220,7 @@ public class PlayerDeathListener implements Listener {
 		else if(killground == "grenade") toBePoints = this.grenadekill;
 		else if(killground == "mine") toBePoints = this.minekill;
 		else if(killground == "claymore") toBePoints = this.claymorekill;
+		else if(killground == "c4") toBePoints = this.c4kill;
 		else if(killground == "knife_death") toBePoints = this.knifedeath;
 		else if(killground == "killstreak") toBePoints = this.killstreakpoints;
 		else System.out.println(Strings.error_playerdeath_points);

@@ -53,7 +53,7 @@ public class PowerUPItemListener implements Listener{
 				Library.powerup_hashmap.remove(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
 				Library.powerup_list.remove(holo);
 
-				switch(new Random().nextInt(11)) {
+				switch(new Random().nextInt(12)) {
 				case 0:
 					Items.givePlayerDoubleHeart(player);
 					player.sendMessage(Strings.powerup_get_0 + Strings.items_doubleheart + Strings.powerup_get_1);
@@ -118,6 +118,12 @@ public class PowerUPItemListener implements Listener{
 					player.sendMessage(Strings.powerup_get_0 + Strings.items_fly + Strings.powerup_get_1);
 					Items.givePlayerFly(player);
 					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_fly + Strings.debug_powerup_get_2 + player.getName());
+					break;
+					
+				case 11:
+					player.sendMessage(Strings.powerup_get_0 + Strings.items_c4 + Strings.powerup_get_1);
+					Items.givePlayerC4(player);
+					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_c4 + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				default:

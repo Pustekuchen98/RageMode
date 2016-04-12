@@ -52,6 +52,7 @@ public class ConfigStandart {
 			Main.getInstance().getConfig().set("ragemode.points.grenadekill", Integer.valueOf(10));
 			Main.getInstance().getConfig().set("ragemode.points.clay_morekill", Integer.valueOf(15));
 			Main.getInstance().getConfig().set("ragemode.points.minekill", Integer.valueOf(15));
+			Main.getInstance().getConfig().set("ragemode.points.c4", Integer.valueOf(20));
 			Main.getInstance().getConfig().set("ragemode.points.killstreakpoints", Integer.valueOf(15));
 			
 			//Mapsettings

@@ -16,6 +16,7 @@ import org.bukkit.entity.Villager;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import at.dafnik.ragemode.API.C4Speicher;
 import at.dafnik.ragemode.API.Holograms;
 import at.dafnik.ragemode.API.Strings;
 
@@ -64,6 +65,9 @@ public class Library {
 		
 		//Planted Things
 		public static List<Location> planted = new ArrayList<>();
+		
+		//Planted C4
+		public static List<C4Speicher> plantedc4 = new ArrayList<>();
 		
 		//PowerUP
 		public static List<Entity> powerup_entity = new ArrayList<>();

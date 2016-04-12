@@ -26,6 +26,7 @@ import at.dafnik.ragemode.Commands.Teleport;
 import at.dafnik.ragemode.Items.Compass;
 import at.dafnik.ragemode.Listeners.AsyncPlayerChatListener;
 import at.dafnik.ragemode.Listeners.BlockBedListener;
+import at.dafnik.ragemode.Listeners.BlockListener;
 import at.dafnik.ragemode.Listeners.FoodWeatherChangeListener;
 import at.dafnik.ragemode.Listeners.InventoryItemListener;
 import at.dafnik.ragemode.Listeners.PlayerJoinListener;
@@ -37,6 +38,7 @@ import at.dafnik.ragemode.Listeners.PlayerRide;
 import at.dafnik.ragemode.MySQL.ConfigStandart;
 import at.dafnik.ragemode.MySQL.MySQL;
 import at.dafnik.ragemode.MySQL.Ranking;
+import at.dafnik.ragemode.PowerUPs.C4Detonater;
 import at.dafnik.ragemode.PowerUPs.DoubleJump;
 import at.dafnik.ragemode.PowerUPs.Flash;
 import at.dafnik.ragemode.PowerUPs.Fly;
@@ -107,24 +109,9 @@ public class Main extends JavaPlugin{
 		
 		Library.bar.removeAll();
 		
-		if(Library.villager != null) {
-			Library.villager.remove();
-			Library.villager = null;
-			
-			if(Bukkit.getOnlinePlayers().size() == 0) {
-				Location loc = TeleportAPI.getVillagerShopLocation();
-				loc.getWorld().getBlockAt(loc).setType(Material.LAVA);
-				
-				Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
-					@Override
-					public void run() {			
-						loc.getWorld().getBlockAt(loc).setType(Material.AIR);
-					}
-				}, 30);
-			}
-		}
+		deleteVillagerShop();
 		
-		getServer().getConsoleSender().sendMessage("§7[§bRageMode§7] §cStopped§8!");
+		getServer().getConsoleSender().sendMessage(pre + "§cStopped§8!");
 	}
 	
 	//Plugin start
@@ -136,6 +123,7 @@ public class Main extends JavaPlugin{
 		
 		//Register all Events and Commands
 		registerListeners();
+		createScoreboards();
 		registerCommands();
 				
 		//Set Config Standart
@@ -153,9 +141,8 @@ public class Main extends JavaPlugin{
 		mapvote.MapsToVoteAdd();
 		mapvote.AllMapsAdd();
 		mapvote.Mapvotenull();
-		
-		
-		getServer().getConsoleSender().sendMessage("§7[§bRageMode§7] §aStarted§8! §fThe most important things started §awell§8!");
+			
+		getServer().getConsoleSender().sendMessage(pre + "§aStarted§8! §fThe most important things started §awell§8!");
 		
 		//Check on Bungee
 		if(isBungee) getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
@@ -172,7 +159,7 @@ public class Main extends JavaPlugin{
 		//Check on update!
 		makeUpdate();
 	}
-	
+
 	public static Main getInstance() {
 		return instance;
 	}
@@ -185,13 +172,15 @@ public class Main extends JavaPlugin{
 		String password = getConfig().getString("ragemode.settings.mysql.password");
 		
 		try {
-		mysql = new MySQL(host, database, username, password);
-		mysql.update("CREATE TABLE IF NOT EXISTS Stats(UUID varchar(64), KILLS int, DEATHS int, PLAYEDGAMES int, WONGAMES int, POINTS int, RESETS int, BOWKILLS int, AXTKILLS int, KNIFEKILLS int, SUICIDES int);");
-		mysql.update("CREATE TABLE IF NOT EXISTS Coins(UUID varchar(64), COINS int, SPEEDUPGRADE int, BOWPOWERUPGRADE int, KNOCKBACKUPGRADE int, SPECTRALARROWUPGRADE int);");
+			mysql = new MySQL(host, database, username, password);
+			mysql.update("CREATE TABLE IF NOT EXISTS Stats(UUID varchar(64), KILLS int, DEATHS int, PLAYEDGAMES int, WONGAMES int, POINTS int, RESETS int, BOWKILLS int, AXTKILLS int, KNIFEKILLS int, SUICIDES int);");
+			mysql.update("CREATE TABLE IF NOT EXISTS Coins(UUID varchar(64), COINS int, SPEEDUPGRADE int, BOWPOWERUPGRADE int, KNOCKBACKUPGRADE int, SPECTRALARROWUPGRADE int);");
 		
 		} catch (Exception ex) {			
 			Main.isMySQL = false;
 			Main.isShop = false;
+			
+			this.deleteVillagerShop();
 			
 			System.out.println(Strings.log_pre + "INFO: MySQL disabled!");
 		}
@@ -214,6 +203,36 @@ public class Main extends JavaPlugin{
 		
 		if(Main.wantUpdate) new Updater().start();
 	}
+	
+	private void createScoreboards() {
+		//Register Scorebords
+		ScoreboardManager manager = Bukkit.getScoreboardManager();
+		Library.scoreboard = manager.getNewScoreboard();
+
+		Team admin = Library.scoreboard.registerNewTeam("players_admin");
+		admin.setPrefix("§4");
+
+		Team moderator = Library.scoreboard.registerNewTeam("players_mod");
+		moderator.setPrefix("§c");
+
+		Team youtuber = Library.scoreboard.registerNewTeam("players_yout");
+		youtuber.setPrefix("§5");
+
+		Team premium = Library.scoreboard.registerNewTeam("players_pre");
+		premium.setPrefix("§6");
+
+		Team user = Library.scoreboard.registerNewTeam("players_user");
+		user.setPrefix("§a");
+
+		Library.ingame = Library.scoreboard.registerNewTeam("players_ingame");
+		Library.ingame.setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.NEVER);
+
+		Library.teams.add(admin);
+		Library.teams.add(moderator);
+		Library.teams.add(youtuber);
+		Library.teams.add(premium);
+		Library.teams.add(user);
+	}
 
 	//Register All Events
 	private void registerListeners() {
@@ -229,6 +248,7 @@ public class Main extends JavaPlugin{
 		pm.registerEvents(new DoubleJump(), this);
 		pm.registerEvents(new Flash(), this);
 		pm.registerEvents(new Fly(), this);
+		pm.registerEvents(new C4Detonater(), this);
 		
 		//Weapons
 		pm.registerEvents(new AxeEvent(), this);
@@ -242,6 +262,7 @@ public class Main extends JavaPlugin{
 		
 		//Events - Listeners
 		pm.registerEvents(new PlayerJoinListener(), this);
+		pm.registerEvents(new BlockListener(), this);
 		pm.registerEvents(new PlayerQuitListener(), this);
 		pm.registerEvents(new Listeners(), this);
 		pm.registerEvents(new AsyncPlayerChatListener(), this);
@@ -256,34 +277,6 @@ public class Main extends JavaPlugin{
 		new AdvancedShopPage_KnockbackAbilityUpgrade();
 		new AdvancedShopPage_SpectralArrowUpgrade();
 		new AdvancedShopPage_BowPowerUpgrade();
-		
-		//Register Scorebords
-		ScoreboardManager manager = Bukkit.getScoreboardManager();
-		Library.scoreboard = manager.getNewScoreboard();
-		
-		Team admin = Library.scoreboard.registerNewTeam("players_admin");
-		admin.setPrefix("§4");
-		
-		Team moderator = Library.scoreboard.registerNewTeam("players_mod");
-		moderator.setPrefix("§c");
-		
-		Team youtuber = Library.scoreboard.registerNewTeam("players_yout");
-		youtuber.setPrefix("§5");
-		
-		Team premium = Library.scoreboard.registerNewTeam("players_pre");
-		premium.setPrefix("§6");
-		
-		Team user = Library.scoreboard.registerNewTeam("players_user"); 
-		user.setPrefix("§a");
-		
-		Library.ingame = Library.scoreboard.registerNewTeam("players_ingame");
-		Library.ingame.setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.NEVER);
-		
-		Library.teams.add(admin);
-		Library.teams.add(moderator);
-		Library.teams.add(youtuber);
-		Library.teams.add(premium);
-		Library.teams.add(user);
 	}
 	
 	//Register all Commands
@@ -340,7 +333,7 @@ public class Main extends JavaPlugin{
 		saveConfig();
 	}
 	
-	public Villager VillagerShopSpawner() {
+	public Villager spawnVillagerShop() {
 		Location loc = TeleportAPI.getVillagerShopLocation();
 		
 		if(loc != null) {
@@ -354,6 +347,29 @@ public class Main extends JavaPlugin{
 		} else {
 			System.out.println(Strings.error_not_existing_villagerspawn);
 			return null;
+		}
+	}
+	
+	public void deleteVillagerShop() {
+		if(Library.villager != null) {
+			Library.villager.remove();
+			Library.villager = null;
+			
+			if(Library.villagerholo != null) {
+				for(Player players : Bukkit.getOnlinePlayers()) Library.villagerholo.destroy(players);
+			}
+			
+			if(Bukkit.getOnlinePlayers().size() == 0) {
+				Location loc = TeleportAPI.getVillagerShopLocation();
+				loc.getWorld().getBlockAt(loc).setType(Material.LAVA);
+				
+				Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+					@Override
+					public void run() {			
+						loc.getWorld().getBlockAt(loc).setType(Material.AIR);
+					}
+				}, 30);
+			}
 		}
 	}
 }

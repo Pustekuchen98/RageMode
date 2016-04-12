@@ -55,6 +55,22 @@ public class Items {
 		player.getInventory().addItem(i);
 	}
 	
+	public static void givePlayerC4(Player player) {
+		ItemStack i = new ItemStack(Material.REDSTONE_TORCH_ON, 4);
+		ItemMeta imd = i.getItemMeta();
+		imd.setDisplayName(Strings.items_c4);
+		i.setItemMeta(imd);
+		player.getInventory().addItem(i);
+		
+		if(!player.getInventory().contains(Material.FLINT_AND_STEEL)) {
+			ItemStack i2 = new ItemStack(Material.FLINT_AND_STEEL, 1);
+			ItemMeta imd2 = i2.getItemMeta();
+			imd2.setDisplayName(Strings.items_c4_detonator);
+			i2.setItemMeta(imd2);
+			player.getInventory().addItem(i2);
+		}
+	}
+	
 	public static void givePlayerShopItem(Player player) {
 		ItemStack i = new ItemStack(Material.GOLD_NUGGET);
 		ItemMeta imd = i.getItemMeta();

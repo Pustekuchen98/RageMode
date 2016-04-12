@@ -116,11 +116,11 @@ public class Strings {
 	public static String tasks_warmup_voted_map = "§7Voted Map§8: §e";
 	public static String tasks_warmup_voted_map_1 = " §8|| §7Author§8: §e";
 	public static String tasks_warmup_teleport_to_map = pre + "§eAll players will be teleported to the map";
-	public static String tasks_warmup_peacetime_ends_in = pre + "§7The peace time ends in §e";
+	public static String tasks_warmup_peacetime_ends_in = pre + "§7Peace time ends in §e";
 	public static String tasks_warmup_peacetime_ends_in_0 =  " §7seconds";
 	public static String tasks_warmup_peactime_ends_now = "§eThe peace time ends";
 	public static String tasks_warmup_peactime_ends_now_0 = "§cnow";
-	public static String tasks_warmup_peacetime_ends = pre + "§eThe peace time ends now";
+	public static String tasks_warmup_peacetime_ends = pre + "§ePeace time ends now";
 	
 	public static String tasks_ingame_countdown_1 = pre + "§7The round ends in §e";
 	public static String tasks_ingame_countdown_2 = " §7seconds";
@@ -156,6 +156,7 @@ public class Strings {
 	public static String kill_with_grenade = "§6Cluster Grenade";
 	public static String kill_with_claymore = "§6Claymore";
 	public static String kill_with_mine = "§6Mine";
+	public static String kill_with_c4 = "§4C4";
 	public static String kill_with_bow = "§6Bow";
 	public static String kill_backstab_knife = pre + "§4§l+ §c3 §6Hearts";
 	public static String kill_your_points = "§7Your points§8: §e";
@@ -224,6 +225,8 @@ public class Strings {
 	public static String items_doublejump = "§5Double jump";
 	public static String items_flash = "§fFlash";
 	public static String items_fly = "§5Fly";
+	public static String items_c4 = "§4C4";
+	public static String items_c4_detonator = "§4C4 §7Detonater";
 	
 	public static String bossbar = "§6You §7are §bplaying §cRageMode";
 }
