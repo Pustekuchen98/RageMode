@@ -5,10 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Villager;
-import org.bukkit.entity.Villager.Profession;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.ScoreboardManager;
@@ -16,7 +13,6 @@ import org.bukkit.scoreboard.Team;
 
 import at.dafnik.ragemode.API.Holograms;
 import at.dafnik.ragemode.API.Strings;
-import at.dafnik.ragemode.API.TeleportAPI;
 import at.dafnik.ragemode.Commands.Coins;
 import at.dafnik.ragemode.Commands.LobbyCommands;
 import at.dafnik.ragemode.Commands.Mapset;
@@ -109,7 +105,7 @@ public class Main extends JavaPlugin{
 		
 		Library.bar.removeAll();
 		
-		deleteVillagerShop();
+		VillagerThread.deleteVillagerShop();
 		
 		getServer().getConsoleSender().sendMessage(pre + "§cStopped§8!");
 	}
@@ -180,7 +176,7 @@ public class Main extends JavaPlugin{
 			Main.isMySQL = false;
 			Main.isShop = false;
 			
-			this.deleteVillagerShop();
+			VillagerThread.deleteVillagerShop();
 			
 			System.out.println(Strings.log_pre + "INFO: MySQL disabled!");
 		}
@@ -331,45 +327,5 @@ public class Main extends JavaPlugin{
 		
 		getConfig().set("ragemode.placedblocks", null);
 		saveConfig();
-	}
-	
-	public Villager spawnVillagerShop() {
-		Location loc = TeleportAPI.getVillagerShopLocation();
-		
-		if(loc != null) {
-			Villager villager = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
-			Library.villagerholo = new Holograms(new Location(loc.getWorld(), loc.getX(), loc.getY()+1.7, loc.getZ()), "§6Shop");
-			villager.setProfession(Profession.BLACKSMITH);
-			villager.setRemoveWhenFarAway(false);
-			villager.setCanPickupItems(false);
-			new VillagerThread(villager, loc).start();
-			return villager;
-		} else {
-			System.out.println(Strings.error_not_existing_villagerspawn);
-			return null;
-		}
-	}
-	
-	public void deleteVillagerShop() {
-		if(Library.villager != null) {
-			Library.villager.remove();
-			Library.villager = null;
-			
-			if(Library.villagerholo != null) {
-				for(Player players : Bukkit.getOnlinePlayers()) Library.villagerholo.destroy(players);
-			}
-			
-			if(Bukkit.getOnlinePlayers().size() == 0) {
-				Location loc = TeleportAPI.getVillagerShopLocation();
-				loc.getWorld().getBlockAt(loc).setType(Material.LAVA);
-				
-				Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
-					@Override
-					public void run() {			
-						loc.getWorld().getBlockAt(loc).setType(Material.AIR);
-					}
-				}, 30);
-			}
-		}
 	}
 }

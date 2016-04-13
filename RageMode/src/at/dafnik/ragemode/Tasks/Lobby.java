@@ -8,6 +8,7 @@ import at.dafnik.ragemode.API.Title;
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
+import at.dafnik.ragemode.Threads.VillagerThread;
 
 public class Lobby {
 	
@@ -48,7 +49,7 @@ public class Lobby {
 				}
 				
 				if(Main.isShop && Main.isMySQL) {
-					if(Bukkit.getOnlinePlayers().size() > 0 && Library.villager == null) Library.villager = Main.getInstance().spawnVillagerShop();		
+					if(Bukkit.getOnlinePlayers().size() > 0 && Library.villager == null) Library.villager = VillagerThread.spawnVillagerShop();		
 				}
 				
 				lobbywplayerstime--;
