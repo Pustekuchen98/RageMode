@@ -27,7 +27,7 @@ public class Healer implements Listener{
 					player.setMaxHealth(40);
 					player.setHealth(40);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, time, 3));
-					player.getInventory().remove(Material.REDSTONE);
+					player.getInventory().remove(event.getItem());
 					player.getWorld().playSound(player.getLocation(), Sound.ENTITY_GENERIC_EAT, 1000.0F, 1.0F);
 						
 					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {

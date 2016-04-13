@@ -118,35 +118,35 @@ public class Strings {
 	public static String tasks_warmup_teleport_to_map = pre + "§eAll players will be teleported to the map";
 	public static String tasks_warmup_peacetime_ends_in = pre + "§7Peace time ends in §e";
 	public static String tasks_warmup_peacetime_ends_in_0 =  " §7seconds";
-	public static String tasks_warmup_peactime_ends_now = "§eThe peace time ends";
+	public static String tasks_warmup_peactime_ends_now = "§ePeace time ends";
 	public static String tasks_warmup_peactime_ends_now_0 = "§cnow";
 	public static String tasks_warmup_peacetime_ends = pre + "§ePeace time ends now";
 	
-	public static String tasks_ingame_countdown_1 = pre + "§7The round ends in §e";
+	public static String tasks_ingame_countdown_1 = pre + "§7Round ends in §e";
 	public static String tasks_ingame_countdown_2 = " §7seconds";
 	public static String tasks_ingame_countdown_21 = " §7second";
 	public static String tasks_ingame_kick_first_playing = pre + "\n§7Thanks for playing §cRageMode§8!";
 	public static String tasks_ingame_kick_first_spectator = pre + "\n§7Thanks for watching §cRageMode§8!";
-	public static String tasks_ingame_kick_back = "\n§eThe server is back in few seconds";
+	public static String tasks_ingame_kick_back = "\n§eServer is back in few seconds";
 	public static String tasks_ingame_kick_you_winner = "\n§6You are the winner§8!";
-	public static String tasks_ingame_kick_the_winner = "\n§7The winner of this round is§8: §r";
+	public static String tasks_ingame_kick_the_winner = "\n§7Winner of this round is§8: §r";
 	public static String tasks_ingame_kick_winner_nobody = "§cNobody";
 	public static String tasks_ingame_kick_with = " §7with§8: §e";
 	public static String tasks_ingame_kick_points = " §7points";
 	
 	public static String tasks_win_is_the_winner = "§7is the winner";
-	public static String tasks_restart_countdown_0 = pre + "§cThe server restarts in the next§e ";
+	public static String tasks_restart_countdown_0 = pre + "§cServer restarts in the next§e ";
 	public static String tasks_restart_countdown_01 = " §cseconds§8\n" + Main.pre + "§cYou will be kicked after §e10 §cseconds";
-	public static String tasks_restart_countdown_1 = pre + "§cThe server restarts in §e";
+	public static String tasks_restart_countdown_1 = pre + "§cServer restarts in §e";
 	public static String tasks_restart_countdown_2 = " §cseconds";
 	public static String tasks_restart_countdown_21 = " §csecond";
 	public static String tasks_restart_now = pre + "§4§lRESTART";
 	
-	public static String ragemode_winner = pre + "§7The winner is§8: §r";
-	public static String ragemode_server_is_back = "§7The server is back soon";
+	public static String ragemode_winner = pre + "§7Winner is§8: §r";
+	public static String ragemode_server_is_back = "§7Server is back soon";
 	public static String ragemode_mysql_connected = log_pre + "MySQL Connected";
 	public static String ragemode_mysql_disconnected = log_pre + "MySQL Disconnected";
-	public static String ragemode_updated_succesful = log_pre + "The Configuration and your MySQL Database have been successful updated!";
+	public static String ragemode_updated_succesful = log_pre + "Configuration and your MySQL Database have been successful updated!";
 	
 	public static String kill_suicide = " §7suicided";
 	public static String kill_killed = " §7killed §r";
@@ -226,7 +226,7 @@ public class Strings {
 	public static String items_flash = "§fFlash";
 	public static String items_fly = "§5Fly";
 	public static String items_c4 = "§4C4";
-	public static String items_c4_detonator = "§4C4 §7Detonater";
+	public static String items_c4_detonator = "§4C4 §7Detonator";
 	
 	public static String bossbar = "§6You §7are §bplaying §cRageMode";
 }

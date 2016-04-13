@@ -211,7 +211,7 @@ public class Ingame {
 	public void RocketClean() {
 		for(Entity entities : Library.powerup_entity) entities.remove();
 		for(int i = 0; i < Library.powerup_hashmap.size(); i++) {
-			for(Player players : Bukkit.getOnlinePlayers()) Library.powerup_hashmap.get(i).destroy(players);
+			for(Player players : Bukkit.getOnlinePlayers()) if(Library.powerup_hashmap.get(i) != null)Library.powerup_hashmap.get(i).destroy(players);
 		}
 		
 		for(int i = 0; i < 10; i++) {

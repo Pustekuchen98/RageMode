@@ -38,7 +38,7 @@ import at.dafnik.ragemode.Listeners.PlayerRide;
 import at.dafnik.ragemode.MySQL.ConfigStandart;
 import at.dafnik.ragemode.MySQL.MySQL;
 import at.dafnik.ragemode.MySQL.Ranking;
-import at.dafnik.ragemode.PowerUPs.C4Detonater;
+import at.dafnik.ragemode.PowerUPs.C4Detonator;
 import at.dafnik.ragemode.PowerUPs.DoubleJump;
 import at.dafnik.ragemode.PowerUPs.Flash;
 import at.dafnik.ragemode.PowerUPs.Fly;
@@ -248,7 +248,7 @@ public class Main extends JavaPlugin{
 		pm.registerEvents(new DoubleJump(), this);
 		pm.registerEvents(new Flash(), this);
 		pm.registerEvents(new Fly(), this);
-		pm.registerEvents(new C4Detonater(), this);
+		pm.registerEvents(new C4Detonator(), this);
 		
 		//Weapons
 		pm.registerEvents(new AxeEvent(), this);
