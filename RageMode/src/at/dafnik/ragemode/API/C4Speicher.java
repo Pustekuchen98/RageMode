@@ -13,7 +13,7 @@ public class C4Speicher {
 	private Player player = null;
 	
 	public void addC4(Block block) {
-		if(block.getType() == Material.REDSTONE_TORCH_ON) blocks.add(block);
+		if(block.getType() == Material.STONE_BUTTON) blocks.add(block);
 		else System.out.println("C4Speicher! Not saveable");
 	}
 	

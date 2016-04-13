@@ -56,7 +56,7 @@ public class Items {
 	}
 	
 	public static void givePlayerC4(Player player) {
-		ItemStack i = new ItemStack(Material.REDSTONE_TORCH_ON, 4);
+		ItemStack i = new ItemStack(Material.STONE_BUTTON, 4);
 		ItemMeta imd = i.getItemMeta();
 		imd.setDisplayName(Strings.items_c4);
 		i.setItemMeta(imd);

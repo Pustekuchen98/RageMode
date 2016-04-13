@@ -11,7 +11,7 @@ import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
-public class C4Detonater implements Listener {
+public class C4Detonator implements Listener {
 
 	@EventHandler
 	public void onClick(PlayerInteractEvent event) {
@@ -24,7 +24,7 @@ public class C4Detonater implements Listener {
 								if(c4s.getPlayer() == event.getPlayer()) {
 									c4s.detonateAll();
 									
-									if(!(event.getPlayer().getInventory().contains(Material.REDSTONE_TORCH_ON))) event.getPlayer().getInventory().remove(Material.FLINT_AND_STEEL);
+									if(!(event.getPlayer().getInventory().contains(Material.STONE_BUTTON))) event.getPlayer().getInventory().remove(Material.FLINT_AND_STEEL);
 									
 									Library.plantedc4.remove(c4s);
 									break;

@@ -33,7 +33,7 @@ public class BlockListener implements Listener {
 					new ClayMoreThread(player, 2F, block).start();		
 					configset(block);
 					
-				} else if(player.getInventory().getItemInMainHand().getType() == Material.REDSTONE_TORCH_ON) {
+				} else if(player.getInventory().getItemInMainHand().getType() == Material.STONE_BUTTON) {
 					event.setCancelled(false);
 					for(C4Speicher c4s : Library.plantedc4) {
 						if(c4s.getPlayer() == player) {
