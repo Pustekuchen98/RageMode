@@ -78,6 +78,8 @@ public class PlayerJoinListener implements Listener {
 				Items.givePlayerSparcleSwitcher(player, "§cOFF");
 			}
 			
+			Items.givePlayerHookSwitcher(player, "§aON");
+			
 			if(Main.isMySQL && Main.isShop) {
 				Items.givePlayerShopItem(player);
 				

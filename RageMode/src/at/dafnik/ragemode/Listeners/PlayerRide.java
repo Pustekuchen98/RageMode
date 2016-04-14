@@ -16,6 +16,7 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import net.minecraft.server.v1_9_R1.PacketPlayOutMount;
@@ -32,7 +33,7 @@ public class PlayerRide implements Listener{
 				
 				if(entity != ontheTop) {
 					try { 
-						ontheTop.setPassenger(event.getRightClicked());						
+						if(!(Library.allowedhook.contains(entity) || Library.allowedhook.contains(player))) ontheTop.setPassenger(event.getRightClicked());						
 					} catch (Exception ex) {}
 					
 					reloadPacket();

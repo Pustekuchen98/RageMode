@@ -20,6 +20,7 @@ import at.dafnik.ragemode.Commands.RoundStart;
 import at.dafnik.ragemode.Commands.Stats;
 import at.dafnik.ragemode.Commands.Teleport;
 import at.dafnik.ragemode.Items.Compass;
+import at.dafnik.ragemode.Items.HookSwitcher;
 import at.dafnik.ragemode.Items.SparcleSwitcher;
 import at.dafnik.ragemode.Listeners.AsyncPlayerChatListener;
 import at.dafnik.ragemode.Listeners.BlockBedListener;
@@ -106,7 +107,9 @@ public class Main extends JavaPlugin{
 		
 		Library.bar.removeAll();
 		
-		VillagerThread.deleteVillagerShop();
+		try {
+			VillagerThread.deleteVillagerShop();
+		} catch (Exception ex) {}
 		
 		getServer().getConsoleSender().sendMessage(pre + "§cStopped§8!");
 	}
@@ -253,6 +256,7 @@ public class Main extends JavaPlugin{
 		pm.registerEvents(new Grenade(), this);
 		pm.registerEvents(new Bow(), this);
 		pm.registerEvents(new SparcleSwitcher(), this);
+		pm.registerEvents(new HookSwitcher(), this);
 		
 		//Events - Combat
 		pm.registerEvents(new PlayerDeathListener(), this);

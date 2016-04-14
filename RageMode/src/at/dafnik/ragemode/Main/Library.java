@@ -72,6 +72,9 @@ public class Library {
 		//Sparcles
 		public static List<Player> sparcleswitch = new ArrayList<>();
 		
+		//Hook
+		public static List<Player> allowedhook = new ArrayList<>();
+		
 		//PowerUP
 		public static List<Entity> powerup_entity = new ArrayList<>();
 		public static HashMap<Integer, Holograms> powerup_hashmap = new HashMap<>();

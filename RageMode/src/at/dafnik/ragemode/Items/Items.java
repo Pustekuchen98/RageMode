@@ -81,7 +81,7 @@ public class Items {
 		ilore.add("§7Right click to use");
 		imd.setLore(ilore);
 		i.setItemMeta(imd);
-		player.getInventory().setItem(1, i);
+		player.getInventory().setItem(2, i);
 	}
 	
 	public static void givePlayerSparcleSwitcher(Player player, String switcher) {
@@ -93,6 +93,17 @@ public class Items {
 		imd.setLore(ilore);
 		i.setItemMeta(imd);
 		player.getInventory().setItem(0, i);
+	}
+	
+	public static void givePlayerHookSwitcher(Player player, String switcher) {
+		ItemStack i = new ItemStack(Material.STICK);
+		ItemMeta imd = i.getItemMeta();
+		imd.setDisplayName("§bHook §8- " + switcher);
+		List<String> ilore = new ArrayList<String>();
+		ilore.add("§7Right click to use");
+		imd.setLore(ilore);
+		i.setItemMeta(imd);
+		player.getInventory().setItem(1, i);
 	}
 	
 	public static void givePlayerItems(Player player){
