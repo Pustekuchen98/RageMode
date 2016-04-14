@@ -11,13 +11,13 @@ Added:
 	- Enable or disable Auto Update Check
 	- BossBar
 	- AutoTabComplete for /vote, /rm and /tpmap
-	- Premium and upper feature: Particles for the arrows!
+	- Premium feature: Particles for the arrows!
 	- Colored NameTags
 	
 Changes:
 	- PowerUP Spawn time from 2 minutes to 1 minute
 	- rewritten Shop system, now it's easier for me to add new upgrades
-	- performance improvements up to 50%!
+	- performance improvements
 	- Overworked all messages
 	- more fireworks on round end
 	- Fixes for all threads
