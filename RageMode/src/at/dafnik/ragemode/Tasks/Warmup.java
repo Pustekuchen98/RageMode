@@ -79,7 +79,8 @@ public class Warmup {
 						players.setFlySpeed((float) 0.2);
 						players.setLevel(0);
 						players.setGameMode(GameMode.SURVIVAL);
-						players.getInventory().clear();				
+						players.getInventory().clear();			
+						players.setPlayerListName(players.getDisplayName() + " §8- [§6" + 0 + "§8]");
 						
 						//Player Teleport
 						players.teleport(TeleportAPI.getRandomMapSpawnLocations());

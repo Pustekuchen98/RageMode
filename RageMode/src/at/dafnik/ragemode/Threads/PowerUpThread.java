@@ -74,17 +74,12 @@ public class PowerUpThread implements Runnable{
 				entity.setCustomName("PowerUPEntity");
 				entity.setVelocity((new Vector(0, 0, 0)));
 				
-				/*Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
-					@Override
-					public void run() {*/
-						Holograms holo = new Holograms(entity.getLocation(), "§a§lPowerUP");
-						for (Player players : Bukkit.getOnlinePlayers()) holo.display(players);
-						
-						Library.powerup_hashmap.put(Integer.valueOf(item.getItemMeta().getDisplayName()), holo);
-						Library.powerup_list.add(holo);
-						Library.powerup_entity.add(entity);
-				/*	}
-				}, 20);*/
+				Holograms holo = new Holograms(entity.getLocation(), "§a§lPowerUP");
+				for (Player players : Bukkit.getOnlinePlayers()) holo.display(players);
+
+				Library.powerup_hashmap.put(Integer.valueOf(item.getItemMeta().getDisplayName()), holo);
+				Library.powerup_list.add(holo);
+				Library.powerup_entity.add(entity);	
 
 				for (int i = 0; i < 10; i++) entity.getWorld().playEffect(entity.getLocation(), Effect.LAVA_POP, 3);
 				entity.getWorld().playEffect(entity.getLocation(), Effect.MOBSPAWNER_FLAMES, 3);

@@ -230,10 +230,13 @@ public class PlayerDeathListener implements Listener {
 				SQLStats.addPoints(playeruuid, toBePoints);
 				SQLStats.addKills(playeruuid, 1);
 				SQLCoins.addCoins(playeruuid, 20);
+				player.sendMessage(Strings.coins_added_0 + 20 + Strings.coins_added_1);
 			}
 		
 		} else if(killground == "killstreak") {
 			SQLStats.addPoints(playeruuid, toBePoints);
+			SQLCoins.addCoins(playeruuid, 30);
+			player.sendMessage(Strings.coins_added_0 + 30 + Strings.coins_added_1);
 		}
 		
 		if (Library.playerpoints.get(player) == null) {

@@ -5,7 +5,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.Shop.Shop;
@@ -55,8 +54,6 @@ public abstract class AdvancedShopPageBasic implements Listener{
 						break;
 						
 					default:
-						player.closeInventory();
-						player.sendMessage(Strings.error_inventory_false_click);
 						break;
 		
 					}

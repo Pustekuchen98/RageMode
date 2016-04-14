@@ -96,7 +96,7 @@ public class Ingame {
 					} else {
 						if(Main.isMySQL) {
 							SQLStats.addWonGames(playerwinner.getUniqueId().toString(), 1);
-							Bukkit.broadcastMessage(Strings.kill_points_plus + "300");
+							playerwinner.sendMessage(Strings.coins_added_0 + 200 + Strings.coins_added_1);
 							SQLStats.addPoints(playerwinner.getUniqueId().toString(), 300);
 							SQLCoins.addCoins(playerwinner.getUniqueId().toString(), 200);
 						}
@@ -117,8 +117,9 @@ public class Ingame {
 							players.removePotionEffect(PotionEffectType.SLOW);
 							players.removePotionEffect(PotionEffectType.INVISIBILITY);
 							players.removePotionEffect(PotionEffectType.LEVITATION);
+							players.removePotionEffect(PotionEffectType.GLOWING);
 							players.getInventory().setChestplate(null);
-							players.getInventory().setHelmet(null);
+							players.getInventory().clear();
 							
 							Library.powerup_doublejump.remove(players);
 							Library.powerup_speedeffect.remove(players);
@@ -144,6 +145,9 @@ public class Ingame {
 					Main.getInstance().getServer().getScheduler().cancelTask(winid);
 					kickPlayer();
 					
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {}
 					restart();
 				}
 				wintime--;
@@ -152,7 +156,6 @@ public class Ingame {
 	}
 
 	public void restart() {
-		kickPlayer();
 		Main.status = Status.RESTART;	
 		Bukkit.shutdown();				
 	}
@@ -215,12 +218,12 @@ public class Ingame {
 			for(Player players : Bukkit.getOnlinePlayers()) if(Library.powerup_hashmap.get(i) != null)Library.powerup_hashmap.get(i).destroy(players);
 		}
 		
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < 20; i++) {
 			Location loc = TeleportAPI.getRandomMapSpawnLocations();
 			Firework firework = loc.getWorld().spawn(loc, Firework.class);
 			FireworkMeta data = (FireworkMeta) firework.getFireworkMeta();
 			data.addEffect(FireworkEffect.builder().withColor(Color.AQUA, Color.BLACK, Color.BLUE, Color.FUCHSIA, Color.GRAY, Color.GREEN, Color.LIME, Color.MAROON, Color.NAVY, Color.NAVY, Color.OLIVE, Color.ORANGE, Color.PURPLE, Color.RED, Color.SILVER, Color.TEAL, Color.WHITE, Color.YELLOW).with(Type.BALL).with(Type.BALL_LARGE).with(Type.BURST).with(Type.CREEPER).with(Type.STAR).withFade(Color.AQUA, Color.BLACK, Color.BLUE, Color.FUCHSIA, Color.GRAY, Color.GREEN, Color.LIME, Color.MAROON, Color.NAVY, Color.NAVY, Color.OLIVE, Color.ORANGE, Color.PURPLE, Color.RED, Color.SILVER, Color.TEAL, Color.WHITE, Color.YELLOW).build());
-			data.setPower(7);
+			data.setPower(1);
 			firework.setFireworkMeta(data);	
 		}
 	}

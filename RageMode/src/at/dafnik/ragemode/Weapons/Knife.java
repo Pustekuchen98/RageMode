@@ -143,7 +143,7 @@ public class Knife implements Listener{
 			ItemMeta imd = item.getItemMeta();
 			if(!(howmany == 0)) {
 				imd.setDisplayName("§cKnife §8[§6" + howmany + "§8]");
-				item.setDurability((short) (item.getDurability() - 25));
+				item.setDurability((short) (item.getDurability() - 20));
 			} else {
 				imd.setDisplayName("§cKnife §8[§6Ready§8]");
 				item.setDurability((short)0);
