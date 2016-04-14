@@ -1,7 +1,10 @@
 package at.dafnik.ragemode.Threads;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.entity.Arrow;
+
+import at.dafnik.ragemode.Main.Main;
 
 public class ArrowSparcleThread implements Runnable {
 	
@@ -31,11 +34,16 @@ public class ArrowSparcleThread implements Runnable {
 	@Override
 	public void run() {
 		while(running){
-			item.getLocation().getWorld().spawnParticle(Particle.FIREWORKS_SPARK, item.getLocation().getX(), item.getLocation().getY(), item.getLocation().getZ(), 5, 0.02, 0.02, 0.02, 0.02);			
-			zaehler++;
-			
-			if(item.isOnGround() || item.isDead() || item == null) this.stop();
-			if(zaehler > 800) this.stop();
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+				@Override
+				public void run() {
+					item.getLocation().getWorld().spawnParticle(Particle.FIREWORKS_SPARK, item.getLocation().getX(), item.getLocation().getY(), item.getLocation().getZ(), 5, 0.02, 0.02, 0.02, 0.02);			
+					zaehler++;
+					
+					if(item.isOnGround() || item.isDead() || item == null) stop();
+					if(zaehler > 800) stop();
+				}
+			}, 1);
 			
 			try {
 				Thread.sleep(20);

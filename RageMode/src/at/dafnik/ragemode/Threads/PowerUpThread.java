@@ -43,13 +43,18 @@ public class PowerUpThread implements Runnable{
 	@Override
 	public void run() {
 		while(running) {
-			if(Main.status == Status.INGAME) {				
-				Location loc = TeleportAPI.getRandomPowerUPSpawnLocation();
-				
-				if(loc != null) {		
-					spawnPowerUP(loc);
-				} else System.out.println(Strings.error_powerup_last);
-			}
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+				@Override
+				public void run() {
+					if(Main.status == Status.INGAME) {				
+						Location loc = TeleportAPI.getRandomPowerUPSpawnLocation();
+						
+						if(loc != null) {		
+							spawnPowerUP(loc);
+						} else System.out.println(Strings.error_powerup_last);
+					}
+				}
+			}, 1);
 			
 			try {
 				Thread.sleep(time*60*1000);

@@ -36,12 +36,17 @@ public class CompassThread implements Runnable {
 		while(running) {
 			if(Main.status == Status.INGAME) {
 				try {
-					for(Player players : Bukkit.getOnlinePlayers()) {
-						if(!Library.spectatorlist.contains(players)) {
-							Player target = getNearest(players);
-							if(target != null) players.setCompassTarget(target.getLocation());		
+					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+						@Override
+						public void run() {
+							for(Player players : Bukkit.getOnlinePlayers()) {
+								if(!Library.spectatorlist.contains(players)) {
+									Player target = getNearest(players);
+									if(target != null) players.setCompassTarget(target.getLocation());		
+								}
+							}
 						}
-					}
+					}, 1);
 				} catch (Exception ex) {
 					System.out.println(Strings.log_pre + "Compass" + Strings.error_thread_exception);
 				}

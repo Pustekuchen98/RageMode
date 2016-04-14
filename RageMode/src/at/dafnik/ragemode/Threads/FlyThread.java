@@ -1,8 +1,10 @@
 package at.dafnik.ragemode.Threads;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import at.dafnik.ragemode.Main.Library;
+import at.dafnik.ragemode.Main.Main;
 
 public class FlyThread implements Runnable{
 
@@ -39,11 +41,16 @@ public class FlyThread implements Runnable{
 				this.stop();
 			}
 			
-			if(player.isOnGround()) {
-				Library.powerup_flyparticle.remove(player);
-				player.getInventory().setChestplate(null);
-				this.stop();
-			}
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+				@Override
+				public void run() {	
+					if(player.isOnGround()) {
+						Library.powerup_flyparticle.remove(player);
+						player.getInventory().setChestplate(null);
+						stop();
+					}
+				}
+			}, 1);
 		}		
 	}
 }

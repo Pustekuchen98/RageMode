@@ -57,12 +57,12 @@ public class ClayMoreThread implements Runnable{
 							if(Main.status == Status.INGAME) {
 								if(!Library.spectatorlist.contains(victim)) {
 									if(!Library.respawnsafe.contains(victim)) {
-										Location loc = block.getLocation();
-										
 										Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 											@SuppressWarnings("deprecation")
 											@Override
 											public void run() {
+												Location loc = block.getLocation();
+													
 												victim.removeMetadata("killedWith", Main.getInstance());
 												victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "claymore"));
 												victim.damage(11, setter);
@@ -95,7 +95,12 @@ public class ClayMoreThread implements Runnable{
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
-				block.setType(Material.AIR);
+				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+					@Override
+					public void run() {
+						block.setType(Material.AIR);
+					}
+				}, 1);
 				this.stop();
 			}
 		}	

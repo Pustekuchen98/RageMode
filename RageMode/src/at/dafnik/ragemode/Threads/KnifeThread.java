@@ -38,24 +38,25 @@ public class KnifeThread implements Runnable{
 		while(running){	
 			if(Main.status == Status.INGAME) {
 				try {
-					for(Player player : Bukkit.getOnlinePlayers()) {
-						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
-							@Override
-							public void run() {
-								if(!Library.spectatorlist.contains(player)) {
-									if(!Library.powerup_speedeffect.contains(player)) {
-										if(player.getInventory().getItemInMainHand().getType() == Material.IRON_SPADE) {
-											if(Main.isMySQL && Main.isShop) {
-												if(SQLCoins.getSpeedUpgrade(player.getUniqueId().toString())) player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 1));
+					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+						@Override
+						public void run() {
+							for(Player player : Bukkit.getOnlinePlayers()) {		
+								if (!Library.spectatorlist.contains(player)) {
+									if (!Library.powerup_speedeffect.contains(player)) {
+										if (player.getInventory().getItemInMainHand().getType() == Material.IRON_SPADE) {
+											if (Main.isMySQL && Main.isShop) {
+												if (SQLCoins.getSpeedUpgrade(player.getUniqueId().toString()))
+													player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 1));
 												else player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 0));
 											} else player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 0));
-											
-										} else player.removePotionEffect(PotionEffectType.SPEED);					
+
+										} else player.removePotionEffect(PotionEffectType.SPEED);
 									}
-								}
+								}	
 							}
-						}, 1);
-					}
+						}
+					}, 1);
 				} catch (Exception ex) {
 					System.out.println(Strings.log_pre + "Knife" + Strings.error_thread_exception);
 				}

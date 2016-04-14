@@ -156,12 +156,12 @@ public class Ingame {
 	}
 
 	public void restart() {
+		kickPlayer();
 		Main.status = Status.RESTART;	
 		Bukkit.shutdown();				
 	}
 	
-	public void kickPlayer() {
-		
+	public void kickPlayer() {	
 		for(Player player : Bukkit.getOnlinePlayers()){
 			
 			if(Main.isBungee) {

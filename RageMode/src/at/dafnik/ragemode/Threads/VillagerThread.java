@@ -45,15 +45,25 @@ public class VillagerThread implements Runnable{
 	@Override
 	public void run() {
 		while(running) {
-			if(villager.getLocation() != loc) villager.teleport(loc);
-			
-			if(villager.isDead() || villager == null) this.stop();
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+				@Override
+				public void run() {
+					if(villager.getLocation() != loc) villager.teleport(loc);
+					
+					if(villager.isDead() || villager == null) stop();
+				}
+			}, 1);
 			
 			try {
 				Thread.sleep(20);
 			} catch (InterruptedException e) {
-				villager.remove();
-				this.stop();
+				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+					@Override
+					public void run() {
+						villager.remove();
+						stop();
+					}
+				}, 1);
 			}
 		}
 	}

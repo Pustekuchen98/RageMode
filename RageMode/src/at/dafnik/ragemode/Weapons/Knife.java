@@ -43,91 +43,98 @@ public class Knife implements Listener{
 		Player player = event.getPlayer();
 		ItemStack item = event.getItem();
 		
-		if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-			if(player.getInventory().getItemInMainHand().getType() == Material.IRON_SPADE) {
-				if(Main.status == Status.INGAME) {
-					if(allowed.get(player) == null) allowed.put(player, true);
-					
-					if(allowed.get(player) == true) {							
+		if (Main.status == Status.INGAME) {
+			if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+				if (player.getInventory().getItemInMainHand().getType() == Material.IRON_SPADE) {
+
+					if (allowed.get(player) == null)
+						allowed.put(player, true);
+
+					if (allowed.get(player) == true) {
 						allowed.put(player, false);
-						
+
 						double radius = 6;
 						double vectormulti = 2;
 						double vectory = 1;
-						
-						if(Main.isMySQL && Main.isShop) {
-							if(SQLCoins.getKnockbackUpgrade(player.getUniqueId().toString())) {
+
+						if (Main.isMySQL && Main.isShop) {
+							if (SQLCoins.getKnockbackUpgrade(player.getUniqueId().toString())) {
 								radius = 12;
 								vectormulti = 4;
 								vectory = 0.8;
 							}
 						}
-						
-						for(Entity entities : player.getNearbyEntities(radius, radius, radius)) {
-							if(entities instanceof Player || entities instanceof Arrow || entities instanceof Egg) {						
-								
+
+						for (Entity entities : player.getNearbyEntities(radius, radius, radius)) {
+							if (entities instanceof Player || entities instanceof Arrow || entities instanceof Egg) {
+
 								int aX = entities.getLocation().getBlockX();
 								int aY = entities.getLocation().getBlockY();
 								int aZ = entities.getLocation().getBlockZ();
-								
+
 								int bX = player.getLocation().getBlockX();
 								int bY = player.getLocation().getBlockY();
 								int bZ = player.getLocation().getBlockZ();
-								
+
 								int X = aX - bX;
 								int Y = aY - bY;
 								int Z = aZ - bZ;
-								
+
 								Vector vector = new Vector(X, Y, Z).normalize();
 								vector.multiply(vectormulti);
 								vector.setY(vectory);
-								
-								if(entities instanceof Player){
-									if(Library.ingameplayer.contains((Player)entities) && !(Library.respawnsafe.contains((Player)entities))){
+
+								if (entities instanceof Player) {
+									if (Library.ingameplayer.contains((Player) entities)
+											&& !(Library.respawnsafe.contains((Player) entities))) {
 										entities.setVelocity(vector);
-										((Player) entities).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 3*20, 3));
-										((Player) entities).addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 3*20, 3));
+										((Player) entities).addPotionEffect(
+												new PotionEffect(PotionEffectType.BLINDNESS, 3 * 20, 3));
+										((Player) entities).addPotionEffect(
+												new PotionEffect(PotionEffectType.CONFUSION, 3 * 20, 3));
 										((Player) entities).damage(2, player);
 									}
-								} else entities.setVelocity(vector);
-							}									
+								} else
+									entities.setVelocity(vector);
+							}
 						}
-						
-						if(time.get(player) == null || time.get(player) == 0) time.put(player, 10);
-						
-						idlists.add(Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable(){
+
+						if (time.get(player) == null || time.get(player) == 0)
+							time.put(player, 10);
+
+						idlists.add(Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
 							@Override
-							public void run(){
-								if(time.get(player) <=0){
+							public void run() {
+								if (time.get(player) <= 0) {
 									give(player, time.get(player), item);
 									allowed.replace(player, true);
 									Bukkit.getScheduler().cancelTask(idlists.get(0));
 									idlists.remove(0);
 									return;
 								}
-								
-								if(time.get(player) == 10) {
+
+								if (time.get(player) == 10) {
 									give(player, time.get(player), item);
-								} else if(time.get(player) == 9) {
+								} else if (time.get(player) == 9) {
 									give(player, time.get(player), item);
-								} else if(time.get(player) == 8) {
-									give(player, time.get(player), item);	
-								} else if(time.get(player) == 7) {
+								} else if (time.get(player) == 8) {
 									give(player, time.get(player), item);
-								} else if(time.get(player) == 6) {
+								} else if (time.get(player) == 7) {
 									give(player, time.get(player), item);
-								} else if(time.get(player) == 5) {
+								} else if (time.get(player) == 6) {
 									give(player, time.get(player), item);
-								} else if(time.get(player) == 4) {
+								} else if (time.get(player) == 5) {
 									give(player, time.get(player), item);
-								} else if(time.get(player) == 3) {
+								} else if (time.get(player) == 4) {
 									give(player, time.get(player), item);
-								} else if(time.get(player) == 2) {
+								} else if (time.get(player) == 3) {
 									give(player, time.get(player), item);
-								} else if(time.get(player) == 1) {
+								} else if (time.get(player) == 2) {
+									give(player, time.get(player), item);
+								} else if (time.get(player) == 1) {
 									give(player, time.get(player), item);
 								}
-								
+
 								time.put(player, time.get(player) - 1);
 							}
 						}, 0L, 20L));
