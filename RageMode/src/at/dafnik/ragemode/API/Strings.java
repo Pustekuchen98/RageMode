@@ -10,78 +10,78 @@ public class Strings {
 	public static String log_pre = "[RageMode] ";
 	private static String debug_pre = "[Debug]> ";
 	
-	public static String error_wrong_inv_string = log_pre + "ERROR: There isn't an update, for using this";
-	public static String error_no_map = log_pre + "ERROR: TeleportAPI: getRandomMapSpawnLocation! Try catch faild!";
-	public static String error_explosion_no_killground = log_pre + "ERROR: ExplosionAPI doesn't work well. No Explosionground can found!";
-	public static String error_powerup_last = log_pre + "ERROR: PowerUP spawning failed! Caused by: No Map or no PowerUP Spawns";
-	public static String error_randommizer_dont_work = log_pre + "ERROR: PowerUPItemListener - Randomizer doesn't work!";
-	public static String error_more_rankingwall_places_then_player_in_mysql = log_pre + "WARNING: More Ranking Places than players registered in your MySQL Database!";
+	public static String error_wrong_inv_string = log_pre + "ERROR: No update for this item!";
+	public static String error_no_map = log_pre + "ERROR: TeleportAPI: getRandomMapSpawnLocation!";
+	public static String error_explosion_no_killground = log_pre + "ERROR: ExplosionAPI crashed. No cause of explosion found!";
+	public static String error_powerup_last = log_pre + "ERROR: No PowerUP has been created! Caused by: No Map or no PowerUP Spawns";
+	public static String error_randommizer_dont_work = log_pre + "ERROR: PowerUPItemListener - Randomizer crashed!";
+	public static String error_more_rankingwall_places_then_player_in_mysql = log_pre + "WARNING: More Ranking places than players registered in your MySQL Database!";
 	public static String error_rankingwall_headrotation = log_pre + "ERROR: Please set the rotation of the Ranking Heads! /rm setranking setrotation";
 	public static String error_could_not_connect_to_mysql = log_pre + "MySQL Couldn't Connect!";
 	public static String error_could_not_disconnect_to_mysql = log_pre + "MySQL Couldn't Disconnect! Error: ";
-	public static String error_no_created_maps = log_pre + "ERROR: You've got no Maps in the config! You can add Maps and spawns with /rm";
-	public static String error_not_existing_villagerspawn = log_pre + "ERROR: You haven't set the villager shop spawn!";
+	public static String error_no_created_maps = log_pre + "ERROR: You have not got any Maps in the config! You can add Maps and spawns with /rm";
+	public static String error_not_existing_villagerspawn = log_pre + "ERROR: You have not set the villager shop spawn!";
 	public static String error_unkown_gamestate = log_pre + "ERROR: Unknown Game Status!";
-	public static String error_not_existing_lobbyspawn = log_pre + "ERROR: You haven't set the Lobby spawnpoint!";
-	public static String error_playerdeath_points = log_pre + "ERROR: PlayerDeathListener - givePlayerPoints - Unknown killground exception! Nothing will happen";
-	public static String error_not_existing_map_middle_point = log_pre + "WARNING: You haven't set the Map Middle Point and the approximately mapradius!";
-	public static String error_cast_to_int = log_pre + "ERROR: Cast to int error in Compass!";
-	public static String error_not_authenticated_player = log_pre +  "ERROR: Not authenticated player is on the server! Manager don't work";
-	public static String error_only_player_use = log_pre + "Only player can use these commands";
-	public static String error_not_on_a_bungee = pre + "§cYou aren't on a BungeeCord Network";
-	public static String error_enter = pre + "§cWrong enter";
-	public static String error_enter_unknown_map = pre + "§cYou must enter a Mapname";
-	public static String error_enter_unknown_spawnnumber = pre + "§cYou must enter a spawnnumber";
-	public static String error_permission = pre + "§cYou aren't allowed to use the command";
-	public static String error_unknown_map = pre + "§cUnknown map";
-	public static String error_not_mysql_enabled = pre + "§cYou haven't enabled the MySQL Database";
-	public static String error_cant_join_at_the_moment = pre + "\n§7You can't join at the moment";
-	public static String error_ragemode_update = pre + "\n§4The server is in maintance mode\n§eThere is an update which is being installed";
-	public static String error_game_is_full = pre + "\n§4The server is full\n§7You need §6premium §7to join full games";
-	public static String error_you_kicked = pre + "\n§cYou haven been kicked by a §6premium\n§3Only other §6premiums §7can't be kicked";
-	public static String error_all_left = pre + "§cBecause all player left the game, the game stopped";
-	public static String error_you_already_voted = pre + "§cYou have already voted";
-	public static String error_map_cannot_vote = pre + "§cYou can not vote for this map";
-	public static String error_voting_finished = pre + "§cYou can't vote for a map at this moment";
+	public static String error_not_existing_lobbyspawn = log_pre + "ERROR: You have not set the Lobby spawnpoint!";
+	public static String error_playerdeath_points = log_pre + "ERROR: PlayerDeathListener - givePlayerPoints - Unknown kill cause of death! Nothing will happen!";
+	public static String error_not_existing_map_middle_point = log_pre + "WARNING: No Map-Middle-Point was findable!";
+	public static String error_cast_to_int = log_pre + "ERROR: CompassThread Cast Exception!";
+	public static String error_not_authenticated_player = log_pre +  "ERROR: Player authentication failed! Manager did not work!";
+	public static String error_only_player_use = log_pre + "This command is only for players available!";
+	public static String error_not_on_a_bungee = pre + "§cThis server does not support BungeeCord§8!";
+	public static String error_enter = pre + "§cWrong enter§8!";
+	public static String error_enter_unknown_map = pre + "§cYou have to enter a map§8!";
+	public static String error_enter_unknown_spawnnumber = pre + "§cYou have to enter a spawnnumber§8!";
+	public static String error_permission = pre + "§cYou are not allowed to use this command§8!";
+	public static String error_unknown_map = pre + "§cUnknown map§8!";
+	public static String error_not_mysql_enabled = pre + "§cYou have not enabled the MySQL Database§8!";
+	public static String error_cant_join_at_the_moment = pre + "\n§7You can not join at the moment";
+	public static String error_game_is_full = pre + "\n§4The server is full\n§7You had to buy §6premium §7for joining full games";
+	public static String error_you_kicked = pre + "\n§cYou have been kicked by a §6premium\n§3Only other §6premiums §7can not be kicked";
+	public static String error_all_left = pre + "§cAll players left the game§8! §cThe game will stop§8!";
+	public static String error_you_already_voted = pre + "§cYou have already voted§8!";
+	public static String error_map_cannot_vote = pre + "§cYou can not vote for this map§8!";
+	public static String error_voting_finished = pre + "§cYou can not vote for a map at this moment§8!";
 	public static String error_not_enough_player= pre + "§cWaiting for more players";
 	public static String error_needed_player = pre + "§eNeeded players§8: §b";
 	public static String error_no_winner = pre + "§7There is no §ewinner §7in §cRageMode";
-	public static String error_inventory_false_click = pre + "§cFalse click";
-	public static String error_no_uuid = pre + "§cThe player hasn't played before on this server";
+	public static String error_inventory_false_click = pre + "§cWrong click";
+	public static String error_no_uuid = pre + "§cThe player has not played before on this server§8!";
 	public static String error_thread_exception = "thread crashed! The game goes on!";
+	public static String error_cast = pre + "§cInvalid number§8! §cYou can only use full numbers§8!";
 	
-	public static String map_create = pre + "§7You create the Map §asuccessful§8: §6";
-	public static String map_set_villagershop = pre + "§7You set the villagershop spawn §asuccessful";
-	public static String map_edit_allowed = pre + "§7You are §aallowed §3to build in your world";
-	public static String map_edit_disallowed = pre + "§7You are §cdisallowed §7to build in your world";
-	public static String map_set_author = pre + "§7You have set the author §asuccessful§8: §6";
-	public static String map_set_coordinates = pre + "§7Set successful Spawn§8: §a";
-	public static String map_set_powerup_coordinates = pre + "§7Set successful PowerUp Spawns§8: §a";
-	public static String map_set_middlepoint = pre + "§7Set §asuccessful §7middlepoint";
-	public static String map_worldborder = pre + "§cThis is the worldborder";
-	public static String map_edit_not_yet = pre + "§cYou can only build on the map during §aLobby §cand §aPre Lobby";
-	public static String map_spawnpowerup = pre + "§aThe PowerUP has been succusfull spawned";
+	public static String map_create = pre + "§7The map has been created §asuccessful§8: §b";
+	public static String map_set_villagershop = pre + "§7The §bvillagershop §7has been created §asuccessful§8!";
+	public static String map_edit_allowed = pre + "§7Now you are §aallowed §7to build§8!";
+	public static String map_edit_disallowed = pre + "§7Now you are §cdisallowed §7to build§8!";
+	public static String map_set_author = pre + "§7The map author has been set §asuccessful§8: §b";
+	public static String map_set_coordinates = pre + "§7Added this map spawn §asuccessful§8: §b";
+	public static String map_set_powerup_coordinates = pre + "§7Added this powerup spawn §asuccessful§8: §b";
+	public static String map_set_middlepoint = pre + "§7Added the map-middle-point §asuccessful§8!";
+	public static String map_worldborder = pre + "§cYou are not allowed to pass§8!\n" + pre + "§cThe map ends here§8!";
+	public static String map_edit_not_yet = pre + "§cYou are only allowed to build during §aLobby §cand §aPre Lobby §ctime§8!";
+	public static String map_spawnpowerup = pre + "§7The powerup has been §asuccessful §7spawned§8!";
 	
-	public static String game_set_needed_players = pre + "§7You have set the needed player number §asuccesful§8: §6";
-	public static String game_set_time = pre + "§7You have set the gametime successful§8: §6";
+	public static String game_set_needed_players = pre + "§7You changed the needed players to start §asuccesful§8: §b";
+	public static String game_set_time = pre + "§7You changed the needed players §asuccessful§8: §b";
 	
-	public static String lobby_set_hologram = pre + "§7You have set the hologram §asuccesful";
-	public static String lobby_set_spawn = pre + "§7You have set the Lobby Spawn §asuccesful";
-	public static String lobby_set_rotation = pre + "§7You have set the Rotation to the Ranking §asuccesful§a: §6";
+	public static String lobby_set_hologram = pre + "§7The hologram spawnpoint has been §asuccessful §7placed§8!";
+	public static String lobby_set_spawn = pre + "§7The lobby spawnpoint has been §asuccessful §7placed§8!";
+	public static String lobby_set_rotation = pre + "§7The rotation of the ranking wall heads has been §asuccesful §7changed§8: §b";
 	
-	public static String bungee_switch_on = pre + "§7You have switch the Bungee module §aon";
-	public static String bungee_switch_off = pre + "§7You have switch the Bungee module §coff";
-	public static String bungee_lobby_server = pre + "§7You have set the lobbyserver §asuccessful§8: §6";
+	public static String bungee_switch_on = pre + "§7BungeeCord support turned§8: §aON";
+	public static String bungee_switch_off = pre + "§7BungeeCord support turned§8: §cOFF";
+	public static String bungee_lobby_server = pre + "§7Changed the BungeeCord fallback server §asuccessful§8: §b";
 	
-	public static String mysql_set_host = pre + "§7You have set the host§8: §6";
-	public static String mysql_set_database = pre + "§7You have set the database§8: §6";
-	public static String mysql_set_username = pre + "§7You have set the username§8: §6";
-	public static String mysql_set_password = pre + "§7You have set the password§8: §6";
-	public static String mysql_switch_on = pre + "§7You have switch the MySQL Module §aon";
-	public static String mysql_switch_off = pre + "§7You have switch the MySQL Module §coff";
+	public static String mysql_set_host = pre + "§7Changed the MySQL host §asuccessful§8: §b";
+	public static String mysql_set_database = pre + "§7MySQL database changed §asuccessful§8: §b";
+	public static String mysql_set_username = pre + "§7MySQL username changed §asuccessful§8: §b";
+	public static String mysql_set_password = pre + "§7MySQL password changed §asuccessful§8: §b";
+	public static String mysql_switch_on = pre + "§7MySQL support turned§8: §aON";
+	public static String mysql_switch_off = pre + "§7MySQL support turned§8: §cOFF";
 	
-	public static String stats_reset = pre + "§7Your stats has been §aresettet";
-	public static String statsadmin_successful = pre + "§7The command was §asuccesful";
+	public static String stats_reset = pre + "§7Your stats has been resettet §asuccessful§8!";
+	public static String statsadmin_successful = pre + "§7The execution of this command was §asuccesful§8!";
 	public static String stats_admin = pre + "/statsadmin §8<§aadd §8| §aremove§8> §8<§akills §8| §adeaths §8| §awongames §8| §aplayedgames §8| §apoints §8| §aresets §8| §abowkills §8| §aknifekills §8| §aaxtkills§8 §8| §asuicides§8> §8<§aplayername§8> <§anumber§8>";
 	public static String stats_are_loading = "§7Please wait a moment, your stats are being loaded...";
 	public static String stats_your_name_first = "§7-= §eStats from ";
@@ -109,7 +109,7 @@ public class Strings {
 	public static String tasks_lobby_map_voted = pre + "§eMap§8: §b";
 	public static String tasks_lobby_author = pre + "§eAuthor§8: §b";
 	public static String tasks_lobby_no_author = "No Author";
-	public static String tasks_lobby_countdown_first = pre + "§7The round starts in §e";
+	public static String tasks_lobby_countdown_first = pre + "§7Round starts in §e";
 	public static String tasks_lobby_countdown_two = " §7seconds";
 	public static String tasks_lobby_countdown_two_0 = " §7second";
 	
@@ -167,16 +167,16 @@ public class Strings {
 	
 	public static String killstreak = " §7has a §ckillstreak ";
 	
-	public static String item_compass_error = pre + "§cThere isn't a player in this game";
+	public static String item_compass_error = pre + "§cThere is no other player§8!";
 	public static String item_compass_1 = pre + "§7Next player§8: ";
 	public static String item_compass_2 = " §8| §7Blocks away§8: §6";
 	
 	public static String inventory_inv_speedupgrader = "§fSpeed Upgrade";
 	public static String inventory_inv_speedupgrader_description = "§7Upgrade your speed, when you hold the knife in your hand";
 	public static String inventory_inv_bowpowerupgrader = "§fBow Power Upgrade";
-	public static String inventory_inv_bowpowerupgrader_description = "§7Upgrade your Bow power, when you shoot with the Bow";
+	public static String inventory_inv_bowpowerupgrader_description = "§7Upgrade your Bow power";
 	public static String inventory_inv_knockbackupgrade = "§fKnockback ability Upgrade";
-	public static String inventory_inv_knockbackupgrade_description = "§7Upgrade your Knife ability, when you right click your knife";
+	public static String inventory_inv_knockbackupgrade_description = "§7Upgrade your Knife right click ability";
 	public static String inventory_inv_spectralarrowupgrade = "§fSpectral Arrow Upgrade";
 	public static String inventory_inv_spectralarrowupgrade_description = "§7Shoot spectral Arrows with your bow";
 	public static String inventory_invmore_back_to_inv = "§cBack to the shop";
@@ -203,6 +203,8 @@ public class Strings {
 	public static String coins_your = pre + "§cYou have §6";
 	public static String coins_your_2 = " §cCoins";
 	public static String coins_admin = pre + "/coinsadmin §8<§aadd §8| §aremove§8> <§aplayername§8> <§anumber§8>";
+	public static String coins_added_0 = pre + "§a+ §f";
+	public static String coins_added_1 = " §7Coins";
 	
 	public static String powerup_get_0 = pre + "§e§k!dkafaaf21adöfaö223ö1jökldaöl\n" + Main.pre + "§7Your §aPowerUP§8: ";
 	public static String powerup_get_1 = "§8!\n" + Main.pre + "§e§k!dkafaaf21adöfaö223ö1jökldaöl";
@@ -228,5 +230,5 @@ public class Strings {
 	public static String items_c4 = "§4C4";
 	public static String items_c4_detonator = "§4C4 §7Detonator";
 	
-	public static String bossbar = "§6You §7are §bplaying §cRageMode";
+	public static String bossbar = "§6You §bare playing §cRageMode";
 }
