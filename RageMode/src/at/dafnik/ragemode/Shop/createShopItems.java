@@ -50,7 +50,7 @@ public class createShopItems {
 				buyn = Strings.inventory_bought;
 				itemmeta.addEnchant(Enchantment.WATER_WORKER, 1, true);
 			} else buyn = Strings.inventory_not_bought;
-			itemmeta.setDisplayName(Strings.inventory_inv_spectralarrowupgrade);
+			itemmeta.setDisplayName(Strings.inventory_inv_spectralarrowupgrade + buyn);
 			itemlore.add(Strings.inventory_inv_spectralarrowupgrade_description);
 		
 		} else return null;

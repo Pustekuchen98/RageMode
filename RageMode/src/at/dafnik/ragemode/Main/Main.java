@@ -20,6 +20,7 @@ import at.dafnik.ragemode.Commands.RoundStart;
 import at.dafnik.ragemode.Commands.Stats;
 import at.dafnik.ragemode.Commands.Teleport;
 import at.dafnik.ragemode.Items.Compass;
+import at.dafnik.ragemode.Items.SparcleSwitcher;
 import at.dafnik.ragemode.Listeners.AsyncPlayerChatListener;
 import at.dafnik.ragemode.Listeners.BlockBedListener;
 import at.dafnik.ragemode.Listeners.BlockListener;
@@ -36,7 +37,6 @@ import at.dafnik.ragemode.MySQL.MySQL;
 import at.dafnik.ragemode.MySQL.Ranking;
 import at.dafnik.ragemode.PowerUPs.C4Detonator;
 import at.dafnik.ragemode.PowerUPs.DoubleJump;
-import at.dafnik.ragemode.PowerUPs.Flash;
 import at.dafnik.ragemode.PowerUPs.Fly;
 import at.dafnik.ragemode.PowerUPs.Healer;
 import at.dafnik.ragemode.PowerUPs.Mine;
@@ -53,6 +53,7 @@ import at.dafnik.ragemode.Tasks.Lobby;
 import at.dafnik.ragemode.Threads.VillagerThread;
 import at.dafnik.ragemode.Weapons.AxeEvent;
 import at.dafnik.ragemode.Weapons.Bow;
+import at.dafnik.ragemode.Weapons.Flash;
 import at.dafnik.ragemode.Weapons.Grenade;
 import at.dafnik.ragemode.Weapons.Knife;
 
@@ -251,6 +252,7 @@ public class Main extends JavaPlugin{
 		pm.registerEvents(new Knife(), this);
 		pm.registerEvents(new Grenade(), this);
 		pm.registerEvents(new Bow(), this);
+		pm.registerEvents(new SparcleSwitcher(), this);
 		
 		//Events - Combat
 		pm.registerEvents(new PlayerDeathListener(), this);

@@ -26,7 +26,9 @@ public class Bow implements Listener{
 			if(Main.status == Status.INGAME) {
 				Player player = (Player) event.getEntity();
 				Arrow arrow = (Arrow) event.getProjectile();
-				if(PowerSystem.getPower(player) > 0) new ArrowSparcleThread(arrow).start(); 
+				if(PowerSystem.getPower(player) > 0) {
+					if(Library.sparcleswitch.contains(player)) new ArrowSparcleThread(arrow).start(); 
+				}
 				
 			} else event.setCancelled(true);
 		} else event.setCancelled(true);

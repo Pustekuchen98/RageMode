@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import at.dafnik.ragemode.Items.Items;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
@@ -27,7 +28,14 @@ public class Healer implements Listener{
 					player.setMaxHealth(40);
 					player.setHealth(40);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, time, 3));
+					int amount = event.getItem().getAmount() - 1;
 					player.getInventory().remove(event.getItem());
+					
+					if(amount > 0) {
+						for(int i = 0; i < amount; i++) {
+							Items.givePlayerDoubleHeart(player);
+						}
+					}
 					player.getWorld().playSound(player.getLocation(), Sound.ENTITY_GENERIC_EAT, 1000.0F, 1.0F);
 						
 					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {

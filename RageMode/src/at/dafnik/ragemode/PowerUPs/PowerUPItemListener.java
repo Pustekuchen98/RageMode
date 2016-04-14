@@ -123,6 +123,7 @@ public class PowerUPItemListener implements Listener{
 				case 11:
 					player.sendMessage(Strings.powerup_get_0 + Strings.items_c4 + Strings.powerup_get_1);
 					Items.givePlayerC4(player);
+					Items.givePlayerC4Detonator(player);
 					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_c4 + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					

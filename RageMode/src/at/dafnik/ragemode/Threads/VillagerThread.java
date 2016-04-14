@@ -3,6 +3,7 @@ package at.dafnik.ragemode.Threads;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
@@ -65,6 +66,7 @@ public class VillagerThread implements Runnable{
 			villager.setProfession(Profession.BLACKSMITH);
 			villager.setRemoveWhenFarAway(false);
 			villager.setCanPickupItems(false);
+			villager.setCollidable(false);
 			new VillagerThread(villager, loc).start();
 			return villager;
 		} else {
@@ -92,6 +94,19 @@ public class VillagerThread implements Runnable{
 						loc.getWorld().getBlockAt(loc).setType(Material.AIR);
 					}
 				}, 30);
+			}
+			
+			VillagerThread.removeCheckAll();
+		}
+	}
+	
+	public static void removeCheckAll() {
+		if(!TeleportAPI.getVillagerShopLocation().getWorld().getNearbyEntities(TeleportAPI.getVillagerShopLocation(), 500, 500, 500).isEmpty()) {
+			for(Entity entity : TeleportAPI.getVillagerShopLocation().getWorld().getNearbyEntities(TeleportAPI.getVillagerShopLocation(), 500, 500, 500)) {
+				if(entity instanceof Villager) {
+					Villager vil = (Villager) entity;
+					if(Library.villager != vil) vil.remove();	
+				}
 			}
 		}
 	}

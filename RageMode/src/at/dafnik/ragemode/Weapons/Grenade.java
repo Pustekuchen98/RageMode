@@ -45,7 +45,6 @@ public class Grenade implements Listener{
 	
 	@EventHandler
 	public void onHits(ProjectileHitEvent event) {
-		
 		if (event.getEntity() instanceof Egg && event.getEntity().getShooter() instanceof Player) {
 			Egg egg = (Egg) event.getEntity();
 
@@ -99,10 +98,8 @@ public class Grenade implements Listener{
 							arrow.setShooter(killer);
 							
 							if(PowerSystem.getPower(killer) > 0) {
-								thread = new ArrowSparcleThread(arrow); 
-								thread.start();
-							}							
-							else arrow.setCritical(true);
+								if(Library.sparcleswitch.contains(killer)) new ArrowSparcleThread(arrow).start(); 
+							} else arrow.setCritical(true);
 		
 							Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(),new Runnable() {
 								@Override

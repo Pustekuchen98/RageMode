@@ -1,6 +1,5 @@
-package at.dafnik.ragemode.PowerUPs;
+package at.dafnik.ragemode.Weapons;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
@@ -12,13 +11,12 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 
 public class Flash implements Listener{
-	
-	int duration = 10;
-	
+
 	@EventHandler
 	public void onHit(ProjectileHitEvent event) {
 		if(Main.status == Status.INGAME) {
@@ -32,15 +30,10 @@ public class Flash implements Listener{
 						if(entities instanceof Player) {
 							Player players = (Player) entities;
 							
-							players.setGlowing(true);
-							players.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 3*20, 2));
-								
-							Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
-								@Override
-								public void run() {			
-									players.setGlowing(false);
-								}
-							}, duration * 20);
+							if(!Library.spectatorlist.contains(players)) {
+								players.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 3*20, 2));
+								players.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 15*20, 2));
+							}
 						}
 					}
 				}

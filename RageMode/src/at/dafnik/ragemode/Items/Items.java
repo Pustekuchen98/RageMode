@@ -61,7 +61,9 @@ public class Items {
 		imd.setDisplayName(Strings.items_c4);
 		i.setItemMeta(imd);
 		player.getInventory().addItem(i);
-		
+	}
+	
+	public static void givePlayerC4Detonator(Player player) {
 		if(!player.getInventory().contains(Material.FLINT_AND_STEEL)) {
 			ItemStack i2 = new ItemStack(Material.FLINT_AND_STEEL, 1);
 			ItemMeta imd2 = i2.getItemMeta();
@@ -75,6 +77,17 @@ public class Items {
 		ItemStack i = new ItemStack(Material.GOLD_NUGGET);
 		ItemMeta imd = i.getItemMeta();
 		imd.setDisplayName("§6Shop");
+		List<String> ilore = new ArrayList<String>();
+		ilore.add("§7Right click to use");
+		imd.setLore(ilore);
+		i.setItemMeta(imd);
+		player.getInventory().setItem(1, i);
+	}
+	
+	public static void givePlayerSparcleSwitcher(Player player, String switcher) {
+		ItemStack i = new ItemStack(Material.NETHER_STAR);
+		ItemMeta imd = i.getItemMeta();
+		imd.setDisplayName("§5Sparcles §8- " + switcher);
 		List<String> ilore = new ArrayList<String>();
 		ilore.add("§7Right click to use");
 		imd.setLore(ilore);

@@ -40,9 +40,8 @@ public class PlayerQuitListener implements Listener{
 				Library.ingameplayer.remove(player);
 				
 				int playerint = Library.ingameplayer.size();
-				int needplayers = Main.getInstance().getConfig().getInt("ragemode.settings.neededplayers");
 			
-				if (playerint <= needplayers -1) {
+				if (playerint < 2) {
 					Bukkit.broadcastMessage(Strings.error_all_left);
 					
 					Ingame.win();

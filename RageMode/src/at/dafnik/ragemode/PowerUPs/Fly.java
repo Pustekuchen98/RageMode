@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import at.dafnik.ragemode.Items.Items;
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
@@ -35,7 +36,14 @@ public class Fly implements Listener{
 						
 						player.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, duration * 20, 15));
 						player.getInventory().setChestplate(new ItemStack(Material.ELYTRA, 1));
+						int amount = event.getItem().getAmount() - 1;
 						player.getInventory().remove(event.getItem());
+						
+						if(amount > 0) {
+							for(int i = 0; i < amount; i++) {
+								Items.givePlayerFly(player);
+							}
+						}
 						Library.powerup_flyparticle.add(player);
 						
 						new FlyThread(player).start();

@@ -69,6 +69,9 @@ public class Library {
 		//Planted C4
 		public static List<C4Speicher> plantedc4 = new ArrayList<>();
 		
+		//Sparcles
+		public static List<Player> sparcleswitch = new ArrayList<>();
+		
 		//PowerUP
 		public static List<Entity> powerup_entity = new ArrayList<>();
 		public static HashMap<Integer, Holograms> powerup_hashmap = new HashMap<>();

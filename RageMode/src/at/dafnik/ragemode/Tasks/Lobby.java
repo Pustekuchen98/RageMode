@@ -31,8 +31,7 @@ public class Lobby {
 		lobbywplayersid = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable(){
 			
 			@Override
-			public void run(){
-				
+			public void run(){	
 				int needplayers = Main.getInstance().getConfig().getInt("ragemode.settings.neededplayers");
 				
 				if(lobbywplayerstime <=0){
@@ -49,7 +48,8 @@ public class Lobby {
 				}
 				
 				if(Main.isShop && Main.isMySQL) {
-					if(Bukkit.getOnlinePlayers().size() > 0 && Library.villager == null) Library.villager = VillagerThread.spawnVillagerShop();		
+					if(Bukkit.getOnlinePlayers().size() > 0 && Library.villager == null) Library.villager = VillagerThread.spawnVillagerShop();	
+					for(Player players : Bukkit.getOnlinePlayers()) Library.villagerholo.display(players);
 				}
 				
 				lobbywplayerstime--;

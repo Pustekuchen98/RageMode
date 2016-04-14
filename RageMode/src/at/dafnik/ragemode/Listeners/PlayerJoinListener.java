@@ -27,6 +27,7 @@ import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.Main.PowerSystem;
 import at.dafnik.ragemode.MySQL.SQLCoins;
 import at.dafnik.ragemode.MySQL.SQLStats;
+import at.dafnik.ragemode.Threads.VillagerThread;
 
 public class PlayerJoinListener implements Listener {
 	
@@ -53,6 +54,7 @@ public class PlayerJoinListener implements Listener {
 		player.removePotionEffect(PotionEffectType.LEVITATION);
 		player.setFireTicks(0);
 		player.getInventory().clear();
+		VillagerThread.removeCheckAll();
 		
 		if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) {			
 			Manager.DisplayNameManagerMethode(player, "normal");
@@ -71,7 +73,10 @@ public class PlayerJoinListener implements Listener {
 			Title.sendTitle(player, Library.fadein, Library.stay, Library.fadeout, "§6Welcome in");
 			Title.sendSubtitle(player, Library.fadein, Library.stay, Library.fadeout, "§bRageMode");
 			
-			if(PowerSystem.getPower(player) > 0 ) player.sendMessage(Strings.lobby_rotate_your_mouse);
+			if(PowerSystem.getPower(player) > 0 ) {
+				player.sendMessage(Strings.lobby_rotate_your_mouse);
+				Items.givePlayerSparcleSwitcher(player, "§cOFF");
+			}
 			
 			if(Main.isMySQL && Main.isShop) {
 				Items.givePlayerShopItem(player);

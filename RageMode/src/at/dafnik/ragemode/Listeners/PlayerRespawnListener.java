@@ -10,6 +10,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import at.dafnik.ragemode.API.C4Speicher;
 import at.dafnik.ragemode.API.Holograms;
 import at.dafnik.ragemode.API.Manager;
 import at.dafnik.ragemode.API.Strings;
@@ -27,6 +28,7 @@ public class PlayerRespawnListener implements Listener{
 		
 		event.setRespawnLocation(TeleportAPI.getRandomMapSpawnLocations());
 	
+		player.removePotionEffect(PotionEffectType.REGENERATION);
 		player.getInventory().clear();
 		player.setFoodLevel(21);
 		player.setVelocity(new Vector(0, 0, 0));
@@ -47,33 +49,38 @@ public class PlayerRespawnListener implements Listener{
 			player.setGameMode(GameMode.SPECTATOR);
 			
 		} else if(Library.ingameplayer.contains(player)){
+			player.setGameMode(GameMode.SURVIVAL);
+			
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable(){
 				 public void run(){
 					 if(Library.ingameplayer.contains(player)) {
-						 player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100, 10));
-						 player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 100, 10));
+						 player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 6*20, 10));
+						 player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 6*20, 10));
 						 player.getInventory().setHelmet(null);	
 					 }
 			     }
 			 }, 1);
 			
-			Library.respawnsafe.add(player);
-			
-			if(Library.powerup_speedeffect.contains(player)) Library.powerup_speedeffect.remove(player);
-			if(Library.powerup_doublejump.contains(player)) Library.powerup_doublejump.remove(player);
-			
-			player.removePotionEffect(PotionEffectType.REGENERATION);	
-			player.setGameMode(GameMode.SURVIVAL);
-			 
 			 Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable(){
 				 public void run(){	
 					 player.removePotionEffect(PotionEffectType.INVISIBILITY);
 					 player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
 					 Library.respawnsafe.remove(player);
-					 Items.givePlayerItems(player);	
-					 Manager.HelmetManagerMethode(player);
+					 Items.givePlayerItems(player);
+					 
+					 for(C4Speicher c4s : Library.plantedc4) {
+						if(c4s.getPlayer() == player) {
+							Items.givePlayerC4Detonator(player);
+						}
+					}
+					Manager.HelmetManagerMethode(player);
 			     }
-			 }, 60);
+			 }, 4*20);
+			
+			Library.respawnsafe.add(player);
+			
+			if(Library.powerup_speedeffect.contains(player)) Library.powerup_speedeffect.remove(player);
+			if(Library.powerup_doublejump.contains(player)) Library.powerup_doublejump.remove(player);
 			 
 		} else System.out.println(Strings.error_not_authenticated_player);
 	}

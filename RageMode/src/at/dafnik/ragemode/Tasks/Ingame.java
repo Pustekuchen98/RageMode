@@ -96,6 +96,7 @@ public class Ingame {
 					} else {
 						if(Main.isMySQL) {
 							SQLStats.addWonGames(playerwinner.getUniqueId().toString(), 1);
+							Bukkit.broadcastMessage(Strings.kill_points_plus + "300");
 							SQLStats.addPoints(playerwinner.getUniqueId().toString(), 300);
 							SQLCoins.addCoins(playerwinner.getUniqueId().toString(), 200);
 						}
