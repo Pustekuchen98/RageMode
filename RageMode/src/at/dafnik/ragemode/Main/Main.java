@@ -196,6 +196,7 @@ public class Main extends JavaPlugin{
 			if(isMySQL) mysql.update("ALTER TABLE Coins ADD SPECTRALARROWUPGRADE int DEFAULT 0");
 			
 			getConfig().set("ragemode.shop.spectralarrowupgradeprice", Integer.valueOf(20000));
+			getConfig().set("ragemode.points.c4", Integer.valueOf(15));
 			
 			saveConfig();
 			System.out.println(Strings.ragemode_updated_succesful);	
