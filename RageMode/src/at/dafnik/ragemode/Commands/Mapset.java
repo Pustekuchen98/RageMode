@@ -314,7 +314,7 @@ public class Mapset implements CommandExecutor{
 										 
 										Main.getInstance().saveConfig();
 				
-										player.sendMessage(Strings.map_set_coordinates + spawnnumbertoshow + " §3| §3Mapname§8: §6" + mapname);
+										player.sendMessage(Strings.map_set_coordinates + spawnnumbertoshow + " §8| §eMapname§8: §b" + mapname);
 									} else {
 										player.sendMessage(Strings.error_unknown_map);
 									}
@@ -351,7 +351,7 @@ public class Mapset implements CommandExecutor{
 		 
 										Main.getInstance().saveConfig();
 				
-										player.sendMessage(Strings.map_set_powerup_coordinates + settetspawnnumber + " §3| §3Mapname§8: §6" + mapname);
+										player.sendMessage(Strings.map_set_powerup_coordinates + settetspawnnumber + " §8| §eMapname§8: §b" + mapname);
 				
 										zahl++;
 									} else {
@@ -385,7 +385,7 @@ public class Mapset implements CommandExecutor{
 										
 										Main.getInstance().saveConfig();
 				
-										player.sendMessage(Strings.map_set_middlepoint + " §8| §3Mapname§8: §6" + mapname + " §8| §3Mapradius§8: §6" + radius);
+										player.sendMessage(Strings.map_set_middlepoint + " §8| §eMapname§8: §b" + mapname + " §8| §eMapradius§8: §b" + radius);
 									} else {
 										player.sendMessage(Strings.error_unknown_map);
 									}
@@ -399,10 +399,15 @@ public class Mapset implements CommandExecutor{
 								 player.sendMessage(Strings.error_permission);
 							 }else{
 								 if(args.length == 2) {
-									 Main.getInstance().getConfig().set("ragemode.settings.neededplayers", Integer.valueOf(args[1]));
-									 Main.getInstance().saveConfig();
-				 			
-									 player.sendMessage(Strings.game_set_needed_players + args[1]);
+									 try {
+										 Main.getInstance().getConfig().set("ragemode.settings.neededplayers", Integer.valueOf(args[1]));
+										 Main.getInstance().saveConfig();
+					 			
+										 player.sendMessage(Strings.game_set_needed_players + args[1]);
+									 
+									 } catch (Exception ex) {
+										 player.sendMessage(Strings.error_cast);
+									 }
 								 } else {
 									 player.sendMessage(Strings.error_enter);
 								 }
@@ -428,13 +433,17 @@ public class Mapset implements CommandExecutor{
 								 player.sendMessage(Strings.error_permission);
 							 }else{
 								 if(args.length == 2) {
-									 Main.getInstance().getConfig().set("ragemode.settings.gametime", Integer.valueOf(args[1]));
-									 int gametime = Main.getInstance().getConfig().getInt("ragemode.settings.gametime");
-									 gametime = gametime * 60;
-									 Main.getInstance().getConfig().set("ragemode.settings.gametime", Integer.valueOf(gametime));
-									 Main.getInstance().saveConfig();
-									 
-									 player.sendMessage(Strings.game_set_time + gametime/60);
+									 try {
+										 int gameminutes = Integer.valueOf(args[1]);
+										 int gametime = gameminutes * 60;
+										 Main.getInstance().getConfig().set("ragemode.settings.gametime", Integer.valueOf(gametime));
+										 Main.getInstance().saveConfig();
+										 
+										 player.sendMessage(Strings.game_set_time + gametime/60);
+										 
+									 } catch (Exception ex) {
+										player.sendMessage(Strings.error_cast); 
+									 }
 								 } else {
 									 player.sendMessage(Strings.error_enter);
 								 }
