@@ -121,7 +121,7 @@ public class ConfigStandart {
 			System.out.println("[RageMode] Shop-Modus: OFF");
 		}
 		
-		//Is Bungee true or false
+		//Is update Check true or false
 		if(Main.getInstance().getConfig().getBoolean("ragemode.settings.updatecheck")) {
 			Main.wantUpdate = true;
 								

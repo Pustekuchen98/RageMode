@@ -71,7 +71,7 @@ public class Main extends JavaPlugin{
 	public static Status status = Status.PRE_LOBBY;
 	//MySQL
 	public static MySQL mysql;
-	
+	//Main
 	public static Main instance = null;
 	
 	//----------------------------------------------------------------------

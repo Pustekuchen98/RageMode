@@ -60,18 +60,18 @@ public class PlayerDeathListener implements Listener {
 		if (killer instanceof Player) {
 			//[Check] if Killer is Victim
 			if(killer != victim) {
-				String killground = null;
+				String killreason = null;
 				
 				String killername = killer.getDisplayName();
 				String victimname = victim.getDisplayName();
 				
-				//[Check] if there is a killground
+				//[Check] if there is a killreason
 				if(victim.getMetadata("killedWith") != null && !victim.getMetadata("killedWith").isEmpty()) {
 
-					killground = victim.getMetadata("killedWith").get(0).asString();
+					killreason = victim.getMetadata("killedWith").get(0).asString();
 					
-					//[Check] what killground is
-					if (killground == "bow") {
+					//[Check] what killreason is
+					if (killreason == "bow") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_bow);
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_bow);
@@ -79,7 +79,7 @@ public class PlayerDeathListener implements Listener {
 						killer.sendMessage(Strings.kill_points_plus + this.bowkill);
 						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.bowkill + Strings.kill_holo_points));
 		
-					} else if (killground == "combataxe") {
+					} else if (killreason == "combataxe") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_combat_axe);
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_combat_axe);
@@ -87,7 +87,7 @@ public class PlayerDeathListener implements Listener {
 						killer.sendMessage(Strings.kill_points_plus + this.combataxekill);
 						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.combataxekill + Strings.kill_holo_points));
 						
-					} else if (killground == "grenade") {
+					} else if (killreason == "grenade") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname +Strings.kill_with + Strings.kill_with_grenade);
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_grenade);
@@ -95,7 +95,7 @@ public class PlayerDeathListener implements Listener {
 						killer.sendMessage(Strings.kill_points_plus + this.grenadekill);
 						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.grenadekill + Strings.kill_holo_points));
 		
-					} else if (killground == "mine") {
+					} else if (killreason == "mine") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_mine);
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_mine);
@@ -103,7 +103,7 @@ public class PlayerDeathListener implements Listener {
 						killer.sendMessage(Strings.kill_points_plus + this.minekill);
 						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.minekill + Strings.kill_holo_points));
 		
-					} else if (killground == "claymore") {
+					} else if (killreason == "claymore") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_claymore);
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_claymore);
@@ -111,7 +111,7 @@ public class PlayerDeathListener implements Listener {
 						killer.sendMessage(Strings.kill_points_plus + this.claymorekill);
 						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.claymorekill + Strings.kill_holo_points));
 					
-					} else if(killground == "c4") {
+					} else if(killreason == "c4") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_c4);
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_c4);
@@ -119,7 +119,7 @@ public class PlayerDeathListener implements Listener {
 						killer.sendMessage(Strings.kill_points_plus + this.c4kill);
 						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.c4kill + Strings.kill_holo_points));
 						
-					} else if(killground == "knife") {
+					} else if(killreason == "knife") {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_knife);
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_knife);
@@ -129,17 +129,17 @@ public class PlayerDeathListener implements Listener {
 						givePlayerPoints(victim, "knife_death");
 						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.knifekill + Strings.kill_holo_points));
 					
-					//[Check] what killground is. - Closed
+					//[Check] what killreason is. - Closed
 					} else event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_unknown_killer); 
 				
-				//[Check] if there is a killground. - Closed
+				//[Check] if there is a killreason. - Closed
 				} else event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_unknown_killer); 
 				
-				//[Check] if killground != null
-				if(killground != null) {
-					givePlayerPoints(killer, killground);
+				//[Check] if killreason != null
+				if(killreason != null) {
+					givePlayerPoints(killer, killreason);
 					
-					//[Check] if killground isn't dead
+					//[Check] if killreason isn't dead
 					if(killer != null && !(killer.isDead())){
 						killer.playSound(killer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1000.0F, 1.0F);
 						Title.sendActionBar(killer, Strings.kill_your_points + String.valueOf(Library.playerpoints.get(killer)));
@@ -158,7 +158,7 @@ public class PlayerDeathListener implements Listener {
 					killer.sendMessage(Main.pre + Strings.kill_your_points + String.valueOf(Library.playerpoints.get(killer)));
 					killer.setPlayerListName(killer.getDisplayName() + " §8- [§6" + Library.playerpoints.get(killer) + "§8]");
 					
-				//[Check] if killground != null. - Closed
+				//[Check] if killreason != null. - Closed
 				}
 			
 			//[Check] if Player is Victim - Closed
@@ -197,35 +197,35 @@ public class PlayerDeathListener implements Listener {
 	}
 	
 
-	private void givePlayerPoints(Player player, String killground) {
+	private void givePlayerPoints(Player player, String killreason) {
 		String playeruuid = player.getUniqueId().toString();
 		int toBePoints = 0;
 		
-		if(killground == "bow") {
+		if(killreason == "bow") {
 			toBePoints = this.bowkill;
 			if(Main.isMySQL) SQLStats.addBowKills(playeruuid, 1);
 			
-		} else if(killground == "combataxe") {
+		} else if(killreason == "combataxe") {
 			toBePoints = this.combataxekill;
 			if(Main.isMySQL) SQLStats.addAxtKills(playeruuid, 1);
 			
-		} else if(killground == "knife") {
+		} else if(killreason == "knife") {
 			toBePoints = this.knifekill;
 			if(Main.isMySQL) SQLStats.addKnifeKills(playeruuid, 1);
 			
-		} else if(killground == "suicide") {
+		} else if(killreason == "suicide") {
 			toBePoints = this.suicide;
 			if(Main.isMySQL) SQLStats.addSuicides(playeruuid, 1);
 		}
-		else if(killground == "grenade") toBePoints = this.grenadekill;
-		else if(killground == "mine") toBePoints = this.minekill;
-		else if(killground == "claymore") toBePoints = this.claymorekill;
-		else if(killground == "c4") toBePoints = this.c4kill;
-		else if(killground == "knife_death") toBePoints = this.knifedeath;
-		else if(killground == "killstreak") toBePoints = this.killstreakpoints;
+		else if(killreason == "grenade") toBePoints = this.grenadekill;
+		else if(killreason == "mine") toBePoints = this.minekill;
+		else if(killreason == "claymore") toBePoints = this.claymorekill;
+		else if(killreason == "c4") toBePoints = this.c4kill;
+		else if(killreason == "knife_death") toBePoints = this.knifedeath;
+		else if(killreason == "killstreak") toBePoints = this.killstreakpoints;
 		else System.out.println(Strings.error_playerdeath_points);
 		
-		if(killground != null && killground != "knife_death" && killground != "suicide" && killground != "killstreak") {
+		if(killreason != null && killreason != "knife_death" && killreason != "suicide" && killreason != "killstreak") {
 			if(Main.isMySQL) {
 				SQLStats.addPoints(playeruuid, toBePoints);
 				SQLStats.addKills(playeruuid, 1);
@@ -233,7 +233,7 @@ public class PlayerDeathListener implements Listener {
 				player.sendMessage(Strings.coins_added_0 + 20 + Strings.coins_added_1);
 			}
 		
-		} else if(killground == "killstreak") {
+		} else if(killreason == "killstreak") {
 			SQLStats.addPoints(playeruuid, toBePoints);
 			SQLCoins.addCoins(playeruuid, 30);
 			player.sendMessage(Strings.coins_added_0 + 30 + Strings.coins_added_1);
