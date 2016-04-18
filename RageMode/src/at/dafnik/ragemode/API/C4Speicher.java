@@ -39,6 +39,7 @@ public class C4Speicher {
 		blocks = null;
 		blocks = new ArrayList<>();
 	}
+	
 	/* Not used
 	public void detonate(Block block) {
 		if(blocks.contains(block)) {

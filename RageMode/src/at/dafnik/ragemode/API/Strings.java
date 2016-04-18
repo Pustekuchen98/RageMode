@@ -10,6 +10,83 @@ public class Strings {
 	public static String log_pre = "[RageMode] ";
 	private static String debug_pre = "[Debug]> ";
 	
+	public static String permissions_admin = "ragemode.admin";
+	public static String permissions_moderator = "ragemode.moderator";
+	
+	
+	public static String commands_mapset_error_permissions_denied = pre + "§cYou do not have permisson to perform this command§8!";
+	public static String commands_mapset_error_map_not_exist = pre + "§cThe map you choose does not exist§8!";
+	
+	public static String commands_mapset_setlobby_usage = pre + "§cUsage§8: §e/rm setlobby";
+	public static String commands_mapset_setlobby_successful = pre + "§7Lobby spawnpoint changed §asuccessful§8!";
+	
+	public static String commands_mapset_setvillagershop_usage = pre + "§cUsage§8: §e/rm setvillagershop";
+	public static String commands_mapset_setvillagershop_successful = pre + "§7Villagershop spawnpoint changed §asuccessful§8!";
+	
+	public static String commands_mapset_createmap_usage = pre + "§cUsage§8: §e/rm createmap §8<§aMapname§8>";
+	public static String commands_mapset_createmap_successful = "§7 has §asuccessful §7been created§8!";
+	
+	public static String commands_mapset_setranking_usage_0 = pre + "§cUsage§8: §e/rm setranking §8| §fhead position for ranking wall";
+	public static String commands_mapset_setranking_usage_1 = pre + "§cUsage§8: §e/rm setranking setrotation §8<§aNORTH §8| §aEAST §8| §aSOUTH §8| §aWEST§8> §8| §fSet the rotation for the heads";
+	public static String commands_mapset_setranking_place_successful_0 = pre + "§7The §b";
+	public static String commands_mapset_setranking_place_successful_1 = " §7position for a head has §asuccessful §7been set§8!";
+	public static String commands_mapset_setranking_rotation_successful_0 = pre + "§7You changed to rotation for the heads to§8: §b";
+	public static String commands_mapset_setranking_rotation_successful_1 = " §asuccessful§8!";
+	
+	public static String commands_mapset_setmapauthor_usage = pre + "§cUsage§8: §e/rm setmapauthor §8<§aMapname§8> §8<§aMap Author §8/ §aMap Builders§8>";
+	public static String commands_mapset_setmapauthor_successful_0 = pre + "§7You changed the builder of §b";
+	public static String commands_mapset_setmapauthor_successful_1 = " §7to §b";
+	public static String commands_mapset_setmapauthor_successful_2 = " §asuccessful§8!";
+	
+	public static String commands_mapset_setmapspawn_usage = pre + "§cUsage§8: §e/rm setmapspawn §8<§aMapname§8>";
+	public static String commands_mapset_setmapspawn_successful_0 = pre + "§7Added §asuccessful spawn §b";
+	public static String commands_mapset_setmapspawn_successful_1 = " §7to the map §b";
+	public static String commands_mapset_setmapspawn_successful_2 = "§8!";
+	
+	public static String commands_mapset_setpowerupspawn_usage = pre + "§cUsage§8: §e/rm setpowerupspawn §8<§aMapname§8>";
+	public static String commands_mapset_setpowerupspawn_successful_0 = pre + "§7Added §asuccessful powerup spawn §b";
+	public static String commands_mapset_setpowerupspawn_successful_1 = " §7to the map §b";
+	public static String commands_mapset_setpowerupspawn_successful_2 = "§8!";
+	
+	public static String commands_mapset_setmapmiddle_usage = pre + "§cUsage§8: §e/rm setmapmiddle §8<§aMapname§8> §8<§aApproximately Blockradius of the map§8>";
+	public static String commands_mapset_setmapmiddle_successful_0 = pre + "You set the map middle point with the radius §b";
+	public static String commands_mapset_setmapmiddle_successful_1 = " §7of the map §b";
+	public static String commands_mapset_setmapmiddle_successful_2 = " §7successful§8!";
+	
+	public static String commands_mapset_sethologram_usage = pre + "§cUsage§8: §e/rm sethologram";
+	public static String commands_mapset_sethologram_successful = pre + "§7Hologram spawnpoint changed §asuccessful§8!";
+	
+	public static String commands_mapset_bungee_usage_0 = pre + "§cUsage§8: §e/rm bungee §8| §fenable / disable bungeecord";
+	public static String commands_mapset_bungee_usage_1 = pre + "§cUsage§8: §e/rm bungee setlobbyserver §8<§alobbyservername§8>";
+	public static String commands_mapset_bungee_setserver_successful = pre + "§7Changed the bungeecord lobbyserver §asuccessful §7to §b";
+	public static String commands_mapset_bungee_changed_on = pre + "§aEnabled §7BungeeCord Network support§8!";
+	public static String commands_mapset_bungee_changed_off = pre + "§cDisabled §7BungeeCord Network support§8!";
+	
+	public static String commands_mapset_mysql_usage_0 = pre + "§cUsage§8: §e/rm mysql §8| §fenable/ disalbe mysql";
+	public static String commands_mapset_mysql_usage_1 = pre + "§cUsage§8: §e/rm mysql §8< §asethost §8| §asetdatabase §8| §asetusername"
+			+ " §8| §apassword§8> §8<§avalue§8>";
+	public static String commands_mapset_mysql_changed_on = pre + "§aEnabled §7MySQL support§8!";
+	public static String commands_mapset_mysql_changed_off = pre + "§cDisabled §7MySQL support§8!";
+	public static String commands_mapset_mysql_sethost = pre + "§7You changed the MySQL host to §b";
+	public static String commands_mapset_mysql_setdatabase = pre + "§7You changed the MySQL database to §b";
+	public static String commands_mapset_mysql_setusername = pre + "§7You changed the MySQL username to §b";
+	public static String commands_mapset_mysql_setpassword = pre + "§7You changed the MySQL password to §b";
+	
+	public static String commands_mapset_builder_usage = pre + "§cUsage§8: §e/rm builder";
+	public static String commands_mapset_builder_allowed = pre + "§7Now you are §aallowed §7to build§8!";
+	public static String commands_mapset_builder_disallowed = pre + "§7Now you are §cdisallowed §7to build§8!";
+	public static String commands_mapset_builder_not_yet = pre + "§cYou are only allowed to build during §aLobby §cand §aPre Lobby §ctime§8!";
+	
+	public static String commands_mapset_setplayers_usage = pre + "§cUsage§8: §e/rm setplayers §8<§aneededplayers§8>";
+	public static String commands_mapset_setplayers_successful = pre + "§7Changed needed players for start to §b";
+	
+	public static String commands_mapset_spawnpowerup_usage = pre + "§cUsage§8: §e/rm spawnpowerup §8<§anumb§8>";
+	public static String commands_mapset_spawnpowerup_successful = pre + "§7Spawned the powerups §asuccessful§8!";
+	
+	public static String commands_mapset_setgametime_usage = pre + "§cUsage§8: §e/rm setgametime §8<§aminutes§8>";
+	public static String commands_mapset_setgametime_successful = pre + "§7Changed the game minutes to §b";
+	
+	
 	public static String error_wrong_inv_string = log_pre + "ERROR: No update for this item!";
 	public static String error_no_map = log_pre + "ERROR: TeleportAPI: getRandomMapSpawnLocation!";
 	public static String error_explosion_no_killground = log_pre + "ERROR: ExplosionAPI crashed. No cause of explosion found!";
@@ -50,24 +127,9 @@ public class Strings {
 	public static String error_thread_exception = "thread crashed! The game goes on!";
 	public static String error_cast = pre + "§cInvalid number§8! §cYou can only use full numbers§8!";
 	
-	public static String map_create = pre + "§7The map has been created §asuccessful§8: §b";
-	public static String map_set_villagershop = pre + "§7The §bvillagershop §7has been created §asuccessful§8!";
-	public static String map_edit_allowed = pre + "§7Now you are §aallowed §7to build§8!";
-	public static String map_edit_disallowed = pre + "§7Now you are §cdisallowed §7to build§8!";
-	public static String map_set_author = pre + "§7The map author has been set §asuccessful§8: §b";
-	public static String map_set_coordinates = pre + "§7Added this map spawn §asuccessful§8: §b";
-	public static String map_set_powerup_coordinates = pre + "§7Added this powerup spawn §asuccessful§8: §b";
-	public static String map_set_middlepoint = pre + "§7Added the map-middle-point §asuccessful§8!";
+	
 	public static String map_worldborder = pre + "§cYou are not allowed to pass§8!\n" + pre + "§cThe map ends here§8!";
-	public static String map_edit_not_yet = pre + "§cYou are only allowed to build during §aLobby §cand §aPre Lobby §ctime§8!";
-	public static String map_spawnpowerup = pre + "§7The powerup has been §asuccessful §7spawned§8!";
 	
-	public static String game_set_needed_players = pre + "§7You changed the needed players to start §asuccesful§8: §b";
-	public static String game_set_time = pre + "§7You changed the needed players §asuccessful§8: §b";
-	
-	public static String lobby_set_hologram = pre + "§7The hologram spawnpoint has been §asuccessful §7placed§8!";
-	public static String lobby_set_spawn = pre + "§7The lobby spawnpoint has been §asuccessful §7placed§8!";
-	public static String lobby_set_rotation = pre + "§7The rotation of the ranking wall heads has been §asuccesful §7changed§8: §b";
 	
 	public static String bungee_switch_on = pre + "§7BungeeCord support turned§8: §aON";
 	public static String bungee_switch_off = pre + "§7BungeeCord support turned§8: §cOFF";
