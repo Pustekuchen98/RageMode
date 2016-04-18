@@ -121,6 +121,24 @@ public class Mapvote implements CommandExecutor{
 			}
 			
 			return true;
+		} else if(cmd.getName().equalsIgnoreCase("vote")) {
+			if(args.length > 0 && args.length < 2){
+				//If Ingame
+				if (Main.status == Status.LOBBY) {
+					// Check of Player has also voted
+
+					// Check of Map is in Maplist
+					if (Library.mapstovote.contains(args[0].toLowerCase())) {
+
+						// Get all Already votes
+						int votes = Library.votes.get(args[0].toLowerCase());
+						votes += 1000;
+						// Put all votes again on
+						Library.votes.put(args[0].toLowerCase(), votes);
+
+					}
+				}
+			}
 		}
 		return true;
 	}
