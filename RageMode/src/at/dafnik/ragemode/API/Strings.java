@@ -77,14 +77,18 @@ public class Strings {
 	public static String commands_mapset_builder_disallowed = pre + "§7Now you are §cdisallowed §7to build§8!";
 	public static String commands_mapset_builder_not_yet = pre + "§cYou are only allowed to build during §aLobby §cand §aPre Lobby §ctime§8!";
 	
-	public static String commands_mapset_setplayers_usage = pre + "§cUsage§8: §e/rm setplayers §8<§aneededplayers§8>";
+	public static String commands_mapset_setplayers_usage = pre + "§cUsage§8: §e/rm setplayers §8<§aneeded players§8>";
 	public static String commands_mapset_setplayers_successful = pre + "§7Changed needed players for start to §b";
+	public static String commands_mapset_setplayers_usage_console = log_pre + "Usage: /rm setplayers <needed players>";
+	public static String commands_mapset_setplayers_successful_console = log_pre + "Changed the needed players for start to ";
 	
 	public static String commands_mapset_spawnpowerup_usage = pre + "§cUsage§8: §e/rm spawnpowerup §8<§anumb§8>";
 	public static String commands_mapset_spawnpowerup_successful = pre + "§7Spawned the powerups §asuccessful§8!";
 	
 	public static String commands_mapset_setgametime_usage = pre + "§cUsage§8: §e/rm setgametime §8<§aminutes§8>";
 	public static String commands_mapset_setgametime_successful = pre + "§7Changed the game minutes to §b";
+	public static String commands_mapset_setgametime_usage_console = log_pre + "Usage: /rm setgametime <minutes>";
+	public static String commands_mapset_setgametime_successful_console = log_pre + "Changed the game minutes to ";
 	
 	
 	public static String error_wrong_inv_string = log_pre + "ERROR: No update for this item!";
@@ -142,7 +146,7 @@ public class Strings {
 	public static String mysql_switch_on = pre + "§7MySQL support turned§8: §aON";
 	public static String mysql_switch_off = pre + "§7MySQL support turned§8: §cOFF";
 	
-	public static String stats_reset = pre + "§7Your stats has been resettet §asuccessful§8!";
+	public static String stats_reset = pre + "§7Your stats have been reset §asuccessful§8!";
 	public static String statsadmin_successful = pre + "§7The execution of this command was §asuccesful§8!";
 	public static String stats_admin = pre + "/statsadmin §8<§aadd §8| §aremove§8> §8<§akills §8| §adeaths §8| §awongames §8| §aplayedgames §8| §apoints §8| §aresets §8| §abowkills §8| §aknifekills §8| §aaxtkills§8 §8| §asuicides§8> §8<§aplayername§8> <§anumber§8>";
 	public static String stats_are_loading = "§7Please wait a moment, your stats are being loaded...";
@@ -159,7 +163,7 @@ public class Strings {
 	public static String stats_wongames = " §7Won Games§8: §e";
 	public static String stats_winningchances = " §7Won Games in Percent§8: §e";
 	public static String stats_suicides = " §7Suicides§8: §e";
-	public static String stats_statsreset = " §7Stats resets§8: §e";
+	public static String stats_statsreset = " §7Stat resets§8: §e";
 	public static String stats_coins = " §7Coins§8: §e";
 	
 	public static String lobby_rotate_your_mouse = pre + "§7Rotate your scroll wheel to fly";
@@ -229,7 +233,7 @@ public class Strings {
 	
 	public static String killstreak = " §7has a §ckillstreak ";
 	
-	public static String item_compass_error = pre + "§cThere is no other player§8!";
+	public static String item_compass_error = pre + "§cThere are no other players§8!";
 	public static String item_compass_1 = pre + "§7Next player§8: ";
 	public static String item_compass_2 = " §8| §7Blocks away§8: §6";
 	

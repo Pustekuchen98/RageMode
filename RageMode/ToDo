@@ -1,23 +1,4 @@
-Fixes:
-	- Double Jump fixes
-	- some other little fixes
-
-Added:
-	- PowerUP: new Flash, Fly and C4 PowerUP 
-	- 1.9 Support
-	- Shop Upgrade: spectral Arrow Upgrade
-	- Smooth Updates! You haven't to recreate the configuration and the MySQL Database
-	- Auto Update Check for the newest versions
-	- Enable or disable Auto Update Check
-	- BossBar
-	- AutoTabComplete for /vote, /rm and /tpmap
-	- Premium feature: Particles for the arrows!
-	- Colored NameTags
-	
 Changes:
-	- PowerUP Spawn time from 2 minutes to 1 minute
-	- rewritten Shop system, now it's easier for me to add new upgrades
-	- performance improvements
-	- Overworked all messages
-	- more fireworks on round end
-	- Fixes for all threads
+	- Overworked all /rm Map create commands, it's easier for new people which want to setup a map
+	- when you vote over console for a map, it gives 1000 votes! so you can force vote
+	- /rm console commands
