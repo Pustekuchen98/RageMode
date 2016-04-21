@@ -21,26 +21,25 @@ public class Coins implements CommandExecutor{
 			
 			if (cmd.getName().equalsIgnoreCase("coins")){
 				if(Main.isMySQL && Main.isShop) {
-					if(args.length == 0) player.sendMessage(Strings.coins_your + SQLCoins.getCoins(player.getUniqueId().toString()) + Strings.coins_your_2);
-					else player.sendMessage(Strings.error_enter);
+					if(args.length == 0) player.sendMessage(Strings.commands_coins_your + SQLCoins.getCoins(player.getUniqueId().toString()) + Strings.commands_coins_your_2);
+					else player.sendMessage(Strings.commands_coins_your_usage);
 					
 				} else player.sendMessage(Strings.error_not_mysql_enabled);
 			}
 			
-			
 			if(cmd.getName().equalsIgnoreCase("coinsadmin")){
-				if(Main.isShop) {
-					if(player.hasPermission("ragemode.admin")) {
+				if(Main.isShop && Main.isMySQL) {
+					if(player.hasPermission(Strings.permissions_admin)) {
 						if (args.length == 0) CoinsAdminCommands(player);	
 						 else if (args.length == 3) {
 							if(PlayedBefore(player, args[1])) {
 								OfflinePlayer lookedfor = Bukkit.getOfflinePlayer(args[1]);
 								if(args[0].equalsIgnoreCase("add")) {
 									SQLCoins.addCoins(lookedfor.getUniqueId().toString(), Integer.valueOf(args[2]));
-									player.sendMessage(Strings.statsadmin_successful);
+									player.sendMessage(Strings.commands_coinsadmin_successful_0 + args[1] + Strings.commands_coinsadmin_successful_1);
 								} else if(args[0].equalsIgnoreCase("remove")) {
 									SQLCoins.removeCoins(lookedfor.getUniqueId().toString(), Integer.valueOf(args[2]));
-									player.sendMessage(Strings.statsadmin_successful);
+									player.sendMessage(Strings.commands_coinsadmin_successful_0 + args[1] + Strings.commands_coinsadmin_successful_1);
 								} else CoinsAdminCommands(player);
 							}
 						} else CoinsAdminCommands(player);
@@ -72,7 +71,7 @@ public class Coins implements CommandExecutor{
 	}
 	
 	public void CoinsAdminCommands(Player player){
-		if(Main.isMySQL) player.sendMessage(Strings.coins_admin);
+		if(Main.isMySQL && Main.isShop) player.sendMessage(Strings.commands_coinsadmin_usage);
 		else player.sendMessage(Strings.error_not_mysql_enabled);
 	}
 }

@@ -96,7 +96,7 @@ public class Ingame {
 					} else {
 						if(Main.isMySQL) {
 							SQLStats.addWonGames(playerwinner.getUniqueId().toString(), 1);
-							playerwinner.sendMessage(Strings.coins_added_0 + 200 + Strings.coins_added_1);
+							playerwinner.sendMessage(Strings.commands_coins_added_0 + 200 + Strings.commands_coins_added_1);
 							SQLStats.addPoints(playerwinner.getUniqueId().toString(), 300);
 							SQLCoins.addCoins(playerwinner.getUniqueId().toString(), 200);
 						}

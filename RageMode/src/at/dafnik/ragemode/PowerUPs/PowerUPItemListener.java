@@ -21,6 +21,7 @@ import at.dafnik.ragemode.Items.Items;
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
+import at.dafnik.ragemode.MySQL.SQLCoins;
 
 public class PowerUPItemListener implements Listener{
 	
@@ -56,18 +57,21 @@ public class PowerUPItemListener implements Listener{
 				switch(new Random().nextInt(12)) {
 				case 0:
 					Items.givePlayerDoubleHeart(player);
+					if(Main.isMySQL && Main.isShop) if(SQLCoins.getDoublePowerUP(player.getUniqueId().toString())) Items.givePlayerDoubleHeart(player); 
 					player.sendMessage(Strings.powerup_get_0 + Strings.items_doubleheart + Strings.powerup_get_1);
 					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_doubleheart + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				case 1:
 					Items.giverPlayerClaymore(player);
+					if(Main.isMySQL && Main.isShop) if(SQLCoins.getDoublePowerUP(player.getUniqueId().toString())) Items.giverPlayerClaymore(player); 
 					player.sendMessage(Strings.powerup_get_0 + Strings.items_claymore + Strings.powerup_get_1);
 					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_claymore + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				case 2:
 					Items.givePlayerMine(player);
+					if(Main.isMySQL && Main.isShop) if(SQLCoins.getDoublePowerUP(player.getUniqueId().toString())) Items.givePlayerMine(player); 
 					player.sendMessage(Strings.powerup_get_0 + Strings.items_mine + Strings.powerup_get_1);
 					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_mine + Strings.debug_powerup_get_2 + player.getName());
 					break;
@@ -103,26 +107,30 @@ public class PowerUPItemListener implements Listener{
 					break;
 				
 				case 8:
-					player.sendMessage(Strings.powerup_get_0 + Strings.items_doublejump + Strings.powerup_get_1);
 					giveDoubleJump(player);
 					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_doublejump + Strings.debug_powerup_get_2 + player.getName());
+					player.sendMessage(Strings.powerup_get_0 + Strings.items_doublejump + Strings.powerup_get_1);
+					if(Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_doublejump + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				case 9:
-					player.sendMessage(Strings.powerup_get_0 + Strings.items_flash + Strings.powerup_get_1);
 					Items.givePlayerFlash(player);
+					if(Main.isMySQL && Main.isShop) if(SQLCoins.getDoublePowerUP(player.getUniqueId().toString())) Items.givePlayerFlash(player); 
+					player.sendMessage(Strings.powerup_get_0 + Strings.items_flash + Strings.powerup_get_1);
 					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_flash + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				case 10:
-					player.sendMessage(Strings.powerup_get_0 + Strings.items_fly + Strings.powerup_get_1);
 					Items.givePlayerFly(player);
+					if(Main.isMySQL && Main.isShop) if(SQLCoins.getDoublePowerUP(player.getUniqueId().toString())) Items.givePlayerFly(player); 
+					player.sendMessage(Strings.powerup_get_0 + Strings.items_fly + Strings.powerup_get_1);
 					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_fly + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				case 11:
-					player.sendMessage(Strings.powerup_get_0 + Strings.items_c4 + Strings.powerup_get_1);
 					Items.givePlayerC4(player);
+					if(Main.isMySQL && Main.isShop) if(SQLCoins.getDoublePowerUP(player.getUniqueId().toString())) Items.givePlayerC4(player); 
+					player.sendMessage(Strings.powerup_get_0 + Strings.items_c4 + Strings.powerup_get_1);
 					Items.givePlayerC4Detonator(player);
 					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_c4 + Strings.debug_powerup_get_2 + player.getName());
 					break;

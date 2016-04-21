@@ -14,6 +14,7 @@ public class Strings {
 	public static String permissions_moderator = "ragemode.moderator";
 	
 	
+	
 	public static String commands_mapset_error_permissions_denied = pre + "§cYou do not have permisson to perform this command§8!";
 	public static String commands_mapset_error_map_not_exist = pre + "§cThe map you choose does not exist§8!";
 	
@@ -91,6 +92,44 @@ public class Strings {
 	public static String commands_mapset_setgametime_successful_console = log_pre + "Changed the game minutes to ";
 	
 	
+	public static String commands_coins_your = pre + "§7You have §6";
+	public static String commands_coins_your_2 = " §7Coins§8!";
+	public static String commands_coins_your_usage = pre + "§cUsage§8: §e/coins";
+	
+	public static String commands_coinsadmin_usage = pre + "§cUsage§8: §e/coinsadmin §8<§aadd §8| §aremove§8> <§aplayername§8> <§aamount§8>";
+	public static String commands_coinsadmin_successful_0 = pre + "§7Added §asuccessful §a ";
+	public static String commands_coinsadmin_successful_1 = " §7Coins§8!";
+	
+	public static String commands_coins_added_0 = pre + "§a+ §f";
+	public static String commands_coins_added_1 = " §7Coins";
+	
+	
+	
+	public static String shop_item_doublepowerup_name = "§fDouble PowerUPs Upgrade";
+	public static String shop_item_doublepowerup_usage = "§7Upgrade how many PowerUPs you get by entering one"; 
+	public static String shop_item_doublepowerup_advanced_usage_0 = "§fWhen you bought this item, you will get twice as many.";
+	
+	public static String shop_item_speedupgrader_name = "§fSpeed Upgrade";
+	public static String shop_item_speedupgrader_usage = "§7Upgrade your speed, when you hold the knife in your hand";
+	public static String shop_item_speedupgrader_advanced_usage_0 = "§fWhen you normally hold the knife you get speed tier 1.";
+	public static String shop_item_speedupgrader_advanced_usage_1 = "§fSo, when you buy this upgrade you will get speed tier 2.";
+	
+	public static String shop_item_bowpowerupgrader_name = "§fBow Power Upgrade";
+	public static String shop_item_bowpowerupgrader_usage = "§7Upgrade your Bow power";
+	public static String shop_item_bowpowerupgrade_advanced_usage_0 = "§fWhen you normally shoot with the bow you get explosion radius and damage tier 1.";
+	public static String shop_item_bowpowerupgrade_advanced_usage_1 = "§fSo, when you buy this upgrade you will get explosion radius and damage tier 2.";
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static String error_wrong_inv_string = log_pre + "ERROR: No update for this item!";
 	public static String error_no_map = log_pre + "ERROR: TeleportAPI: getRandomMapSpawnLocation!";
 	public static String error_explosion_no_killground = log_pre + "ERROR: ExplosionAPI crashed. No cause of explosion found!";
@@ -118,7 +157,7 @@ public class Strings {
 	public static String error_not_mysql_enabled = pre + "§cYou have not enabled the MySQL Database§8!";
 	public static String error_cant_join_at_the_moment = pre + "\n§7You can not join at the moment";
 	public static String error_game_is_full = pre + "\n§4The server is full\n§7You had to buy §6premium §7for joining full games";
-	public static String error_you_kicked = pre + "\n§cYou have been kicked by a §6premium\n§3Only other §6premiums §7can not be kicked";
+	public static String error_you_kicked = pre + "\n§cYou have been kicked by a §6premium\n§7Only other §6premiums §7can not be kicked";
 	public static String error_all_left = pre + "§cAll players left the game§8! §cThe game will stop§8!";
 	public static String error_you_already_voted = pre + "§cYou have already voted§8!";
 	public static String error_map_cannot_vote = pre + "§cYou can not vote for this map§8!";
@@ -237,10 +276,8 @@ public class Strings {
 	public static String item_compass_1 = pre + "§7Next player§8: ";
 	public static String item_compass_2 = " §8| §7Blocks away§8: §6";
 	
-	public static String inventory_inv_speedupgrader = "§fSpeed Upgrade";
-	public static String inventory_inv_speedupgrader_description = "§7Upgrade your speed, when you hold the knife in your hand";
-	public static String inventory_inv_bowpowerupgrader = "§fBow Power Upgrade";
-	public static String inventory_inv_bowpowerupgrader_description = "§7Upgrade your Bow power";
+	
+	
 	public static String inventory_inv_knockbackupgrade = "§fKnockback ability Upgrade";
 	public static String inventory_inv_knockbackupgrade_description = "§7Upgrade your Knife right click ability";
 	public static String inventory_inv_spectralarrowupgrade = "§fSpectral Arrow Upgrade";
@@ -253,10 +290,7 @@ public class Strings {
 	public static String inventory_flint_buyable = "§aBuy";
 	public static String inventory_invmore_description = "§6Description";
 	public static String inventory_invmore_description_description = "§f§nDescription:§r ";
-	public static String inventory_invmore_description_feather = "§fWhen you normally hold the knife you get speed tier 1.";
-	public static String inventory_invmore_description_feather_2 = "§fSo, when you buy this upgrade you will get speed tier 2.";
-	public static String inventory_invmore_description_powder = "§fWhen you normally shoot with the bow you get explosion radius and damage tier 1.";
-	public static String inventory_invmore_description_powder_2 = "§fSo, when you buy this upgrade you will get explosion radius and damage tier 2.";
+	
 	public static String inventory_invmore_description_blazepowder = "§fWhen you normally right click your knife. You will have knockback ability tier 1.";
 	public static String inventory_invmore_description_blazepowder_2 = "§fSo, when you buy this upgrade you will get knockback ability tier 2.";
 	public static String inventory_invmore_description_spectralarrow= "§fWhen you normally shoot with your bow. You will shoot normal arrows.";
@@ -265,12 +299,6 @@ public class Strings {
 	public static String inventory_buy_new_coins = pre + "§cCoins at the moment§8: §6";
 	public static String inventory_buy_not_enough = pre + "§cYou haven't enough coins§8. §cMissing coins§8: §6";
 	public static String inventory_buy_already_buy = pre + "§cYou have already bought it";
-	
-	public static String coins_your = pre + "§cYou have §6";
-	public static String coins_your_2 = " §cCoins";
-	public static String coins_admin = pre + "/coinsadmin §8<§aadd §8| §aremove§8> <§aplayername§8> <§anumber§8>";
-	public static String coins_added_0 = pre + "§a+ §f";
-	public static String coins_added_1 = " §7Coins";
 	
 	public static String powerup_get_0 = pre + "§e§k!dkafaaf21adöfaö223ö1jökldaöl\n" + Main.pre + "§7Your §aPowerUP§8: ";
 	public static String powerup_get_1 = "§8!\n" + Main.pre + "§e§k!dkafaaf21adöfaö223ö1jökldaöl";

@@ -25,7 +25,7 @@ public class SQLCoins {
 	public static void createPlayer(String uuid) {
 		
 		if(!(playerExists(uuid))){
-			Main.mysql.update("INSERT INTO Coins(UUID, COINS, SPEEDUPGRADE, BOWPOWERUPGRADE, KNOCKBACKUPGRADE, SPECTRALARROWUPGRADE) VALUES ('" + uuid + "', '0', '0', '0', '0', '0');");
+			Main.mysql.update("INSERT INTO Coins(UUID, COINS, SPEEDUPGRADE, BOWPOWERUPGRADE, KNOCKBACKUPGRADE, SPECTRALARROWUPGRADE, DOUBLEPOWERUPGRADE) VALUES ('" + uuid + "', '0', '0', '0', '0', '0', '0');");
 		}
 	}
 	
@@ -186,39 +186,86 @@ public class SQLCoins {
 		}
 	}
 	
-	//--------------------------------------------------Spectral Ability-------------------------------------------------
+	// --------------------------------------------------Spectral
+	// Ability-------------------------------------------------
+
+	public static Boolean getSpectralArrowUpgrade(String uuid) {
+		Integer i = 0;
+
+		if (playerExists(uuid)) {
+			try {
+				ResultSet rs = Main.mysql.query("SELECT * FROM Coins WHERE UUID= '" + uuid + "'");
+				if ((!rs.next()) || (Integer.valueOf(rs.getInt("SPECTRALARROWUPGRADE")) == null))
+					;
+
+				i = rs.getInt("SPECTRALARROWUPGRADE");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		} else {
+			createPlayer(uuid);
+			getSpectralArrowUpgrade(uuid);
+		}
+
+		if (i == 0)
+			return false;
+		else
+			return true;
+	}
+
+	public static void setSpectralArrowUpgrade(String uuid, Boolean in) {
+		if (playerExists(uuid)) {
+			int i;
+			if (in)
+				i = 1;
+			else
+				i = 0;
+			Main.mysql.update("UPDATE Coins SET SPECTRALARROWUPGRADE= '" + i + "' WHERE UUID= '" + uuid + "';");
+		} else {
+			createPlayer(uuid);
+			setSpectralArrowUpgrade(uuid, in);
+		}
+	}
 	
-		public static Boolean getSpectralArrowUpgrade(String uuid) {
-			Integer i = 0;
-				
-			if(playerExists(uuid)){
-				try {
-					ResultSet rs = Main.mysql.query("SELECT * FROM Coins WHERE UUID= '" + uuid + "'");
-					if((!rs.next()) || (Integer.valueOf(rs.getInt("SPECTRALARROWUPGRADE")) == null));
-					
-					i = rs.getInt("SPECTRALARROWUPGRADE");
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}	
-				
-			} else {
-				createPlayer(uuid);
-				getSpectralArrowUpgrade(uuid);
+	// --------------------------------------------------Double PowerUP-------------------------------------------------
+
+	public static Boolean getDoublePowerUP(String uuid) {
+		Integer i = 0;
+
+		if (playerExists(uuid)) {
+			try {
+				ResultSet rs = Main.mysql.query("SELECT * FROM Coins WHERE UUID= '" + uuid + "'");
+				if ((!rs.next()) || (Integer.valueOf(rs.getInt("DOUBLEPOWERUPGRADE")) == null))
+					;
+
+				i = rs.getInt("DOUBLEPOWERUPGRADE");
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-			
-			if(i == 0) return false;
-			else return true;
+
+		} else {
+			createPlayer(uuid);
+			getDoublePowerUP(uuid);
 		}
-		
-		public static void setSpectralArrowUpgrade(String uuid, Boolean in) {
-			if(playerExists(uuid)) {
-				int i;
-				if(in) i = 1;
-				else i = 0;
-				Main.mysql.update("UPDATE Coins SET SPECTRALARROWUPGRADE= '" + i + "' WHERE UUID= '" + uuid + "';");
-			} else {
-				createPlayer(uuid);
-				setSpectralArrowUpgrade(uuid, in);
-			}
+
+		if (i == 0)
+			return false;
+		else
+			return true;
+	}
+
+	public static void setDoublePowerUP(String uuid, Boolean in) {
+		if (playerExists(uuid)) {
+			int i;
+			if (in)
+				i = 1;
+			else
+				i = 0;
+			Main.mysql.update("UPDATE Coins SET DOUBLEPOWERUPGRADE= '" + i + "' WHERE UUID= '" + uuid + "';");
+		} else {
+			createPlayer(uuid);
+			setDoublePowerUP(uuid, in);
 		}
+	}
 }

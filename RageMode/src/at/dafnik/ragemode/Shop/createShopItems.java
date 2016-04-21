@@ -26,16 +26,16 @@ public class createShopItems {
 				buyn = Strings.inventory_bought;
 				itemmeta.addEnchant(Enchantment.WATER_WORKER, 1, true);
 			} else buyn = Strings.inventory_not_bought;
-			itemmeta.setDisplayName(Strings.inventory_inv_speedupgrader + buyn);
-			itemlore.add(Strings.inventory_inv_speedupgrader_description);
+			itemmeta.setDisplayName(Strings.shop_item_speedupgrader_name + buyn);
+			itemlore.add(Strings.shop_item_speedupgrader_usage);
 			
 		} else if(shopItem == Material.SULPHUR) {
 			if(SQLCoins.getBowPowerUpgrade(player.getUniqueId().toString())) {
 				buyn = Strings.inventory_bought;
 				itemmeta.addEnchant(Enchantment.WATER_WORKER, 1, true);
 			} else buyn = Strings.inventory_not_bought;
-			itemmeta.setDisplayName(Strings.inventory_inv_bowpowerupgrader + buyn);
-			itemlore.add(Strings.inventory_inv_bowpowerupgrader_description);
+			itemmeta.setDisplayName(Strings.shop_item_bowpowerupgrader_name + buyn);
+			itemlore.add(Strings.shop_item_bowpowerupgrader_usage);
 			
 		} else if(shopItem == Material.BLAZE_POWDER) {
 			if(SQLCoins.getKnockbackUpgrade(player.getUniqueId().toString())) {
@@ -53,6 +53,14 @@ public class createShopItems {
 			itemmeta.setDisplayName(Strings.inventory_inv_spectralarrowupgrade + buyn);
 			itemlore.add(Strings.inventory_inv_spectralarrowupgrade_description);
 		
+		} else if(shopItem == Material.EMERALD_BLOCK) {
+			if(SQLCoins.getDoublePowerUP(player.getUniqueId().toString())) {
+				buyn = Strings.inventory_bought;
+				itemmeta.addEnchant(Enchantment.WATER_WORKER, 1, true);
+			} else buyn = Strings.inventory_not_bought;
+			itemmeta.setDisplayName(Strings.shop_item_doublepowerup_name + buyn);
+			itemlore.add(Strings.shop_item_doublepowerup_usage);
+			
 		} else return null;
 		
 		itemmeta.setLore(itemlore);

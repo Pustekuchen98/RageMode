@@ -1,19 +1,23 @@
 package at.dafnik.ragemode.TabCompleter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import at.dafnik.ragemode.Main.Library;
-
-public class TabCompleter_TpMap extends AbstractTabCompleter{
+public class TabCompleter_CoinsAdmin extends AbstractTabCompleter{
 	
 	@Override
 	public List<String> returnList() {
-		return Library.maps;
+		List<String> subcommands = new ArrayList<>();
+		
+		subcommands.add("add");
+		subcommands.add("remove");
+		
+		return subcommands;
 	}
 	
 	@Override
 	public String commandString() {
-		return "tpmap";
+		return "coinsadmin";
 	}
 	
 	@Override

@@ -9,7 +9,7 @@ import at.dafnik.ragemode.MySQL.SQLCoins;
 
 public class createAdvancedInventoryMenu_BowPowerUpgrade extends createAdvancedInventoryMenuBasic{
 	
-	public static String wantsdisplayname = Strings.inventory_inv_bowpowerupgrader;
+	public static String wantsdisplayname = Strings.shop_item_bowpowerupgrader_name;
 	public static Material material = Material.SULPHUR;
 	private int upgradecost = 0;
 	
@@ -21,11 +21,11 @@ public class createAdvancedInventoryMenu_BowPowerUpgrade extends createAdvancedI
 	
 	@Override
 	public void createAdvancedItem() {
-		super.chooseitemmeta.setDisplayName(Strings.inventory_inv_bowpowerupgrader);
-		super.chooseitemlore.add(Strings.inventory_inv_bowpowerupgrader_description);
+		super.chooseitemmeta.setDisplayName(Strings.shop_item_bowpowerupgrader_name);
+		super.chooseitemlore.add(Strings.shop_item_bowpowerupgrader_usage);
 		
-		super.bookmetalore.add(Strings.inventory_invmore_description_description + Strings.inventory_invmore_description_powder);
-		super.bookmetalore.add(Strings.inventory_invmore_description_powder_2);
+		super.bookmetalore.add(Strings.inventory_invmore_description_description + Strings.shop_item_bowpowerupgrade_advanced_usage_0);
+		super.bookmetalore.add(Strings.shop_item_bowpowerupgrade_advanced_usage_1);
 		
 		if(SQLCoins.getBowPowerUpgrade(player.getUniqueId().toString())) {
 			super.buyitemmeta.setDisplayName(Strings.inventory_flint_bought);

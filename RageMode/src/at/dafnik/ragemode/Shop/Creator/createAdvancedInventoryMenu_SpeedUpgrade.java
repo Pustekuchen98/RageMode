@@ -9,7 +9,7 @@ import at.dafnik.ragemode.MySQL.SQLCoins;
 
 public class createAdvancedInventoryMenu_SpeedUpgrade extends createAdvancedInventoryMenuBasic{
 	
-	private static String wantsdisplayname = Strings.inventory_inv_speedupgrader;
+	private static String wantsdisplayname = Strings.shop_item_speedupgrader_name;
 	private static Material material = Material.FEATHER;
 	private int upgradecost = 0;
 	
@@ -21,11 +21,11 @@ public class createAdvancedInventoryMenu_SpeedUpgrade extends createAdvancedInve
 	
 	@Override
 	public void createAdvancedItem() {
-		super.chooseitemmeta.setDisplayName(Strings.inventory_inv_speedupgrader);
-		super.chooseitemlore.add(Strings.inventory_inv_speedupgrader_description);
+		super.chooseitemmeta.setDisplayName(Strings.shop_item_speedupgrader_name);
+		super.chooseitemlore.add(Strings.shop_item_speedupgrader_usage);
 			
-		super.bookmetalore.add(Strings.inventory_invmore_description_description + Strings.inventory_invmore_description_feather);
-		super.bookmetalore.add(Strings.inventory_invmore_description_feather_2);
+		super.bookmetalore.add(Strings.inventory_invmore_description_description + Strings.shop_item_speedupgrader_advanced_usage_0);
+		super.bookmetalore.add(Strings.shop_item_speedupgrader_advanced_usage_1);
 			
 		if(SQLCoins.getSpeedUpgrade(player.getUniqueId().toString())) {
 			super.buyitemmeta.setDisplayName(Strings.inventory_flint_bought);

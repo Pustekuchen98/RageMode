@@ -22,6 +22,7 @@ import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.MySQL.SQLCoins;
 import at.dafnik.ragemode.Shop.Creator.createAdvancedInventoryMenu_BowPowerUpgrade;
+import at.dafnik.ragemode.Shop.Creator.createAdvancedInventoryMenu_DoublePowerUPsUpgrade;
 import at.dafnik.ragemode.Shop.Creator.createAdvancedInventoryMenu_KnockbackAbilityUpgrade;
 import at.dafnik.ragemode.Shop.Creator.createAdvancedInventoryMenu_SpectralArrowUpgrade;
 import at.dafnik.ragemode.Shop.Creator.createAdvancedInventoryMenu_SpeedUpgrade;
@@ -44,8 +45,12 @@ public class Shop implements Listener{
 	public void onEntityDamage(EntityDamageByEntityEvent event) {
 		Entity entity = event.getEntity();
 		if(entity instanceof Villager) {
-			if(Library.villager == (Villager) entity) event.setCancelled(true);
-			else event.setCancelled(false);
+			if(Library.villager != null) {
+				if(Library.villager.getVillager() == ((Villager) entity))
+					event.setCancelled(true);
+				else 
+					event.setCancelled(false);
+			}
 		}
 	}
 	
@@ -82,6 +87,7 @@ public class Shop implements Listener{
 		inventory.setItem(2, createShopItems.createMainShopInventory(player, Material.SULPHUR));
 		inventory.setItem(4, createShopItems.createMainShopInventory(player, Material.BLAZE_POWDER));
 		inventory.setItem(6, createShopItems.createMainShopInventory(player, Material.SPECTRAL_ARROW));
+		inventory.setItem(8, createShopItems.createMainShopInventory(player, Material.EMERALD_BLOCK));
 		
 		player.openInventory(inventory);			
 		// |0|1|2|3|4|5|6|7|8| 	
@@ -127,6 +133,11 @@ public class Shop implements Listener{
 						case SPECTRAL_ARROW:
 							player.closeInventory();
 							new createAdvancedInventoryMenu_SpectralArrowUpgrade(player).createBasics();
+							break;
+							
+						case EMERALD_BLOCK:
+							player.closeInventory();
+							new createAdvancedInventoryMenu_DoublePowerUPsUpgrade(player).createBasics();
 							break;
 							
 						default:

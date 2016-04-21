@@ -44,14 +44,14 @@ import at.dafnik.ragemode.PowerUPs.Mine;
 import at.dafnik.ragemode.PowerUPs.PowerUPItemListener;
 import at.dafnik.ragemode.Shop.Shop;
 import at.dafnik.ragemode.Shop.Pages.AdvancedShopPage_BowPowerUpgrade;
+import at.dafnik.ragemode.Shop.Pages.AdvancedShopPage_DoublePowerUPsUpgrade;
 import at.dafnik.ragemode.Shop.Pages.AdvancedShopPage_KnockbackAbilityUpgrade;
 import at.dafnik.ragemode.Shop.Pages.AdvancedShopPage_SpectralArrowUpgrade;
 import at.dafnik.ragemode.Shop.Pages.AdvancedShopPage_SpeedUpgrade;
-import at.dafnik.ragemode.TabCompleter.TabCompleter_RMCommands;
-import at.dafnik.ragemode.TabCompleter.TabCompleter_RMMaps;
+import at.dafnik.ragemode.TabCompleter.TabCompleter_CoinsAdmin;
+import at.dafnik.ragemode.TabCompleter.TabCompleter_RM;
 import at.dafnik.ragemode.TabCompleter.TabCompleter_TpMap;
 import at.dafnik.ragemode.Tasks.Lobby;
-import at.dafnik.ragemode.Threads.VillagerThread;
 import at.dafnik.ragemode.Weapons.AxeEvent;
 import at.dafnik.ragemode.Weapons.Bow;
 import at.dafnik.ragemode.Weapons.Flash;
@@ -107,9 +107,7 @@ public class Main extends JavaPlugin{
 		
 		Library.bar.removeAll();
 		
-		try {
-			VillagerThread.deleteVillagerShop();
-		} catch (Exception ex) {}
+		if(Library.villager != null) Library.villager.stop();
 		
 		getServer().getConsoleSender().sendMessage(pre + "§cStopped§8!");
 	}
@@ -180,7 +178,7 @@ public class Main extends JavaPlugin{
 			Main.isMySQL = false;
 			Main.isShop = false;
 			
-			VillagerThread.deleteVillagerShop();
+			Library.villager.stop();
 			
 			System.out.println(Strings.log_pre + "INFO: MySQL disabled!");
 		}
@@ -190,13 +188,12 @@ public class Main extends JavaPlugin{
 		if(getConfig().getString("ragemode.settings.version") == null) getConfig().set("ragemode.settings.version", "NOP_LEL");
 			
 		if(!(getConfig().getString("ragemode.settings.version").equalsIgnoreCase(getDescription().getVersion()))) {
-			getConfig().set("ragemode.settings.version", "1.4.0");
+			getConfig().set("ragemode.settings.version", "1.4.1");
 			getConfig().set("ragemode.settings.updatecheck", true);
 				
-			if(isMySQL) mysql.update("ALTER TABLE Coins ADD SPECTRALARROWUPGRADE int DEFAULT 0");
+			if(isMySQL) mysql.update("ALTER TABLE Coins ADD DOUBLEPOWERUPGRADE int DEFAULT 0");
 			
-			getConfig().set("ragemode.shop.spectralarrowupgradeprice", Integer.valueOf(20000));
-			getConfig().set("ragemode.points.c4", Integer.valueOf(15));
+			getConfig().set("ragemode.shop.doublepowerupsprice", Integer.valueOf(20000));
 			
 			saveConfig();
 			System.out.println(Strings.ragemode_updated_succesful);	
@@ -280,16 +277,17 @@ public class Main extends JavaPlugin{
 		new AdvancedShopPage_KnockbackAbilityUpgrade();
 		new AdvancedShopPage_SpectralArrowUpgrade();
 		new AdvancedShopPage_BowPowerUpgrade();
+		new AdvancedShopPage_DoublePowerUPsUpgrade();
 	}
 	
 	//Register all Commands
 	private void registerCommands(){
 		this.getCommand("rm").setExecutor(new Mapset());
-		this.getCommand("rm").setTabCompleter(new TabCompleter_RMMaps());
-		this.getCommand("rm").setTabCompleter(new TabCompleter_RMCommands());
+		this.getCommand("rm").setTabCompleter(new TabCompleter_RM());
 		
 		this.getCommand("coins").setExecutor(new Coins());
 		this.getCommand("coinsadmin").setExecutor(new Coins());
+		this.getCommand("coinsadmin").setTabCompleter(new TabCompleter_CoinsAdmin());
 		
 		this.getCommand("stats").setExecutor(new Stats());
 		this.getCommand("statsadmin").setExecutor(new Stats());
