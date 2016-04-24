@@ -178,7 +178,10 @@ public class Main extends JavaPlugin{
 			Main.isMySQL = false;
 			Main.isShop = false;
 			
-			Library.villager.stop();
+			if(Library.villager != null) {
+				Library.villager.stop();
+				Library.villager = null;
+			}
 			
 			System.out.println(Strings.log_pre + "INFO: MySQL disabled!");
 		}

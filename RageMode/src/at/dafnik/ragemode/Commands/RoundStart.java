@@ -3,8 +3,6 @@ package at.dafnik.ragemode.Commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Ocelot;
 import org.bukkit.entity.Player;
 
 import at.dafnik.ragemode.API.Strings;
@@ -12,9 +10,6 @@ import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.PowerSystem;
 
 public class RoundStart implements CommandExecutor{
-	
-	private Boolean happened = false;
-	private Ocelot pet;
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 		if(sender instanceof Player){
@@ -59,16 +54,6 @@ public class RoundStart implements CommandExecutor{
 					for(Player players : Bukkit.getOnlinePlayers()) players.playSound(loc, Sound.ENTITY_FIREWORK_LAUNCH, 1000, 1);
 					//new OwnFireworkThread(player, item).start();*/
 					
-					
-					if(!happened) {
-					pet = (Ocelot) player.getWorld().spawnEntity(player.getLocation(), EntityType.OCELOT);
-					pet.setOwner(player);
-					//PetFollow(player, pet, 0.2);
-					happened = true;
-					} else {
-						pet.remove();
-						happened = false;
-					}
 					player.sendMessage("r ");			
 				}
 			}
