@@ -71,7 +71,7 @@ public class PlayerDeathListener implements Listener {
 					killreason = victim.getMetadata("killedWith").get(0).asString();
 					
 					//[Check] what killreason is
-					if (killreason == "bow") {
+					if (killreason.contains("bow")) {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_bow);
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_bow);
@@ -79,7 +79,7 @@ public class PlayerDeathListener implements Listener {
 						killer.sendMessage(Strings.kill_points_plus + this.bowkill);
 						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.bowkill + Strings.kill_holo_points));
 		
-					} else if (killreason == "combataxe") {
+					} else if (killreason.contains("combataxe")) {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_combat_axe);
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_combat_axe);
@@ -87,7 +87,7 @@ public class PlayerDeathListener implements Listener {
 						killer.sendMessage(Strings.kill_points_plus + this.combataxekill);
 						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.combataxekill + Strings.kill_holo_points));
 						
-					} else if (killreason == "grenade") {
+					} else if (killreason.contains("grenade")) {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname +Strings.kill_with + Strings.kill_with_grenade);
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_grenade);
@@ -95,7 +95,7 @@ public class PlayerDeathListener implements Listener {
 						killer.sendMessage(Strings.kill_points_plus + this.grenadekill);
 						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.grenadekill + Strings.kill_holo_points));
 		
-					} else if (killreason == "mine") {
+					} else if (killreason.contains("mine")) {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_mine);
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_mine);
@@ -103,7 +103,7 @@ public class PlayerDeathListener implements Listener {
 						killer.sendMessage(Strings.kill_points_plus + this.minekill);
 						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.minekill + Strings.kill_holo_points));
 		
-					} else if (killreason == "claymore") {
+					} else if (killreason.contains("claymore")) {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_claymore);
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_claymore);
@@ -111,7 +111,7 @@ public class PlayerDeathListener implements Listener {
 						killer.sendMessage(Strings.kill_points_plus + this.claymorekill);
 						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.claymorekill + Strings.kill_holo_points));
 					
-					} else if(killreason == "c4") {
+					} else if(killreason.contains("c4")) {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_c4);
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_c4);
@@ -119,7 +119,7 @@ public class PlayerDeathListener implements Listener {
 						killer.sendMessage(Strings.kill_points_plus + this.c4kill);
 						createHologram(new Holograms(victim.getEyeLocation(), "§c+§6" + this.c4kill + Strings.kill_holo_points));
 						
-					} else if(killreason == "knife") {
+					} else if(killreason.contains("knife")) {
 						
 						event.setDeathMessage(Main.pre + killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_knife);
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_knife);
@@ -201,19 +201,19 @@ public class PlayerDeathListener implements Listener {
 		String playeruuid = player.getUniqueId().toString();
 		int toBePoints = 0;
 		
-		if(killreason == "bow") {
+		if(killreason.contains("bow")) {
 			toBePoints = this.bowkill;
 			if(Main.isMySQL) SQLStats.addBowKills(playeruuid, 1);
 			
-		} else if(killreason == "combataxe") {
+		} else if(killreason.contains("combataxe")) {
 			toBePoints = this.combataxekill;
 			if(Main.isMySQL) SQLStats.addAxtKills(playeruuid, 1);
 			
-		} else if(killreason == "knife") {
+		} else if(killreason.contains("knife")) {
 			toBePoints = this.knifekill;
 			if(Main.isMySQL) SQLStats.addKnifeKills(playeruuid, 1);
 			
-		} else if(killreason == "suicide") {
+		} else if(killreason.contains("suicide")) {
 			toBePoints = this.suicide;
 			if(Main.isMySQL) SQLStats.addSuicides(playeruuid, 1);
 		}
@@ -225,7 +225,7 @@ public class PlayerDeathListener implements Listener {
 		else if(killreason == "killstreak") toBePoints = this.killstreakpoints;
 		else System.out.println(Strings.error_playerdeath_points);
 		
-		if(killreason != null && killreason != "knife_death" && killreason != "suicide" && killreason != "killstreak") {
+		if(killreason != null && !killreason.contains("knife_death") && !killreason.contains("suicide") && killreason.contains("killstreak")) {
 			if(Main.isMySQL) {
 				SQLStats.addPoints(playeruuid, toBePoints);
 				SQLStats.addKills(playeruuid, 1);
@@ -234,9 +234,11 @@ public class PlayerDeathListener implements Listener {
 			}
 		
 		} else if(killreason == "killstreak") {
-			SQLStats.addPoints(playeruuid, toBePoints);
-			SQLCoins.addCoins(playeruuid, 30);
-			player.sendMessage(Strings.commands_coins_added_0 + 30 + Strings.commands_coins_added_1);
+			if(Main.isMySQL) {
+				SQLStats.addPoints(playeruuid, toBePoints);
+				SQLCoins.addCoins(playeruuid, 30);
+				player.sendMessage(Strings.commands_coins_added_0 + 30 + Strings.commands_coins_added_1);
+			}
 		}
 		
 		if (Library.playerpoints.get(player) == null) {

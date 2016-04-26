@@ -125,7 +125,7 @@ public class Listeners implements Listener {
 			else if(Main.status == Main.Status.INGAME) event.setCancelled(false);
 			
 			if (event.getCause() == DamageCause.FALL) event.setDamage(0.0);
-			if(event.getCause() == DamageCause.FLY_INTO_WALL) event.setCancelled(true);
+			if(event.getCause() == DamageCause.FLY_INTO_WALL) event.setDamage(0.0);;
 	
 			if(entity instanceof Player) {
 				Player player = (Player) entity;
