@@ -6,7 +6,7 @@ import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_9_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_10_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,7 +19,7 @@ import org.bukkit.event.player.PlayerToggleSneakEvent;
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.Main.Main.Status;
-import net.minecraft.server.v1_9_R1.PacketPlayOutMount;
+import net.minecraft.server.v1_10_R1.PacketPlayOutMount;
 
 public class PlayerRide implements Listener{
 

@@ -12,7 +12,7 @@ import org.bukkit.util.Vector;
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.MySQL.SQLCoins;
-import net.minecraft.server.v1_9_R1.MathHelper;
+import net.minecraft.server.v1_10_R1.MathHelper;
 
 public class Explosion {
 	

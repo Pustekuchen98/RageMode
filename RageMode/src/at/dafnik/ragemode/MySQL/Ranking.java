@@ -81,8 +81,8 @@ public class Ranking {
 				
 				if(id <= in) {
 					name = Bukkit.getOfflinePlayer(UUID.fromString(rang.get(id))).getName();
-
-					s.setOwner(name);
+					
+					s.setOwningPlayer(Bukkit.getOfflinePlayer(UUID.fromString(rang.get(id))));
 					s.update();
 					
 					Location newloc = new Location(LOC.get(i).getWorld(), LOC.get(i).getX(), LOC.get(i).getY()-1, LOC.get(i).getZ());
