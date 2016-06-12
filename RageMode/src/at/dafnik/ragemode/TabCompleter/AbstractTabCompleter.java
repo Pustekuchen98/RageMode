@@ -37,10 +37,9 @@ public abstract class AbstractTabCompleter implements TabCompleter{
 		if(command.getName().equalsIgnoreCase(commandString()) && arguments.length > argumentsMinInt() && arguments.length < argumentsMaxInt()) {
 			if(sender instanceof Player) {
 				if(Status()) {
-					List<String> list = (List<String>) returnList();
+					List<String> list = returnList();
 					if(list == null) {
-						List<String> empty = new ArrayList<>();
-						list = empty;
+						list = new ArrayList<>();
 					}
 					
 					return list;

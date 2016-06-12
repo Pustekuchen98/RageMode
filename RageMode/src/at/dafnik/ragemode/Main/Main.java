@@ -66,7 +66,7 @@ public class Main extends JavaPlugin{
 	public Mapvote mapvote;
 	
 	//General Prefix
-	public static String pre = "§f[§cRageMode§f] ";
+	public static String pre = "ï¿½f[ï¿½cRageModeï¿½f] ";
 	//Start Status
 	public static Status status = Status.PRE_LOBBY;
 	//MySQL
@@ -98,7 +98,7 @@ public class Main extends JavaPlugin{
 		for(Entity entities : Library.powerup_entity) entities.remove();
 		
 		for (Player players : Bukkit.getOnlinePlayers()) {
-			for (Holograms holo : Library.powerup_list) holo.destroy(players);;		
+			for (Holograms holo : Library.powerup_list) holo.destroy(players);
 			players.removeMetadata("killedWith", this);
 			
 			for(Team teams : Library.teams) teams.removeEntry(players.getName());
@@ -109,7 +109,7 @@ public class Main extends JavaPlugin{
 		
 		if(Library.villager != null) Library.villager.stop();
 		
-		getServer().getConsoleSender().sendMessage(pre + "§cStopped§8!");
+		getServer().getConsoleSender().sendMessage(pre + "ï¿½cStoppedï¿½8!");
 	}
 	
 	//Plugin start
@@ -140,7 +140,7 @@ public class Main extends JavaPlugin{
 		mapvote.AllMapsAdd();
 		mapvote.Mapvotenull();
 			
-		getServer().getConsoleSender().sendMessage(pre + "§aStarted§8! §fThe most important things started §awell§8!");
+		getServer().getConsoleSender().sendMessage(pre + "ï¿½aStartedï¿½8! ï¿½fThe most important things started ï¿½awellï¿½8!");
 		
 		//Check on Bungee
 		if(isBungee) getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
@@ -211,19 +211,19 @@ public class Main extends JavaPlugin{
 		Library.scoreboard = manager.getNewScoreboard();
 
 		Team admin = Library.scoreboard.registerNewTeam("players_admin");
-		admin.setPrefix("§4");
+		admin.setPrefix("ï¿½4");
 
 		Team moderator = Library.scoreboard.registerNewTeam("players_mod");
-		moderator.setPrefix("§c");
+		moderator.setPrefix("ï¿½c");
 
 		Team youtuber = Library.scoreboard.registerNewTeam("players_yout");
-		youtuber.setPrefix("§5");
+		youtuber.setPrefix("ï¿½5");
 
 		Team premium = Library.scoreboard.registerNewTeam("players_pre");
-		premium.setPrefix("§6");
+		premium.setPrefix("ï¿½6");
 
 		Team user = Library.scoreboard.registerNewTeam("players_user");
-		user.setPrefix("§a");
+		user.setPrefix("ï¿½a");
 
 		Library.ingame = Library.scoreboard.registerNewTeam("players_ingame");
 		Library.ingame.setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.NEVER);

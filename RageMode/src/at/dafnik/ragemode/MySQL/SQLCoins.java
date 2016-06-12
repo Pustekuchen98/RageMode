@@ -97,9 +97,8 @@ public class SQLCoins {
 			createPlayer(uuid);
 			getSpeedUpgrade(uuid);
 		}
-		
-		if(i == 0) return false;
-		else return true;
+
+		return i != 0;
 	}
 	
 	public static void setSpeedUpgrade(String uuid, Boolean in) {
@@ -133,9 +132,8 @@ public class SQLCoins {
 			createPlayer(uuid);
 			getBowPowerUpgrade(uuid);
 		}
-		
-		if(i == 0) return false;
-		else return true;
+
+		return i != 0;
 	}
 	
 	public static void setBowPowerUpgrade(String uuid, Boolean in) {
@@ -169,9 +167,8 @@ public class SQLCoins {
 			createPlayer(uuid);
 			getKnockbackUpgrade(uuid);
 		}
-		
-		if(i == 0) return false;
-		else return true;
+
+		return i != 0;
 	}
 	
 	public static void setKnockbackUpdgrade(String uuid, Boolean in) {
@@ -208,10 +205,7 @@ public class SQLCoins {
 			getSpectralArrowUpgrade(uuid);
 		}
 
-		if (i == 0)
-			return false;
-		else
-			return true;
+		return i != 0;
 	}
 
 	public static void setSpectralArrowUpgrade(String uuid, Boolean in) {
@@ -249,10 +243,7 @@ public class SQLCoins {
 			getDoublePowerUP(uuid);
 		}
 
-		if (i == 0)
-			return false;
-		else
-			return true;
+		return i != 0;
 	}
 
 	public static void setDoublePowerUP(String uuid, Boolean in) {

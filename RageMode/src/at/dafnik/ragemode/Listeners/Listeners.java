@@ -125,8 +125,8 @@ public class Listeners implements Listener {
 			else if(Main.status == Main.Status.INGAME) event.setCancelled(false);
 			
 			if (event.getCause() == DamageCause.FALL) event.setDamage(0.0);
-			if(event.getCause() == DamageCause.FLY_INTO_WALL) event.setDamage(0.0);;
-	
+			if(event.getCause() == DamageCause.FLY_INTO_WALL) event.setDamage(0.0);
+
 			if(entity instanceof Player) {
 				Player player = (Player) entity;
 				if(Library.respawnsafe.contains(player)) {
@@ -141,31 +141,31 @@ public class Listeners implements Listener {
 	public void Ping(ServerListPingEvent event) {
 		if(Main.isBungee) {
 			if (Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) {
-				if(Bukkit.getOnlinePlayers().size() < Bukkit.getMaxPlayers()) event.setMotd("§0[§aLobby§0]");
-				else if(Bukkit.getOnlinePlayers().size() >= Bukkit.getMaxPlayers()) event.setMotd("§0[§6Lobby§0]");
+				if(Bukkit.getOnlinePlayers().size() < Bukkit.getMaxPlayers()) event.setMotd("ï¿½0[ï¿½aLobbyï¿½0]");
+				else if(Bukkit.getOnlinePlayers().size() >= Bukkit.getMaxPlayers()) event.setMotd("ï¿½0[ï¿½6Lobbyï¿½0]");
 			}	
-			else if (Main.status == Status.WARMUP) event.setMotd("§0[§cWarmup§0]");
-			else if (Main.status == Status.INGAME) event.setMotd("§0[§4Ingame§0]");
-			else if (Main.status == Status.WIN || Main.status == Status.RESTART) event.setMotd("§0[§eWin§0]");		
+			else if (Main.status == Status.WARMUP) event.setMotd("ï¿½0[ï¿½cWarmupï¿½0]");
+			else if (Main.status == Status.INGAME) event.setMotd("ï¿½0[ï¿½4Ingameï¿½0]");
+			else if (Main.status == Status.WIN || Main.status == Status.RESTART) event.setMotd("ï¿½0[ï¿½eWinï¿½0]");		
 			
 		} else {
 			if (Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) {
-				if(Bukkit.getOnlinePlayers().size() < Bukkit.getMaxPlayers()) event.setMotd("§4RageMode §8- §aLobby");	
-				else if(Bukkit.getOnlinePlayers().size() >= Bukkit.getMaxPlayers()) event.setMotd("§4RageMode §8- §6Lobby");
+				if(Bukkit.getOnlinePlayers().size() < Bukkit.getMaxPlayers()) event.setMotd("ï¿½4RageMode ï¿½8- ï¿½aLobby");	
+				else if(Bukkit.getOnlinePlayers().size() >= Bukkit.getMaxPlayers()) event.setMotd("ï¿½4RageMode ï¿½8- ï¿½6Lobby");
 				
 			} else if (Main.status == Status.WARMUP) {
-				event.setMotd("§cRageMode §8- §cWarmup\n"
-							+ "§7Played Map§8: §6" + Library.votedmap);
+				event.setMotd("ï¿½cRageMode ï¿½8- ï¿½cWarmup\n"
+							+ "ï¿½7Played Mapï¿½8: ï¿½6" + Library.votedmap);
 			} else if (Main.status == Status.INGAME) {
-				event.setMotd("§cRageMode §8- §4Ingame\n"
-							+ "§7Played Map§8: §6" + Library.votedmap);
+				event.setMotd("ï¿½cRageMode ï¿½8- ï¿½4Ingame\n"
+							+ "ï¿½7Played Mapï¿½8: ï¿½6" + Library.votedmap);
 			} else if (Main.status == Status.WIN || Main.status == Status.RESTART) {
 				if(Main.getInstance().lobbytasks.wm.ig.playerwinner != null) {
-					event.setMotd("§4RageMode §8- §eWin\n"
-								+ "§3Winner§8: §6" + Main.getInstance().lobbytasks.wm.ig.playerwinner.getDisplayName() + " §8- §6" + Library.playerpoints.get(Main.getInstance().lobbytasks.wm.ig.playerwinner));
+					event.setMotd("ï¿½4RageMode ï¿½8- ï¿½eWin\n"
+								+ "ï¿½3Winnerï¿½8: ï¿½6" + Main.getInstance().lobbytasks.wm.ig.playerwinner.getDisplayName() + " ï¿½8- ï¿½6" + Library.playerpoints.get(Main.getInstance().lobbytasks.wm.ig.playerwinner));
 				} else {
-					event.setMotd("§4RageMode §8- §eWin\n"
-								+ "§7No Winner");
+					event.setMotd("ï¿½4RageMode ï¿½8- ï¿½eWin\n"
+								+ "ï¿½7No Winner");
 				}
 			} else System.out.println(Strings.error_not_authenticated_player);
 		}

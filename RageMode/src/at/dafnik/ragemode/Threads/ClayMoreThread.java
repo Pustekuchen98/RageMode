@@ -18,11 +18,11 @@ import at.dafnik.ragemode.Main.Main.Status;
 
 public class ClayMoreThread implements Runnable{
 	
-	double radius;
-	Player setter;
-	Block block;
-	Thread thread;
-	boolean running;
+	private double radius;
+	private Player setter;
+	private Block block;
+	private Thread thread;
+	private boolean running;
 	
 	public ClayMoreThread(Player setter, double radius, Block block) {
 		this.radius = radius;
@@ -34,9 +34,7 @@ public class ClayMoreThread implements Runnable{
 	
 	public void start() {
 		this.running = true;
-		if(running) {
-			this.thread.start();
-		}
+		this.thread.start();
 	}
 	
 	@SuppressWarnings("deprecation")

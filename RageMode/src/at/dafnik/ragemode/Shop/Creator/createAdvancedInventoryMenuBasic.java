@@ -47,8 +47,8 @@ public abstract class createAdvancedInventoryMenuBasic {
 		bookitemmeta.setDisplayName(Strings.inventory_invmore_description);
 		bookmetalore = new ArrayList<String>();
 		
-		buyitem = new ItemStack(Material.FLINT_AND_STEEL);;
-		buyitemmeta = buyitem.getItemMeta();;
+		buyitem = new ItemStack(Material.FLINT_AND_STEEL);
+		buyitemmeta = buyitem.getItemMeta();
 		buyitemlore = new ArrayList<String>();
 		
 		createAdvancedItem();
