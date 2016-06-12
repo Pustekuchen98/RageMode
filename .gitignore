@@ -114,3 +114,10 @@ RageMode/bin/at/dafnik/ragemode/Main/Library.class
 RageMode/bin/at/dafnik/ragemode/TabCompleter/AbstractTabCompleter.class
 RageMode/bin/at/dafnik/ragemode/TabCompleter/VoteTabCompleter.class
 RageMode/bin/at/dafnik/ragemode/Shop/VillagerThread.class
+.idea/compiler.xml
+.idea/copyright/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+RageMode/RageMode.iml
