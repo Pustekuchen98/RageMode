@@ -1,7 +1,6 @@
 Changes:
-	- Overworked all /rm Map create commands, it's easier for new people which want to setup a map
-	- when you vote over console for a map, it gives 1000 votes! so you can force vote
-	- /rm console commands
+	- Minecraft 1.10
+	- Hologram Updates
 	
 Fixes:
-	- PlayerDeathEvent: Killstreak without MySQL Database error fixed!
+	- Can't fly bug solved
