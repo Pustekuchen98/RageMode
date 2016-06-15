@@ -1,14 +1,17 @@
 package at.dafnik.ragemode.Weapons;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import at.dafnik.ragemode.API.Explosion;
@@ -18,8 +21,26 @@ import at.dafnik.ragemode.Main.Main.Status;
 import at.dafnik.ragemode.Main.PowerSystem;
 import at.dafnik.ragemode.Threads.ArrowSparcleThread;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bow implements Listener{
-		
+
+	public static List<Player> hasShield = new ArrayList<Player>();
+
+	@EventHandler
+	public void hasShield(PlayerInteractEvent event) {
+		if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+			if(event.getPlayer().getInventory().getItemInOffHand().getType() == Material.SHIELD) {
+				hasShield.add(event.getPlayer());
+				event.getPlayer().sendMessage("ison");
+
+
+				event.getPlayer().getInventory().getItemInOffHand().
+			}
+		}
+	}
+
 	@EventHandler
 	public void shootArrow(EntityShootBowEvent event) {
 		if(event.getEntity() instanceof Player && event.getProjectile() instanceof Arrow) {
@@ -72,6 +93,7 @@ public class Bow implements Listener{
 							if(arrow.getShooter() instanceof Player) {
 								Player victim = (Player) event.getEntity();
 								if (!Library.respawnsafe.contains(victim)) {
+
 									victim.removeMetadata("killedWith", Main.getInstance());
 									victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "bow"));
 									event.setDamage(21);
