@@ -30,32 +30,32 @@ public class Mapset implements CommandExecutor {
 						writeAdminCommands(player);
 
 					} else if (player.hasPermission("ragemode.youtuber")) {
-						player.sendMessage(pre + "§bRageMode §cCommands §3you can use§8:");
-						player.sendMessage(pre + "/forcestart §8<- §aset the countdown to ten");
-						player.sendMessage(pre + "/latestart §8<- §aset the countdown to 50");
-						player.sendMessage(pre + "/vote §8<§6mapname§8>");
-						player.sendMessage(pre + "/list §8<- §aShows the voting");
-						player.sendMessage(pre + "/stats §8<- §aShows you your stats");
-						player.sendMessage(pre + "/statsreset §8<- §aResets your stats");
+						player.sendMessage(pre + "Â§bRageMode Â§cCommands Â§3you can useÂ§8:");
+						player.sendMessage(pre + "/forcestart Â§8<- Â§aset the countdown to ten");
+						player.sendMessage(pre + "/latestart Â§8<- Â§aset the countdown to 50");
+						player.sendMessage(pre + "/vote Â§8<Â§6mapnameÂ§8>");
+						player.sendMessage(pre + "/list Â§8<- Â§aShows the voting");
+						player.sendMessage(pre + "/stats Â§8<- Â§aShows you your stats");
+						player.sendMessage(pre + "/statsreset Â§8<- Â§aResets your stats");
 
 					} else if (player.hasPermission(Strings.permissions_moderator)) {
-						player.sendMessage(pre + "§bRageMode §cCommands §3you can use§8:");
-						player.sendMessage(pre + "/forcestart §8<- §aset the countdown to ten");
-						player.sendMessage(pre + "/latestart §8<- §aset the countdown to 50");
+						player.sendMessage(pre + "Â§bRageMode Â§cCommands Â§3you can useÂ§8:");
+						player.sendMessage(pre + "/forcestart Â§8<- Â§aset the countdown to ten");
+						player.sendMessage(pre + "/latestart Â§8<- Â§aset the countdown to 50");
 						player.sendMessage(pre
-								+ "/tpmap §8<§aArena Name> §8<§aNumber from Spawn's§8> <- §aTeleports you to the arena");
-						player.sendMessage(pre + "/tplobby §8<- §aTeleports you to the Lobby");
-						player.sendMessage(pre + "/vote §8<§6mapname§8>");
-						player.sendMessage(pre + "/list §8<- §aShows the voting");
-						player.sendMessage(pre + "/stats §8<- §aShows you your stats");
-						player.sendMessage(pre + "/statsreset §8<- §aResets your stats");
+								+ "/tpmap Â§8<Â§aArena Name> Â§8<Â§aNumber from Spawn'sÂ§8> <- Â§aTeleports you to the arena");
+						player.sendMessage(pre + "/tplobby Â§8<- Â§aTeleports you to the Lobby");
+						player.sendMessage(pre + "/vote Â§8<Â§6mapnameÂ§8>");
+						player.sendMessage(pre + "/list Â§8<- Â§aShows the voting");
+						player.sendMessage(pre + "/stats Â§8<- Â§aShows you your stats");
+						player.sendMessage(pre + "/statsreset Â§8<- Â§aResets your stats");
 
 					} else {
-						player.sendMessage(pre + "§bRageMode §cCommands §3you can use§8:");
-						player.sendMessage(pre + "/vote §8<§6mapname§8>");
-						player.sendMessage(pre + "/list §8<- §aShows the voting");
-						player.sendMessage(pre + "/stats §8<- §aShows you your stats");
-						player.sendMessage(pre + "/statsreset §8<- §aResets your stats");
+						player.sendMessage(pre + "Â§bRageMode Â§cCommands Â§3you can useÂ§8:");
+						player.sendMessage(pre + "/vote Â§8<Â§6mapnameÂ§8>");
+						player.sendMessage(pre + "/list Â§8<- Â§aShows the voting");
+						player.sendMessage(pre + "/stats Â§8<- Â§aShows you your stats");
+						player.sendMessage(pre + "/statsreset Â§8<- Â§aResets your stats");
 
 					}
 					// Not args.length == 0
@@ -125,7 +125,7 @@ public class Mapset implements CommandExecutor {
 
 								Library.maps.add(mapname);
 
-								player.sendMessage(pre + "§e" + args[1] + Strings.commands_mapset_createmap_successful);
+								player.sendMessage(pre + "Â§e" + args[1] + Strings.commands_mapset_createmap_successful);
 
 							} else
 								player.sendMessage(Strings.commands_mapset_createmap_usage);
@@ -634,64 +634,64 @@ public class Mapset implements CommandExecutor {
 	}
 
 	private void writeAdminCommands(Player player) {
-		player.sendMessage(pre + "§bRageMode §cCommands§8:");
-		player.sendMessage(pre + "§aMap §6Commands§8: - [§4Admin§8]");
+		player.sendMessage(pre + "Â§bRageMode Â§cCommandsÂ§8:");
+		player.sendMessage(pre + "Â§aMap Â§6CommandsÂ§8: - [Â§4AdminÂ§8]");
 		player.sendMessage(pre + "/rm setlobby");
-		player.sendMessage(pre + "/rm createmap §8<§aMapname§8>");
-		player.sendMessage(pre + "/rm setmapauthor §8<§aMapname§8> §8<§aMap Author §8/ §aMap Builders§8>");
-		player.sendMessage(pre + "/rm setmapmiddle §8<§aMapname§8> §8<§aApproximately Blockradius of the map§8>");
-		player.sendMessage(pre + "/rm setmapspawn §8<§aMapname§8>");
-		player.sendMessage(pre + "/rm setpowerupspawn §8<§aMapname§8>");
+		player.sendMessage(pre + "/rm createmap Â§8<Â§aMapnameÂ§8>");
+		player.sendMessage(pre + "/rm setmapauthor Â§8<Â§aMapnameÂ§8> Â§8<Â§aMap Author Â§8/ Â§aMap BuildersÂ§8>");
+		player.sendMessage(pre + "/rm setmapmiddle Â§8<Â§aMapnameÂ§8> Â§8<Â§aApproximately Blockradius of the mapÂ§8>");
+		player.sendMessage(pre + "/rm setmapspawn Â§8<Â§aMapnameÂ§8>");
+		player.sendMessage(pre + "/rm setpowerupspawn Â§8<Â§aMapnameÂ§8>");
 		player.sendMessage(pre + "/rm sethologram");
 		player.sendMessage(pre + "/rm setvillagershop");
-		player.sendMessage(pre + "/rm setranking §8<- §aSet postions of ranking places");
+		player.sendMessage(pre + "/rm setranking Â§8<- Â§aSet postions of ranking places");
 		player.sendMessage(pre
-				+ "/rm setranking setrotation §8<§aNORTH §8| §aEAST §8| §aSOUTH §8| §aWEST§8> <- §aChange the head rotation");
+				+ "/rm setranking setrotation Â§8<Â§aNORTH Â§8| Â§aEAST Â§8| Â§aSOUTH Â§8| Â§aWESTÂ§8> <- Â§aChange the head rotation");
 
 		player.sendMessage(pre + "\n");
-		player.sendMessage(pre + "§aGame §6Commands§8: - [§4Admin§8] - [§cModerator§8]");
-		player.sendMessage(pre + "/rm setgametime §8<§aMinutes§8>");
-		player.sendMessage(pre + "/rm builder §8<- §aAllows to build in the world during Lobby and PRE Lobby Time");
-		player.sendMessage(pre + "/rm spawnpowerup §8<§anumber§8>");
-		player.sendMessage(pre + "/rm setplayers §8<§aNeeded Players§8>");
+		player.sendMessage(pre + "Â§aGame Â§6CommandsÂ§8: - [Â§4AdminÂ§8] - [Â§cModeratorÂ§8]");
+		player.sendMessage(pre + "/rm setgametime Â§8<Â§aMinutesÂ§8>");
+		player.sendMessage(pre + "/rm builder Â§8<- Â§aAllows to build in the world during Lobby and PRE Lobby Time");
+		player.sendMessage(pre + "/rm spawnpowerup Â§8<Â§anumberÂ§8>");
+		player.sendMessage(pre + "/rm setplayers Â§8<Â§aNeeded PlayersÂ§8>");
 
 		player.sendMessage(pre + "\n");
-		player.sendMessage(pre + "§aMySQL §6Commands§8:  - [§4Admin§8]");
-		player.sendMessage(pre + "/rm mysql §8| §fenable / disable MySQL Support");
-		player.sendMessage(pre + "/rm mysql sethost §8<§aHost§8>");
-		player.sendMessage(pre + "/rm mysql setdatabase §8<§aDatabase§8>");
-		player.sendMessage(pre + "/rm mysql setusername §8<§aUsername§8>");
-		player.sendMessage(pre + "/rm mysql setpassword §8<§aPassword§8>");
+		player.sendMessage(pre + "Â§aMySQL Â§6CommandsÂ§8:  - [Â§4AdminÂ§8]");
+		player.sendMessage(pre + "/rm mysql Â§8| Â§fenable / disable MySQL Support");
+		player.sendMessage(pre + "/rm mysql sethost Â§8<Â§aHostÂ§8>");
+		player.sendMessage(pre + "/rm mysql setdatabase Â§8<Â§aDatabaseÂ§8>");
+		player.sendMessage(pre + "/rm mysql setusername Â§8<Â§aUsernameÂ§8>");
+		player.sendMessage(pre + "/rm mysql setpassword Â§8<Â§aPasswordÂ§8>");
 
 		player.sendMessage(pre + "\n");
-		player.sendMessage(pre + "§aBungeeCord §6Commands§8:  - [§4Admin§8]");
-		player.sendMessage(pre + "/rm bungee §8| §fenable / disable BungeeCord Support");
-		player.sendMessage(pre + "/rm bungee setlobbyserver §8<§aLobby Server§8>");
+		player.sendMessage(pre + "Â§aBungeeCord Â§6CommandsÂ§8:  - [Â§4AdminÂ§8]");
+		player.sendMessage(pre + "/rm bungee Â§8| Â§fenable / disable BungeeCord Support");
+		player.sendMessage(pre + "/rm bungee setlobbyserver Â§8<Â§aLobby ServerÂ§8>");
 
 		player.sendMessage(pre + "\n");
-		player.sendMessage(pre + "§aStats §8& §6Coins §6Commands§8:  - [§4Admin§8]");
-		player.sendMessage(pre + "/statsadmin §8[§aAdmin Access§8]");
-		player.sendMessage(pre + "/coinsadmin §8[§aAdmin Access§8]");
+		player.sendMessage(pre + "Â§aStats Â§8& Â§6Coins Â§6CommandsÂ§8:  - [Â§4AdminÂ§8]");
+		player.sendMessage(pre + "/statsadmin Â§8[Â§aAdmin AccessÂ§8]");
+		player.sendMessage(pre + "/coinsadmin Â§8[Â§aAdmin AccessÂ§8]");
 
 		player.sendMessage(pre + "\n");
-		player.sendMessage(pre + "§aTeleport §6Commands§8:  - [§4Admin§8] - [§cModerators]");
-		player.sendMessage(pre + "/tpmap §8<§aArena Name> §8<§aNumber from Spawn's§8>");
+		player.sendMessage(pre + "Â§aTeleport Â§6CommandsÂ§8:  - [Â§4AdminÂ§8] - [Â§cModerators]");
+		player.sendMessage(pre + "/tpmap Â§8<Â§aArena Name> Â§8<Â§aNumber from Spawn'sÂ§8>");
 		player.sendMessage(pre + "/tplobby");
 
 		player.sendMessage(pre + "\n");
-		player.sendMessage(pre + "§aRoundstart §6Commands§8: - [§4Admins§8] - [§cModerators§8] - [§5YouTubers§8]");
-		player.sendMessage(pre + "/forcestart §8<- §aset the countdown to ten");
-		player.sendMessage(pre + "/latestart §8<- §aset the countdown to 50");
+		player.sendMessage(pre + "Â§aRoundstart Â§6CommandsÂ§8: - [Â§4AdminsÂ§8] - [Â§cModeratorsÂ§8] - [Â§5YouTubersÂ§8]");
+		player.sendMessage(pre + "/forcestart Â§8<- Â§aset the countdown to ten");
+		player.sendMessage(pre + "/latestart Â§8<- Â§aset the countdown to 50");
 
 		player.sendMessage(pre + "\n");
-		player.sendMessage(pre + "§aStats §8& §6Coins §6Commands§8:  - [§aEveryone§8]");
+		player.sendMessage(pre + "Â§aStats Â§8& Â§6Coins Â§6CommandsÂ§8:  - [Â§aEveryoneÂ§8]");
 		player.sendMessage(pre + "/stats");
 		player.sendMessage(pre + "/statsreset");
 		player.sendMessage(pre + "/coins");
 
 		player.sendMessage(pre + "\n");
-		player.sendMessage(pre + "§aMap vote §6Commands§8:  - [§aEveryone§8]");
-		player.sendMessage(pre + "/list §8<- §aShows the voting");
-		player.sendMessage(pre + "/vote §8<§6mapname§8>");
+		player.sendMessage(pre + "Â§aMap vote Â§6CommandsÂ§8:  - [Â§aEveryoneÂ§8]");
+		player.sendMessage(pre + "/list Â§8<- Â§aShows the voting");
+		player.sendMessage(pre + "/vote Â§8<Â§6mapnameÂ§8>");
 	}
 }

@@ -55,9 +55,9 @@ public class PlayerJoinListener implements Listener {
 		player.getInventory().clear();
 		
 		if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) {			
-			Manager.DisplayNameManagerMethode(player, "normal");
-			
-			event.setJoinMessage("§7» §r" + player.getDisplayName() + " §7joined the game");
+			Manager.SetDisplayName(player, "normal");
+
+			event.setJoinMessage("Â§7Â» Â§r" + player.getDisplayName() + " Â§7joined the game");
 			
 			player.setGameMode(GameMode.SURVIVAL);
 			
@@ -67,16 +67,16 @@ public class PlayerJoinListener implements Listener {
 			
 			Manager.HelmetManagerMethode(player);
 			 
-			Title.sendTabList(player, "§cRageMode");
-			Title.sendTitle(player, Library.fadein, Library.stay, Library.fadeout, "§6Welcome in");
-			Title.sendSubtitle(player, Library.fadein, Library.stay, Library.fadeout, "§bRageMode");
+			Title.sendTabList(player, "Â§cRageMode");
+			Title.sendTitle(player, Library.fadein, Library.stay, Library.fadeout, "Â§6Welcome in");
+			Title.sendSubtitle(player, Library.fadein, Library.stay, Library.fadeout, "Â§bRageMode");
 			
 			if(PowerSystem.getPower(player) > 0 ) {
 				player.sendMessage(Strings.lobby_rotate_your_mouse);
-				Items.givePlayerSparcleSwitcher(player, "§cOFF");
+				Items.givePlayerSparcleSwitcher(player, "Â§cOFF");
 			}
 			
-			Items.givePlayerHookSwitcher(player, "§aON");
+			Items.givePlayerHookSwitcher(player, "Â§aON");
 			
 			if(Main.isMySQL && Main.isShop) {
 				Items.givePlayerShopItem(player);
@@ -142,7 +142,7 @@ public class PlayerJoinListener implements Listener {
 						lines.add(Strings.stats_kd + rund);
 						lines.add(Strings.stats_playedgames + playedgames);
 						lines.add(Strings.stats_wongames + wongames);
-						lines.add(Strings.stats_winningchances + rundsieg + "§7%");
+						lines.add(Strings.stats_winningchances + rundsieg + "Â§7%");
 						lines.add(Strings.stats_statsreset + resets);
 						
 						Holograms holo = new Holograms(loc, lines);
@@ -152,7 +152,7 @@ public class PlayerJoinListener implements Listener {
 			}    	    
 		    	   
 		} else if(Main.status == Status.INGAME){
-			Manager.DisplayNameManagerMethode(player, "spectator");
+			Manager.SetDisplayName(player, "spectator");
 			
 			Library.spectatorlist.add(player);
 			Library.bar.addPlayer(player);
@@ -164,9 +164,9 @@ public class PlayerJoinListener implements Listener {
 			player.setAllowFlight(true);
 			player.setFlying(true);
 			
-			Title.sendTabList(player , "§bRageMode");
-		    Title.sendTitle(player, Library.fadein, Library.stay, Library.fadeout, "§6Spectator");
-		    Title.sendSubtitle(player, Library.fadein, 40, Library.fadeout, "§bmode");
+			Title.sendTabList(player , "Â§bRageMode");
+		    Title.sendTitle(player, Library.fadein, Library.stay, Library.fadeout, "Â§6Spectator");
+		    Title.sendSubtitle(player, Library.fadein, 40, Library.fadeout, "Â§bmode");
 			
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable(){
 				 public void run(){
@@ -183,8 +183,9 @@ public class PlayerJoinListener implements Listener {
 	@EventHandler
 	public void onFlySpeed(PlayerItemHeldEvent event){
 		Player player = event.getPlayer();
-		
-		if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY){
+
+		if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY || Library.spectatorlist.contains(player)
+				|| player.getGameMode() == GameMode.SPECTATOR || player.getGameMode() == GameMode.CREATIVE){
 			if(PowerSystem.getPower(player) > 0){
 				player.setAllowFlight(true);
 				player.setFlying(true);

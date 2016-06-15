@@ -16,15 +16,15 @@ public class AsyncPlayerChatListener implements Listener{
     public void onChat( AsyncPlayerChatEvent event ) {
 		Player player = event.getPlayer();
 		
-		if(!Library.spectatorlist.contains(player)) event.setFormat(player.getDisplayName() + "ง8: งf" + event.getMessage());
+		if(!Library.spectatorlist.contains(player)) event.setFormat(player.getDisplayName() + "ยง8: ยงf" + event.getMessage());
 	
 		else if(Library.spectatorlist.contains(player)) {
 			if(Main.status == Status.INGAME) {
 				event.setCancelled(true);
 				for(Player spectator : Library.spectatorlist) {
-					spectator.sendMessage("ง8[ง4Xง8]" + player.getDisplayName() + "ง8: งf" + event.getMessage());
+					spectator.sendMessage("ยง8[ยง4Xยง8]" + player.getDisplayName() + "ยง8: ยงf" + event.getMessage());
 				}
-			} else event.setFormat("ง8[ง4Xง8]" + player.getDisplayName() + "ง8: งf" + event.getMessage());
+			} else event.setFormat("ยง8[ยง4Xยง8]" + player.getDisplayName() + "ยง8: ยงf" + event.getMessage());
 
 		} else System.out.println(Strings.error_not_authenticated_player);
     }

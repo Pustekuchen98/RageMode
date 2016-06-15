@@ -77,7 +77,7 @@ public class PlayerDeathListener implements Listener {
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_bow);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.bowkill);
-						createHologram(new Holograms(victim.getEyeLocation(), "งc+ง6" + this.bowkill + Strings.kill_holo_points));
+						createHologram(new Holograms(victim.getEyeLocation(), "ยงc+ยง6" + this.bowkill + Strings.kill_holo_points));
 		
 					} else if (killreason.contains("combataxe")) {
 						
@@ -85,7 +85,7 @@ public class PlayerDeathListener implements Listener {
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_combat_axe);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.combataxekill);
-						createHologram(new Holograms(victim.getEyeLocation(), "งc+ง6" + this.combataxekill + Strings.kill_holo_points));
+						createHologram(new Holograms(victim.getEyeLocation(), "ยงc+ยง6" + this.combataxekill + Strings.kill_holo_points));
 						
 					} else if (killreason.contains("grenade")) {
 						
@@ -93,7 +93,7 @@ public class PlayerDeathListener implements Listener {
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_grenade);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.grenadekill);
-						createHologram(new Holograms(victim.getEyeLocation(), "งc+ง6" + this.grenadekill + Strings.kill_holo_points));
+						createHologram(new Holograms(victim.getEyeLocation(), "ยงc+ยง6" + this.grenadekill + Strings.kill_holo_points));
 		
 					} else if (killreason.contains("mine")) {
 						
@@ -101,7 +101,7 @@ public class PlayerDeathListener implements Listener {
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_mine);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.minekill);
-						createHologram(new Holograms(victim.getEyeLocation(), "งc+ง6" + this.minekill + Strings.kill_holo_points));
+						createHologram(new Holograms(victim.getEyeLocation(), "ยงc+ยง6" + this.minekill + Strings.kill_holo_points));
 		
 					} else if (killreason.contains("claymore")) {
 						
@@ -109,7 +109,7 @@ public class PlayerDeathListener implements Listener {
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_claymore);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.claymorekill);
-						createHologram(new Holograms(victim.getEyeLocation(), "งc+ง6" + this.claymorekill + Strings.kill_holo_points));
+						createHologram(new Holograms(victim.getEyeLocation(), "ยงc+ยง6" + this.claymorekill + Strings.kill_holo_points));
 					
 					} else if(killreason.contains("c4")) {
 						
@@ -117,7 +117,7 @@ public class PlayerDeathListener implements Listener {
 						Library.bar.setTitle(killername + Strings.kill_killed + victimname + Strings.kill_with + Strings.kill_with_c4);
 						resetBossBar();
 						killer.sendMessage(Strings.kill_points_plus + this.c4kill);
-						createHologram(new Holograms(victim.getEyeLocation(), "งc+ง6" + this.c4kill + Strings.kill_holo_points));
+						createHologram(new Holograms(victim.getEyeLocation(), "ยงc+ยง6" + this.c4kill + Strings.kill_holo_points));
 						
 					} else if(killreason.contains("knife")) {
 						
@@ -127,7 +127,7 @@ public class PlayerDeathListener implements Listener {
 						killer.sendMessage(Strings.kill_points_plus + this.knifekill);
 						victim.sendMessage(Strings.kill_points_negative + this.knifedeath);
 						givePlayerPoints(victim, "knife_death");
-						createHologram(new Holograms(victim.getEyeLocation(), "งc+ง6" + this.knifekill + Strings.kill_holo_points));
+						createHologram(new Holograms(victim.getEyeLocation(), "ยงc+ยง6" + this.knifekill + Strings.kill_holo_points));
 					
 					//[Check] what killreason is. - Closed
 					} else event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_unknown_killer); 
@@ -156,7 +156,7 @@ public class PlayerDeathListener implements Listener {
 					}
 					
 					killer.sendMessage(Main.pre + Strings.kill_your_points + String.valueOf(Library.playerpoints.get(killer)));
-					killer.setPlayerListName(killer.getDisplayName() + " ง8- [ง6" + Library.playerpoints.get(killer) + "ง8]");
+					killer.setPlayerListName(killer.getDisplayName() + " ยง8- [ยง6" + Library.playerpoints.get(killer) + "ยง8]");
 					
 				//[Check] if killreason != null. - Closed
 				}
@@ -166,9 +166,9 @@ public class PlayerDeathListener implements Listener {
 				event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_suicide);
 				Library.bar.setTitle(victim.getDisplayName() + Strings.kill_suicide);
 				resetBossBar();
-				victim.sendMessage("งcงl" + this.suicide);
+				victim.sendMessage("ยงcยงl" + this.suicide);
 				givePlayerPoints(victim, "suicide");
-				createHologram(new Holograms(victim.getEyeLocation(), "งc" + this.suicide + Strings.kill_holo_points));
+				createHologram(new Holograms(victim.getEyeLocation(), "ยงc" + this.suicide + Strings.kill_holo_points));
 			}
 		
 		//[Check] if Killer is a Player
@@ -193,7 +193,7 @@ public class PlayerDeathListener implements Listener {
 		if(Library.playerpoints.get(victim) == null) victim.sendMessage(Main.pre + Strings.kill_your_points + "0");
 		else victim.sendMessage(Main.pre + Strings.kill_your_points + String.valueOf(Library.playerpoints.get(victim)));
 		
-		victim.setPlayerListName(victim.getDisplayName() + " ง8- [ง6" + Library.playerpoints.get(victim) + "ง8]");
+		victim.setPlayerListName(victim.getDisplayName() + " ยง8- [ยง6" + Library.playerpoints.get(victim) + "ยง8]");
 	}
 	
 

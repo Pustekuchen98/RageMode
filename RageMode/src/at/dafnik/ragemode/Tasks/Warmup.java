@@ -80,7 +80,7 @@ public class Warmup {
 						players.setLevel(0);
 						players.setGameMode(GameMode.SURVIVAL);
 						players.getInventory().clear();			
-						players.setPlayerListName(players.getDisplayName() + " ง8- [ง6" + 0 + "ง8]");
+						players.setPlayerListName(players.getDisplayName() + " ยง8- [ยง6" + 0 + "ยง8]");
 						
 						//Player Teleport
 						players.teleport(TeleportAPI.getRandomMapSpawnLocations());

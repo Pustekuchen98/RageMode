@@ -81,7 +81,7 @@ public class Shop implements Listener{
 	
 	public static void createBasicShopMenu(Player player) {
 		//Generate Inventory
-		Inventory inventory = Bukkit.createInventory(null, 9, "§6Shop §8| §6Coins§7: §e" + SQLCoins.getCoins(player.getUniqueId().toString()));	
+		Inventory inventory = Bukkit.createInventory(null, 9, "Â§6Shop Â§8| Â§6CoinsÂ§7: Â§e" + SQLCoins.getCoins(player.getUniqueId().toString()));
 		
 		inventory.setItem(0, createShopItems.createMainShopInventory(player, Material.FEATHER));
 		inventory.setItem(2, createShopItems.createMainShopInventory(player, Material.SULPHUR));

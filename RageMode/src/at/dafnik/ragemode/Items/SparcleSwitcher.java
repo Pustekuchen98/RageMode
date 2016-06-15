@@ -26,12 +26,12 @@ public class SparcleSwitcher implements Listener{
 							Library.sparcleswitch.remove(player);
 							
 							player.getInventory().remove(event.getItem());
-							Items.givePlayerSparcleSwitcher(player, "§cOFF");
+							Items.givePlayerSparcleSwitcher(player, "Â§cOFF");
 						} else {
 							Library.sparcleswitch.add(player);
 							
 							player.getInventory().remove(event.getItem());
-							Items.givePlayerSparcleSwitcher(player, "§aON");
+							Items.givePlayerSparcleSwitcher(player, "Â§aON");
 						}
 					}
 				}

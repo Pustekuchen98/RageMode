@@ -66,7 +66,7 @@ public class Title {
 		PlayerConnection con = ((CraftPlayer) player).getHandle().playerConnection;
 
 		IChatBaseComponent header = ChatSerializer.a("{\"text\": \"" + headerstring + "\"}");
-		IChatBaseComponent footer = ChatSerializer.a("{\"text\": \"" + "ง7Gamemode made by ง3Dafnik" + "\"}");
+		IChatBaseComponent footer = ChatSerializer.a("{\"text\": \"" + "ยง7Gamemode made by ยง3Dafnik" + "\"}");
 
 		PacketPlayOutPlayerListHeaderFooter packet = new PacketPlayOutPlayerListHeaderFooter(header);
 

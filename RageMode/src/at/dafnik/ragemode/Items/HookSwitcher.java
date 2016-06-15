@@ -24,12 +24,12 @@ public class HookSwitcher implements Listener {
 						Library.allowedhook.remove(player);
 						
 						player.getInventory().remove(event.getItem());
-						Items.givePlayerHookSwitcher(player, "§aON");	
+						Items.givePlayerHookSwitcher(player, "Â§aON");
 					} else {
 						Library.allowedhook.add(player);
 						
 						player.getInventory().remove(event.getItem());
-						Items.givePlayerHookSwitcher(player, "§cOFF");	
+						Items.givePlayerHookSwitcher(player, "Â§cOFF");
 					}
 				}
 			}

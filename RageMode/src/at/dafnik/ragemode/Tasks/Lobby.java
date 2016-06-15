@@ -148,7 +148,7 @@ public class Lobby {
 	
 	private void doTitle() {
 		for(Player player : Bukkit.getOnlinePlayers()) {
-			Title.sendTitle(player, Library.fadein, Library.stay, Library.fadeout, "§cRageMode");
+			Title.sendTitle(player, Library.fadein, Library.stay, Library.fadeout, "Â§cRageMode");
 		}
 	}
 }

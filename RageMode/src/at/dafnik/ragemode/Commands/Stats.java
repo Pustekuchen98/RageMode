@@ -154,7 +154,7 @@ public class Stats implements CommandExecutor {
 			}
 			int rundsieg = (int) siegwahrscheinlichkeit;
 			
-			player.sendMessage(Strings.stats_your_name_first + "ง6" +wantedPlayer.getName() + Strings.stats_your_name_two);
+			player.sendMessage(Strings.stats_your_name_first + "ยง6" +wantedPlayer.getName() + Strings.stats_your_name_two);
 			player.sendMessage(Strings.stats_points + points);
 			if(wantedPlayer == player) player.sendMessage(Strings.stats_coins + coins);
 			player.sendMessage(Strings.stats_allkills + kills);
@@ -166,9 +166,9 @@ public class Stats implements CommandExecutor {
 			player.sendMessage(Strings.stats_kd + rund);
 			player.sendMessage(Strings.stats_playedgames + playedgames);
 			player.sendMessage(Strings.stats_wongames + wongames);
-			player.sendMessage(Strings.stats_winningchances + rundsieg + "ง7%");
+			player.sendMessage(Strings.stats_winningchances + rundsieg + "ยง7%");
 			player.sendMessage(Strings.stats_statsreset + resets);
-			player.sendMessage("ง7------------------------");
+			player.sendMessage("ยง7------------------------");
 		
 		} else {
 			player.sendMessage(Strings.error_not_mysql_enabled);

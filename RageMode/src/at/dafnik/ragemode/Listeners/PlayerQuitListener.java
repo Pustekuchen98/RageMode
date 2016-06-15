@@ -25,7 +25,7 @@ public class PlayerQuitListener implements Listener{
 		Player player = event.getPlayer();
 		
 		if(!Library.spectatorlist.contains(player)) {
-			event.setQuitMessage("§7« §r" + player.getDisplayName() + " §7left the game");
+			event.setQuitMessage("Â§7Â» Â§r" + player.getDisplayName() + " Â§7left the game");
 			
 			if(Bukkit.getOnlinePlayers().size() == 1 && Library.villager != null) { 
 				Library.villager.stop();

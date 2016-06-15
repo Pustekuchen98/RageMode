@@ -34,7 +34,7 @@ public class createAdvancedInventoryMenu_BowPowerUpgrade extends createAdvancedI
 				super.buyitemmeta.setDisplayName(Strings.inventory_flint_buyable);
 			} else {
 				super.buyitemmeta.setDisplayName(Strings.inventory_flint_not_enough_coins);
-				super.buyitemlore.add("งa" + upgradecost + " ง6Coins");
+				super.buyitemlore.add("ยงa" + upgradecost + " ยง6Coins");
 			}
 		}
 	}

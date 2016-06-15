@@ -11,7 +11,7 @@ import at.dafnik.ragemode.Main.Library;
 public class Manager {
 	
 	//DisplayName Manager
-	public static void DisplayNameManagerMethode(Player player, String state) {
+	public static void SetDisplayName(Player player, String state) {
 		new PlayerListName().set(player, state);
 	}
 
@@ -20,7 +20,7 @@ public class Manager {
 		ItemStack item = new ItemStack(Material.LEATHER_HELMET, 1);
 		LeatherArmorMeta lam;
 		lam = (LeatherArmorMeta) item.getItemMeta();
-		lam.setDisplayName("�6Helmet");
+		lam.setDisplayName("§6Helmet");
 		
 		if (player.hasPermission("ragemode.admin")) lam.setColor(Color.RED);
 		else if (player.hasPermission("ragemode.moderator")) lam.setColor(Color.MAROON);	
@@ -50,23 +50,23 @@ class PlayerListName implements Runnable {
 	@Override
 	public void run() {	
 		if (player.hasPermission("ragemode.admin")) {
-			player.setDisplayName("�4Admin �8| �4" + player.getName());
+			player.setDisplayName("§4Admin §8| §4" + player.getName());
 			if((Library.teams.get(0).getPrefix().length() + player.getName().length()) <= 16) Library.teams.get(0).addEntry(player.getName());
 		
 		} else if (player.hasPermission("ragemode.moderator")) {
-			player.setDisplayName("�cMod. �8| �c" + player.getName());
+			player.setDisplayName("§cMod. §8| §c" + player.getName());
 			if((Library.teams.get(1).getPrefix().length() + player.getName().length()) <= 16) Library.teams.get(1).addEntry(player.getName());
 			
 		} else if (player.hasPermission("ragemode.youtuber")) {
-			player.setDisplayName("�5YouTuber �8| �5" + player.getName());
+			player.setDisplayName("§5YouTuber §8| §5" + player.getName());
 			if((Library.teams.get(2).getPrefix().length() + player.getName().length()) <= 16) Library.teams.get(2).addEntry(player.getName());
 			
 		} else if (player.hasPermission("ragemode.premium")) {
-			player.setDisplayName("�6" + player.getName());	
+			player.setDisplayName("§6" + player.getName());
 			if((Library.teams.get(3).getPrefix().length() + player.getName().length()) <= 16) Library.teams.get(3).addEntry(player.getName());
 			
 		} else {
-			player.setDisplayName("�a" + player.getName());
+			player.setDisplayName("§a" + player.getName());
 			if((Library.teams.get(4).getPrefix().length() + player.getName().length()) <= 16) Library.teams.get(4).addEntry(player.getName());
 		}
 		
@@ -79,7 +79,7 @@ class PlayerListName implements Runnable {
 		}
 		
 		if (state == "normal") player.setPlayerListName(player.getDisplayName());
-		else if (state == "spectator")player.setPlayerListName("�8[�4X�8]" + player.getDisplayName());
+		else if (state == "spectator")player.setPlayerListName("§8[§4X§8]" + player.getDisplayName());
 		else System.out.println(Strings.error_not_authenticated_player);
 	}
 }

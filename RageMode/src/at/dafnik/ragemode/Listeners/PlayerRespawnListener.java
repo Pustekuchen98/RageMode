@@ -34,7 +34,7 @@ public class PlayerRespawnListener implements Listener{
 		player.setVelocity(new Vector(0, 0, 0));
 		player.setMaxHealth(20);
 		player.setGlowing(false);
-		Title.sendTabList(player, "§bRageMode");
+		Title.sendTabList(player, "Â§bRageMode");
 		player.removeMetadata("killedWith", Main.getInstance());
 		
 		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable(){

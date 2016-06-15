@@ -59,7 +59,7 @@ public class VillagerShop implements Runnable {
 			
 			this.villager= (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 			Library.villagerholo = new Holograms(new Location(loc.getWorld(), loc.getX(), loc.getY() + 1.7, loc.getZ()),
-					"ง6Shop");
+					"ยง6Shop");
 			this.villager.setProfession(Profession.BLACKSMITH);
 			this.villager.setRemoveWhenFarAway(false);
 			this.villager.setCanPickupItems(false);

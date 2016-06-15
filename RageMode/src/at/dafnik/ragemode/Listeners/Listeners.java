@@ -32,15 +32,9 @@ public class Listeners implements Listener {
 	
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent event){
-		Player player = event.getPlayer();
-		Location loc = player.getLocation();
-		
-		if(Main.status == Status.INGAME) {	
-			if(Library.spectatorlist.contains(player)) {
-				player.setAllowFlight(true);
-				player.setFlying(true);
-			}
-			
+		if(Main.status == Status.INGAME) {
+			Player player = event.getPlayer();
+
 			if(event.getTo().getY() <= 0.0D){
 				player.teleport(TeleportAPI.getRandomMapSpawnLocations());
 				
@@ -61,6 +55,8 @@ public class Listeners implements Listener {
 			}
 			
 			if(!happened) {
+				Location loc = player.getLocation();
+
 				if(mapmiddle == null) {
 					mapmiddle = TeleportAPI.getMapMiddleLocation();
 					if(mapmiddle == null) {
@@ -141,31 +137,31 @@ public class Listeners implements Listener {
 	public void Ping(ServerListPingEvent event) {
 		if(Main.isBungee) {
 			if (Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) {
-				if(Bukkit.getOnlinePlayers().size() < Bukkit.getMaxPlayers()) event.setMotd("�0[�aLobby�0]");
-				else if(Bukkit.getOnlinePlayers().size() >= Bukkit.getMaxPlayers()) event.setMotd("�0[�6Lobby�0]");
+				if(Bukkit.getOnlinePlayers().size() < Bukkit.getMaxPlayers()) event.setMotd("§0[§aLobby§0]");
+				else if(Bukkit.getOnlinePlayers().size() >= Bukkit.getMaxPlayers()) event.setMotd("§0[§6Lobby§0]");
 			}	
-			else if (Main.status == Status.WARMUP) event.setMotd("�0[�cWarmup�0]");
-			else if (Main.status == Status.INGAME) event.setMotd("�0[�4Ingame�0]");
-			else if (Main.status == Status.WIN || Main.status == Status.RESTART) event.setMotd("�0[�eWin�0]");		
+			else if (Main.status == Status.WARMUP) event.setMotd("§0[§cWarmup§0]");
+			else if (Main.status == Status.INGAME) event.setMotd("§0[§4Ingame§0]");
+			else if (Main.status == Status.WIN || Main.status == Status.RESTART) event.setMotd("§0[§eWin§0]");
 			
 		} else {
 			if (Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) {
-				if(Bukkit.getOnlinePlayers().size() < Bukkit.getMaxPlayers()) event.setMotd("�4RageMode �8- �aLobby");	
-				else if(Bukkit.getOnlinePlayers().size() >= Bukkit.getMaxPlayers()) event.setMotd("�4RageMode �8- �6Lobby");
+				if(Bukkit.getOnlinePlayers().size() < Bukkit.getMaxPlayers()) event.setMotd("§4RageMode §8- §aLobby");
+				else if(Bukkit.getOnlinePlayers().size() >= Bukkit.getMaxPlayers()) event.setMotd("§4RageMode §8- §6Lobby");
 				
 			} else if (Main.status == Status.WARMUP) {
-				event.setMotd("�cRageMode �8- �cWarmup\n"
-							+ "�7Played Map�8: �6" + Library.votedmap);
+				event.setMotd("§cRageMode §8- §cWarmup\n"
+							+ "§7Played Map§8: §6" + Library.votedmap);
 			} else if (Main.status == Status.INGAME) {
-				event.setMotd("�cRageMode �8- �4Ingame\n"
-							+ "�7Played Map�8: �6" + Library.votedmap);
+				event.setMotd("§cRageMode §8- §4Ingame\n"
+							+ "§7Played Map§8: §6" + Library.votedmap);
 			} else if (Main.status == Status.WIN || Main.status == Status.RESTART) {
 				if(Main.getInstance().lobbytasks.wm.ig.playerwinner != null) {
-					event.setMotd("�4RageMode �8- �eWin\n"
-								+ "�3Winner�8: �6" + Main.getInstance().lobbytasks.wm.ig.playerwinner.getDisplayName() + " �8- �6" + Library.playerpoints.get(Main.getInstance().lobbytasks.wm.ig.playerwinner));
+					event.setMotd("§4RageMode §8- §eWin\n"
+								+ "§3Winner§8: §6" + Main.getInstance().lobbytasks.wm.ig.playerwinner.getDisplayName() + " §8- §6" + Library.playerpoints.get(Main.getInstance().lobbytasks.wm.ig.playerwinner));
 				} else {
-					event.setMotd("�4RageMode �8- �eWin\n"
-								+ "�7No Winner");
+					event.setMotd("§4RageMode §8- §eWin\n"
+								+ "§7No Winner");
 				}
 			} else System.out.println(Strings.error_not_authenticated_player);
 		}

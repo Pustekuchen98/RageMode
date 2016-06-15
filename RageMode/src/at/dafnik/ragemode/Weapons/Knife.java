@@ -149,10 +149,10 @@ public class Knife implements Listener{
 			if(howmany == 10) item.setDurability((short)250);
 			ItemMeta imd = item.getItemMeta();
 			if(!(howmany == 0)) {
-				imd.setDisplayName("§cKnife §8[§6" + howmany + "§8]");
+				imd.setDisplayName("Â§cKnife Â§8[Â§6" + howmany + "Â§8]");
 				item.setDurability((short) (item.getDurability() - 20));
 			} else {
-				imd.setDisplayName("§cKnife §8[§6Ready§8]");
+				imd.setDisplayName("Â§cKnife Â§8[Â§6ReadyÂ§8]");
 				item.setDurability((short)0);
 			}
 			item.setItemMeta(imd);

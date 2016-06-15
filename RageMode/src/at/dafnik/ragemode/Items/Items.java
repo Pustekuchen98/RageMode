@@ -76,9 +76,9 @@ public class Items {
 	public static void givePlayerShopItem(Player player) {
 		ItemStack i = new ItemStack(Material.GOLD_NUGGET);
 		ItemMeta imd = i.getItemMeta();
-		imd.setDisplayName("§6Shop");
+		imd.setDisplayName("Â§6Shop");
 		List<String> ilore = new ArrayList<String>();
-		ilore.add("§7Right click to use");
+		ilore.add("Â§7Right click to use");
 		imd.setLore(ilore);
 		i.setItemMeta(imd);
 		player.getInventory().setItem(2, i);
@@ -87,9 +87,9 @@ public class Items {
 	public static void givePlayerSparcleSwitcher(Player player, String switcher) {
 		ItemStack i = new ItemStack(Material.NETHER_STAR);
 		ItemMeta imd = i.getItemMeta();
-		imd.setDisplayName("§5Sparcles §8- " + switcher);
+		imd.setDisplayName("Â§5Sparcles Â§8- " + switcher);
 		List<String> ilore = new ArrayList<String>();
-		ilore.add("§7Right click to use");
+		ilore.add("Â§7Right click to use");
 		imd.setLore(ilore);
 		i.setItemMeta(imd);
 		player.getInventory().setItem(0, i);
@@ -98,9 +98,9 @@ public class Items {
 	public static void givePlayerHookSwitcher(Player player, String switcher) {
 		ItemStack i = new ItemStack(Material.STICK);
 		ItemMeta imd = i.getItemMeta();
-		imd.setDisplayName("§bHook §8- " + switcher);
+		imd.setDisplayName("Â§bHook Â§8- " + switcher);
 		List<String> ilore = new ArrayList<String>();
-		ilore.add("§7Right click to use");
+		ilore.add("Â§7Right click to use");
 		imd.setLore(ilore);
 		i.setItemMeta(imd);
 		player.getInventory().setItem(1, i);
@@ -109,7 +109,7 @@ public class Items {
 	public static void givePlayerItems(Player player){
 		ItemStack i = new ItemStack(Material.BOW);
 		ItemMeta imd = i.getItemMeta();
-		imd.setDisplayName("§6Bow");
+		imd.setDisplayName("Â§6Bow");
 		i.setItemMeta(imd);
 		i.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 		i.addEnchantment(Enchantment.DURABILITY, 3);
@@ -119,7 +119,7 @@ public class Items {
 			if(SQLCoins.getSpectralArrowUpgrade(player.getUniqueId().toString())) {
 				ItemStack i2 = new ItemStack(Material.SPECTRAL_ARROW, 64);
 				ItemMeta imd2 = i2.getItemMeta();
-				imd2.setDisplayName("§6Spectral Arrow");
+				imd2.setDisplayName("Â§6Spectral Arrow");
 				i2.setItemMeta(imd2);
 				player.getInventory().setItem(35, i2);
 				player.getInventory().setItem(34, i2);
@@ -129,33 +129,33 @@ public class Items {
 			} else {
 				ItemStack i2 = new ItemStack(Material.ARROW);
 				ItemMeta imd2 = i2.getItemMeta();
-				imd2.setDisplayName("§6Arrow");
+				imd2.setDisplayName("Â§6Arrow");
 				i2.setItemMeta(imd2);
 				player.getInventory().setItem(35, i2);
 			}
 		} else {
 			ItemStack i2 = new ItemStack(Material.ARROW);
 			ItemMeta imd2 = i2.getItemMeta();
-			imd2.setDisplayName("§6Arrow");
+			imd2.setDisplayName("Â§6Arrow");
 			i2.setItemMeta(imd2);
 			player.getInventory().setItem(35, i2);
 		}
 		
 		ItemStack i3 = new ItemStack(Material.IRON_SPADE);
 		ItemMeta imd3 = i3.getItemMeta();
-		imd3.setDisplayName("§cKnife §8[§6Ready§8]");
+		imd3.setDisplayName("Â§cKnife Â§8[Â§6ReadyÂ§8]");
 		i3.setItemMeta(imd3);
 		player.getInventory().setItem(1, i3);
 
 		ItemStack i4 = new ItemStack(Material.DIAMOND_AXE);
 		ItemMeta imd4 = i4.getItemMeta();
-		imd4.setDisplayName("§aCombat Axt");
+		imd4.setDisplayName("Â§aCombat Axt");
 		i4.setItemMeta(imd4);
 		player.getInventory().setItem(2, i4);
 		
 		ItemStack i5 = new ItemStack(Material.EGG);
 		ItemMeta imd5 = i5.getItemMeta();
-		imd5.setDisplayName("§eCluster Bomb");
+		imd5.setDisplayName("Â§eCluster Bomb");
 		i5.setItemMeta(imd5);
 		player.getInventory().setItem(3, i5);
 		
@@ -167,7 +167,7 @@ public class Items {
 		
 		ItemStack i9 = new ItemStack(Material.COMPASS);
 		ItemMeta imd9 = i9.getItemMeta();
-		imd9.setDisplayName("§8Tracker");
+		imd9.setDisplayName("Â§8Tracker");
 		i9.setItemMeta(imd9);
 		player.getInventory().setItem(8, i9);
 	}

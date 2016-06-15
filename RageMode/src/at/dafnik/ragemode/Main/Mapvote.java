@@ -82,7 +82,7 @@ public class Mapvote implements CommandExecutor{
 				} else if(Main.status == Status.PRE_LOBBY){
 					player.sendMessage(Strings.error_voting_finished);
 				} else {
-					player.sendMessage(Main.pre + "งeMapง8: ง6" + Library.votedmap);
+					player.sendMessage(Main.pre + "ยงeMapยง8: ยง6" + Library.votedmap);
 				}
 			}
 			
@@ -147,7 +147,7 @@ public class Mapvote implements CommandExecutor{
 		if(Main.status == Status.LOBBY){
 			player.sendMessage(Strings.votes_vote_for_map);
 			for(String all : Library.mapstovote){
-				player.sendMessage(Main.pre + "ง7- งe" + all + "ง8: งb" + Library.votes.get(all));
+				player.sendMessage(Main.pre + "ยง7- ยงe" + all + "ยง8: ยงb" + Library.votes.get(all));
 			}
 		}else player.sendMessage(Strings.error_voting_finished);	
 	}
@@ -155,7 +155,7 @@ public class Mapvote implements CommandExecutor{
 	public void getListBroadcast(){
 		Bukkit.broadcastMessage(Strings.votes_vote_for_map);
 		for(String all : Library.mapstovote){
-			Bukkit.broadcastMessage(Main.pre + "ง7- งe" + all + "ง8: งb" + Library.votes.get(all));
+			Bukkit.broadcastMessage(Main.pre + "ยง7- ยงe" + all + "ยง8: ยงb" + Library.votes.get(all));
 		}
 	}
 	
