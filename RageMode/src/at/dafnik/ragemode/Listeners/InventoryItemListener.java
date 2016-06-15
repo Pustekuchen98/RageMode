@@ -67,16 +67,15 @@ public class InventoryItemListener implements Listener{
 			if(event.getCurrentItem() != null) {
 				Player player = (Player) event.getWhoClicked();
 				Material item = event.getCurrentItem().getType();
-				
-				if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && Library.builder.contains(player)
-						&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
-				else {
-					if(item == Material.BOW || item == Material.IRON_SPADE || item == Material.DIAMOND_AXE || item == Material.ARROW
-							|| item == Material.COMPASS || item == Material.LEATHER_HELMET) {
-						event.setCancelled(true);
-					} else {
-						event.setCancelled(false);
-					}
+
+				if(((Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) && Library.builder.contains(player) && player.hasPermission("ragemode_admin"))
+						&& !(item == Material.BOW || item == Material.IRON_SPADE || item == Material.DIAMOND_AXE || item == Material.ARROW
+						|| item == Material.COMPASS || item == Material.LEATHER_HELMET)) {
+
+					event.setCancelled(false);
+
+				} else {
+					event.setCancelled(true);
 				}
 			}
 		} else event.setCancelled(true);
@@ -88,6 +87,6 @@ public class InventoryItemListener implements Listener{
 		
 		if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && Library.builder.contains(player)
 				&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
-		else event.setCancelled(true);
+		//else event.setCancelled(true);
 	}
 }
