@@ -111,14 +111,14 @@ public class DoubleJump implements Listener {
 			if (player.isOnGround()) {
 				cooldown.put(player, true);
 			}
-		} else if(Main.status == Status.INGAME) player.setAllowFlight(false);
+		}
 	}
 	
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onFly(PlayerToggleFlightEvent event) {
 		Player player = event.getPlayer();
-		
+
 		if(Library.powerup_doublejump.contains(player)) {
 			if (player.getGameMode() == GameMode.CREATIVE) return;
 			
@@ -135,7 +135,7 @@ public class DoubleJump implements Listener {
 	
 				player.setAllowFlight(false);
 			}
-		} else if(Main.status == Status.INGAME) player.setAllowFlight(false);
+		}
 		
 	}
 
