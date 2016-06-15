@@ -14,6 +14,8 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
+import net.minecraft.server.v1_10_R1.EntityArmorStand;
+
 public class Holograms {
   
     private List<Object> destroyCache;
@@ -51,6 +53,7 @@ public class Holograms {
     static {
         path = Bukkit.getServer().getClass().getPackage().getName();
         version = path.substring(path.lastIndexOf(".")+1, path.length());
+        //version = "v1_10_R1";
       
         try {
             armorStand = Class.forName("net.minecraft.server." + version + ".EntityArmorStand");
@@ -149,8 +152,8 @@ public class Holograms {
             setCustomName.invoke(entityObject, new Object[] { text });
             Method setCustomNameVisible = nmsEntity.getMethod("setCustomNameVisible", new Class[] { boolean.class });
             setCustomNameVisible.invoke(entityObject, new Object[] { true });
-            Method setGravity = entityObject.getClass().getMethod("setGravity", new Class<?>[] { boolean.class });
-            setGravity.invoke(entityObject, new Object[] { false });
+            /*Method setGravity = entityObject.getClass().getMethod("setGravity", new Class<?>[] { boolean.class });
+            setGravity.invoke(entityObject, new Object[] { false });*/
             Method setLocation = entityObject.getClass().getMethod("setLocation", new Class<?>[] { double.class, double.class, double.class, float.class, float.class });
             setLocation.invoke(entityObject, new Object[] { x, y, z, 0.0F, 0.0F });
             Method setInvisible = entityObject.getClass().getMethod("setInvisible", new Class<?>[] { boolean.class });
