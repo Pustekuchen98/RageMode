@@ -34,5 +34,8 @@ commands:
     aliases: c
   coinsadmin:
     description: Admin Command
+  sparcles:
+    description: Enable or disable sparcles behind your arrows
+    aliases: sparcle
   test:
     description: Test

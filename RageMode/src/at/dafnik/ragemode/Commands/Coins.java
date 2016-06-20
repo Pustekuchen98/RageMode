@@ -58,11 +58,8 @@ public class Coins implements CommandExecutor{
 	        if (!offlinePlayer.hasPlayedBefore()) {
 	            player.sendMessage(Strings.error_no_uuid);
 	            return false;
-	        } else if (offlinePlayer.hasPlayedBefore()) {
-	        	return true;
 	        } else {
-	        	player.sendMessage(Strings.error_no_uuid);
-	        	return false;
+	        	return true;
 	        }
 		} else {
 			player.sendMessage(Strings.error_not_mysql_enabled);

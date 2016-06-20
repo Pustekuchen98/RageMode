@@ -102,7 +102,10 @@ public class Strings {
 	
 	public static String commands_coins_added_0 = pre + "§a+ §f";
 	public static String commands_coins_added_1 = " §7Coins";
-	
+
+
+	public static String commands_sparcle_on = pre + "§7Sparcles behind your arrows: §aon";
+	public static String commands_sparcle_off = pre + "§7Sparcles behind your arrows: §coff";
 	
 	
 	public static String shop_item_doublepowerup_name = "§fDouble PowerUPs Upgrade";
@@ -323,6 +326,7 @@ public class Strings {
 	public static String items_fly = "§5Fly";
 	public static String items_c4 = "§4C4";
 	public static String items_c4_detonator = "§4C4 §7Detonator";
+	public static String items_shield = "§fShield";
 	
 	public static String bossbar = "§6You §bare playing §cRageMode";
 }

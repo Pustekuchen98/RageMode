@@ -1,6 +1,9 @@
 package at.dafnik.ragemode.Commands;
 
+import at.dafnik.ragemode.Items.Items;
+import at.dafnik.ragemode.Main.Main;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,6 +13,8 @@ import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.API.TeleportAPI;
 import at.dafnik.ragemode.Main.Library;
 import at.dafnik.ragemode.Main.PowerSystem;
+import at.dafnik.ragemode.Main.Main.Status;
+import org.bukkit.inventory.ItemStack;
 
 public class Teleport implements CommandExecutor{
 	
@@ -47,6 +52,26 @@ public class Teleport implements CommandExecutor{
 					player.teleport(TeleportAPI.getLobbyLocation());
 			 	}
 			}
+
+			if(cmd.getName().equalsIgnoreCase("sparcles")) {
+				if(Library.sparcleswitch.contains(player)) {
+					Library.sparcleswitch.remove(player);
+					player.sendMessage(Strings.commands_sparcle_off);
+				} else {
+					Library.sparcleswitch.add(player);
+					player.sendMessage(Strings.commands_sparcle_on);
+				}
+
+				if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) {
+					player.getInventory().remove(Material.AIR);
+					if(Library.sparcleswitch.contains(player)) {
+						Items.givePlayerSparcleSwitcher(player, "§aON");
+					} else {
+						Items.givePlayerSparcleSwitcher(player, "§cOFF");
+					}
+				}
+			}
+
 		} else System.out.println(Strings.error_only_player_use);
 		return true;
 	}

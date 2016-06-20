@@ -101,20 +101,17 @@ public class Stats implements CommandExecutor {
 	
 	@SuppressWarnings("deprecation")
 	public Boolean PlayedBefore(Player player, String playername){
-		if(Main.isMySQL) {
+		if (!Main.isMySQL) {
+			player.sendMessage(Strings.error_not_mysql_enabled);
+			return false;
+		} else {
 			OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playername);
 	        if (!offlinePlayer.hasPlayedBefore()) {
 	            player.sendMessage(Strings.error_no_uuid);
 	            return false;
-	        } else if (offlinePlayer.hasPlayedBefore()) {
+	        } else  {
 	        	return true;
-	        } else {
-	        	player.sendMessage(Strings.error_no_uuid);
-	        	return false;
 	        }
-		} else {
-			player.sendMessage(Strings.error_not_mysql_enabled);
-			return false;
 		}
 	}
 	
