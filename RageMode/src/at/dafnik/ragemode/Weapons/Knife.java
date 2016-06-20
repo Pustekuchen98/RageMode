@@ -190,7 +190,13 @@ public class Knife implements Listener{
 
 										killer.sendMessage(Strings.kill_backstab_knife);
 
-									} else victim.damage(14, killer);
+									} else {
+										if(Library.powerup_shield.contains(victim)) {
+											victim.damage(6, killer);
+										} else {
+											victim.damage(14, killer);
+										}
+									}
 								}
 							}
 						}, 1);

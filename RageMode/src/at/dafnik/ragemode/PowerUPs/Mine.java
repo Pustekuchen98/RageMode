@@ -39,8 +39,12 @@ public class Mine implements Listener{
 							if(Main.status == Status.INGAME) {				    
 								victim.removeMetadata("killedWith", Main.getInstance());
 								victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "mine"));
-								
-								victim.damage(21, killer);
+
+								if(Library.powerup_shield.contains(victim)) {
+									victim.damage(11, killer);
+								} else {
+									victim.damage(21, killer);
+								}
 								victim.setLastDamageCause(new EntityDamageEvent(killer, DamageCause.PROJECTILE, 0));
 								
 								loc.getWorld().playEffect(loc, Effect.EXPLOSION_HUGE, 1);

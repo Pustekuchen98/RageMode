@@ -63,7 +63,11 @@ public class ClayMoreThread implements Runnable{
 													
 												victim.removeMetadata("killedWith", Main.getInstance());
 												victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "claymore"));
-												victim.damage(11, setter);
+												if(Library.powerup_shield.contains(victim)) {
+													victim.damage(6, setter);
+												} else {
+													victim.damage(11, setter);
+												}
 												victim.setLastDamageCause(new EntityDamageEvent(setter, DamageCause.PROJECTILE, 0));
 												
 												loc.getBlock().setType(Material.AIR);

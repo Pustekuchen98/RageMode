@@ -1,6 +1,11 @@
 Changes:
 	- Minecraft 1.10
 	- Hologram Updates
+
+Added:
+    - New PowerUP:
+        - Shield: All damage / 2
+        - If you have shield activated and eat double heart, you will get quadruple heart
 	
 Fixes:
 	- Can't fly bug solved

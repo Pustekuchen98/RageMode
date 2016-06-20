@@ -1,5 +1,6 @@
 package at.dafnik.ragemode.PowerUPs;
 
+import at.dafnik.ragemode.Main.Library;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -21,12 +22,18 @@ public class Healer implements Listener{
 	
 	@EventHandler
 	public void Interact(PlayerInteractEvent event) {
-		Player player = event.getPlayer();
-		if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {			
-			if(player.getInventory().getItemInMainHand().getType() == Material.REDSTONE) {
-				if(Main.status == Status.INGAME) {
-					player.setMaxHealth(40);
-					player.setHealth(40);
+		if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+			if(Main.status == Status.INGAME) {
+				if(event.getPlayer().getInventory().getItemInMainHand().getType() == Material.REDSTONE) {
+					Player player = event.getPlayer();
+
+					if(Library.powerup_shield.contains(player)) {
+						player.setMaxHealth(80);
+						player.setHealth(80);
+					} else {
+						player.setMaxHealth(40);
+						player.setHealth(40);
+					}
 					player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, time, 3));
 					int amount = event.getItem().getAmount() - 1;
 					player.getInventory().remove(event.getItem());

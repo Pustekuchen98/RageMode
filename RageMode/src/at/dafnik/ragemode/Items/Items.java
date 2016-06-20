@@ -72,6 +72,14 @@ public class Items {
 			player.getInventory().addItem(i2);
 		}
 	}
+
+	public static void givePlayerShield(Player player) {
+		ItemStack i = new ItemStack(Material.SHIELD, 1);
+		ItemMeta imd = i.getItemMeta();
+		imd.setDisplayName(Strings.items_shield);
+		i.setItemMeta(imd);
+		player.getInventory().addItem(i);
+	}
 	
 	public static void givePlayerShopItem(Player player) {
 		ItemStack i = new ItemStack(Material.GOLD_NUGGET);

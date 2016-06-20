@@ -55,7 +55,11 @@ public class AxeThrowThread implements Runnable{
 										public void run() {
 											victim.removeMetadata("killedWith", Main.getInstance());
 											victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "combataxe"));
-											victim.damage(41, player);
+											if(Library.powerup_shield.contains(victim)) {
+												victim.damage(11, player);
+											} else {
+												victim.damage(41, player);
+											}
 										}
 									}, 1);
 									

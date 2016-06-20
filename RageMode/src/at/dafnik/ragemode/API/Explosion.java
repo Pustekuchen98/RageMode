@@ -54,6 +54,10 @@ public class Explosion {
 					else if(ground == "c4") victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "c4"));
 					else System.out.println(Strings.error_explosion_no_killground);
 
+					if(Library.powerup_shield.contains(victim)) {
+						damage = damage / 3;
+					}
+
 					victim.damage(damage, killer);
 					
 					if(Main.isMySQL && Main.isShop) {

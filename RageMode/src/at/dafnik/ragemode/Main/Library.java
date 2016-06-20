@@ -84,6 +84,7 @@ public class Library {
 	public static List<Player> powerup_speedeffect = new ArrayList<>();
 	public static List<Player> powerup_doublejump = new ArrayList<>();
 	public static List<Player> powerup_flyparticle = new ArrayList<Player>();
+	public static List<Player> powerup_shield = new ArrayList<>();
 
 	// Title
 	public static int fadein = 5;

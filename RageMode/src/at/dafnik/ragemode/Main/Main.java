@@ -1,5 +1,6 @@
 package at.dafnik.ragemode.Main;
 
+import at.dafnik.ragemode.PowerUPs.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -36,12 +37,6 @@ import at.dafnik.ragemode.Listeners.PlayerRide;
 import at.dafnik.ragemode.MySQL.ConfigStandart;
 import at.dafnik.ragemode.MySQL.MySQL;
 import at.dafnik.ragemode.MySQL.Ranking;
-import at.dafnik.ragemode.PowerUPs.C4Detonator;
-import at.dafnik.ragemode.PowerUPs.DoubleJump;
-import at.dafnik.ragemode.PowerUPs.Fly;
-import at.dafnik.ragemode.PowerUPs.Healer;
-import at.dafnik.ragemode.PowerUPs.Mine;
-import at.dafnik.ragemode.PowerUPs.PowerUPItemListener;
 import at.dafnik.ragemode.Shop.Shop;
 import at.dafnik.ragemode.Shop.Pages.AdvancedShopPage_BowPowerUpgrade;
 import at.dafnik.ragemode.Shop.Pages.AdvancedShopPage_DoublePowerUPsUpgrade;
@@ -250,6 +245,7 @@ public class Main extends JavaPlugin{
 		pm.registerEvents(new Flash(), this);
 		pm.registerEvents(new Fly(), this);
 		pm.registerEvents(new C4Detonator(), this);
+		pm.registerEvents(new Shield(), this);
 		
 		//Weapons
 		pm.registerEvents(new AxeEvent(), this);
@@ -303,6 +299,7 @@ public class Main extends JavaPlugin{
 		this.getCommand("tpmap").setExecutor(new Teleport());
 		this.getCommand("tpmap").setTabCompleter(new TabCompleter_TpMap());
 		this.getCommand("tplobby").setExecutor(new Teleport());
+		this.getCommand("sparcles").setExecutor(new Teleport());
 		
 		this.getCommand("hub").setExecutor(new LobbyCommands());
 	}

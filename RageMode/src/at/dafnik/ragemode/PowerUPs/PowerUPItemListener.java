@@ -54,7 +54,7 @@ public class PowerUPItemListener implements Listener{
 				Library.powerup_hashmap.remove(Integer.valueOf(item.getItemStack().getItemMeta().getDisplayName()));
 				Library.powerup_list.remove(holo);
 
-				switch(new Random().nextInt(12)) {
+				switch(new Random().nextInt(13)) {
 				case 0:
 					Items.givePlayerDoubleHeart(player);
 					if(Main.isMySQL && Main.isShop) if(SQLCoins.getDoublePowerUP(player.getUniqueId().toString())) Items.givePlayerDoubleHeart(player); 
@@ -133,6 +133,13 @@ public class PowerUPItemListener implements Listener{
 					player.sendMessage(Strings.powerup_get_0 + Strings.items_c4 + Strings.powerup_get_1);
 					Items.givePlayerC4Detonator(player);
 					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_c4 + Strings.debug_powerup_get_2 + player.getName());
+					break;
+
+				case 12:
+					Items.givePlayerShield(player);
+					if(Main.isMySQL && Main.isShop) if(SQLCoins.getDoublePowerUP(player.getUniqueId().toString())) Items.givePlayerShield(player);
+					player.sendMessage(Strings.powerup_get_0 + Strings.items_shield + Strings.powerup_get_1);
+					if (Main.isDebug) System.out.println(Strings.debug_powerup_get_1 + Strings.items_shield + Strings.debug_powerup_get_2 + player.getName());
 					break;
 					
 				default:

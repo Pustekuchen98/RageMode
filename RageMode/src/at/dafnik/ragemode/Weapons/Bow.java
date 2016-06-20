@@ -26,21 +26,6 @@ import java.util.List;
 
 public class Bow implements Listener{
 
-	public static List<Player> hasShield = new ArrayList<Player>();
-
-	@EventHandler
-	public void hasShield(PlayerInteractEvent event) {
-		if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-			if(event.getPlayer().getInventory().getItemInOffHand().getType() == Material.SHIELD) {
-				hasShield.add(event.getPlayer());
-				event.getPlayer().sendMessage("ison");
-
-
-				event.getPlayer().getInventory().getItemInOffHand().
-			}
-		}
-	}
-
 	@EventHandler
 	public void shootArrow(EntityShootBowEvent event) {
 		if(event.getEntity() instanceof Player && event.getProjectile() instanceof Arrow) {
@@ -96,7 +81,11 @@ public class Bow implements Listener{
 
 									victim.removeMetadata("killedWith", Main.getInstance());
 									victim.setMetadata("killedWith", new FixedMetadataValue(Main.getInstance(), "bow"));
-									event.setDamage(21);
+									if(Library.powerup_shield.contains(victim)) {
+										event.setDamage(11);
+									} else {
+										event.setDamage(21);
+									}
 
 								} event.setCancelled(true);
 								
