@@ -9,17 +9,17 @@ import org.bukkit.entity.Player;
 
 public class C4Speicher {
 
-	private List<Block> blocks = new ArrayList<>();
+	private List<Block> c4blocks = new ArrayList<>();
 	private Player player = null;
 	
 	public void addC4(Block block) {
-		if(block.getType() == Material.STONE_BUTTON) blocks.add(block);
+		if(block.getType() == Material.STONE_BUTTON) c4blocks.add(block);
 		else System.out.println("C4Speicher! Not saveable block!");
 	}
 	
 	/* Not used
 	public void removeC4(Block block) {
-		blocks.remove(block);
+		c4blocks.remove(block);
 	}*/
 	
 	public void setPlayer(Player player) {
@@ -31,23 +31,23 @@ public class C4Speicher {
 	}
 	
 	public void detonateAll() {
-		for(Block blocks : blocks) {
+		for(Block blocks : c4blocks) {
 			new Explosion("c4", blocks.getLocation(), player);
 			blocks.setType(Material.AIR);
 		}
-		
-		blocks = null;
-		blocks = new ArrayList<>();
+
+		c4blocks = null;
+		c4blocks = new ArrayList<>();
 	}
 	
 	/* Not used
 	public void detonate(Block block) {
 		if(blocks.contains(block)) {
 			new Explosion("c4", block.getLocation(), player);
-			block.setType(Material.AIR);
+			c4blocks.setType(Material.AIR);
 			
 		} else return;
 		
-		blocks.remove(block);
+		c4blocks.remove(block);
 	}*/
 }

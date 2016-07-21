@@ -8,9 +8,8 @@ import org.bukkit.inventory.ItemStack;
 public class ShieldThread implements Runnable{
 
 	private Player player;
-	Thread thread;
+	private Thread thread;
 	private Boolean running = false;
-	private int zaehler = 0;
 
 	public ShieldThread(Player player) {
 		this.player = player;
@@ -33,19 +32,13 @@ public class ShieldThread implements Runnable{
 	@Override
 	public void run() {
 		while(running) {
-			player.getInventory().getItemInOffHand().setDurability((short) (player.getInventory().getItemInOffHand().getDurability() + 15));
-
-			if(zaehler >= 20) {
-				player.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
-				Library.powerup_shield.remove(player);
-				this.stop();
-			}
-
-			zaehler++;
-
 			try{
-				Thread.sleep(1000);
+				Thread.sleep(20000);
 			} catch (InterruptedException e){ this.stop(); }
+
+			player.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
+			Library.powerup_shield.remove(player);
+			this.stop();
 		}		
 	}
 }
