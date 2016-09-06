@@ -78,17 +78,18 @@ public class PlayerJoinListener implements Listener {
 			
 			Items.givePlayerHookSwitcher(player, "§aON");
 			
-			if(Main.isMySQL && Main.isShop) {
-				Items.givePlayerShopItem(player);
-				
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable(){
-					 public void run(){
-						  if(Library.villager != null && Library.villagerholo != null) Library.villagerholo.display(player);
-				     }
-				 }, 20);
-			}
-			
 			if(Main.isMySQL) {
+
+				if(Main.isShop) {
+					Items.givePlayerShopItem(player);
+
+					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable(){
+						public void run(){
+							if(Library.villager != null && Library.villagerholo != null) Library.villagerholo.display(player);
+						}
+					}, 20);
+				}
+
 				SQLStats.createPlayer(player.getUniqueId().toString());
 				
 				Bukkit.getScheduler().runTaskLater(Main.getInstance(), new Runnable(){

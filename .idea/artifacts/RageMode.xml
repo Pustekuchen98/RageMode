@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="RageMode:jar">
-    <output-path>$PROJECT_DIR$/../../../../../Minecraft/Server/testragemode/plugins</output-path>
+  <artifact type="jar" name="RageMode">
+    <output-path>$USER_HOME$/Desktop/testragemode/plugins</output-path>
     <root id="archive" name="RageMode.jar">
       <element id="module-output" name="RageMode" />
       <element id="file-copy" path="$PROJECT_DIR$/RageMode/plugin.yml" />

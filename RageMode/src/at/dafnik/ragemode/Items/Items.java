@@ -74,7 +74,7 @@ public class Items {
 	}
 
 	public static void givePlayerShield(Player player) {
-		ItemStack i = new ItemStack(Material.SHIELD, 1);
+		ItemStack i = new ItemStack(Material.IRON_DOOR, 1);
 		ItemMeta imd = i.getItemMeta();
 		imd.setDisplayName(Strings.items_shield);
 		i.setItemMeta(imd);

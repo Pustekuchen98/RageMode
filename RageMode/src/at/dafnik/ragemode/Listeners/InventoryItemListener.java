@@ -23,10 +23,8 @@ public class InventoryItemListener implements Listener{
 		
 		if ((Main.status == Status.PRE_LOBBY || Main.status == Status.LOBBY) && Library.builder.contains(player)
 				&& player.hasPermission("ragemode.admin")) event.setCancelled(false);
-		else if(Main.status != Status.INGAME){
-			event.setCancelled(true);
-			event.getItem().remove();
-		} else event.setCancelled(true);
+
+		else event.setCancelled(true);
 	}
 	
 	//Dropping is off

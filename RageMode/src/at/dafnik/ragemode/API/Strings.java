@@ -13,8 +13,9 @@ public class Strings {
 	public static String permissions_admin = "ragemode.admin";
 	public static String permissions_moderator = "ragemode.moderator";
 	
-	
-	
+	//---------------------------------------------------------- Commands -------------------------------------------------------------------
+	//-----------------------------------------------------Create Lobby & Map ---------------------------------------------------------------
+
 	public static String commands_mapset_error_permissions_denied = pre + "§cYou do not have permisson to perform this command§8!";
 	public static String commands_mapset_error_map_not_exist = pre + "§cThe map you choose does not exist§8!";
 	
@@ -57,22 +58,6 @@ public class Strings {
 	public static String commands_mapset_sethologram_usage = pre + "§cUsage§8: §e/rm sethologram";
 	public static String commands_mapset_sethologram_successful = pre + "§7Hologram spawnpoint changed §asuccessful§8!";
 	
-	public static String commands_mapset_bungee_usage_0 = pre + "§cUsage§8: §e/rm bungee §8| §fenable / disable bungeecord";
-	public static String commands_mapset_bungee_usage_1 = pre + "§cUsage§8: §e/rm bungee setlobbyserver §8<§alobbyservername§8>";
-	public static String commands_mapset_bungee_setserver_successful = pre + "§7Changed the bungeecord lobbyserver §asuccessful §7to §b";
-	public static String commands_mapset_bungee_changed_on = pre + "§aEnabled §7BungeeCord Network support§8!";
-	public static String commands_mapset_bungee_changed_off = pre + "§cDisabled §7BungeeCord Network support§8!";
-	
-	public static String commands_mapset_mysql_usage_0 = pre + "§cUsage§8: §e/rm mysql §8| §fenable/ disalbe mysql";
-	public static String commands_mapset_mysql_usage_1 = pre + "§cUsage§8: §e/rm mysql §8< §asethost §8| §asetdatabase §8| §asetusername"
-			+ " §8| §apassword§8> §8<§avalue§8>";
-	public static String commands_mapset_mysql_changed_on = pre + "§aEnabled §7MySQL support§8!";
-	public static String commands_mapset_mysql_changed_off = pre + "§cDisabled §7MySQL support§8!";
-	public static String commands_mapset_mysql_sethost = pre + "§7You changed the MySQL host to §b";
-	public static String commands_mapset_mysql_setdatabase = pre + "§7You changed the MySQL database to §b";
-	public static String commands_mapset_mysql_setusername = pre + "§7You changed the MySQL username to §b";
-	public static String commands_mapset_mysql_setpassword = pre + "§7You changed the MySQL password to §b";
-	
 	public static String commands_mapset_builder_usage = pre + "§cUsage§8: §e/rm builder";
 	public static String commands_mapset_builder_allowed = pre + "§7Now you are §aallowed §7to build§8!";
 	public static String commands_mapset_builder_disallowed = pre + "§7Now you are §cdisallowed §7to build§8!";
@@ -90,7 +75,27 @@ public class Strings {
 	public static String commands_mapset_setgametime_successful = pre + "§7Changed the game minutes to §b";
 	public static String commands_mapset_setgametime_usage_console = log_pre + "Usage: /rm setgametime <minutes>";
 	public static String commands_mapset_setgametime_successful_console = log_pre + "Changed the game minutes to ";
-	
+
+	//-------------------------------------------------------------- MySQL & Bungee ---------------------------------------------------------------
+
+	public static String commands_mapset_bungee_usage_0 = pre + "§cUsage§8: §e/rm bungee §8| §fenable / disable bungeecord";
+	public static String commands_mapset_bungee_usage_1 = pre + "§cUsage§8: §e/rm bungee setlobbyserver §8<§alobbyservername§8>";
+	public static String commands_mapset_bungee_setserver_successful = pre + "§7Changed the bungeecord lobbyserver §asuccessful §7to §b";
+	public static String commands_mapset_bungee_changed_on = pre + "§aEnabled §7BungeeCord Network support§8!";
+	public static String commands_mapset_bungee_changed_off = pre + "§cDisabled §7BungeeCord Network support§8!";
+
+	public static String commands_mapset_mysql_usage_0 = pre + "§cUsage§8: §e/rm mysql §8| §fenable/ disalbe mysql";
+	public static String commands_mapset_mysql_usage_1 = pre + "§cUsage§8: §e/rm mysql §8< §asethost §8| §asetdatabase §8| §asetusername"
+			+ " §8| §apassword§8> §8<§avalue§8>";
+	public static String commands_mapset_mysql_changed_on = pre + "§aEnabled §7MySQL support§8!";
+	public static String commands_mapset_mysql_changed_off = pre + "§cDisabled §7MySQL support§8!";
+	public static String commands_mapset_mysql_sethost = pre + "§7You changed the MySQL host to §b";
+	public static String commands_mapset_mysql_setdatabase = pre + "§7You changed the MySQL database to §b";
+	public static String commands_mapset_mysql_setusername = pre + "§7You changed the MySQL username to §b";
+	public static String commands_mapset_mysql_setpassword = pre + "§7You changed the MySQL password to §b";
+
+
+	//------------------------------------------------------------ Coins, Premium and Shop -------------------------------------------------------
 	
 	public static String commands_coins_your = pre + "§7You have §6";
 	public static String commands_coins_your_2 = " §7Coins§8!";
@@ -175,12 +180,12 @@ public class Strings {
 	
 	
 	public static String map_worldborder = pre + "§cYou are not allowed to pass§8!\n" + pre + "§cThe map ends here§8!";
-	
-	
+
+
 	public static String bungee_switch_on = pre + "§7BungeeCord support turned§8: §aON";
 	public static String bungee_switch_off = pre + "§7BungeeCord support turned§8: §cOFF";
 	public static String bungee_lobby_server = pre + "§7Changed the BungeeCord fallback server §asuccessful§8: §b";
-	
+
 	public static String mysql_set_host = pre + "§7Changed the MySQL host §asuccessful§8: §b";
 	public static String mysql_set_database = pre + "§7MySQL database changed §asuccessful§8: §b";
 	public static String mysql_set_username = pre + "§7MySQL username changed §asuccessful§8: §b";

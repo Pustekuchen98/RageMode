@@ -78,7 +78,7 @@ public class Holograms {
      * Create a new hologram
      * Note: The constructor will automatically initialize the internal cache; it may take some millis
      * @param loc The location where this hologram is shown
-     * @param lines The text-lines, from top to bottom, farbcodes are possible
+     * @param lines The text-lines, from top to bottom, color codes are possible
      */
     public Holograms(Location loc, String... lines) {
         this(loc, Arrays.asList(lines));
@@ -129,7 +129,7 @@ public class Holograms {
    
     /**
      * Removes this hologram from the players view
-     * @param p The target player
+     * @param player The target player
      * @return true, if the action was successful, else false (including the try to remove a non-existing hologram)
      */
     public boolean destroy(Player player) {

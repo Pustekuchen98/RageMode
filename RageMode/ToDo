@@ -1,6 +1,7 @@
 Changes:
 	- Minecraft 1.10
-	- Hologram Updates
+	- Hologram Updates (I had to edit the source code from Holograms, the API wasn't anymore working. This was the most complicated thing, because I have no idea of sending client packages)
+	- Code cleanup
 
 Added:
     - New PowerUP:
@@ -9,3 +10,4 @@ Added:
 	
 Fixes:
 	- Can't fly bug solved
+	- Grenade (Egg) remove bug fixed

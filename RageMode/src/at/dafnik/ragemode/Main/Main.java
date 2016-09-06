@@ -186,12 +186,8 @@ public class Main extends JavaPlugin{
 		if(getConfig().getString("ragemode.settings.version") == null) getConfig().set("ragemode.settings.version", "NOP_LEL");
 			
 		if(!(getConfig().getString("ragemode.settings.version").equalsIgnoreCase(getDescription().getVersion()))) {
-			getConfig().set("ragemode.settings.version", "1.4.1");
+			getConfig().set("ragemode.settings.version", "1.4.2");
 			getConfig().set("ragemode.settings.updatecheck", true);
-				
-			if(isMySQL) mysql.update("ALTER TABLE Coins ADD DOUBLEPOWERUPGRADE int DEFAULT 0");
-			
-			getConfig().set("ragemode.shop.doublepowerupsprice", Integer.valueOf(20000));
 			
 			saveConfig();
 			System.out.println(Strings.ragemode_updated_succesful);	

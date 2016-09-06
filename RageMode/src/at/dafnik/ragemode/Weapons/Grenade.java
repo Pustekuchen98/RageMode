@@ -50,9 +50,9 @@ public class Grenade implements Listener{
 
 			if(Main.status == Status.INGAME) {
 				Location locegg = egg.getLocation();
-				
-				ItemStack eggi = new ItemStack(Material.EGG);
-				Entity eggy = locegg.getWorld().dropItem(locegg, eggi);
+
+				Entity eggy = locegg.getWorld().dropItem(locegg, new ItemStack(Material.EGG));
+                eggy.setCustomName("GRENADE");
 				Player killer = (Player) egg.getShooter();
 				
 				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(),new Runnable() {

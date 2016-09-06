@@ -5,6 +5,7 @@ import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -151,11 +152,16 @@ public class PowerUPItemListener implements Listener{
 				entity.remove();
 				Library.powerup_entity.remove(entity);
 			
-			} else if(entity.getName() != "PowerUPEntity"){
+			} else if(!entity.getName().equals("PowerUPEntity") && !entity.getName().equals("GRENADE")){
 				event.setCancelled(true);
 				entity.remove();
-			}
-		}
+			} else {
+			    event.setCancelled(true);
+            }
+		} else {
+		    event.setCancelled(true);
+            entity.remove();
+        }
 	}
 	
 	private void giveDoubleJump(Player player) {

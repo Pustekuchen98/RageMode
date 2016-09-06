@@ -354,8 +354,8 @@ public class Mapset implements CommandExecutor {
 									Main.getInstance().saveConfig();
 
 									player.sendMessage(Strings.commands_mapset_setmapmiddle_successful_0 + radius
-											+ Strings.commands_mapset_setmapauthor_successful_1 + mapname
-											+ Strings.commands_mapset_setmapauthor_successful_2);
+											+ Strings.commands_mapset_setmapmiddle_successful_1 + mapname
+											+ Strings.commands_mapset_setmapmiddle_successful_2);
 
 								} else
 									player.sendMessage(Strings.commands_mapset_error_map_not_exist);
