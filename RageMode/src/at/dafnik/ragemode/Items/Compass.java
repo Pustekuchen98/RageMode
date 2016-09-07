@@ -1,6 +1,7 @@
 package at.dafnik.ragemode.Items;
 
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_10_R1.generator.InternalChunkGenerator;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,9 +11,13 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import at.dafnik.ragemode.API.Strings;
 import at.dafnik.ragemode.Main.Library;
 
+import java.util.HashMap;
+
 public class Compass implements Listener{
 	
-	double distance = Double.MAX_VALUE;
+	private double distance = Double.MAX_VALUE;
+
+    private HashMap<Player, Integer> foreveralonecounter = new HashMap<Player, Integer>();
 	
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
@@ -22,6 +27,18 @@ public class Compass implements Listener{
 			Player target = getNearest(player);
 			if(target == null) {
 				player.sendMessage(Strings.item_compass_error);
+
+                if(foreveralonecounter.get(player) == null) {
+                    foreveralonecounter.put(player, 1);
+                } else {
+                    foreveralonecounter.replace(player, foreveralonecounter.get(player) + 1);
+                }
+
+                if(foreveralonecounter.get(player) > 10) {
+                    foreveralonecounter.replace(player, 0);
+                    player.sendMessage(Strings.item_compass_error_4ever_alone);
+                }
+
 				return;
 			}
 			

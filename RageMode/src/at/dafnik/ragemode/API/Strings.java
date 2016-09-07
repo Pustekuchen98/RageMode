@@ -281,6 +281,7 @@ public class Strings {
 	public static String killstreak = " §7has a §ckillstreak ";
 	
 	public static String item_compass_error = pre + "§cThere are no other players§8!";
+    public static String item_compass_error_4ever_alone = pre + "§cStop spamming this shit§8! §cYou human piece of trash§8, you are forever alone§8!";
 	public static String item_compass_1 = pre + "§7Next player§8: ";
 	public static String item_compass_2 = " §8| §7Blocks away§8: §6";
 	

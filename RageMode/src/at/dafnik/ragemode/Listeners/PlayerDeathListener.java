@@ -161,7 +161,7 @@ public class PlayerDeathListener implements Listener {
 				//[Check] if killreason != null. - Closed
 				}
 			
-			//[Check] if Player is Victim - Closed
+			//[Check] if Killer is Victim - Closed
 			} else {
 				event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_suicide);
 				Library.bar.setTitle(victim.getDisplayName() + Strings.kill_suicide);
