@@ -281,6 +281,7 @@ public class Main extends JavaPlugin{
 		this.getCommand("rm").setTabCompleter(new TabCompleter_RM());
 		
 		this.getCommand("coins").setExecutor(new Coins());
+		this.getCommand("sparcles").setExecutor(new Coins());
 		this.getCommand("coinsadmin").setExecutor(new Coins());
 		this.getCommand("coinsadmin").setTabCompleter(new TabCompleter_CoinsAdmin());
 		
@@ -295,7 +296,6 @@ public class Main extends JavaPlugin{
 		this.getCommand("tpmap").setExecutor(new Teleport());
 		this.getCommand("tpmap").setTabCompleter(new TabCompleter_TpMap());
 		this.getCommand("tplobby").setExecutor(new Teleport());
-		this.getCommand("sparcles").setExecutor(new Teleport());
 		
 		this.getCommand("hub").setExecutor(new LobbyCommands());
 	}

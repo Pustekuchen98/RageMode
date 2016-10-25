@@ -53,25 +53,6 @@ public class Teleport implements CommandExecutor{
 			 	}
 			}
 
-			if(cmd.getName().equalsIgnoreCase("sparcles")) {
-				if(Library.sparcleswitch.contains(player)) {
-					Library.sparcleswitch.remove(player);
-					player.sendMessage(Strings.commands_sparcle_off);
-				} else {
-					Library.sparcleswitch.add(player);
-					player.sendMessage(Strings.commands_sparcle_on);
-				}
-
-				if(Main.status == Status.LOBBY || Main.status == Status.PRE_LOBBY) {
-					player.getInventory().remove(Material.AIR);
-					if(Library.sparcleswitch.contains(player)) {
-						Items.givePlayerSparcleSwitcher(player, "§aON");
-					} else {
-						Items.givePlayerSparcleSwitcher(player, "§cOFF");
-					}
-				}
-			}
-
 		} else System.out.println(Strings.error_only_player_use);
 		return true;
 	}

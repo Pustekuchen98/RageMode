@@ -4,38 +4,38 @@ author: Dafnik
 version: 1.4.1
 commands:
   rm:
-    description: RageMode Admin Commands!
+    description: List of all RageMode commands
     aliases: ragemode
   vote:
     description: Vote for a Map
     aliases: v
   list:
-    description: List all Maps
+    description: During lobby periode: Display all voteable maps. During Game: Display current map
   tpmap:
-    description: Teleport to a Map
+    description: Teleport to map
   tplobby:
-    description: Teleport to Lobby
+    description: Teleport to lobby
   forcestart:
-    description: Forcestart the round
+    description: Starts the game earlier
     aliases: start
   latestart:
     description: Reset the Counter
   stats:
-    description: Show you, your stats
+    description: Display your stats
   statsadmin:
-    description: Edit all stats
+    description: Admin Command. Edit stats from users
   hub:
-    description: Back to the hub
+    description: Leave the current game and join the lobbyserver
     aliases: [l, leave, return, h]
   statsreset:
-    description: Reset your Stats
+    description: Reset your stats
   coins:
-    description: Show you your Coins
+    description: Show you your coins
     aliases: c
   coinsadmin:
-    description: Admin Command
+    description: Admin Command. Add or remove coins from users
   sparcles:
     description: Enable or disable sparcles behind your arrows
     aliases: sparcle
   test:
-    description: Test
+    description: Test (Nothing special)

@@ -79,7 +79,7 @@ public class PowerUpThread implements Runnable{
 				entity.setCustomName("PowerUPEntity");
 				entity.setVelocity((new Vector(0, 0, 0)));
 				
-				Holograms holo = new Holograms(entity.getLocation(), "§a§lPowerUP");
+				Holograms holo = new Holograms(entity.getLocation(), "§a§lMagic Effect");
 				for (Player players : Bukkit.getOnlinePlayers()) holo.display(players);
 
 				Library.powerup_hashmap.put(Integer.valueOf(item.getItemMeta().getDisplayName()), holo);

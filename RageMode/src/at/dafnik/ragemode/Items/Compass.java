@@ -17,8 +17,8 @@ public class Compass implements Listener{
 	
 	private double distance = Double.MAX_VALUE;
 
-    private HashMap<Player, Integer> foreveralonecounter = new HashMap<Player, Integer>();
-	
+    private static HashMap<Player, Integer> foreveralonecounter = new HashMap<Player, Integer>();
+
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();

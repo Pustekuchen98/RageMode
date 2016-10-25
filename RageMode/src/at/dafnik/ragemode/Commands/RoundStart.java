@@ -54,7 +54,7 @@ public class RoundStart implements CommandExecutor{
 					for(Player players : Bukkit.getOnlinePlayers()) players.playSound(loc, Sound.ENTITY_FIREWORK_LAUNCH, 1000, 1);
 					//new OwnFireworkThread(player, item).start();*/
 					
-					player.sendMessage("r ");			
+					player.sendMessage("Test was successful");
 				}
 			}
 		} else System.out.println(Strings.error_only_player_use);

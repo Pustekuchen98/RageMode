@@ -75,22 +75,22 @@ public class Mapvote implements CommandExecutor{
 			//Return the Map list
 			if(cmd.getName().equalsIgnoreCase("list")){
 				//Check if Ingame
-				if(Main.status == Main.Status.LOBBY) {
-					getListCommand(player);
-					
-				//Ingame
-				} else if(Main.status == Status.PRE_LOBBY){
-					player.sendMessage(Strings.error_voting_finished);
-				} else {
-					player.sendMessage(Main.pre + "§eMap§8: §6" + Library.votedmap);
-				}
+				if(Main.status == Main.Status.LOBBY) getListCommand(player);
+
+				else if(Main.status == Status.PRE_LOBBY) player.sendMessage(Strings.error_voting_finished);
+
+				else player.sendMessage(Main.pre + "§eMap§8: §6" + Library.votedmap);
+
 			}
 			
 			//Vote System
 			if(cmd.getName().equalsIgnoreCase("vote")){
 				if(args.length == 0) {
 					if(Main.status == Status.LOBBY) getListCommand(player);
-					else player.sendMessage(Strings.error_voting_finished);
+
+					else if(Main.status == Status.PRE_LOBBY) player.sendMessage(Strings.error_voting_finished);
+
+					else player.sendMessage(Main.pre + "§eMap§8: §6" + Library.votedmap);
 					
 				} else if(args.length > 0 && args.length < 2){
 					//If Ingame

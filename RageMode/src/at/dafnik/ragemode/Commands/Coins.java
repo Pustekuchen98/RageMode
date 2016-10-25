@@ -1,6 +1,9 @@
 package at.dafnik.ragemode.Commands;
 
+import at.dafnik.ragemode.Items.Items;
+import at.dafnik.ragemode.Main.Library;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,8 +15,7 @@ import at.dafnik.ragemode.Main.Main;
 import at.dafnik.ragemode.MySQL.SQLCoins;
 
 public class Coins implements CommandExecutor{
-	
-	@SuppressWarnings("deprecation")
+
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 
 		if(sender instanceof Player){
@@ -47,12 +49,30 @@ public class Coins implements CommandExecutor{
 					} else player.sendMessage(Strings.error_permission);	
 				}
 			}
+
+			if(cmd.getName().equalsIgnoreCase("sparcles")) {
+				if (Library.sparcleswitch.contains(player)) {
+					Library.sparcleswitch.remove(player);
+					player.sendMessage(Strings.commands_sparcle_off);
+				} else {
+					Library.sparcleswitch.add(player);
+					player.sendMessage(Strings.commands_sparcle_on);
+				}
+
+				if (Main.status == Main.Status.LOBBY || Main.status == Main.Status.PRE_LOBBY) {
+					player.getInventory().remove(Material.AIR);
+					if (Library.sparcleswitch.contains(player)) {
+						Items.givePlayerSparcleSwitcher(player, "§aON");
+					} else {
+						Items.givePlayerSparcleSwitcher(player, "§cOFF");
+					}
+				}
+			}
 		} else System.out.println(Strings.error_only_player_use);
 		return true;
 	}
-	
-	@SuppressWarnings("deprecation")
-	public Boolean PlayedBefore(Player player, String playername){
+
+	public boolean PlayedBefore(Player player, String playername){
 		if(Main.isMySQL) {
 			OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playername);
 	        if (!offlinePlayer.hasPlayedBefore()) {

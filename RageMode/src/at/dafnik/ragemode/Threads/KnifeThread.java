@@ -26,8 +26,8 @@ public class KnifeThread implements Runnable{
 			this.thread.start();
 		}
 	}
-	
-	@SuppressWarnings("deprecation")
+
+	@Deprecated
 	public void stop(){
 		this.running = false;
 		this.thread.stop();
@@ -41,20 +41,16 @@ public class KnifeThread implements Runnable{
 					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
 						@Override
 						public void run() {
-							for(Player player : Bukkit.getOnlinePlayers()) {		
-								if (!Library.spectatorlist.contains(player)) {
-									if (!Library.powerup_speedeffect.contains(player)) {
-										if (player.getInventory().getItemInMainHand().getType() == Material.IRON_SPADE) {
-											if (Main.isMySQL && Main.isShop) {
-												if (SQLCoins.getSpeedUpgrade(player.getUniqueId().toString()))
-													player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 1));
-												else player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 0));
-											} else player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 0));
+							Bukkit.getOnlinePlayers().stream().filter(player -> !Library.spectatorlist.contains(player)).filter(player -> !Library.powerup_speedeffect.contains(player)).forEach(player -> {
+								if (player.getInventory().getItemInMainHand().getType() == Material.IRON_SPADE) {
+									if (Main.isMySQL && Main.isShop) {
+										if (SQLCoins.getSpeedUpgrade(player.getUniqueId().toString()))
+											player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 1));
+										else player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 0));
+									} else player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 0));
 
-										} else player.removePotionEffect(PotionEffectType.SPEED);
-									}
-								}	
-							}
+								} else player.removePotionEffect(PotionEffectType.SPEED);
+							});
 						}
 					}, 1);
 				} catch (Exception ex) {
