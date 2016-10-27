@@ -61,14 +61,15 @@ public class PlayerDeathListener implements Listener {
         if (killer instanceof Player) {
 
             if (killer == victim) {
-                event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_suicide);
-                victim.sendMessage("§c§l" + this.suicide);
+                event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.listener_playerdeathevent_deathmessage_suicided);
+                victim.sendMessage(Strings.listener_playerdeathevent_messagetoplayer_removepoints + this.suicide);
 
                 addPoints(victim, this.suicide);
                 if (Main.isMySQL) SQLStats.addSuicides(victim.getUniqueId().toString(), 1);
 
                 createHologram(victim.getEyeLocation(), this.suicide);
-                Library.bar.setTitle(killer.getDisplayName() + Strings.kill_killed + victim.getDisplayName() + Strings.kill_with + Strings.kill_suicide);
+                Library.bar.setTitle(killer.getDisplayName() + Strings.listener_playerdeathevent_deathmessage_killed + victim.getDisplayName()
+                        + Strings.listener_playerdeathevent_deathmessage_with + Strings.listener_playerdeathevent_deathmessage_suicided);
                 Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> Library.bar.setTitle(Strings.bossbar), 6 * 20);
 
             } else {
@@ -76,49 +77,52 @@ public class PlayerDeathListener implements Listener {
                 if (victim.getMetadata("killedWith") != null && !victim.getMetadata("killedWith").isEmpty()) {
                     switch (victim.getMetadata("killedWith").get(0).asString()) {
                         case "bow":
-                            make(event, killer, victim, Strings.kill_with_bow, this.bowkill);
+                            make(event, killer, victim, Strings.listener_playerdeathevent_deathmessage_with_bow, this.bowkill);
 
                             break;
 
                         case "combataxe":
-                            make(event, killer, victim, Strings.kill_with_combat_axe, this.combataxekill);
+                            make(event, killer, victim, Strings.listener_playerdeathevent_deathmessage_with_combat_axe, this.combataxekill);
                             break;
 
                         case "grenade":
-                            make(event, killer, victim, Strings.kill_with_grenade, this.grenadekill);
+                            make(event, killer, victim, Strings.listener_playerdeathevent_deathmessage_with_grenade, this.grenadekill);
 
                             break;
 
                         case "mine":
-                            make(event, killer, victim, Strings.kill_with_mine, this.minekill);
+                            make(event, killer, victim, Strings.listener_playerdeathevent_deathmessage_with_mine, this.minekill);
 
                             break;
 
                         case "claymore":
-                            make(event, killer, victim, Strings.kill_with_claymore, this.claymorekill);
+                            make(event, killer, victim, Strings.listener_playerdeathevent_deathmessage_with_claymore, this.claymorekill);
 
                             break;
 
                         case "c4":
-                            make(event, killer, victim, Strings.kill_with_c4, this.c4kill);
+                            make(event, killer, victim, Strings.listener_playerdeathevent_deathmessage_with_c4, this.c4kill);
 
                             break;
 
                         case "knife":
-                            make(event, killer, victim, Strings.kill_with_knife, this.knifekill);
+                            make(event, killer, victim, Strings.listener_playerdeathevent_deathmessage_with_knife, this.knifekill);
 
-                            victim.sendMessage(Strings.kill_points_negative + this.knifedeath);
+                            killer.sendMessage(Strings.listener_playerdeathevent_deathmessage_backstab_addhealth);
+
+                            victim.sendMessage(Strings.listener_playerdeathevent_messagetoplayer_removepoints + this.knifedeath);
                             addPoints(victim, this.knifedeath);
 
                             break;
 
                         default:
-                            event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_unknown_killer);
+                            event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.listener_playerdeathevent_deathmessage_unknown_killer);
 
                             break;
                     }
                 } else {
-                    event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_unknown_killer);
+                    event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.listener_playerdeathevent_deathmessage_unknown_killer);
+                    if(Main.isDebug) System.out.println(Strings.listener_playerdeathevent_debug_unknownkiller_unknownmetadata);
                 }
 
                 victim.removeMetadata("killedWith", Main.getInstance());
@@ -132,14 +136,14 @@ public class PlayerDeathListener implements Listener {
                 addPoints(killer, this.killstreakpoints);
 
                 if (Main.isMySQL) SQLCoins.addCoins(killer.getUniqueId().toString(), 10);
-                Bukkit.broadcastMessage(Main.pre + killer.getDisplayName() + Strings.killstreak);
+                Bukkit.broadcastMessage(Main.pre + killer.getDisplayName() + Strings.listener_playerdeathevent_deathmessage_killstreak);
             }
 
-            killer.sendMessage(Main.pre + Strings.kill_your_points + String.valueOf(Library.playerpoints.get(killer)));
+            killer.sendMessage(Main.pre + Strings.listener_playerdeathevent_messagetoplayer_yourpoints + String.valueOf(Library.playerpoints.get(killer)));
             killer.setPlayerListName(killer.getDisplayName() + " §8- [§6" + Library.playerpoints.get(killer) + "§8]");
 
 
-        } else event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.kill_unknown_killer);
+        } else event.setDeathMessage(Main.pre + victim.getDisplayName() + Strings.listener_playerdeathevent_deathmessage_unknown_killer);
 
         //Auto Respawn
         Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> victim.spigot().respawn(), 30);
@@ -148,20 +152,20 @@ public class PlayerDeathListener implements Listener {
         if (killstreak.get(victim) == null) killstreak.put(victim, 0);
         else killstreak.replace(victim, killstreak.get(victim), 0);
 
-        if (Library.playerpoints.get(victim) == null) victim.sendMessage(Main.pre + Strings.kill_your_points + "0");
+        if (Library.playerpoints.get(victim) == null) victim.sendMessage(Main.pre + Strings.listener_playerdeathevent_messagetoplayer_yourpoints + "0");
         else
-            victim.sendMessage(Main.pre + Strings.kill_your_points + String.valueOf(Library.playerpoints.get(victim)));
+            victim.sendMessage(Main.pre + Strings.listener_playerdeathevent_messagetoplayer_yourpoints + String.valueOf(Library.playerpoints.get(victim)));
 
         victim.setPlayerListName(victim.getDisplayName() + " §8- [§6" + Library.playerpoints.get(victim) + "§8]");
 
     }
 
     private void make(PlayerDeathEvent event, Player killer, Player victim, String reason, int points) {
-        event.setDeathMessage(Main.pre + killer.getDisplayName() + Strings.kill_killed + victim.getDisplayName() + Strings.kill_with + reason);
+        event.setDeathMessage(Main.pre + killer.getDisplayName() + Strings.listener_playerdeathevent_deathmessage_killed + victim.getDisplayName() + Strings.listener_playerdeathevent_deathmessage_with + reason);
 
-        killer.sendMessage(Strings.kill_points_plus + points);
+        killer.sendMessage(Strings.listener_playerdeathevent_messagetoplayer_addpoints + points);
 
-        Library.bar.setTitle(killer.getDisplayName() + Strings.kill_killed + victim.getDisplayName() + Strings.kill_with + reason);
+        Library.bar.setTitle(killer.getDisplayName() + Strings.listener_playerdeathevent_deathmessage_killed + victim.getDisplayName() + Strings.listener_playerdeathevent_deathmessage_with + reason);
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> Library.bar.setTitle(Strings.bossbar), 6 * 20);
 
@@ -197,19 +201,17 @@ public class PlayerDeathListener implements Listener {
 
         if (!killer.isDead()) {
             killer.playSound(killer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1000.0F, 1.0F);
-            Title.sendActionBar(killer, Strings.kill_your_points + String.valueOf(Library.playerpoints.get(killer)));
+            Title.sendActionBar(killer, Strings.listener_playerdeathevent_messagetoplayer_yourpoints + String.valueOf(Library.playerpoints.get(killer)));
         }
 
-        killer.sendMessage(Main.pre + Strings.kill_your_points + String.valueOf(Library.playerpoints.get(killer)));
+        killer.sendMessage(Main.pre + Strings.listener_playerdeathevent_messagetoplayer_yourpoints + String.valueOf(Library.playerpoints.get(killer)));
         killer.setPlayerListName(killer.getDisplayName() + " §8- [§6" + Library.playerpoints.get(killer) + "§8]");
     }
 
     private void createHologram(Location location, int points) {
-        Holograms holo = new Holograms(location, "§c+§6" + points + Strings.kill_holo_points);
+        Holograms holo = new Holograms(location, "§c+§6" + points + Strings.listener_playerdeathevent_deathmessage_hologram);
 
-        for (Player players : Bukkit.getOnlinePlayers()) {
-            holo.display(players);
-        }
+        Bukkit.getOnlinePlayers().forEach(holo::display);
 
         int hologramLifetime = 2 * 20;
         Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> {

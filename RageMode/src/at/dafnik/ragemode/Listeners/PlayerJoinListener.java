@@ -169,13 +169,11 @@ public class PlayerJoinListener implements Listener {
 		    Title.sendTitle(player, Library.fadein, Library.stay, Library.fadeout, "§6Spectator");
 		    Title.sendSubtitle(player, Library.fadein, 40, Library.fadeout, "§bmode");
 			
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable(){
-				 public void run(){
-			         for(Holograms holo : Library.powerup_list) {
-			        	 holo.display(player);
-			         }
-			     }
-			 }, 20);
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> {
+                for(Holograms holo : Library.powerup_list) {
+                    holo.display(player);
+                }
+            }, 20);
 			
 		} else System.out.println(Strings.error_unkown_gamestate);
 	}

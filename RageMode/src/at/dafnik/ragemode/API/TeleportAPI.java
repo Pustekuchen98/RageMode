@@ -41,6 +41,7 @@ public class TeleportAPI {
 			location = new Location(Bukkit.getWorld(w), x, y, z);
 		}
 
+		if(location == null) System.out.println(Strings.error_not_existing_villagerspawn);
 		return location;
 	}
 	

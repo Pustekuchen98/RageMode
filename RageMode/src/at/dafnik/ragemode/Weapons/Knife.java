@@ -188,8 +188,6 @@ public class Knife implements Listener{
 										else
 											killer.setHealth(killer.getHealth() + 6);
 
-										killer.sendMessage(Strings.kill_backstab_knife);
-
 									} else {
 										if(Library.powerup_shield.contains(victim)) {
 											victim.damage(6, killer);

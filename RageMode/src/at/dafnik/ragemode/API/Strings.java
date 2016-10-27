@@ -94,7 +94,6 @@ public class Strings {
 	public static String commands_mapset_mysql_setusername = pre + "§7You changed the MySQL username to §b";
 	public static String commands_mapset_mysql_setpassword = pre + "§7You changed the MySQL password to §b";
 
-
 	//------------------------------------------------------------ Coins, Premium and Shop -------------------------------------------------------
 	
 	public static String commands_coins_your = pre + "§7You have §6";
@@ -127,14 +126,41 @@ public class Strings {
 	public static String shop_item_bowpowerupgrade_advanced_usage_0 = "§fWhen you normally shoot with the bow you get explosion radius and damage tier 1.";
 	public static String shop_item_bowpowerupgrade_advanced_usage_1 = "§fSo, when you buy this upgrade you will get explosion radius and damage tier 2.";
 	
+	//---------------------------------------------------------- PlayerDeathListener ----------------------------------------------------------------
+
+	public static String listener_playerdeathevent_debug_unknownkiller_unknownmetadata = debug_pre + "Unknown or non-exesting Metadata!";
+
+
+	public static String listener_playerdeathevent_messagetoplayer_addpoints = pre + "§a§l+";
+	public static String listener_playerdeathevent_messagetoplayer_removepoints = pre + "§c§l";
+
+	public static String listener_playerdeathevent_messagetoplayer_yourpoints = "§7Your points§8: §e";
+
+
+	public static String listener_playerdeathevent_deathmessage_killed = " §7killed §r";
+	public static String listener_playerdeathevent_deathmessage_with = " §7with ";
+
+	public static String listener_playerdeathevent_deathmessage_with_knife = "§cKnife";
+	public static String listener_playerdeathevent_deathmessage_with_bow = "§6Bow";
+	public static String listener_playerdeathevent_deathmessage_with_combat_axe = "§aCombat Axe";
+	public static String listener_playerdeathevent_deathmessage_with_grenade = "§6Cluster Grenade";
+	public static String listener_playerdeathevent_deathmessage_with_claymore = "§dClaymore";
+	public static String listener_playerdeathevent_deathmessage_with_mine = "§5Mine";
+	public static String listener_playerdeathevent_deathmessage_with_c4 = "§4C4";
+
+	public static String listener_playerdeathevent_deathmessage_suicided  = " §7suicided";
+	public static String listener_playerdeathevent_deathmessage_backstab_addhealth = pre + "§4§l+ §c3 §6Hearts";
+	public static String listener_playerdeathevent_deathmessage_unknown_killer = "§7died";
+
+	public static String listener_playerdeathevent_deathmessage_hologram = " §7Points";
+
+	public static String listener_playerdeathevent_deathmessage_killstreak = " §7has a §ckillstreak ";
+
+
 	
-	
-	
-	
-	
-	
-	
-	
+
+
+
 	
 	
 	
@@ -182,19 +208,8 @@ public class Strings {
 	public static String map_worldborder = pre + "§cYou are not allowed to pass§8!\n" + pre + "§cThe map ends here§8!";
 
 
-	public static String bungee_switch_on = pre + "§7BungeeCord support turned§8: §aON";
-	public static String bungee_switch_off = pre + "§7BungeeCord support turned§8: §cOFF";
-	public static String bungee_lobby_server = pre + "§7Changed the BungeeCord fallback server §asuccessful§8: §b";
-
-	public static String mysql_set_host = pre + "§7Changed the MySQL host §asuccessful§8: §b";
-	public static String mysql_set_database = pre + "§7MySQL database changed §asuccessful§8: §b";
-	public static String mysql_set_username = pre + "§7MySQL username changed §asuccessful§8: §b";
-	public static String mysql_set_password = pre + "§7MySQL password changed §asuccessful§8: §b";
-	public static String mysql_switch_on = pre + "§7MySQL support turned§8: §aON";
-	public static String mysql_switch_off = pre + "§7MySQL support turned§8: §cOFF";
 	
 	public static String stats_reset = pre + "§7Your stats have been reset §asuccessful§8!";
-	public static String statsadmin_successful = pre + "§7The execution of this command was §asuccesful§8!";
 	public static String stats_admin = pre + "/statsadmin §8<§aadd §8| §aremove§8> §8<§akills §8| §adeaths §8| §awongames §8| §aplayedgames §8| §apoints §8| §aresets §8| §abowkills §8| §aknifekills §8| §aaxtkills§8 §8| §asuicides§8> §8<§aplayername§8> <§anumber§8>";
 	public static String stats_are_loading = "§7Please wait a moment, your stats are being loaded...";
 	public static String stats_your_name_first = "§7-= §eStats from ";
@@ -261,24 +276,7 @@ public class Strings {
 	public static String ragemode_mysql_disconnected = log_pre + "MySQL Disconnected";
 	public static String ragemode_updated_succesful = log_pre + "Configuration and your MySQL Database have been successful updated!";
 	
-	public static String kill_suicide = " §7suicided";
-	public static String kill_killed = " §7killed §r";
-	public static String kill_with = " §7with ";
-	public static String kill_with_knife = "§6Knife";
-	public static String kill_with_combat_axe = "§aCombat Axt";
-	public static String kill_with_grenade = "§6Cluster Grenade";
-	public static String kill_with_claymore = "§6Claymore";
-	public static String kill_with_mine = "§6Mine";
-	public static String kill_with_c4 = "§4C4";
-	public static String kill_with_bow = "§6Bow";
-	public static String kill_backstab_knife = pre + "§4§l+ §c3 §6Hearts";
-	public static String kill_your_points = "§7Your points§8: §e";
-	public static String kill_unknown_killer = " §7died";
-	public static String kill_holo_points = " §7Points";
-	public static String kill_points_plus = pre + "§a§l+";
-	public static String kill_points_negative = pre + "§c§l";
-	
-	public static String killstreak = " §7has a §ckillstreak ";
+
 	
 	public static String item_compass_error = pre + "§cThere are no other players§8!";
     public static String item_compass_error_4ever_alone = pre + "§cStop spamming this shit§8! §cYou human piece of trash§8, you are forever alone§8!";
@@ -311,9 +309,7 @@ public class Strings {
 	
 	public static String powerup_get_0 = pre + "§e§kCanyoueatpussylikethat!Gregoll\n" + Main.pre + "§7Your §aPowerUP§8: ";
 	public static String powerup_get_1 = "§8!\n" + pre + "§e§kCanyoueatpussylikethat!Gregoll";
-	
-	public static String debug_saver_started = debug_pre + "Started Compass and Knife Thread";
-	public static String debug_saver_stopped = debug_pre + "Stopped Compass and Knife Thread";
+
 	public static String debug_powerup_get_1 = debug_pre + "PowerUP: ";
 	public static String debug_powerup_get_2 = " | Player:";
 	public static String debug_powerup_spawn_1 = debug_pre + "PowerUP spawnt on: ";
